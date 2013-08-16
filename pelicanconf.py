@@ -37,4 +37,4 @@ PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
 EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
 
 
-THEME = 'pelson_just_read'
+THEME = 'pelson-notmyidea-cms'

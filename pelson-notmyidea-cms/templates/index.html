@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content_title %}{% endblock %}
+{% block content %}
+
+        <div id="introduction">
+            <p>Ipsum lorem</p>
+            <p>Ipsum lorem</p>
+        </div>
+
+
+        {% if articles %}
+        <div id="article">
+        {% for article in articles %}
+            <div class="article-entry"> 
+                <h4><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h4>
+                <p class="date">{{ article.locale_date }}</p> 
+                <p class="excerpt">{{ article.summary }}</p> 
+                <p class="readmore"><a href="{{ SITEURL }}/{{ article.url }}">Read more</a></p> 
+            </div> 
+        {% endfor %}
+        </div>
+        {% endif %}
+
+         
+        <!--
+            <div class="article-entry"> 
+                <h4><a href="http://notes.piraja.no/2010/03/02/the-royale-family/">The Royale Family</a></h4><p class="date">2nd of March 2010</p> 
+                <p class="excerpt"><a href="http://notes.piraja.no/2010/03/02/the-royale-family/"><img class="rss-img" title="Tokyo, River" src="template_files/logo.png" alt="45royale Inc." height="333" width="500"></a>I’m very proud to say that from March 2nd, I’m officially a part of the 45royale Inc. Team!</p> 
+                <p class="readmore"><strong>5</strong> comments — <a href="http://notes.piraja.no/2010/03/02/the-royale-family/">Read more</a></p> 
+            </div>
+            <div class="article-entry"> 
+                <h4><a href="http://notes.piraja.no/2010/01/30/im-in-tokyo/">I’m in Tokyo</a></h4><p class="date">30th of January 2010</p> 
+                <p class="excerpt"><a href="http://notes.piraja.no/2010/01/30/im-in-tokyo/"><img class="rss-img" title="Tokyo, River" src="template_files/elva-liten.png" alt="A river we crossed while driving through the city." height="333" width="500"></a>     .. and it’s awesome. After 18 hours of traveling we’ve finally arrived at our hotel in the heart of Shiboya.</p> 
+                <p class="readmore"><strong>3</strong> comments — <a href="http://notes.piraja.no/2010/01/30/im-in-tokyo/">Read more</a></p> 
+            </div>
+        </div>
+        -->
+
+{% endblock content %}

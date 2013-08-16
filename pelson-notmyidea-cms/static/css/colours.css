@@ -1,0 +1,30 @@
+body {
+        color: #5c5c5c;
+        background: #101010;
+        border-top: 6px solid #ff592c;
+        }
+a { color: #7aa5a5; }
+a:hover { color: #a0d6d6; }
+}
+p a:hover { border-bottom: 1px solid #2d4040; }
+
+#header-wrap { background: #0c0c0c; }
+
+#introduction { border-bottom: 1px solid #2e2e2e; }
+#introduction p { color: #b3ada1; }
+#article .excerpt {  color: #9b968c; }	
+#article p.date { color: #a8a59d; } 
+#article .readmore { border-top: 1px solid #282828; }
+
+#sidebar { background: #0c0c0c; }
+#sidebar h4, #article h4, #side-navigation li {
+    color: #eaeaea; }
+#sidebar h4 a, #article h4 a, #side-navigation li a {
+    color: #63bdab; }
+#sidebar h4 a:hover, #article h4 a:hover, #side-navigation li a:hover {
+    color: #367a6c; }
+#sidebar img:hover { border: 1px solid #333; }
+#sidebar .sidebar-entry p, #body_work #portfolio-navigation ul li p, .information, #body_work .work-photos div p, #recent-blog-entries p {
+    color: #939393; }
+
+

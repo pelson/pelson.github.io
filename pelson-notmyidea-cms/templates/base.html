@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+        <meta name="author" content="github.com/pelson">
+        
+        <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
+        <meta charset="utf-8" />
+        
+        
+        <link rel="stylesheet" href="{{ SITEURL }}/theme/css/ipython.css" type="text/css" />
+        
+        <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style2.css" type="text/css" media="screen">
+        
+        <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" />
+        {% if FEED_RSS %}
+        <link href="{{ SITEURL }}/{{ FEED_RSS }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+        {% endif %}
+    </head>
+
+<body id="body_home">
+{% include 'github.html' %}
+    <div id="header-wrap">
+        <div id="header">
+                <h1><a href="{{ SITEURL }}/index.html">{{ SITENAME }}wIBBLe</a></h1>
+                    <ul id="site-navigation">
+                        {% for title, link in MENUITEMS %}
+                            <li><a href="{{ link }}">{{ title }}</a></li>
+                        {% endfor %}
+                        
+                        <li><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">Archives</a></li>
+                        
+                        {% if False %}
+                        {% for cat, null in categories %}
+                        <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                        {% endfor %}
+                        {% endif %}
+                    </ul>
+        </div>
+    </div>
+    
+    
+    <!-- CONTENT -->
+    <div id="contentwrap">
+    <div id="left-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <!-- END CONTENT -->
+    
+    <div id="right-content">
+        <div id="sidebar">
+            <div class="sidebar-entry">
+                <h4>Categories</h4>
+                <ul>
+                {% for cat, null in categories %}
+                   <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="sidebar-entry">
+                <h4>Pages</h4>
+                <ul>
+                {% for page in PAGES %}
+                    <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+            
+            {% if LINKS %}
+            <div class="sidebar-entry">
+                <div class="widget blogroll">
+                        <h4>Blogroll</h4>
+                        <ul>
+                        {% for name, link in LINKS %}
+                            <li><a href="{{ link }}">{{ name }}</a></li>
+                        {% endfor %}
+                        </ul>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if SOCIAL %}
+            <div class="sidebar-entry">
+                <div class="widget social">
+                        <h4>Social</h4>
+                        <ul>
+                            <li><a href="{{ SITEURL }}/{{ FEED }}" rel="alternate">atom feed</a></li>
+                            {% if FEED_RSS %}
+                            <li><a href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate">rss feed</a></li>
+                            {% endif %}
+
+                        {% for name, link in SOCIAL %}
+                            <li><a href="{{ link }}">{{ name }}</a></li>
+                        {% endfor %}
+                        </ul>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="sidebar-entry">
+                <a href="http://www.piraja.no/portfolio/dokus/">
+                    <img src="template_files/forside_.png">
+                    </a><h4><a href="http://www.piraja.no/portfolio/dokus/"></a><a href="http://www.piraja.no/portfolio/dokus/">Dokus</a></h4>
+                    <p>Web application for small business with invoicing, task and project management. </p>
+                
+            </div>
+            
+            <div class="sidebar-entry">
+                <a href="http://www.piraja.no/portfolio/kompani-linge/">
+                    <img src="template_files/thumb-forside.png">
+                    </a><h4><a href="http://www.piraja.no/portfolio/kompani-linge/"></a><a href="http://www.piraja.no/portfolio/kompani-linge/">Kompani Linge</a></h4>
+                    <p>A different production agency with love for theater and drama and an intention of creating good art, peace and change.</p>              
+            </div>
+        </div>                  
+    </div><!-- END RIGHT -->
+    </div><!-- END CONTENT WRAPPER -->   
+           
+    <div class="full_height"></div>
+            
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p id="footer-copy"> 2010-2013 Philip Elson</p>
+            <p id="footer-links"><a title="About me" href="{{ SITEURL }}/about.html">About me</a> | <a title="Contact info" href="{{ SITEURL }}/contact.html">Contact</a></p>
+            <q id="quote">Something witty.</q>
+        </div>
+    </div>
+
+{% include 'analytics.html' %}
+</body>
+</html>
