@@ -1,10 +1,14 @@
 body {
-    color: #5c5c5c;
+    color: black;
     background: #fcfbf7;
-    border-top: 6px solid #ff592c; }
+    border-top: 6px solid #ff592c;
+}
+    
+#footer p { color: rgb(122, 165, 165); }
 a { color: #7aa5a5; }
 a:hover { color: #a0d6d6; }
 }
+
 p a:hover { border-bottom: 1px solid #2d4040; }
 
 #header-wrap {
@@ -12,22 +16,34 @@ p a:hover { border-bottom: 1px solid #2d4040; }
     color: gray;
     }
 
-#introduction { border-bottom: 1px solid #2e2e2e; }
-#introduction p { color: #b3ada1; }
-#article .excerpt {  color: #9b968c; }  
-#article p.date { color: #a8a59d; } 
-#article .readmore { border-top: 1px solid #282828; }
+.date { color: #a8a59d; }
+
+#article .excerpt {  color: #9b968c; }
+#article .article-entry { border-top: 1px solid #282828; }
+#article .article-entry { font-color: black; }
 
 #sidebar { color: black; }
-#sidebar h4, #article h4, #side-navigation li {
+#sidebar h4, #article h4, #article h4 a, #side-navigation li {
     color: black; }
-#sidebar h4 a, #article h4 a, #side-navigation li a {
+#sidebar h4 a, #side-navigation li a {
     color: #999999; }
-
-    
-    
 
 .code_cell {
     padding: 1em;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    border-color: gray;
     background-color: white;
+    display: visible;
     }
+
+.rendered_html code {
+    margin-left: 20px;
+    background-color: #fcfbf7;
+    font-family: monospace;
+}
+
+#header #site-navigation li.active {
+    border-top: solid 3px #ff592c;
+    border-bottom: solid 3px #ff592c;
+}

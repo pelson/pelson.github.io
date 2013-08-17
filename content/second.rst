@@ -4,7 +4,7 @@ My super title2
 
 :date: 2010-10-03 10:20
 :tags: thats, awesome
-:category: yeah
+:category: Python
 :slug: my-super-post2
 :author: Alexis Metaireau
 :summary: Short version for index and feeds

@@ -1,18 +1,50 @@
 {% extends "base.html" %}
 {% set active_tags = article.tags %}
-{% block headers %}
-<link rel="stylesheet" href="{{ SITEURL }}/theme/css/ipython.css" type="text/css" />
-<link rel="stylesheet" href="{{ SITEURL }}/theme/css/post_colours.css" type="text/css" media="screen">
-{% endblock %}
 {% block title %}{{ article.title|striptags }} | {{ SITENAME }}{% endblock %}
 {% block content %}
 
         <div class="">
-            <h2 id="single">{{ article.title }}</h2>
-            <div class="date entry-info"><p>Tuesday - March 2nd, 2010</p></div>
+            <h4 id="single">{{ article.title }}</h4>
+            <div class="date entry-info"><p>{{ article.locale_date }}</p></div>
             <div class="entry">
                 {{ article.content }}
             </div>
         </div>
+        
+        {% if DISQUS_SITENAME %}
+        <hr />
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = '{{ DISQUS_SITENAME }}'; // required: replace example with your forum shortname
+    
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        {% endif %}
 
-{% endblock %}
+{% endblock content %}
+
+{% block sidebar %}
+            {% if article and article.is_notebook %}
+            <div class="sidebar-entry">
+                <h4>About this article</h4>
+                <p>This article has been written in an IPython notebook.</p>
+                
+                {% if article.gist_url %}
+                <p>You can view the Github gist for this notebook at 
+                <a href="{{ article.gist_url }}">{{ article.gist_url }}</a>.</p>
+                {% endif %}
+                
+                {% if article.nbviewer_url %}
+                <p>For a rendered version of this notebook in nbviewer see 
+                <a href="{{ article.nbviewer_url }}">{{ article.nbviewer_url }}</a>.</p>
+                {% endif %}
+            </div>
+            {% endif %}
+{% endblock sidebar %}

@@ -1,2 +1,10 @@
 {% extends "index.html" %}
-{% block title %}Articles under the "{{ category }}" cagegory | {{ SITENAME }} - {% endblock %}
+{% block title %}Articles under the "{{ category }}" category | {{ SITENAME }} - {% endblock %}
+
+{% block intro %}
+        <div id="introduction">
+            <p>
+            Below is a list of articles found under the the {{ category }} category.
+            </p>
+        </div>
+{% endblock intro %}

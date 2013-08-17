@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Phil Elson'
-SITENAME = u'A miscellany of code'
+SITENAME = u"The gallimaufry of a scientific techie"
 SITEURL = ''
 
 TIMEZONE = 'Europe/London'
@@ -22,6 +22,9 @@ LINKS =  []
 SOCIAL = []
 
 DEFAULT_PAGINATION = False
+
+DISQUS_SITENAME = "pelson"
+GOOGLE_ANALYTICS = "UA-43268601-1"
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
