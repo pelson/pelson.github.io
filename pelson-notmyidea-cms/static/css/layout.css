@@ -12,9 +12,10 @@ a {
 	outline: none;
 }
 
-i {
+ul.categories li { display: inline; padding-left: 5px; margin-right: 3px; border-left: solid 1px gray; }
+ul.categories li:first-child { border: 0; padding-left: 0px;}
+ul.categories li.active a { font-weight: bold; border-bottom: 1px gray dotted; }
 
-   }
 
 p { 
 	margin-bottom: 12px; }

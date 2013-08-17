@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% block content_title %}{% endblock %}
+
 {% block content %}
 
         <div id="introduction">
-            <p>Ipsum lorem</p>
-            <p>Ipsum lorem</p>
+            <p>
+            Welcome to this collectanea of posts relating to the science
+            and technology world, more often than not presented through the medium of Python.
+            </p>
         </div>
 
 
@@ -13,6 +16,9 @@
         {% for article in articles %}
             <div class="article-entry"> 
                 <h4><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h4>
+                {% if article.summaryimg %}
+                <img src="{{ SITEURL}}/static/images/{{ article.slug }}/{{ article.summaryimg }}" />
+                {% endif %}
                 <p class="date">{{ article.locale_date }}</p> 
                 <p class="excerpt">{{ article.summary }}</p> 
                 <p class="readmore"><a href="{{ SITEURL }}/{{ article.url }}">Read more</a></p> 

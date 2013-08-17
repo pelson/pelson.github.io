@@ -1,15 +1,18 @@
 {% extends "base.html" %}
-{% block title %}{{ article.title|striptags }}{% endblock %}
+{% set active_tags = article.tags %}
+{% block headers %}
+<link rel="stylesheet" href="{{ SITEURL }}/theme/css/ipython.css" type="text/css" />
+<link rel="stylesheet" href="{{ SITEURL }}/theme/css/post_colours.css" type="text/css" media="screen">
+{% endblock %}
+{% block title %}{{ article.title|striptags }} | {{ SITENAME }}{% endblock %}
 {% block content %}
 
-        <div id="introduction">
-            <h1 class="entry-title">
-                <a href="{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title }}">
-                    {{ article.title }}
-                </a>
-            </h1>
-            {% include 'article_infos.html' %}
-            {{ article.content }}
+        <div class="">
+            <h2 id="single">{{ article.title }}</h2>
+            <div class="date entry-info"><p>Tuesday - March 2nd, 2010</p></div>
+            <div class="entry">
+                {{ article.content }}
+            </div>
         </div>
 
 {% endblock %}

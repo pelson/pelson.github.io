@@ -4,9 +4,11 @@ Category: Python
 Tags: pelican, publishing
 Slug: my-super-post
 Author: Alexis Metaireau
-Summary: Short version for index and feeds
+SummaryImg: thumb.png
 
 This is the content of my super blog post.
+
+<!-- PELICAN_END_SUMMARY -->
 
 {% notebook simple.ipynb %}
 

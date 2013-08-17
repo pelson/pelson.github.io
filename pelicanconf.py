@@ -3,10 +3,10 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Phil Elson'
-SITENAME = u'TBD'
+SITENAME = u'A miscellany of code'
 SITEURL = ''
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'Europe/London'
 
 DEFAULT_LANG = u'en'
 
@@ -16,14 +16,10 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS =  (('Pelican', 'http://getpelican.com/'),
-          ('Python.org', 'http://python.org/'),
-          ('Jinja2', 'http://jinja.pocoo.org/'),
-          ('You can modify those links in your config file', '#'),)
+LINKS =  []
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = []
 
 DEFAULT_PAGINATION = False
 
@@ -32,9 +28,6 @@ DEFAULT_PAGINATION = False
 
 PLUGIN_PATH = '../pelican-plugins'
 PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
-           'liquid_tags.include_code', 'liquid_tags.notebook']
-
-EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
-
+           'liquid_tags.include_code', 'liquid_tags.notebook', 'summary']
 
 THEME = 'pelson-notmyidea-cms'

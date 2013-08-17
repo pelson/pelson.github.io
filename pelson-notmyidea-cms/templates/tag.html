@@ -1,2 +1,3 @@
 {% extends "index.html" %}
-{% block title %}{{ SITENAME }} - {{ tag }}{% endblock %}
+{% set active_tags = [tag] %}
+{% block title %}Articles tagged with "{{ tag }}" | {{ SITENAME }}{% endblock %}

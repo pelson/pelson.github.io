@@ -8,7 +8,7 @@ My super title2
 :slug: my-super-post2
 :author: Alexis Metaireau
 :summary: Short version for index and feeds
-
+:excerpt: Foo
 
 
 
