@@ -1,14 +1,30 @@
 {% extends "base.html" %}
 
-{% block content %}
-<section id="content" class="body">
-<h1>Archives for {{ SITENAME }}</h1>
 
-<dl>
-{% for article in dates %}
-    <dt>{{ article.locale_date }}</dt>
-    <dd><a href='{{ article.url }}'>{{ article.title }}</a></dd>
-{% endfor %}
-</dl>
-</section>
-{% endblock %}
+{% block content %}
+
+        <div id="introduction">
+            <p>
+            Welcome to this collectanea of posts relating to the science
+            and technology world, more often than not presented through the medium of Python.
+            </p>
+        </div>
+
+
+        {% if articles %}
+        <div id="article">
+        {% for article in dates %}
+            <div class="article-entry"> 
+                <h4><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h4>
+                {% if article.summaryimg %}
+                <img src="{{ SITEURL}}/static/images/{{ article.slug }}/{{ article.summaryimg }}" />
+                {% endif %}
+                <p class="date">{{ article.locale_date }}</p> 
+                <p class="excerpt">{{ article.summary }}</p> 
+                <p class="readmore"><a href="{{ SITEURL }}/{{ article.url }}">Read more</a></p> 
+            </div> 
+        {% endfor %}
+        </div>
+        {% endif %}
+
+{% endblock content %}

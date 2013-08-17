@@ -1,0 +1,6 @@
+[submodule "content/notebooks/from_levels_and_colors"]
+	path = content/notebooks/from_levels_and_colors
+	url = https://gist.github.com/5628989.git
+[submodule "content/notebooks/working_with_colors_in_mpl"]
+	path = content/notebooks/working_with_colors_in_mpl
+	url = https://gist.github.com/5636372.git

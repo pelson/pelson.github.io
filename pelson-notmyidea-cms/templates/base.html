@@ -25,20 +25,20 @@
 {% include 'github.html' %}
     <div id="header-wrap">
         <div id="header">
-                <h1><a href="{{ SITEURL }}/index.html">{{ SITENAME }}</a></h1>
-                    <ul id="site-navigation">
-                        {% for title, link in MENUITEMS %}
-                            <li><a href="{{ link }}">{{ title }}</a></li>
-                        {% endfor %}
-                        
-                        <li><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">Archives</a></li>
-                        
-                        {% if False %}
-                        {% for cat, null in categories %}
-                        <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
-                        {% endfor %}
-                        {% endif %}
-                    </ul>
+            <h1><a href="{{ SITEURL }}/index.html">{{ SITENAME }}</a></h1>
+            <ul id="site-navigation">
+                {% for title, link in MENUITEMS %}
+                <li><a href="{{ link }}">{{ title }}</a></li>
+                {% endfor %}
+                
+                <li><a href="{{ SITEURL }}/archives.html">Archive</a></li>
+                
+                {% if False %}
+                {% for cat, null in categories %}
+                <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                {% endfor %}
+                {% endif %}
+            </ul>
         </div>
     </div>
     
@@ -171,7 +171,7 @@
         <div id="footer">
             <p id="footer-copy"> 2010-2013 Philip Elson</p>
             <p id="footer-links"><a title="About me" href="{{ SITEURL }}/about.html">About me</a> | <a title="Contact info" href="{{ SITEURL }}/contact.html">Contact</a></p>
-            <q id="quote">Something witty.</q>
+            <!-- <q id="quote">Something witty.</q> -->
         </div>
     </div>
 {% include 'analytics.html' %}

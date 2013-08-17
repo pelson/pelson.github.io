@@ -36,7 +36,7 @@ hr {
 #header-wrap { 
 	width: 100%;
 	background: #0c0c0c; 
-	overflow: hidden
+	overflow: auto;
 }
 #header {
 	width: 960px;
