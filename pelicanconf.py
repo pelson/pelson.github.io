@@ -33,4 +33,4 @@ PLUGIN_PATH = '../pelican-plugins'
 PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.include_code', 'liquid_tags.notebook', 'summary']
 
-THEME = 'pelson-notmyidea-cms'
+THEME = 'pelson-custom'
