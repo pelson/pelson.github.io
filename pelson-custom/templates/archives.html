@@ -1,30 +1,36 @@
 {% extends "base.html" %}
-
-
+{% block title %}{{ SITENAME }} <small>[archive]</small>{% endblock %}
 {% block content %}
 
-        <div id="introduction">
-            <p>
-            Welcome to this collectanea of posts relating to the science
-            and technology world, more often than not presented through the medium of Python.
-            </p>
-        </div>
-
-
-        {% if articles %}
         <div id="article">
-        {% for article in dates %}
-            <div class="article-entry"> 
-                <h4><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h4>
-                {% if article.summaryimg %}
-                <img src="{{ SITEURL}}/static/images/{{ article.slug }}/{{ article.summaryimg }}" />
-                {% endif %}
-                <p class="date">{{ article.locale_date }}</p> 
-                <p class="excerpt">{{ article.summary }}</p> 
-                <p class="readmore"><a href="{{ SITEURL }}/{{ article.url }}">Read more</a></p> 
-            </div> 
+        {% for year, date_year in dates|groupby( 'date.year' )|reverse %}
+            <h2>{{ year }}</h2>
+            {% for month, articles in date_year|groupby( 'date.month' )|reverse %}
+            <div class="article-entry">
+                <p class="date">{{ articles[ 0 ].date.strftime( '%B' ) }}</p>
+                <ul>
+                {% for article in articles %}
+                    <li>
+                        <p><a href="{{ SITEURL }}/{{ article.url }}">
+                            {% if article.summaryimg %}
+                            <img src="{{ SITEURL}}/static/images/{{ article.slug }}/{{ article.summaryimg }}" class="rss-img" />
+                            {% else %}
+                            <img src="{{ SITEURL}}/static/images/IPython.png" class="rss-img" />
+                            {% endif %}
+                            {{ article.title }}
+                        </a></p>
+                        <p>
+                        <a href="{{ SITEURL }}/{{ article.url }}" class="readmore">
+                        <i class="icon-arrow-right icon-1x"></i>Read more
+                        </p>
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% endfor %} 
         {% endfor %}
         </div>
-        {% endif %}
 
-{% endblock content %}
+{% endblock %}
+

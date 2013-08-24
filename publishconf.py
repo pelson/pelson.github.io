@@ -13,8 +13,7 @@ from pelicanconf import *
 SITEURL = 'http://pelson.github.io'
 RELATIVE_URLS = False
 
-FEED_ALL_ATOM = 'feeds/atom.xml'
-CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
+
 
 DELETE_OUTPUT_DIRECTORY = True
 
