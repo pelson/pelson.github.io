@@ -3,8 +3,8 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Phil Elson'
-SITENAME = u"The gallimaufry of a scientific techie"
-SITEURL = ''
+SITENAME = u"The miscellany of a scientific coder"
+SITEURL = '' #'pelson.github.io'
 
 TIMEZONE = 'Europe/London'
 

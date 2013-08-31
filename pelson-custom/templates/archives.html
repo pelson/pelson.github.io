@@ -11,7 +11,7 @@
                 <ul>
                 {% for article in articles %}
                     <li>
-                        <p><a href="{{ SITEURL }}/{{ article.url }}">
+                        <p class="archive"><a href="{{ SITEURL }}/{{ article.url }}">
                             {% if article.summaryimg %}
                             <img src="{{ SITEURL}}/static/images/{{ article.slug }}/{{ article.summaryimg }}" class="rss-img" />
                             {% else %}

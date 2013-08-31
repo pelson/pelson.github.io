@@ -46,7 +46,7 @@ hr {
 #header h1 {
 	font-size: 35px;
 	float: left;
-	padding: 15px 0px 15px;
+	padding: 35px 0px 5px;
 	}
 #header #site-navigation {
 	list-style-type: none;
@@ -134,6 +134,11 @@ hr {
 #article a.readmore:hover {
     color: black;
     }
+
+p.archive a {
+    color: black;
+    font-size: larger;
+}
 
 #sidebar {
 	padding: 20px;
