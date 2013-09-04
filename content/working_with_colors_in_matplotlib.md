@@ -17,7 +17,7 @@ In this article I'll cover one approach to using the colour-by-index paradigm in
 
 <!-- PELICAN_END_SUMMARY -->
 
-{% notebook working_with_colors_in_mpl/notebook.ipynb %}
+{% notebook working_with_colors_in_mpl/working_with_colors.ipynb cells[1:] %}
 
 This article certainly shows a way of handling the colour-by-index paradigm,
 though it must be said that handling colours like this in matplotlib is not

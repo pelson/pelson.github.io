@@ -2,3 +2,5 @@ _nb_header.html
 output
 .DS_STORE
 *.pyc
+.ipynb_checkpoints
+*.pid
