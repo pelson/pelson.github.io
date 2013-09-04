@@ -47,20 +47,6 @@
             {% block sidebar %}{% endblock sidebar %}
             
             <div class="sidebar-entry">
-                <div class="share_links">
-                    <!-- AddThis Button BEGIN -->
-                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-522212f734811969"></script>
-                    <!-- AddThis Button END -->
-
-                   <h4>Share</h4>
-                   <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> 
-                   <a class="addthis_button_tweet" tw:via="addthis"></a> 
-                   <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-                   <a class="addthis_button_linkedin_counter"></a>
-                   <a class="addthis_button_stumbleupon_badge"></a> 
-                </div>
-            </div>
-            <div class="sidebar-entry">
                 <div class="widget social">
                     <h4>Around the web</h4>
                     <ul>
@@ -162,10 +148,27 @@
                         {% for name, link in LINKS %}
                             <li><a href="{{ link }}">{{ name }}</a></li>
                         {% endfor %}
+                        
                         </ul>
                 </div>
             </div>
             {% endif %}
+            
+            <div class="sidebar-entry">
+                <div class="share_links">
+                    <!-- AddThis Button BEGIN -->
+                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-522212f734811969"></script>
+                    <!-- AddThis Button END -->
+
+                   <h4>Share this page</h4>
+                   <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> 
+                   <a class="addthis_button_tweet" tw:via="addthis"></a> 
+                   <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                   <a class="addthis_button_linkedin_counter"></a>
+                   <a class="addthis_button_stumbleupon_badge"></a> 
+                </div>
+            </div>
+            
         </div>                  
     </div><!-- END RIGHT -->
     </div><!-- END CONTENT WRAPPER -->   

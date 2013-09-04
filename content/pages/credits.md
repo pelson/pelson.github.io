@@ -1,7 +1,7 @@
 Title: Website credits
 Slug: credits
 
-This website is using the latest web 3.0 technology - statically built html!
+This website is using the latest craze in web technology - statically built html.
 This means I can build this site on my local machine and push it to any web hosting provider who
 can offer top quality uptime. Currently, for me, that is Github and their awesome
 [pages](http://pages.github.com) offering - of course, this means I can also make use of their free
