@@ -4,3 +4,6 @@
 [submodule "content/notebooks/working_with_colors_in_mpl"]
 	path = content/notebooks/working_with_colors_in_mpl
 	url = https://gist.github.com/5636372.git
+[submodule "pelican_extras/pelican-plugins"]
+	path = pelican_extras/pelican-plugins
+	url = git@github.com:getpelican/pelican-plugins.git
