@@ -166,6 +166,7 @@ p.archive a {
 #sidebar img:hover {
 	padding: 1px;}
 #sidebar .sidebar-entry {
+    clear: both;
 	float: left;
 	margin-top: 13px; }
 #sidebar .sidebar-entry p, #body_work #portfolio-navigation ul li p, .information, #body_work .work-photos div p, #recent-blog-entries p {

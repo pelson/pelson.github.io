@@ -4,6 +4,10 @@ Category: Python
 Tags: matplotlib, Python
 Slug: from_levels_and_colors
 Author: Phil Elson
+is_notebook: 1
+gist_url: https://gist.github.com/pelson/5628989
+nbviewer_url: http://nbviewer.ipython.org/5628989
+summaryimg: thumb.png
 
 I recently added a new function to matplotlib to make it easier to draw pseudo-colour
 plots given specific levels and colours, in exactly the same way as you can with contour

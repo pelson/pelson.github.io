@@ -2,11 +2,12 @@ Title: Working with colours in matplotlib
 Date: 2013-06-03 12:00
 Category: Python
 Tags: matplotlib, Python
-Slug: working-with-colors-in-mpl
+Slug: working_with_colors_in_matplotlib
 Author: Phil Elson
 is_notebook: 1
-gist_url: https://gist.github.com/pelson/6139282
-nbviewer_url: http://nbviewer.ipython.org/6139282
+gist_url: https://gist.github.com/pelson/5636372
+nbviewer_url: http://nbviewer.ipython.org/5636372
+summaryimg: thumb.png
 
 When dealing with colours in scientific visualisations some people like to have a colourmap
 which can be indexed into to pick specific colours. Whilst this isn't necessarily the best

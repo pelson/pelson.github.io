@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ SITENAME }} <small>[archive]</small>{% endblock %}
+{% block title %}Archive | {{ SITENAME }}{% endblock %}
 {% block content %}
 
         <div id="article">
@@ -13,9 +13,9 @@
                     <li>
                         <p class="archive"><a href="{{ SITEURL }}/{{ article.url }}">
                             {% if article.summaryimg %}
-                            <img src="{{ SITEURL}}/static/images/{{ article.slug }}/{{ article.summaryimg }}" class="rss-img" />
+                            <img src="{{ SITEURL}}/images/{{ article.slug }}/{{ article.summaryimg }}" class="rss-img" />
                             {% else %}
-                            <img src="{{ SITEURL}}/static/images/IPython.png" class="rss-img" />
+                            <img src="{{ SITEURL}}/images/IPython.png" class="rss-img" />
                             {% endif %}
                             {{ article.title }}
                         </a></p>

@@ -1,7 +1,7 @@
 Title: About
 Slug: about
 
-<img src="http://localhost:8000/static/images/me.png" style="float: left; padding: 20px;" width="100px" />
+<img src="/images/me.png" style="float: left; padding: 20px;" width="100px" />
 
 I am a scientific software engineer and am fortunate enough to spend most of my
 time using [Python](http://www.python.org), matplotlib, numpy, scipy etc. for
