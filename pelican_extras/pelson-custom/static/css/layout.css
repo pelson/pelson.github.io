@@ -18,7 +18,9 @@ ul.categories li.active a { font-weight: bold; border-bottom: 1px gray dotted; }
 h2 { font-size: 14pt; font-family: Arial, Helvetica;}
 
 p { 
-	margin-bottom: 12px; }
+	margin-bottom: 12px;
+	line-height: 1.5;
+}
 p img { 
 	float: right; 
 	margin: 10px 0px 10px 10px; }

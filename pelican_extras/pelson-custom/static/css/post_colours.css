@@ -38,9 +38,9 @@ p a:hover { border-bottom: 1px solid #2d4040; }
     }
 
 .rendered_html code {
-    margin-left: 20px;
     background-color: #fcfbf7;
     font-family: monospace;
+    font-weight: bold;
 }
 
 #header #site-navigation li.active {
