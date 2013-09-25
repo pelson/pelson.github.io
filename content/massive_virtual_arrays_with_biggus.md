@@ -1,5 +1,5 @@
 Title: Dealing with arrays which are bigger than memory - an intoduction to biggus
-Date: 2013-09-10 12:00
+Date: 2013-09-25 12:00
 Category: Python
 Tags: matplotlib, Python, biggus, big data
 Slug: massive_virtual_arrays_with_biggus
