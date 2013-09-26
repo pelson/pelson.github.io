@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% set active_tags = article.tags %}
 {% block title %}{{ article.title|striptags }} | {{ SITENAME }}{% endblock %}
+{% block extra_head %}
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+            stLight.options({publisher: "6668e56b-d9f6-4324-8c39-1543fefa1fdf",
+                            doNotHash: false, doNotCopy: false, hashAddressBar: false});
+        </script>
+{% endblock extra_head%}
 {% block content %}
 
         <div class="">
@@ -11,8 +19,21 @@
             </div>
         </div>
         
-        {% if DISQUS_SITENAME %}
         <hr />
+        
+        <div id="share_buttons">
+            <span class='st_googleplus_hcount' displayText='Google +'></span>
+            <span class='st_facebook_hcount' displayText='Facebook'></span>
+            <span class='st_twitter_hcount' displayText='Tweet'></span>
+            <span class='st_pinterest_hcount' displayText='Pinterest'></span>
+            <span class='st_email_hcount' displayText='Email'></span>
+            <span class='st_sharethis_hcount' displayText='ShareThis'></span>
+            <span class='st_fblike_hcount' displayText='Facebook Like'></span>
+        </div>
+        <br />
+        
+        {% if DISQUS_SITENAME %}
+        
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = '{{ DISQUS_SITENAME }}';

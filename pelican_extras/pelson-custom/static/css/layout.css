@@ -177,6 +177,11 @@ p.archive a {
 	line-height: 16px;}
 
 
+#sidebar #share_links {
+    min-height: 5em;
+}
+
+
 /* WORK PAGE  */
 
 

@@ -15,6 +15,9 @@
 
 
         <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" />
+        
+        {% block extra_head %}
+        {% endblock extra_head%}
     </head>
 
 <body id="body_home">
@@ -161,11 +164,17 @@
                     <!-- AddThis Button END -->
 
                    <h4>Share this page</h4>
-                   <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> 
+                   <ul><li>
+                   <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+                   </li><li>
                    <a class="addthis_button_tweet" tw:via="addthis"></a> 
+                   </li><li>
                    <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                   </li><li>
                    <a class="addthis_button_linkedin_counter"></a>
-                   <a class="addthis_button_stumbleupon_badge"></a> 
+                   </li><li>
+                   <a class="addthis_button_stumbleupon_badge"></a>
+                   </li></ul>
                 </div>
             </div>
             

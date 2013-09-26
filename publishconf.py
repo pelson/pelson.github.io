@@ -11,7 +11,7 @@ sys.path.append(os.curdir)
 from pelicanconf import *
 
 SITEURL = 'http://pelson.github.io'
-RELATIVE_URLS = False
+RELATIVE_URLS = True
 
 
 
