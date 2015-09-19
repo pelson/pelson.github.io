@@ -31,7 +31,7 @@ GOOGLE_ANALYTICS = "UA-43268601-1"
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-PLUGIN_PATH = 'pelican_extras/pelican-plugins'
+PLUGIN_PATH = '../pelican-plugins'
 PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.include_code', 'liquid_tags.notebook', 'summary']
 
