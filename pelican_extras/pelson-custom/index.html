@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html class=" js inlinesvg">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Phil Elson</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css">
+
+    <!-- Google Webfonts -->
+    <link href="static/webfonts.css" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="static/css/styles-bluegreen.css" id="theme-styles">
+
+    <!--[if lt IE 9]>
+        <script src="static/js/html5-3.6-respond-1.1.0.min.js"></script>
+    <![endif]-->
+
+    <script src="static/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="static/css/settings-panel.css">
+
+<style type="text/css"></style></head>
+<body>
+
+    <!-- Colorswitcher -->
+    <div class="settings-toggle">
+        <a href="#" class="fa fa-cog" id="toggle"><i></i></a>
+    </div>
+
+    <div class="settings-panel" style="height: 2045px;">
+        <div class="title">
+            Switch Color Theme
+        </div>
+
+        <!-- <div class="note">(Note: Resets when navigating)</div> -->
+
+        <div class="theme">
+            <div class="name">Blue Green</div>
+            <a href="#" id="color-bluegreen" class="colors">
+                <div style="background: #242b32"></div>
+                <div style="background: #37424c"></div>
+                <div style="background: #f8f8f9"></div>
+                <div style="background: #55a773"></div>
+                <div style="background: #454a4e"></div>
+            </a>
+        </div>
+    </div>
+
+    <header>
+        <div class="widewrapper masthead">
+            <div class="container">
+                <a href="index.html" id="logo" class="h1">
+                    Phil Elson
+                </a>
+
+                <div id="mobile-nav-toggle" class="pull-right">
+                    <a href="#" data-toggle="collapse" data-target=".tales-nav .navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+
+                <nav class="pull-right tales-nav">
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav nav-pills navbar-nav">
+
+                            <li class="dropdown active">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="index.html#">
+                                    Blog
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="static/Tales - Blog.html">Blog</a></li>
+                                    <li><a href="blog-detail.html">Blog Detail</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="about.html">About</a>
+                            </li>
+                            <li>
+                                <a href="credits.html">Credits</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+
+        <div class="widewrapper subheader">
+            <div class="container">
+                <div class="tales-breadcrumb">
+                    <a href="index.html#">Blog</a>
+                </div>
+
+                <!--
+                <div class="tales-searchbox">
+                    <form action="#" method="get" accept-charset="utf-8">
+                        <button class="searchbutton" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <input class="searchfield" id="searchbox" type="text" placeholder="Search">
+                    </form>
+                </div>
+                -->
+            </div>
+        </div>
+    </header>
+
+    <div class="widewrapper main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <article class=" blog-teaser">
+                                <header>
+                                    <img src="static/cat.png" alt="A Cat">
+                                    <h3><a href="blog-detail.html">Cats Everywhere</a></h3>
+                                    <span class="meta">24 July 2013, Alexander Rechsteiner</span>
+                                    <hr>
+                                </header>
+                                <div class="body">
+                                    Bacon ipsum dolor sit amet esse duis pastrami anim, pancetta fatback capicola officia tenderloin. Meatloaf culpa ut, bacon sed sausage jerky cillum est ham ad laboris ham hock dolore. Venison ut enim, aliqua elit frankfurter et incididunt consequat culpa nostru aliqua elit pancetta.
+                                </div>
+                                <div class="clearfix">
+                                    <a href="blog-detail.html" class="btn btn-tales-one">Read more</a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <article class="blog-teaser">
+                                <header>
+                                    <img src="static/hands.png" alt="Hands">
+                                    <h3><a href="blog-detail.html">Big Thinkers</a></h3>
+                                    <span class="meta">24 July 2013, Alexander Rechsteiner</span>
+                                    <hr>
+                                </header>
+                                <div class="body">
+                                    Bacon ipsum dolor sit amet esse duis pastrami anim, pancetta fatback capicola officia tenderloin. Meatloaf culpa ut, bacon sed sausage jerky cillum est ham ad laboris ham hock dolore. Venison ut enim, aliqua elit frankfurter et incididunt consequat culpa nostru aliqua elit pancetta.
+                                </div>
+                                <div class="clearfix">
+                                    <a href="blog-detail.html" class="btn btn-tales-one">Read more</a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <article class="blog-teaser">
+                                <header>
+                                    <img src="static/bike.png" alt="A Bike">
+                                    <h3><a href="blog-detail.html">My Insightful Article</a></h3>
+                                    <span class="meta">24 July 2013, Alexander Rechsteiner</span>
+                                    <hr>
+                                </header>
+                                <div class="body">
+                                    Bacon ipsum dolor sit amet esse duis pastrami anim, pancetta fatback capicola officia tenderloin. Meatloaf culpa ut, bacon sed sausage jerky cillum est ham ad laboris ham hock dolore. Venison ut enim, aliqua elit frankfurter et incididunt consequat culpa nostru aliqua elit pancetta.
+                                </div>
+                                <div class="clearfix">
+                                    <a href="blog-detail.html" class="btn btn-tales-one">Read more</a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <article class="blog-teaser">
+                                <header>
+                                    <img src="static/violin.png" alt="A Violin Player">
+                                    <h3><a href="blog-detail.html">Why I Play Violin</a></h3>
+                                    <span class="meta">24 July 2013, Alexander Rechsteiner</span>
+                                    <hr>
+                                </header>
+                                <div class="body">
+                                    Bacon ipsum dolor sit amet esse duis pastrami anim, pancetta fatback capicola officia tenderloin. Meatloaf culpa ut, bacon sed sausage jerky cillum est ham ad laboris ham hock dolore. Venison ut enim, aliqua elit frankfurter et incididunt consequat culpa nostru aliqua elit pancetta.
+                                </div>
+                                <div class="clearfix">
+                                    <a href="blog-detail.html" class="btn btn-tales-one">Read more</a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="paging">
+                        <a href="index.html#" class="newer"><i class="fa fa-long-arrow-left"></i> Newer</a>
+                         <span>•</span>
+                        <a href="index.html#" class="older">Older <i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <aside class="col-md-4 blog-aside">
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>Read next...</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="tales-list">
+                                <li><a href="static/Tales - Blog.html">Email Encryption Explained</a></li>
+                                <li><a href="index.html#">Selling is a Function of Design.</a></li>
+                                <li><a href="index.html#">It’s Hard To Come Up With Dummy Titles</a></li>
+                                <li><a href="index.html#">Why the Internet is Full of Cats</a></li>
+                                <li><a href="index.html#">Last Made-Up Headline, I Swear!</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>Authors Favorites</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="tales-list">
+                                <li><a href="static/Tales - Blog.html">Email Encryption Explained</a></li>
+                                <li><a href="index.html#">Selling is a Function of Design.</a></li>
+                                <li><a href="index.html#">It’s Hard To Come Up With Dummy Titles</a></li>
+                                <li><a href="index.html#">Why the Internet is Full of Cats</a></li>
+                                <li><a href="index.html#">Last Made-Up Headline, I Swear!</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>Tags</h3>
+                        </header>
+                        <div class="body clearfix">
+                            <ul class="tags">
+                                <li><a href="index.html#">OpenPGP</a></li>
+                                <li><a href="index.html#">Django</a></li>
+                                <li><a href="index.html#">Bitcoin</a></li>
+                                <li><a href="index.html#">Security</a></li>
+                                <li><a href="index.html#">GNU/Linux</a></li>
+                                <li><a href="index.html#">Git</a></li>
+                                <li><a href="index.html#">Homebrew</a></li>
+                                <li><a href="index.html#">Debian</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="widewrapper footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-cog"></i>Statistics</h3>
+
+                        <span>Even we sometimes loose track of how many articles we actually have here.  This one helps:</span>
+
+                        <div class="stats">
+                            <div class="line">
+                                <span class="counter">27</span>
+                                <span class="caption">Articles</span>
+                            </div>
+                            <div class="line">
+                                <span class="counter">208</span>
+                                <span class="caption">Comments</span>
+                            </div>
+                            <div class="line">
+                                <span class="counter">2</span>
+                                <span class="caption">Authors</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-star"></i> Hall of Fame</h3>
+                        <ul class="tales-list">
+                            <li><a href="static/Tales - Blog.html">Why we Need to Encrypt All Communication</a></li>
+                            <li><a href="index.html#">Selling is a Function of Design. Not Vice-Versa.</a></li>
+                            <li><a href="index.html#">It’s Hard To Come Up With Dummy Titles</a></li>
+                            <li><a href="index.html#">Why the Internet is Full of Cats</a></li>
+                            <li><a href="index.html#">Last Made-Up Headline, I Swear!</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-envelope"></i>Contact Me</h3>
+
+                        <span>I'm happy to hear from my readers. Thoughts, feedback, critique - all welcome! Drop me a line:</span>
+
+                        <span class="email">
+                            <a href="index.html#">jimmy@notanactualemail.com</a>, PGP key 0x5AK0BEA1
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widewrapper copyright">
+            <div class="container">
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+                </a>
+                <a href="https://pelson.github.io">
+                  <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">pelson.github.io</span>
+                </a> is licensed under a
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/modernizr.js"></script>
+
+
+</body></html>

@@ -10,9 +10,7 @@ scientific organisation.
 
 I am the original author of [cartopy](http://scitools.org.uk/cartopy/docs/latest/), am a
 core developer on [matplotlib](http://matplotlib.org) and
-[iris](http://scitools.org.uk/iris/docs/latest/), and to a lesser extent have 
+[iris](http://scitools.org.uk/iris/docs/latest/), and to a lesser extent have
 made contributions to [numpy](http://docs.scipy.org/doc/numpy/),
 [PIL](http://python-imaging.github.io),
 [shapely](http://toblerity.org/shapely/manual.html) & others.
-
-

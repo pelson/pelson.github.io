@@ -1,44 +1,41 @@
-{% extends "base.html" %}
-{% block content_title %}{% endblock %}
+{% extends "base.html" %} {% block content_title %}{% endblock %} {% block content %}
 
-{% block content %}
+<div class="col-md-8 blog-main">
+  {% if articles %}
+  <div id="article">
+    {% for article in articles %} {% if loop.index % 2 == 0 %}
+    <div class="row">
+      {% endif %}
 
-        {% block intro %}
-        <div id="introduction">
-            <p>
-            Welcome to this collection of posts relating to the science
-            and technology world, more often than not presented through the medium of Python.
-            </p>
-        </div>
-        {% endblock intro %}
+      <div class="col-md-6 col-sm-6">
+        <article class=" blog-teaser">
+          <header>
+            {% if article.summaryimg %}
+            <a href="{{ article.url }}">
+            <img src="{{ SITEURL }}/images/{{ article.slug }}/{{ article.summaryimg }}" class="rss-img" /> {% else %}
+            <img src="{{ SITEURL }}/images/IPython.png" class="rss-img" />
+            </a>
+            {% endif %}
 
+            <h3><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+            <span class="meta">{{ article.locale_date }}</span>
+            <hr>
+          </header>
+          <div class="body">
+            {{ article.summary }}
+          </div>
+          <div class="clearfix">
+            <a href="{{ SITEURL }}/{{ article.url }}" class="btn btn-tales-one">Read more</a>
+          </div>
+        </article>
+      </div>
 
-        {% if articles %}
-        <div id="article">
-        {% for article in articles %}
-            <div class="article-entry">
-                <a href="{{ SITEURL }}/{{ article.url }}">
-                {% if article.summaryimg %}
-                <img src="{{ SITEURL}}/images/{{ article.slug }}/{{ article.summaryimg }}" class="rss-img" />
-                {% else %}
-                <img src="{{ SITEURL}}/images/IPython.png" class="rss-img" />
-                {% endif %}
-                </a>
-             
-                <h4><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h4>
-                
-                <p class="date">{{ article.locale_date }}</p> 
-                <p class="excerpt">
-                {{ article.summary }}
-                </p> 
-                <a href="{{ SITEURL }}/{{ article.url }}" class="readmore">
-                    <i class="icon-arrow-right icon-1x"></i>Read more
-                </a>
-            </div> 
-        {% endfor %}
-        </div>
-        {% endif %}
+      {% if loop.index % 2 == 0 %}
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+  {% endif %}
 
-{% endblock content %}
-{% block sidebar %}
-{% endblock sidebar %}
+</div>
+
+{% endblock content %} {% block sidebar %} {% endblock sidebar %}

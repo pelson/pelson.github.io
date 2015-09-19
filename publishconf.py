@@ -13,7 +13,5 @@ from pelicanconf import *
 SITEURL = 'http://pelson.github.io'
 RELATIVE_URLS = True
 
-
-
 DELETE_OUTPUT_DIRECTORY = True
 
