@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% block title %}All articles - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+
+        {% for year, date_year in dates|groupby( 'date.year' )|reverse %}
+            <div class="clearfix"></div>
+            <h2>{{ year }}</h2>
+            {{ render_articles(date_year, article_limit=1000) }}
+        {% endfor %}
+
+{% endblock %}

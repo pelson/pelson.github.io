@@ -4,8 +4,6 @@
   var switchTo5x = true;
 </script>
 
-
-
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">
   stLight.options({
@@ -15,11 +13,13 @@
     hashAddressBar: false
   });
 </script>
+<style type="text/css">
+    stButton_gradient {height: 100%;}
+  </style>
 {% endblock extra_head%} {% block content %}
-<div class="col-md-8 blog-main">
   <h2 id="single">{{ article.title }}</h2>
   {% if article.summaryimg %}
-  <img class='article-image' src="{{ SITEURL }}/images/{{ article.slug }}/{{ article.summaryimg }}" class="rss-img" /> {% endif %}
+  <img class="article-image" src="{{ SITEURL }}/images/{{ article.slug }}/{{ article.summaryimg }}" /> {% endif %}
   <div class="date entry-info">
     <p>{{ article.locale_date }}</p>
   </div>
@@ -31,29 +31,28 @@
   <hr />
 
   <div id="share_buttons">
-    <span class='st_googleplus_hcount' displayText='Google +'></span>
-    <span class='st_facebook_hcount' displayText='Facebook'></span>
-    <span class='st_twitter_hcount' displayText='Tweet'></span>
-    <span class='st_pinterest_hcount' displayText='Pinterest'></span>
-    <span class='st_email_hcount' displayText='Email'></span>
-    <span class='st_sharethis_hcount' displayText='ShareThis'></span>
-    <span class='st_fblike_hcount' displayText='Facebook Like'></span>
+    <span class="st_googleplus_hcount" displayText="Google +"></span>
+    <span class="st_facebook_hcount" displayText="Facebook"></span>
+    <span class="st_twitter_hcount" displayText="Tweet"></span>
+    <span class="st_pinterest_hcount" displayText="Pinterest"></span>
+    <span class="st_email_hcount" displayText="Email"></span>
+    <span class="st_sharethis_hcount" displayText="ShareThis"></span>
+    <span class="st_fblike_hcount" displayText="Facebook Like"></span>
   </div>
   <br /> {% if DISQUS_SITENAME %}
 
   <div id="disqus_thread"></div>
   <script type="text/javascript">
-    var disqus_shortname = '{{ DISQUS_SITENAME }}';
+    var disqus_shortname = "{{ DISQUS_SITENAME }}";
 
     (function() {
-      var dsq = document.createElement('script');
-      dsq.type = 'text/javascript';
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
       dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
     })();
   </script>
   <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   {% endif %}
-</div>
 {% endblock content %}

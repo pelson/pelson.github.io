@@ -8,6 +8,9 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
 
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/styles-bluegreen.css" id="theme-styles">
+
   <!-- Bootstrap styles -->
   <link rel="stylesheet" href="{{ SITEURL }}/theme/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ SITEURL }}/theme/bootstrap/css/bootstrap-theme.min.css">
@@ -18,17 +21,13 @@
   <!-- Google Webfonts -->
   <link href="{{ SITEURL }}/theme/webfonts.css" rel="stylesheet" type="text/css">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/styles-bluegreen.css" id="theme-styles">
+
 
   <!--[if lt IE 9]>
   <script src="theme/js/html5-3.6-respond-1.1.0.min.js"></script>
   <![endif]-->
 
   <script src="{{ SITEURL }}/theme/jquery.min.js"></script>
-
-  <link rel="{{ SITEURL }}/stylesheet" href="theme/css/settings-panel.css">
-  <script src="{{ SITEURL }}/theme/contact-panel.js"></script>
 
   <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" /> {% block extra_head %} {% endblock extra_head%}
 
@@ -45,12 +44,12 @@
       </a>
         <!--
         <div id="mobile-nav-toggle" class="pull-right">
-          <a href="#" data-toggle="collapse" data-target=".tales-nav .navbar-collapse">
+          <a href="#" data-toggle="collapse" data-target=".pelson-nav .navbar-collapse">
             <i class="fa fa-bars"></i>
           </a>
         </div>
 
-      <nav class="pull-right tales-nav">
+      <nav class="pull-right pelson-nav">
         <div class="collapse navbar-collapse">
 
           <ul class="nav nav-pills navbar-nav">
@@ -64,7 +63,7 @@
                 {% for cat, null in categories %}
                 <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
                 {% endfor %}
-                <li><a href="theme/Tales - Blog.html">Blog</a></li>
+                <li><a href="theme/pelson - Blog.html">Blog</a></li>
                 <li><a href="blog-detail.html">Blog Detail</a></li>
               </ul>
             </li>
@@ -88,11 +87,11 @@
     <!--
   <div class="widewrapper subheader">
     <div class="container">
-      <div class="tales-breadcrumb">
+      <div class="pelson-breadcrumb">
         <a href="index.html#">Blog</a>
       </div>
 
-      <div class="tales-searchbox">
+      <div class="pelson-searchbox">
       <form action="#" method="get" accept-charset="utf-8">
       <button class="searchbutton" type="submit">
       <i class="fa fa-search"></i>
@@ -111,8 +110,9 @@
 
     <div class="container">
       <div class="row">
+        <div class="col-md-8 blog-main">
         {% block content %} {% endblock content%}
-
+        </div>
         <aside class="col-md-4 blog-aside">
           {% block sidebar %}{% endblock sidebar %}
 
@@ -121,11 +121,14 @@
               <h3>Most recent articles</h3>
             </header>
             <div class="body">
-              <ul class="tales-list">
-                {% if articles %} {% for article in articles %}
+              <ul class="pelson-list">
+                {% if articles %} {% for article in articles[:5] %}
                 <li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
                 {% endfor %} {% endif %}
               </ul>
+              {% if articles and articles|length > 5 %}
+              <a href="{{ SITEURL }}/archives.html"><h4>See all articles</h4></a>
+              {% endif %}
             </div>
           </div>
 

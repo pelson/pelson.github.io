@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% set active_tags = [tag] %}
+{% set article_limit = 1000 %}
+
+{% block title %}Articles tagged with "{{ tag }}" - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+
+            <h2>
+            The "{{ tag }}" tag has {{ articles|length }} articles:
+          </h2>
+    {{ super() }}
+{% endblock content %}

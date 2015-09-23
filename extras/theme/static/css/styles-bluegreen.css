@@ -14,6 +14,9 @@ a:focus {
   text-decoration: none;
   color: #5b6268;
 }
+img {
+  max-width: 100%;
+}
 h1 {
   font-size: 45px;
   line-height: 60px;
@@ -37,6 +40,20 @@ hr {
 /* Font Awesome Icons */
 .fa {
   font-size: 24px;
+}
+cell * pre, pre.ipynb {
+  word-wrap: normal;
+  margin-left: 10px;
+  clear: both;
+}
+.input_prompt, .output_prompt {
+  visibility: hidden;
+}
+.output_subarea pre {
+  margin-left: 10px;
+  border: none;
+  background-color: inherit;
+  border-left: 9px solid #F5F5F5;
 }
 ::selection {
   background: #566572;
@@ -100,49 +117,49 @@ hr {
 }
 /* Styles for the navigation, both mobile and desktop */
 /* Desktop version of the navigation */
-.tales-nav .nav-pills {
+.pelson-nav .nav-pills {
   margin-top: 10px;
   margin-bottom: 0;
   font-size: 16px;
 }
-.tales-nav .nav-pills > li {
+.pelson-nav .nav-pills > li {
   margin-left: 10px;
 }
-.tales-nav .nav-pills > li > a {
+.pelson-nav .nav-pills > li > a {
   color: #f8f8f9;
   padding: 11px 16px;
   line-height: 14px;
 }
-.tales-nav .nav-pills > li > a:hover,
-.tales-nav .nav-pills > li > a:focus {
+.pelson-nav .nav-pills > li > a:hover,
+.pelson-nav .nav-pills > li > a:focus {
   background-color: #37424c;
 }
-.tales-nav .nav-pills > li.dropdown.open.active > a:hover,
-.tales-nav .nav-pills > li.dropdown.open.active > a:focus {
+.pelson-nav .nav-pills > li.dropdown.open.active > a:hover,
+.pelson-nav .nav-pills > li.dropdown.open.active > a:focus {
   background-color: #37424c;
 }
-.tales-nav .nav-pills .open .dropdown-toggle {
+.pelson-nav .nav-pills .open .dropdown-toggle {
   background-color: #37424c;
 }
-.tales-nav .nav-pills > .active > a {
+.pelson-nav .nav-pills > .active > a {
   background-color: #37424c;
 }
-.tales-nav .nav-pills > .active > a:hover,
-.tales-nav .nav-pills > .active > a:focus {
+.pelson-nav .nav-pills > .active > a:hover,
+.pelson-nav .nav-pills > .active > a:focus {
   background-color: #37424c;
 }
-.tales-nav .nav-pills .dropdown-menu {
+.pelson-nav .nav-pills .dropdown-menu {
   font-size: 16px;
   border-radius: 6px;
 }
-.tales-nav .caret {
+.pelson-nav .caret {
   border-color: #f8f8f9 transparent transparent transparent !important;
   display: none;
 }
-.tales-nav .dropdown .caret {
+.pelson-nav .dropdown .caret {
   margin-left: 7px;
 }
-.tales-nav .dropdown-menu {
+.pelson-nav .dropdown-menu {
   background-color: #49545d;
   border-color: transparent;
   /*IE 8 Legacy */
@@ -154,23 +171,23 @@ hr {
   min-width: 160px;
   padding: 5px 0;
 }
-.tales-nav .dropdown-menu > li > a {
+.pelson-nav .dropdown-menu > li > a {
   color: #f8f8f9;
   line-height: 30px;
   white-space: nowrap;
 }
-.tales-nav .dropdown-menu > li > a:hover,
-.tales-nav .dropdown-menu > li > a:focus {
+.pelson-nav .dropdown-menu > li > a:hover,
+.pelson-nav .dropdown-menu > li > a:focus {
   background-color: #636c74;
   background-color: rgba(255, 255, 255, 0.15);
   background-image: none;
   color: #f8f8f9;
   filter: none;
 }
-.tales-nav .navbar-collapse {
+.pelson-nav .navbar-collapse {
   box-shadow: none;
 }
-.tales-nav .navbar-nav > li > .dropdown-menu {
+.pelson-nav .navbar-nav > li > .dropdown-menu {
   margin-top: 2px;
 }
 /* The button that expands the navigation in mobile-mode */
@@ -195,7 +212,7 @@ hr {
   .masthead {
     padding-bottom: 0px;
   }
-  .tales-nav {
+  .pelson-nav {
     box-shadow: none;
     background-color: #37424c;
     float: left !important;
@@ -206,18 +223,18 @@ hr {
     -moz-border-radius: 6px;
     border-radius: 6px;
   }
-  .tales-nav .navbar-collapse {
+  .pelson-nav .navbar-collapse {
     max-height: none;
   }
-  .tales-nav .nav-pills > li {
+  .pelson-nav .nav-pills > li {
     margin-left: 0;
     float: none;
   }
-  .tales-nav .nav-pills > li > a {
+  .pelson-nav .nav-pills > li > a {
     margin-left: 40px;
     margin-right: 40px;
   }
-  .tales-nav .nav-pills > li a {
+  .pelson-nav .nav-pills > li a {
     font-weight: normal;
     font-size: 20px;
     line-height: 30px;
@@ -227,43 +244,43 @@ hr {
     -moz-border-radius: 0px;
     border-radius: 0px;
   }
-  .tales-nav .nav-pills > li:first-child > a {
+  .pelson-nav .nav-pills > li:first-child > a {
     border-top: none;
   }
-  .tales-nav .nav-pills > li > a:hover,
-  .tales-nav .nav-pills > li > a:focus {
+  .pelson-nav .nav-pills > li > a:hover,
+  .pelson-nav .nav-pills > li > a:focus {
     background: transparent;
   }
-  .tales-nav .nav-pills > li.dropdown.open.active > a:hover,
-  .tales-nav .nav-pills > li.dropdown.open.active > a:focus {
+  .pelson-nav .nav-pills > li.dropdown.open.active > a:hover,
+  .pelson-nav .nav-pills > li.dropdown.open.active > a:focus {
     background: transparent;
   }
-  .tales-nav .nav-pills .active > a,
-  .tales-nav .nav-pills .active > a:hover,
-  .tales-nav .nav-pills .active > a:focus {
+  .pelson-nav .nav-pills .active > a,
+  .pelson-nav .nav-pills .active > a:hover,
+  .pelson-nav .nav-pills .active > a:focus {
     background: transparent;
   }
-  .tales-nav .nav-pills .open .dropdown-toggle {
+  .pelson-nav .nav-pills .open .dropdown-toggle {
     background-color: transparent;
     border-color: #3e4953;
     padding-bottom: 7px;
   }
-  .tales-nav .nav-pills .dropdown-toggle .caret {
+  .pelson-nav .nav-pills .dropdown-toggle .caret {
     float: right;
     margin-top: 14px;
   }
-  .tales-nav .nav-pills .dropdown-menu {
+  .pelson-nav .nav-pills .dropdown-menu {
     background-color: #49545d;
   }
-  .tales-nav .nav-pills .dropdown.open {
+  .pelson-nav .nav-pills .dropdown.open {
     background-color: #49545d;
   }
-  .tales-nav .caret {
+  .pelson-nav .caret {
     border-color: #f8f8f9 transparent transparent transparent !important;
     border-width: 6px;
     display: block;
   }
-  .tales-nav .dropdown-menu {
+  .pelson-nav .dropdown-menu {
     margin-top: 0;
     padding-top: 0;
     -webkit-box-shadow: none;
@@ -271,62 +288,62 @@ hr {
     box-shadow: none;
     border: none;
   }
-  .tales-nav .dropdown-menu > li {
+  .pelson-nav .dropdown-menu > li {
     margin-left: 35px;
   }
-  .tales-nav .dropdown-menu > li > a {
+  .pelson-nav .dropdown-menu > li > a {
     padding-top: 9px;
     padding-bottom: 9px !important;
     font-size: 18px;
     line-height: 27px;
   }
-  .tales-nav .dropdown-menu > li > a:hover,
-  .tales-nav .dropdown-menu > li > a:focus {
+  .pelson-nav .dropdown-menu > li > a:hover,
+  .pelson-nav .dropdown-menu > li > a:focus {
     background-color: transparent;
   }
-  .tales-nav .navbar-nav .open .dropdown-menu > li > a {
+  .pelson-nav .navbar-nav .open .dropdown-menu > li > a {
     padding-top: 9px;
     padding-bottom: 9px;
     line-height: 27px;
   }
 }
-/* Elements that are used througout Tales, such as Searchboxes, Blog elements, Widgets, etc. etc. */
-.tales-breadcrumb {
+/* Elements that are used througout pelson, such as Searchboxes, Blog elements, Widgets, etc. etc. */
+.pelson-breadcrumb {
   color: #7b8690;
   float: left;
   margin-top: 19px;
 }
-.tales-breadcrumb a {
+.pelson-breadcrumb a {
   color: #7b8690;
 }
-.tales-breadcrumb a:hover,
-.tales-breadcrumb a:focus {
+.pelson-breadcrumb a:hover,
+.pelson-breadcrumb a:focus {
   text-decoration: none;
 }
-.tales-breadcrumb .separator {
+.pelson-breadcrumb .separator {
   margin: 0 10px 0 10px;
 }
 /* The searchbox in the subheader on top of the site */
-.tales-searchbox {
+.pelson-searchbox {
   float: right;
   display: inline-block;
   min-width: 210px;
   margin-bottom: 16px;
   margin-top: 16px;
 }
-.tales-searchbox form {
+.pelson-searchbox form {
   margin: 0;
 }
-.tales-searchbox .fa {
+.pelson-searchbox .fa {
   color: #7b8690;
   font-size: 19px;
 }
-.tales-searchbox .searchbutton,
-.tales-searchbox .searchfield {
+.pelson-searchbox .searchbutton,
+.pelson-searchbox .searchfield {
   color: #7b8690;
   background-color: #242b32;
 }
-.tales-searchbox .searchbutton {
+.pelson-searchbox .searchbutton {
   display: inline-block;
   border: none;
   line-height: 20px;
@@ -340,11 +357,11 @@ hr {
   -moz-border-radius-bottomleft: 15px;
   border-bottom-left-radius: 15px;
 }
-.tales-searchbox .searchbutton a:hover,
-.tales-searchbox .searchbutton a:focus {
+.pelson-searchbox .searchbutton a:hover,
+.pelson-searchbox .searchbutton a:focus {
   text-decoration: none;
 }
-.tales-searchbox .searchfield {
+.pelson-searchbox .searchfield {
   border: none;
   height: 22px;
   line-height: 22px;
@@ -372,36 +389,36 @@ hr {
   margin-left: -4px;
   outline: none;
 }
-.tales-searchbox .searchfield::-webkit-input-placeholder {
+.pelson-searchbox .searchfield::-webkit-input-placeholder {
   color: #7b8690;
 }
-.tales-searchbox .searchfield:-moz-placeholder {
+.pelson-searchbox .searchfield:-moz-placeholder {
   color: #7b8690;
 }
-.tales-searchbox .searchfield::-moz-placeholder {
+.pelson-searchbox .searchfield::-moz-placeholder {
   color: #7b8690;
 }
-.tales-searchbox .searchfield:-ms-input-placeholder {
+.pelson-searchbox .searchfield:-ms-input-placeholder {
   color: #7b8690;
 }
-.tales-searchbox .searchfield:focus {
+.pelson-searchbox .searchfield:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
 }
 /* The list with special bullet points, used both on blog widgets as well as in the footer (both styled here) */
-.tales-list {
+.pelson-list {
   list-style: none;
 }
-.tales-list li {
+.pelson-list li {
   line-height: 23px;
   margin-bottom: 14px;
 }
-.tales-list li a:hover,
-.tales-list li a:focus {
+.pelson-list li a:hover,
+.pelson-list li a:focus {
   color: #55a773;
 }
-.tales-list li:before {
+.pelson-list li:before {
   content: "";
   border-color: transparent transparent transparent #757e88;
   border-style: solid;
@@ -412,18 +429,18 @@ hr {
   top: 15px;
   position: relative;
 }
-.footer .tales-list {
+.footer .pelson-list {
   margin-top: -6px;
   padding-left: 23px;
 }
-.footer .tales-list li {
+.footer .pelson-list li {
   margin-bottom: 5px;
 }
-.footer .tales-list li a {
+.footer .pelson-list li a {
   color: #b3b5b7;
   padding-bottom: 5px;
 }
-.footer .tales-list li:before {
+.footer .pelson-list li:before {
   left: -21px;
   border-color: transparent transparent transparent #b3b5b7;
 }
@@ -587,6 +604,7 @@ hr {
   -webkit-border-radius: 200px;
   -moz-border-radius: 200px;
   border-radius: 200px;
+  max-width: 100%;
 }
 .blog-teaser header h3 {
   color: #454a4e;
@@ -619,12 +637,8 @@ hr {
 }
 .article-image {
   float: right;
-    border: 1px dotted black;
-    margin: 0px 0px 15px 20px;
+  margin: 0px 0px 15px 20px;
   margin-bottom: 20px;
-  -webkit-border-radius: 200px;
-  -moz-border-radius: 200px;
-  border-radius: 200px;
 }
 /* Blog main page paging */
 .paging {
@@ -978,10 +992,10 @@ aside.comments .comment .body {
   font-size: 30px;
 }
 /* The centered blocks under about me, used for "Social" and "Contact" */
-.tales-superblock {
+.pelson-superblock {
   margin-bottom: 80px;
 }
-.tales-superblock h2 {
+.pelson-superblock h2 {
   font-size: 40px;
   text-align: center;
   margin-bottom: 80px;
@@ -1040,8 +1054,8 @@ aside.comments .comment .body {
 .form-control:-ms-input-placeholder {
   color: #a5b1bc;
 }
-/* Buttons used in Tales */
-.btn-tales-one {
+/* Buttons used in pelson */
+.btn-pelson-one {
   color: #ffffff;
   background-color: #69bc87;
   border-color: #549f6f;
@@ -1053,52 +1067,52 @@ aside.comments .comment .body {
   background-repeat: repeat-x;
   border-color: #449963;
 }
-.btn-tales-one:hover,
-.btn-tales-one:focus,
-.btn-tales-one:active,
-.btn-tales-one.active,
-.open .dropdown-toggle.btn-tales-one {
+.btn-pelson-one:hover,
+.btn-pelson-one:focus,
+.btn-pelson-one:active,
+.btn-pelson-one.active,
+.open .dropdown-toggle.btn-pelson-one {
   color: #ffffff;
   background-color: #4eae71;
   border-color: #3f7753;
 }
-.btn-tales-one:active,
-.btn-tales-one.active,
-.open .dropdown-toggle.btn-tales-one {
+.btn-pelson-one:active,
+.btn-pelson-one.active,
+.open .dropdown-toggle.btn-pelson-one {
   background-image: none;
 }
-.btn-tales-one.disabled,
-.btn-tales-one[disabled],
-fieldset[disabled] .btn-tales-one,
-.btn-tales-one.disabled:hover,
-.btn-tales-one[disabled]:hover,
-fieldset[disabled] .btn-tales-one:hover,
-.btn-tales-one.disabled:focus,
-.btn-tales-one[disabled]:focus,
-fieldset[disabled] .btn-tales-one:focus,
-.btn-tales-one.disabled:active,
-.btn-tales-one[disabled]:active,
-fieldset[disabled] .btn-tales-one:active,
-.btn-tales-one.disabled.active,
-.btn-tales-one[disabled].active,
-fieldset[disabled] .btn-tales-one.active {
+.btn-pelson-one.disabled,
+.btn-pelson-one[disabled],
+fieldset[disabled] .btn-pelson-one,
+.btn-pelson-one.disabled:hover,
+.btn-pelson-one[disabled]:hover,
+fieldset[disabled] .btn-pelson-one:hover,
+.btn-pelson-one.disabled:focus,
+.btn-pelson-one[disabled]:focus,
+fieldset[disabled] .btn-pelson-one:focus,
+.btn-pelson-one.disabled:active,
+.btn-pelson-one[disabled]:active,
+fieldset[disabled] .btn-pelson-one:active,
+.btn-pelson-one.disabled.active,
+.btn-pelson-one[disabled].active,
+fieldset[disabled] .btn-pelson-one.active {
   background-color: #69bc87;
   border-color: #549f6f;
 }
-.btn-tales-one:hover,
-.btn-tales-one:focus {
+.btn-pelson-one:hover,
+.btn-pelson-one:focus {
   background-color: #48a068;
   background-position: 0 -15px;
 }
-.btn-tales-one:active,
-.btn-tales-one.active {
+.btn-pelson-one:active,
+.btn-pelson-one.active {
   background-color: #48a068;
   border-color: #449963;
 }
-.btn-tales-one .caret {
+.btn-pelson-one .caret {
   border-top-color: #ffffff;
 }
-.btn-tales-two {
+.btn-pelson-two {
   color: #ffffff;
   background-color: #485561;
   border-color: #3c4852;
@@ -1110,49 +1124,49 @@ fieldset[disabled] .btn-tales-one.active {
   background-repeat: repeat-x;
   border-color: #2a3138;
 }
-.btn-tales-two:hover,
-.btn-tales-two:focus,
-.btn-tales-two:active,
-.btn-tales-two.active,
-.open .dropdown-toggle.btn-tales-two {
+.btn-pelson-two:hover,
+.btn-pelson-two:focus,
+.btn-pelson-two:active,
+.btn-pelson-two.active,
+.open .dropdown-toggle.btn-pelson-two {
   color: #ffffff;
   background-color: #37404a;
   border-color: #22292f;
 }
-.btn-tales-two:active,
-.btn-tales-two.active,
-.open .dropdown-toggle.btn-tales-two {
+.btn-pelson-two:active,
+.btn-pelson-two.active,
+.open .dropdown-toggle.btn-pelson-two {
   background-image: none;
 }
-.btn-tales-two.disabled,
-.btn-tales-two[disabled],
-fieldset[disabled] .btn-tales-two,
-.btn-tales-two.disabled:hover,
-.btn-tales-two[disabled]:hover,
-fieldset[disabled] .btn-tales-two:hover,
-.btn-tales-two.disabled:focus,
-.btn-tales-two[disabled]:focus,
-fieldset[disabled] .btn-tales-two:focus,
-.btn-tales-two.disabled:active,
-.btn-tales-two[disabled]:active,
-fieldset[disabled] .btn-tales-two:active,
-.btn-tales-two.disabled.active,
-.btn-tales-two[disabled].active,
-fieldset[disabled] .btn-tales-two.active {
+.btn-pelson-two.disabled,
+.btn-pelson-two[disabled],
+fieldset[disabled] .btn-pelson-two,
+.btn-pelson-two.disabled:hover,
+.btn-pelson-two[disabled]:hover,
+fieldset[disabled] .btn-pelson-two:hover,
+.btn-pelson-two.disabled:focus,
+.btn-pelson-two[disabled]:focus,
+fieldset[disabled] .btn-pelson-two:focus,
+.btn-pelson-two.disabled:active,
+.btn-pelson-two[disabled]:active,
+fieldset[disabled] .btn-pelson-two:active,
+.btn-pelson-two.disabled.active,
+.btn-pelson-two[disabled].active,
+fieldset[disabled] .btn-pelson-two.active {
   background-color: #485561;
   border-color: #3c4852;
 }
-.btn-tales-two:hover,
-.btn-tales-two:focus {
+.btn-pelson-two:hover,
+.btn-pelson-two:focus {
   background-color: #2e363e;
   background-position: 0 -15px;
 }
-.btn-tales-two:active,
-.btn-tales-two.active {
+.btn-pelson-two:active,
+.btn-pelson-two.active {
   background-color: #2e363e;
   border-color: #2a3138;
 }
-.btn-tales-two .caret {
+.btn-pelson-two .caret {
   border-top-color: #ffffff;
 }
 .btn-xlarge {
