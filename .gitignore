@@ -4,4 +4,3 @@ output
 *.pyc
 .ipynb_checkpoints
 *.pid
-pelican_extras/pelican
