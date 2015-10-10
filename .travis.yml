@@ -1,0 +1,32 @@
+language: python
+
+env:
+  global:
+    # travis encrypt GIT_EMAIL=<commit email> GH_TOKEN=<personal access token>
+    secure: muOdofd/oT849Qe5iFtEjn11vvOQUvYXCJ9gN+/K0TS9wUX9+QDk3qoTRKoyBKw8EAVfNT6wcfESRoRh8iug1YHUweKPlxUgoqzqTzT3ailxC2qX6n79lqaAyRK+AeclDZGH0ESze8wNZYZzKanicC3X84GVYJpst+DiEDue3MM=
+
+git:
+  submodules: false
+
+sudo: false
+
+install:
+- export CONDA_BASE=http://repo.continuum.io/miniconda/Miniconda
+- wget ${CONDA_BASE}3-3.7.0-Linux-x86_64.sh -O miniconda.sh;
+- bash miniconda.sh -b -p $HOME/miniconda
+- export PATH="$HOME/miniconda/bin:$PATH"
+- conda config --set show_channel_urls True
+- conda install --yes --quiet -c pelson conda-execute
+
+- git config --global user.name "Phil Elson"
+- git config --global user.email $GIT_EMAIL
+- sed -i "s/git@github.com:/https:\/\/pelson:${GH_TOKEN}@github.com\//" .gitmodules
+- git submodule update --quiet --init --recursive
+
+script:
+- conda execute -v make.py publish
+- git status
+- cd output_branch
+- git add *
+- git commit -am "Committing built changes."
+

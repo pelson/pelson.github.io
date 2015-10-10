@@ -1,4 +1,4 @@
-#!/usr/bin/env conda execute
+#!/usr/bin/env conda-execute
 
 # conda execute
 # env:
@@ -6,8 +6,10 @@
 #  - pelican
 #  - markdown
 #  - ipython >=3,<4
+#  - ipython-notebook
 # channels:
 #  - asmeurer
+#  - IOOS
 # run_with: python
 
 import os

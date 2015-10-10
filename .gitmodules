@@ -4,18 +4,15 @@
 [submodule "content/notebooks/working_with_colors_in_mpl"]
 	path = content/notebooks/working_with_colors_in_mpl
 	url = https://gist.github.com/5636372.git
-[submodule "pelican_extras/pelican-plugins"]
-	path = pelican_extras/pelican-plugins
-	url = git@github.com:getpelican/pelican-plugins.git
 [submodule "content/notebooks/nbagg_backend"]
 	path = content/notebooks/nbagg_backend
-	url = git@gist.github.com:b9b0ea2ccfc16a04fb1c.git
+	url = https://gist.github.com/b9b0ea2ccfc16a04fb1c.git
 [submodule "output_branch"]
 	path = output_branch
 	url = git@github.com:pelson/pelson.github.io.git
 [submodule "extras/pelican-plugins"]
-	path = extras/pelican-plugins
-	url = git@github.com:pelson/pelican-plugins.git
+    path = extras/pelican-plugins
+    url = https://github.com/pelson/pelican-plugins.git
 [submodule "content/notebooks/massive_virtual_arrays_with_biggus"]
 	path = content/notebooks/massive_virtual_arrays_with_biggus
 	url = https://gist.github.com/6139282.git
