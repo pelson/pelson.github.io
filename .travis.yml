@@ -32,9 +32,6 @@ install:
 
 script:
 - conda execute -v make.py publish
-# We currently have to run twice to put the images in the right place.
-- ./make.py publish
-
 - cd output_branch
 - git add --all *
 - git status
