@@ -1,5 +1,7 @@
 _nb_header.html
 output
+content/images/*/*_output_*.png
+
 .DS_STORE
 *.pyc
 .ipynb_checkpoints
