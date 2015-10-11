@@ -12,7 +12,7 @@ sudo: false
 
 install:
 - export CONDA_BASE=http://repo.continuum.io/miniconda/Miniconda
-- wget ${CONDA_BASE}3-3.7.0-Linux-x86_64.sh -O miniconda.sh;
+- wget ${CONDA_BASE}3-latest-Linux-x86_64.sh -O miniconda.sh;
 - bash miniconda.sh -b -p $HOME/miniconda
 - export PATH="$HOME/miniconda/bin:$PATH"
 - conda config --set show_channel_urls True
@@ -23,10 +23,20 @@ install:
 - sed -i "s/git@github.com:/https:\/\/pelson:${GH_TOKEN}@github.com\//" .gitmodules
 - git submodule update --quiet --init --recursive
 
+- git clone --depth=50 --branch=master https://pelson:${GH_TOKEN}@github.com/pelson/pelson.github.io.git output_branch
+
+- echo "Built from the following commits:"
+- git log --oneline -n 1 >> log_message.txt
+- LOG_MESSAGE=$(cat log_message.txt)
+
+
 script:
 - conda execute -v make.py publish
-- git status
-- cd output_branch
-- git add *
-- git commit -am "Committing built changes."
+# We currently have to run twice to put the images in the right place.
+- ./make.py publish
 
+- cd output_branch
+- git add --all *
+- git status
+- git commit -am "${LOG_MESSAGE}"
+- git push origin master

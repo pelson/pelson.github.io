@@ -74,7 +74,7 @@ Rather than adding a new environment in your conda environments directory (and t
 As you may have noticed in the previous example, where the environment created was named ``ea977067a8fbeb21a594``, these temporary environments are named by a hashing algorithm (SHA 256, trunkated to 20 characters).
 The hash is taken from the ``conda-execute`` metadata of your script, which means that you can re-run a script many times and only need one environment to be created. Additionally, it has the advantage that multiple scripts can share the same environment if their ``conda-execute`` metadata is the same.
 
-Each time a temporary environment is used by ``conda-execute`` a log entry is adding, allowing it to keep track of which environments are still in use. Once an environment has been unused for 25 hours any subsequent ``conda-execute`` call will trigger it to be garbage collected, thus preventing your disk filling up with unneeded temporary environments.
+Each time a temporary environment is run with ``conda-execute`` a log entry is added, allowing it to keep track of which environments are still in use. Once an environment has been unused for 25 hours any subsequent ``conda-execute`` call will trigger it to be garbage collected, thus preventing your disk filling up with unneeded temporary environments.
 
 ## Configurability
 
