@@ -1,5 +1,6 @@
 _nb_header.html
 output
+output_branch
 content/images/*/*_output_*.png
 
 .DS_STORE

@@ -33,7 +33,6 @@ def publish():
     cmd = ['pelican', 'content', '--output', 'output',
            '--settings', 'publishconf.py']
     subprocess.check_call(cmd)
-    folder = '/path/to/folder'
     # Remove all ordinary files (not .git/.nojekyl though)
     for fname in glob.glob('output_branch/*'):
         if os.path.isdir(fname):
