@@ -30,6 +30,7 @@ PAGE_SAVE_AS = "{slug}.html"
 
 ARTICLE_URL = '{date:%Y}/{slug}/'
 ARTICLE_SAVE_AS = '{date:%Y}/{slug}/index.html'
+NOTEBOOK_OUTPUT = 'images'
 
 TAG_URL = 'tag/{slug}/'
 TAG_SAVE_AS = 'tag/{slug}/index.html'
