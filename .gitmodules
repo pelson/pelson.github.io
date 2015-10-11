@@ -4,9 +4,6 @@
 [submodule "content/notebooks/working_with_colors_in_mpl"]
 	path = content/notebooks/working_with_colors_in_mpl
 	url = https://gist.github.com/5636372.git
-[submodule "content/notebooks/nbagg_backend"]
-	path = content/notebooks/nbagg_backend
-	url = https://gist.github.com/b9b0ea2ccfc16a04fb1c.git
 [submodule "extras/pelican-plugins"]
     path = extras/pelican-plugins
     url = https://github.com/pelson/pelican-plugins.git
