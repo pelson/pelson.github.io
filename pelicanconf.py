@@ -28,8 +28,11 @@ GOOGLE_ANALYTICS = "UA-43268601-1"
 PAGE_URL = "{slug}.html"
 PAGE_SAVE_AS = "{slug}.html"
 
-ARTICLE_URL = '{date:%Y}/{slug}.html'
-ARTICLE_SAVE_AS = '{date:%Y}/{slug}.html'
+ARTICLE_URL = '{date:%Y}/{slug}/'
+ARTICLE_SAVE_AS = '{date:%Y}/{slug}/index.html'
+
+TAG_URL = 'tag/{slug}/'
+TAG_SAVE_AS = 'tag/{slug}/index.html'
 
 PLUGIN_PATH = 'extras/pelican-plugins'
 PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
@@ -38,3 +41,6 @@ PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
 FEED_USE_SUMMARY = True
 
 THEME =  "extras/theme"
+DIRECT_TEMPLATES = ('index', 'tags', 'archives', 'sitemap')
+SITEMAP_SAVE_AS = 'sitemap.xml'
+
