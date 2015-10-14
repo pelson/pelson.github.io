@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 AUTHOR = u'Phil Elson'
 SITENAME = u"Phil Elson - Software | Science | Python"
 SITEURL = '' #'pelson.github.io'
-#SITEURL = '//localhost:8080/output/' #'pelson.github.io'
 RELATIVE_URLS = True
 GITHUB_URL = 'http://github.com/pelson/pelson.github.io'
 
@@ -21,6 +20,11 @@ LINKS =  []
 
 # Social widget
 SOCIAL = []
+
+STATIC_PATHS = ['images', 'favicon.ico']
+EXTRA_PATH_METADATA = {
+    'extra/theme/favicon.ico': {'path': 'favicon.ico'}
+}
 
 DISQUS_SITENAME = "pelson"
 GOOGLE_ANALYTICS = "UA-43268601-1"

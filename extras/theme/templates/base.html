@@ -27,8 +27,6 @@
   <script src="theme/js/html5-3.6-respond-1.1.0.min.js"></script>
   <![endif]-->
 
-  <script src="{{ SITEURL }}/theme/jquery.min.js"></script>
-
   <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" /> {% block extra_head %} {% endblock extra_head%}
 
 </head>
@@ -39,71 +37,11 @@
   <header>
     <div class="widewrapper masthead">
       <div class="container">
-        <a href="{{ SITEURL }}/index.html" id="logo" class="h1">
-        Phil Elson
-      </a>
-        <!--
-        <div id="mobile-nav-toggle" class="pull-right">
-          <a href="#" data-toggle="collapse" data-target=".pelson-nav .navbar-collapse">
-            <i class="fa fa-bars"></i>
-          </a>
-        </div>
-
-      <nav class="pull-right pelson-nav">
-        <div class="collapse navbar-collapse">
-
-          <ul class="nav nav-pills navbar-nav">
-
-            <li class="dropdown active">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="index.html#">
-                Blog
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                {% for cat, null in categories %}
-                <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
-                {% endfor %}
-                <li><a href="theme/pelson - Blog.html">Blog</a></li>
-                <li><a href="blog-detail.html">Blog Detail</a></li>
-              </ul>
-            </li>
-
-            <li>
-              <a href="about.html">About</a>
-            </li>
-            <li>
-              <a href="credits.html">Credits</a>
-            </li>
-          </ul>
-
-        </div>
-      </nav>
-    -->
+        <a href="{{ SITEURL }}/index.html" id="logo" class="h1">Phil Elson</a>
       </div>
     </div>
-
     {% block header %}
-
-    <!--
-  <div class="widewrapper subheader">
-    <div class="container">
-      <div class="pelson-breadcrumb">
-        <a href="index.html#">Blog</a>
-      </div>
-
-      <div class="pelson-searchbox">
-      <form action="#" method="get" accept-charset="utf-8">
-      <button class="searchbutton" type="submit">
-      <i class="fa fa-search"></i>
-    </button>
-    <input class="searchfield" id="searchbox" type="text" placeholder="Search">
-  </form>
-</div>
-
-</div>
--->
     {% endblock %}
-    </div>
   </header>
 
   <div class="widewrapper main">
@@ -221,7 +159,7 @@
               </li>
 
               <li>
-                <a href="">
+                <a>
                   <i class="fa fa-envelope fa-3x"></i>
                   <span style="unicode-bidi:bidi-override; direction:rtl;">moc.liamg
                     <span style="display: none;">_ignore_</span>@golb+bup.noslep</span>
@@ -244,16 +182,17 @@
     <div class="widewrapper copyright">
       <div class="container">
         <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-          <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+          <img alt="Creative Commons License" style="border-width:0" src="{{ SITEURL }}/theme/creative_commons.88x31.png" />
         </a>
         <a href="https://pelson.github.io">
-          <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">pelson.github.io</span>
+          <span>pelson.github.io</span>
         </a> is licensed under a
         <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
       </div>
     </div>
   </footer>
 
+  <script src="{{ SITEURL }}/theme/jquery.min.js"></script>
   <script src="{{ SITEURL }}/theme/bootstrap/js/bootstrap.min.js"></script>
   <script src="{{ SITEURL }}/theme/modernizr.js"></script>
   {% include 'analytics.html' %} {% include 'github.html' %}

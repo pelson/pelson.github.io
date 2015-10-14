@@ -8,7 +8,6 @@
 #  - ipython >=3,<4
 #  - ipython-notebook
 # channels:
-#  - asmeurer
 #  - IOOS
 # run_with: python
 
