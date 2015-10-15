@@ -32,6 +32,7 @@ GOOGLE_ANALYTICS = "UA-43268601-1"
 PAGE_URL = "{slug}.html"
 PAGE_SAVE_AS = "{slug}.html"
 
+AUTHOR_SAVE_AS = ''
 ARTICLE_URL = '{date:%Y}/{slug}/'
 ARTICLE_SAVE_AS = '{date:%Y}/{slug}/index.html'
 NOTEBOOK_OUTPUT = 'images'
@@ -46,6 +47,6 @@ PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
 FEED_USE_SUMMARY = True
 
 THEME =  "extras/theme"
-DIRECT_TEMPLATES = ('index', 'tags', 'archives', 'sitemap')
+DIRECT_TEMPLATES = ('index', 'archives', 'sitemap')
 SITEMAP_SAVE_AS = 'sitemap.xml'
 

@@ -7,8 +7,10 @@
 #  - markdown
 #  - ipython >=3,<4
 #  - ipython-notebook
+#  - tidy-html5
 # channels:
 #  - IOOS
+#  - pelson
 # run_with: python
 
 import os
@@ -38,10 +40,42 @@ def publish():
             shutil.rmtree(fname)
         else:
             os.unlink(fname)
+
     # Copy all files
-    for fname in glob.glob('output/*'):
+    for root, dirs, files in os.walk('output'):
+        new_root = os.path.join('output_branch',
+                                os.path.normpath(os.path.relpath(root, 'output')))
+        for dir in dirs:
+            if dir.startswith('.'):
+                dirs.remove(dir)
+                continue
+            new = os.path.join(new_root, dir)
+            os.mkdir(new)
+        for fname in files:
+            if fname.startswith('.'):
+                continue
+            old = os.path.join(root, fname)
+            new = os.path.join(new_root, fname)
+            if fname.endswith('.html'):
+                print('\nConverting {}:'.format(old))
+                cmd = ['tidy5', '-config', 'tidy_config.txt', old]
+                with open(new, 'w') as fh:
+                    try:
+                        code = subprocess.check_call(cmd, stdout=fh)
+                    except subprocess.CalledProcessError as err:
+                        if err.returncode != 1:
+                            raise
+            else:
+                shutil.copy(old, new)
+
+    for fname in sorted(glob.glob('output/*')):
+        continue
         if os.path.isdir(fname):
             shutil.copytree(fname, os.path.join('output_branch', os.path.basename(fname)))
+        elif fname.endswith('.html'):
+            cmd = ['tidy5', '-config', 'tidy_config.txt', fname]
+            with open(os.path.join('output_branch', os.path.basename(fname)), 'w') as fh:
+                subprocess.check_call(cmd, stdout=fh)
         else:
             shutil.copy(fname, os.path.join('output_branch', os.path.basename(fname)))
 

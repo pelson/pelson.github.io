@@ -21,7 +21,7 @@
         <hr>
       </header>
       <div class="body">
-        {{ article.summary }}
+        {{ article.summary|striptags }}
       </div>
       <div class="clearfix">
         <a href="{{ SITEURL }}/{{ article.url }}" class="btn btn-pelson-one">Read more</a>
