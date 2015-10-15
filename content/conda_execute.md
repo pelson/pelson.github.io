@@ -116,5 +116,5 @@ The concept of creating reproducible scripts goes far wider than trivial Makefil
 
 I'm particularly keen to explore the reproducibility angle that ``conda-execute`` brings, particularly for scientific applications.
 
-``conda-execute`` can be found at [github.com/pelson/conda-execute](https://github.com/pelson/conda-execute), and installed with ``conda install -c pelson conda-execute``.
+``conda-execute`` can be found at [github.com/pelson/conda-execute](https://github.com/pelson/conda-execute), and installed with ``conda install conda-execute --channel conda-forge``.
 
