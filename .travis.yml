@@ -16,7 +16,7 @@ install:
 - bash miniconda.sh -b -p $HOME/miniconda
 - export PATH="$HOME/miniconda/bin:$PATH"
 - conda config --set show_channel_urls True
-- conda install --yes --quiet -c conda-forge conda-execute
+- conda install --yes --quiet -c conda-forge conda-execute python=3.4
 
 - git config --global user.name "Phil Elson"
 - git config --global user.email $GIT_EMAIL
