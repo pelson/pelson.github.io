@@ -5,7 +5,7 @@
 #  - python 
 #  - pelican
 #  - markdown
-#  - ipython >=3,<4
+#  - ipython
 #  - ipython-notebook
 #  - tidy-html5
 # channels:
