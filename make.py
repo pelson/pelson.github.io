@@ -3,7 +3,7 @@
 # conda execute
 # env:
 #  - python 
-#  - pelican
+#  - pelican >=3.7
 #  - markdown
 #  - ipython
 #  - ipython-notebook

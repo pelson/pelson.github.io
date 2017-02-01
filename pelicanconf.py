@@ -40,7 +40,7 @@ NOTEBOOK_OUTPUT = 'images'
 TAG_URL = 'tag/{slug}/'
 TAG_SAVE_AS = 'tag/{slug}/index.html'
 
-PLUGIN_PATH = 'extras/pelican-plugins'
+PLUGIN_PATHS = ['extras/pelican-plugins']
 PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.include_code', 'liquid_tags.notebook', 'summary',
            'feed_summary']
