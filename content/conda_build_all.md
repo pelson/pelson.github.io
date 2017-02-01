@@ -147,7 +147,7 @@ This functionality becomes invaluable when we wish to build many packages, such 
 ### Only building the missing distributions
 
 The build matrix is supremely useful, but it does come at the cost of the extra time needed to build the many distributions.
-With repositories full of recipes, it is easy to come to hundreds of build matrix items. If we want to be able to run ``conda-build-all`` on a regular bsis, we can't reasonably expect to build each of those items each time.
+With repositories full of recipes, it is easy to come to hundreds of build matrix items. If we want to be able to run ``conda-build-all`` on a regular basis, we can't reasonably expect to build each of those items each time.
 Therefore, ``conda-build-all`` has the ability to inspect various locations to determine if a distribution has already been built.
 In fact, the default behaviour is to inspect the local conda-build directory to determine if a distribution has already been built locally.
 Other options include the ability to inspect conda channels as well as arbitrary local directories.
