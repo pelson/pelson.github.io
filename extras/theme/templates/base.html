@@ -1,201 +1,188 @@
 <!DOCTYPE html>
-<html class=" js inlinesvg">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="{{ SITEURL }}/theme/images/favicon.ico">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/styles-bluegreen.css" id="theme-styles">
+<title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
 
-  <!-- Bootstrap styles -->
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/bootstrap/css/bootstrap-theme.min.css">
+<!-- Bootstrap core CSS -->
+<link href="{{ SITEURL }}/theme/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Font-Awesome -->
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/font-awesome/css/font-awesome.min.css">
-
-  <!-- Google Webfonts -->
-  <link href="{{ SITEURL }}/theme/webfonts.css" rel="stylesheet" type="text/css">
+<!-- Custom styles for this template -->
+<link href="{{ SITEURL }}/theme/css/style.css" rel="stylesheet">
 
 
+<link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" /> 
+<link rel="stylesheet" href="{{ SITEURL }}/theme/font-awesome/css/font-awesome.min.css">
+<link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
 
-  <!--[if lt IE 9]>
-  <script src="theme/js/html5-3.6-respond-1.1.0.min.js"></script>
-  <![endif]-->
-
-  <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" /> {% block extra_head %} {% endblock extra_head%}
-
+{% block header %}
+{% endblock %}
 </head>
 
+<!-- NAVBAR ================================================== -->
 <body>
-
-
-  <header>
-    <div class="widewrapper masthead">
-      <div class="container">
-        <a href="{{ SITEURL }}/" id="logo" class="h1">Phil Elson</a>
-      </div>
-    </div>
-    {% block header %}
-    {% endblock %}
-  </header>
-
-  <div class="widewrapper main">
-
-    <div class="container">
+  <div class="container-fullwidth">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="height: inherit;">
       <div class="row">
-        <div class="col-md-8 blog-main">
-        {% block content %} {% endblock content%}
+        <div id="banner" class="col-md-3 shrinker">
+          <div>
+            <p class="by-phil">
+              <a href="/">
+                Phil Elson's
+              </a>
+            </p> 
+          </div>
         </div>
-        <aside class="col-md-4 blog-aside">
-          {% block sidebar %}{% endblock sidebar %}
+        <div class="col-md-6 text-center">
+          <div class="brand-icons">
+            <div id="nav-sci" class="col-xs-4">
+              <a href="/">
+                <i class="fa fa-icon fa-fw fa-flask"></i>
+                <h2>Science</h2>
+              </a>
+            </div>
 
-          <div class="aside-widget">
-            <header>
-              <h3>Most recent articles</h3>
-            </header>
-            <div class="body">
-              <ul class="pelson-list">
+            <div id="nav-software" class="col-xs-4">
+              <a href="/">
+                <i class="nav-icon fa fa-code"></i>
+                <h2>Software</h2>
+              </a>
+            </div>
+
+            <div id="nav-oss" class="col-xs-4">
+              <a href="/">
+                <img src="{{ SITEURL }}/theme/images/osi_white.png">
+                <h2>Open source</h2>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 nav-toggle">
+          <i class="fa fa-bars"></i>
+        </div>
+      </div>
+
+      <div class="actual-navbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#"><i class="fa fa-fw fa-home"></i>Home <span class="sr-only">(current)</span></a></li>
+          <li><a href="#"><i class="fa fa-fw fa-file-o"></i>Articles</a></li>
+          <li><a href="#"><i class="fa fa-fw fa-bullhorn"></i>Announcements</a></li>
+          <li><a href="#"><i class="fa fa-fw fa-map-o"></i>&nbsp;Field notes</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span></a>
+              <ul class="dropdown-menu">
                 {% if articles %} {% for article in articles[:5] %}
                 <li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
                 {% endfor %} {% endif %}
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
               </ul>
-              {% if articles and articles|length > 5 %}
-              <a href="{{ SITEURL }}/archives.html"><h4>See all articles</h4></a>
-              {% endif %}
-            </div>
-          </div>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-fw fa-tags"></i>Tags <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  {% for tag, articles in tags|sort %}
+                  <li {% if tag in active_tags %}class="active" {% endif %}>
+                    <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+                  </li>
+                  {% endfor %}
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
 
-          {% if tags %} {% if not active_tags %} {% set active_tags = [] %} {% endif %}
-
-          <div class="aside-widget">
-            <header>
-              <h3>Find other articles by tag</h3>
-            </header>
-            <div class="body">
-              <ul class="tags">
-
-                {% for tag, articles in tags|sort %}
-                <li {% if tag in active_tags %}class="active" {% endif %}>
-                  <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
-                </li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-          {% endif %} {% if False and PAGES %}
-          <div class="sidebar-entry">
-            <h4>Pages</h4>
-            <ul>
-              {% for page in PAGES %}
-              <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
-              {% endfor %}
             </ul>
           </div>
-          {% endif %} {% if LINKS %}
-          <div class="sidebar-entry">
-            <div class="widget blogroll">
-              <h4>Blogroll</h4>
-              <ul>
-                {% for name, link in LINKS %}
-                <li><a href="{{ link }}">{{ name }}</a></li>
-                {% endfor %}
 
-              </ul>
-            </div>
-          </div>
-          {% endif %}
-
-        </aside>
+        </nav>
+        <div id="navbar-spacer"></div>
       </div>
     </div>
   </div>
+  <!-- Marketing messaging and featurettes -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
 
-  <footer>
-    <div class="widewrapper footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-6 footer-widget">
-            <h3> <i class="fa fa-envelope"></i>Contact</h3>
-            <ul class="unstyled">
-              <li>
-                <a href="https://github.com/pelson">
-                  <i class="fa fa-github fa-3x"></i> @pelson on Github
-                </a>
-              </li>
+  <div class="container marketing">
+    {% block sidebar %}{% endblock sidebar %}
+    {% block content %} {% endblock content%}
+    <!-- START THE FEATURETTES -->
 
-              <li>
-                <a href="https://twitter.com/pypelson">
-                  <i class="fa fa-twitter fa-3x"></i> @pypelson
-                </a>
-              </li>
-
-              <li>
-                <a href="http://stackoverflow.com/users/741316/pelson">
-                  <i class="fa fa-stack-overflow fa-3x"></i> @pelson on stackoverflow
-                </a>
-              </li>
-
-              <li>
-                <a href="http://uk.linkedin.com/in/philipelson/">
-                  <i class="fa fa-linkedin-square fa-3x"></i> LinkedIn
-                </a>
-              </li>
-
-              <li>
-                <a href="https://bitbucket.org/pelson">
-                  <i class="fa fa-bitbucket fa-3x"></i> Bitbucket
-                </a>
-              </li>
-
-              <li>
-                <a href="https://plus.google.com/u/1/103760955300350111400">
-                  <i class="fa fa-google-plus-square fa-3x"></i> Google+
-                </a>
-              </li>
-
-              <li>
-                <a>
-                  <i class="fa fa-envelope fa-3x"></i>
-                  <span style="unicode-bidi:bidi-override; direction:rtl;">moc.liamg
-                    <span style="display: none;">_ignore_</span>@golb+bup.noslep</span>
-                </a>
-              </li>
-            </ul>
-
-          </div>
-
-          <div class="col-xs-6 footer-widget">
-            <h3> <i class="fa fa-info-circle"></i>About</h3>
-            <span>
-              This site is generated using a combination of Pelican and IPython notebook, the source can be found at
-              <a href="https://github.com/pelson/pelson.github.io">https://github.com/pelson/pelson.github.io</a>.
-            </span>
-          </div>
-        </div>
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1YTAwZGVmMzg4IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTVhMDBkZWYzODgiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
       </div>
     </div>
-    <div class="widewrapper copyright">
-      <div class="container">
-        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-          <img alt="Creative Commons License" style="border-width:0" src="{{ SITEURL }}/theme/creative_commons.88x31.png" />
-        </a>
-        <a href="https://pelson.github.io">
-          <span>pelson.github.io</span>
-        </a> is licensed under a
-        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 col-md-push-5">
+        <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      </div>
+      <div class="col-md-5 col-md-pull-7">
+        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1YTAwZGVjMmQ2IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTVhMDBkZWMyZDYiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
+        <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Anybody know if Heroku supports FUSE (aka. Filesystem in Userspace)? Would be super useful, but may need special LXC privs. cc <a href="https://twitter.com/kennethreitz">@kennethreitz</a></p>&mdash; Phil Elson (@pypelson) <a href="https://twitter.com/pypelson/status/828979866770870272">February 7, 2017</a></blockquote>
+        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
     </div>
-  </footer>
 
-  <script src="{{ SITEURL }}/theme/jquery.min.js"></script>
-  <script src="{{ SITEURL }}/theme/bootstrap/js/bootstrap.min.js"></script>
-  <script src="{{ SITEURL }}/theme/modernizr.js"></script>
-  {% include 'analytics.html' %} {% include 'github.html' %}
-</body>
+    <hr class="featurette-divider">
 
-</html>
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1YTAwZGVkZTQ5IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTVhMDBkZWRlNDkiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+
+    <!-- FOOTER -->
+    <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+      <p>
+        © 2016 Phil Elson · <a href="#">About</a> · <a href="#">Contact</a>
+        · <a href="#"><i class="fa fa-fw fa-rss-square"></i>RSS</a>
+      </p>
+    </footer>
+
+  </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ SITEURL }}/theme/jquery.min.js"></script>
+    <script src="{{ SITEURL }}/theme/bootstrap.min.js"></script>
+
+    <script src="{{ SITEURL }}/theme/js/scroll.js"></script>
+    {% include 'analytics.html' %}
+  </body>
+  </html>
