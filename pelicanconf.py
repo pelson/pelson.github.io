@@ -47,6 +47,11 @@ PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
 FEED_USE_SUMMARY = True
 
 THEME =  "extras/theme"
-DIRECT_TEMPLATES = ('index', 'archives', 'sitemap')
+DIRECT_TEMPLATES = ('index', 'archives', 'sitemap', 'announce', 'articles', 'field_notes', 'hints')
 SITEMAP_SAVE_AS = 'sitemap.xml'
+
+ANNOUNCE_SAVE_AS = 'announce/index.html'
+ARTICLES_SAVE_AS = 'articles/index.html'
+FIELD_NOTES_SAVE_AS = 'field-notes/index.html'
+HINTS_SAVE_AS = 'hints-n-tips/index.html'
 

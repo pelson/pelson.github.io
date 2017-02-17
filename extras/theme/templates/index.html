@@ -1,48 +1,113 @@
-{% extends "base.html" %}
+{% extends "article_archive.html" %}
 
-{% macro render_articles(articles, article_limit=2) -%}
-{% for article in articles %}
-{% if loop.index <= article_limit %}
-  {% if loop.index % 2 == 0 %}
-  <div class="row">
-  {% endif %}
-
-  <div class="col-md-6 col-sm-6">
-    <article class=" blog-teaser">
-      <header>
-        {% if article.summaryimg %}
-        <a href="{{ article.url }}">
-        <img src="{{ SITEURL }}/images/{{ article.slug }}/{{ article.summaryimg }}" class="rss-img" alt="Thumbnail for {{ article.slug }}" />
-        </a>
-        {% endif %}
-
-        <h3><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
-        <span class="meta">{{ article.locale_date }}</span>
-        <hr>
-      </header>
-      <div class="body">
-        {{ article.summary|striptags }}
-      </div>
-      <div class="clearfix">
-        <a href="{{ SITEURL }}/{{ article.url }}" class="btn btn-pelson-one">Read more</a>
-      </div>
-    </article>
-  </div>
-
-  {% if loop.index % 2 == 0 %}
-  </div>
-  {% endif %}
-{% elif loop.index == article_limit + 1 %}
-  <a href="{{ SITEURL }}/archives.html"><h4>More articles...</h4></a>
-{% endif %}
-{% endfor %}
-{%- endmacro %}
+{% set active_page = 'Home' %}
 
 
 {% block content_title %}
 {% endblock %}
 
 {% block content %}
+<div class="row media-body">
+  <div class="col-sm-12">
+    <img src="{{ SITEURL }}/theme/images/pelson2.png" style="float: left; padding-right: 2em;">
+    <p>
+      <span class="media-heading emphasis">Welcome</span> to this collection of articles, how-tos and announcements.
+    </p>
+    <p>
+      These pages are driven by the idea that the modern <span class="media-heading emphasis">scientific method</span> is now almost entirely dependent
+      upon <span class="media-heading emphasis">software</span>, and that, in order to facilitate transparency and reproducibility, scientific software must be <span class="media-heading emphasis">open source.</span>
+    </p>
+    <p style="padding-top: 1em; line-height: 2em;">
+      As a scientific technical lead at a leading natural sciences research institute, I'm fortunate to contribute to a body of tools that <span class="media-heading emphasis">empower researchers and data scientists</span> accross a broad spectrum of fields.
+    </p>
+
+    <p style="padding-top: 1em; line-height: 2em;">
+      As well as an intimate knowledge of the rapidly changing technology landscape, development of useful scientific tools depends upon a soild understanding of the scientific problem space. For these reasons you will find these pages span a variety of topics, from being entirely <span class="media-heading emphasis">technology focussed</span> right through to being purely <span class="media-heading emphasis">scientific in nature</span>.   
+    </p>
+
+
+    <p style="padding-top: 2em;">
+      Open source tools that I have made significant contributions towards include:
+    </p>
+    <div class="row media-body">
+      <div class="col-md-4 col-sm-2 thumbnail">
+        <a href="http://matplotlib.org"><img src="{{ SITEURL }}/theme/images/mpl.svg" style="max-height: 5em;"></a>
+      </div>
+      <div class="col-md-4 col-sm-2 thumbnail">
+        <a href="http://scitools.org.uk/cartopy/docs/latest/"><img src="{{ SITEURL }}/theme/images/cartopy.png" style="max-height: 5em;"></a>
+      </div>
+      <div class="col-md-4 col-sm-2 thumbnail">
+        <a href="https//conda-forge.org"><img src="{{ SITEURL }}/theme/images/conda-forge.png" style="max-height: 5em; float: left;">conda-forge</a>
+      </div>
+      <div class="col-md-4 col-sm-2 thumbnail">
+        repohealth.info
+      </div>
+      <div class="col-md-4 col-sm-2 thumbnail">
+        Iris
+      </div>
+      <div class="col-md-4 col-sm-2 thumbnail">
+        Shapely
+      </div>
+      <div class="col-md-4 col-sm-2 thumbnail">
+        conda-build-all
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+
+  <hr class="featurette-divider">
+
+  <div class="row media-body">
+    <div class="col-sm-6 thumbnail">
+      <i class="fa fa-fw fa-5x fa-code  "></i>
+      <h3 class="media-heading">Articles</h3>
+    </div>
+    <div class="col-sm-6 feature-float">
+      <i class="fa fa-fw fa-5x fa-list-ul"></i>
+      <h3>Hints & Tips</h3>
+    </div>
+  </div>
+
+  <!-- START THE FEATURETTES -->
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    </div>
+    <div class="col-md-5">
+      <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1YTAwZGVmMzg4IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTVhMDBkZWYzODgiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7 col-md-push-5">
+      <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    </div>
+    <div class="col-md-5 col-md-pull-7">
+      <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1YTAwZGVjMmQ2IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTVhMDBkZWMyZDYiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
+      <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Anybody know if Heroku supports FUSE (aka. Filesystem in Userspace)? Would be super useful, but may need special LXC privs. cc <a href="https://twitter.com/kennethreitz">@kennethreitz</a></p>&mdash; Phil Elson (@pypelson) <a href="https://twitter.com/pypelson/status/828979866770870272">February 7, 2017</a></blockquote>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    </div>
+    <div class="col-md-5">
+      <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1YTAwZGVkZTQ5IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTVhMDBkZWRlNDkiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
   {% if articles %}
 
   {% if article_limit is not defined %}
@@ -53,6 +118,6 @@
     {{ render_articles(articles, article_limit=article_limit) }}
   </div>
   {% endif %}
-{% endblock content %}
-{% block sidebar %}
-{% endblock sidebar %}
+  {% endblock content %}
+  {% block sidebar %}
+  {% endblock sidebar %}

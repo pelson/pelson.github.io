@@ -1,0 +1,21 @@
+{% extends "article_archive.html" %}
+{% set active_page = '&nbsp;Field notes' %}
+
+{% block title %}Field notes | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+
+{% set cat = dict(categories) %}
+
+{% set articles = cat['field-notes'] %}
+
+{{ articles|length }}
+
+{% for article in articles %}
+	{{ article.title }}
+
+{% endfor %}
+
+{{ render_articles(articles) }}
+
+{% endblock %}

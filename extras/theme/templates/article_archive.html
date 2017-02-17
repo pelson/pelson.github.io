@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+
+{% macro render_articles(articles, article_limit=2) -%}
+{% for article in articles %}
+{% if loop.index <= article_limit %}
+  {% if loop.index % 2 == 0 %}
+  <div class="row">
+  {% endif %}
+
+  <div class="col-md-6 col-sm-6">
+    <article class=" blog-teaser">
+      <header>
+        {% if article.summaryimg %}
+        <a href="{{ article.url }}">
+        <img src="{{ SITEURL }}/images/{{ article.slug }}/{{ article.summaryimg }}" class="rss-img" alt="Thumbnail for {{ article.slug }}" />
+        </a>
+        {% endif %}
+
+        <h3><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+        <span class="meta">{{ article.locale_date }}</span>
+        <hr>
+      </header>
+      <div class="body">
+        {{ article.summary|striptags }}
+      </div>
+      <div class="clearfix">
+        <a href="{{ SITEURL }}/{{ article.url }}" class="btn btn-pelson-one">Read more</a>
+      </div>
+    </article>
+  </div>
+
+  {% if loop.index % 2 == 0 %}
+  </div>
+  {% endif %}
+{% elif loop.index == article_limit + 1 %}
+  <a href="{{ SITEURL }}/archives.html"><h4>More articles...</h4></a>
+{% endif %}
+{% endfor %}
+{%- endmacro %}
+
+
+{% block content_title %}
+{% endblock %}
+
+{% block content %}
+
+  {% if articles %}
+
+  {% if article_limit is not defined %}
+  {% set article_limit = 2 %}
+  {% endif %}
+
+  <div id="article">
+    {{ render_articles(articles, article_limit=article_limit) }}
+  </div>
+  {% endif %}
+{% endblock content %}
+{% block sidebar %}
+{% endblock sidebar %}

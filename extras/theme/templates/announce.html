@@ -1,0 +1,21 @@
+{% extends "article_archive.html" %}
+{% set active_page = 'Announcements' %}
+
+{% block title %}Announcements | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+
+{% set cat = dict(categories) %}
+
+{% set articles = cat.get('announce', []) %}
+
+{{ articles|length }}
+
+{% for article in articles %}
+	{{ article.title }}
+
+{% endfor %}
+
+{{ render_articles(articles) }}
+
+{% endblock %}

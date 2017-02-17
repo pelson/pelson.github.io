@@ -1,3 +1,12 @@
+{% set NAV_LINKS=[['fa-home', SITEURL, 'Home'],
+          ['fa-file-o', SITEURL + '/articles/', 'Articles'],
+          ['fa-bullhorn', SITEURL + '/announce/', 'Announcements'],
+          ['fa-map-o', SITEURL + '/field-notes/', '&nbsp;Field notes'],
+          ['fa-list-ul', SITEURL + '/hints-n-tips/', 'Hints & Tips'],
+          ] %}
+
+{% block main %}
+{% set active_page = None %}
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -33,7 +42,7 @@
         <div id="banner" class="col-md-3 shrinker">
           <div>
             <p class="by-phil">
-              <a href="/">
+              <a href="{{ SITEURL }}">
                 Phil Elson's
               </a>
             </p> 
@@ -42,21 +51,21 @@
         <div class="col-md-6 text-center">
           <div class="brand-icons">
             <div id="nav-sci" class="col-xs-4">
-              <a href="/">
+              <a href="{{ SITEURL }}">
                 <i class="fa fa-icon fa-fw fa-flask"></i>
                 <h2>Science</h2>
               </a>
             </div>
 
             <div id="nav-software" class="col-xs-4">
-              <a href="/">
+              <a href="{{ SITEURL }}">
                 <i class="nav-icon fa fa-code"></i>
                 <h2>Software</h2>
               </a>
             </div>
 
             <div id="nav-oss" class="col-xs-4">
-              <a href="/">
+              <a href="{{ SITEURL }}">
                 <img src="{{ SITEURL }}/theme/images/osi_white.png">
                 <h2>Open source</h2>
               </a>
@@ -67,115 +76,71 @@
           <i class="fa fa-bars"></i>
         </div>
       </div>
-
-      <div class="actual-navbar">
+      {% block nav %}
+      {% if not (active_page and active_page != 'Home') %}
+      <script>var navbar_toggled = false;</script>
+      {% endif %}
+      <div class="actual-navbar {{ '' if active_page and active_page != 'Home' else 'shrink' }}">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#"><i class="fa fa-fw fa-home"></i>Home <span class="sr-only">(current)</span></a></li>
-          <li><a href="#"><i class="fa fa-fw fa-file-o"></i>Articles</a></li>
-          <li><a href="#"><i class="fa fa-fw fa-bullhorn"></i>Announcements</a></li>
-          <li><a href="#"><i class="fa fa-fw fa-map-o"></i>&nbsp;Field notes</a></li>
+
+          {% for icon, url, name in NAV_LINKS %}
+          <li{% if active_page == name %} class="active"{% endif %}><a href="{{ url }}"><i class="fa fa-fw {{ icon }}"></i>{{ name }}
+          {% if active_page == name %}
+          <span class="sr-only">(current)</span>
+          {% endif %}
+        </a></li>
+        {% endfor %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              {% if articles %} {% for article in articles[:5] %}
+              <li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
+              {% endfor %} {% endif %}
+            </ul>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span></a>
+              <i class="fa fa-fw fa-tags"></i>Tags <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                {% if articles %} {% for article in articles[:5] %}
-                <li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
-                {% endfor %} {% endif %}
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
+                {% for tag, articles in tags|sort %}
+                <li {% if tag in active_tags %}class="active" {% endif %}>
+                  <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+                </li>
+                {% endfor %}
               </ul>
             </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-fw fa-tags"></i>Tags <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  {% for tag, articles in tags|sort %}
-                  <li {% if tag in active_tags %}class="active" {% endif %}>
-                    <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
-                  </li>
-                  {% endfor %}
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
 
-            </ul>
-          </div>
+          </ul>
+        </div>
 
-        </nav>
-        <div id="navbar-spacer"></div>
-      </div>
+      </nav>
+      <div id="navbar-spacer"></div>
     </div>
+    {% endblock %}
   </div>
-  <!-- Marketing messaging and featurettes -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
+</div>
+<!-- Marketing messaging and featurettes -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
 
-  <div class="container marketing">
-    {% block sidebar %}{% endblock sidebar %}
-    {% block content %} {% endblock content%}
-    <!-- START THE FEATURETTES -->
+<div class="container marketing">
+  {% block sidebar %}{% endblock sidebar %}
+  {% block content %} {% endblock content%}
+  
 
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-      <div class="col-md-5">
-        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1YTAwZGVmMzg4IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTVhMDBkZWYzODgiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7 col-md-push-5">
-        <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-      <div class="col-md-5 col-md-pull-7">
-        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1YTAwZGVjMmQ2IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTVhMDBkZWMyZDYiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
-        <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Anybody know if Heroku supports FUSE (aka. Filesystem in Userspace)? Would be super useful, but may need special LXC privs. cc <a href="https://twitter.com/kennethreitz">@kennethreitz</a></p>&mdash; Phil Elson (@pypelson) <a href="https://twitter.com/pypelson/status/828979866770870272">February 7, 2017</a></blockquote>
-        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-      <div class="col-md-5">
-        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1YTAwZGVkZTQ5IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTVhMDBkZWRlNDkiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <!-- /END THE FEATURETTES -->
+  <!-- /END THE FEATURETTES -->
 
 
-    <!-- FOOTER -->
-    <footer>
-      <p class="pull-right"><a href="#">Back to top</a></p>
-      <p>
-        © 2016 Phil Elson · <a href="#">About</a> · <a href="#">Contact</a>
-        · <a href="#"><i class="fa fa-fw fa-rss-square"></i>RSS</a>
-      </p>
-    </footer>
+  <!-- FOOTER -->
+  <footer>
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+      © 2016 Phil Elson · <a href="#">About</a> · <a href="#">Contact</a>
+      · <a href="#"><i class="fa fa-fw fa-rss-square"></i>RSS</a>
+    </p>
+  </footer>
 
-  </div>
+</div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -186,3 +151,5 @@
     {% include 'analytics.html' %}
   </body>
   </html>
+
+  {% endblock %}

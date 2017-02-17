@@ -174,9 +174,14 @@ body {
   margin: 0px;
 }
 
+.emphasis {
+  font: 400 2em 'Pacifico', Helvetica, sans-serif;
+  color: #3fd183;
+  line-height: 1em;
+}
+
 .by-phil {
   font: 400 3em 'Pacifico', Helvetica, sans-serif;
-  color: white;
   color: #3fd183;
   padding-top: 1em;
   text-align: center;
