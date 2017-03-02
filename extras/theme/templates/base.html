@@ -1,111 +1,117 @@
-{% set NAV_LINKS=[['fa-home', SITEURL, 'Home'],
-          ['fa-file-o', SITEURL + '/articles/', 'Articles'],
-          ['fa-bullhorn', SITEURL + '/announce/', 'Announcements'],
-          ['fa-map-o', SITEURL + '/field-notes/', '&nbsp;Field notes'],
-          ['fa-list-ul', SITEURL + '/hints-n-tips/', 'Hints & Tips'],
-          ] %}
-
-{% block main %}
-{% set active_page = None %}
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+{% set NAV_LINKS=[
+  ['fa-home', SITEURL, 'Home'],
+  ['fa-file-o', SITEURL + '/articles/', 'Articles'],
+  ['fa-bullhorn', SITEURL + '/announce/', 'Announcements'],
+  ['fa-map-o', SITEURL + '/field-notes/', '&nbsp;Field notes'],
+  ['fa-list-ul', SITEURL + '/hints-n-tips/', 'Hints & Tips'],
+  ] %}
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="icon" href="{{ SITEURL }}/theme/images/favicon.ico">
+  {%- block main %}
+  {% set active_page = None %}
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="Philip Elson">
+    <link rel="icon" href="{{ SITEURL }}/theme/images/favicon.ico">
 
-<!-- Bootstrap core CSS -->
-<link href="{{ SITEURL }}/theme/css/bootstrap.min.css" rel="stylesheet">
+    <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
 
-<!-- Custom styles for this template -->
-<link href="{{ SITEURL }}/theme/css/style.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ SITEURL }}/theme/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ SITEURL }}/theme/css/style.css" rel="stylesheet">
 
 
-<link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" /> 
-<link rel="stylesheet" href="{{ SITEURL }}/theme/font-awesome/css/font-awesome.min.css">
-<link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+    <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" /> 
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/font-awesome/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
 
-{% block header %}
-{% endblock %}
-</head>
+    {% block header %}
+    {% endblock %}
+  </head>
 
-<!-- NAVBAR ================================================== -->
-<body>
-  <div class="container-fullwidth">
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="height: inherit;">
-      <div class="row">
-        <div id="banner" class="col-md-3 shrinker">
-          <div>
-            <p class="by-phil">
-              <a href="{{ SITEURL }}">
-                Phil Elson's
-              </a>
-            </p> 
-          </div>
-        </div>
-        <div class="col-md-6 text-center">
-          <div class="brand-icons">
-            <div id="nav-sci" class="col-xs-4">
-              <a href="{{ SITEURL }}">
-                <i class="fa fa-icon fa-fw fa-flask"></i>
-                <h2>Science</h2>
-              </a>
-            </div>
-
-            <div id="nav-software" class="col-xs-4">
-              <a href="{{ SITEURL }}">
-                <i class="nav-icon fa fa-code"></i>
-                <h2>Software</h2>
-              </a>
-            </div>
-
-            <div id="nav-oss" class="col-xs-4">
-              <a href="{{ SITEURL }}">
-                <img src="{{ SITEURL }}/theme/images/osi_white.png">
-                <h2>Open source</h2>
-              </a>
+  <!-- NAVBAR ================================================== -->
+  <body>
+    <div class="container-fullwidth">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="row">
+          <div id="banner" class="col-md-3 shrinker">
+            <div>
+              <p class="by-phil">
+                <a href="{{ SITEURL }}">
+                  Phil Elson
+                </a>
+              </p> 
             </div>
           </div>
-        </div>
-        <div class="col-md-3 nav-toggle">
-          <i class="fa fa-bars"></i>
-        </div>
-      </div>
-      {% block nav %}
-      {% if not (active_page and active_page != 'Home') %}
-      <script>var navbar_toggled = false;</script>
-      {% endif %}
-      <div class="actual-navbar {{ '' if active_page and active_page != 'Home' else 'shrink' }}">
-        <ul class="nav navbar-nav">
+          <div class="col-md-6 text-center">
+            <div class="brand-icons">
+              <div id="nav-sci" class="col-xs-4">
+                <a href="{{ SITEURL }}">
+                  <i class="fa fa-icon fa-fw fa-flask"></i>
+                  <h2>Science</h2>
+                </a>
+              </div>
 
-          {% for icon, url, name in NAV_LINKS %}
-          <li{% if active_page == name %} class="active"{% endif %}><a href="{{ url }}"><i class="fa fa-fw {{ icon }}"></i>{{ name }}
-          {% if active_page == name %}
-          <span class="sr-only">(current)</span>
-          {% endif %}
-        </a></li>
-        {% endfor %}
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span></a>
-            <ul class="dropdown-menu">
+              <div id="nav-software" class="col-xs-4">
+                <a href="{{ SITEURL }}">
+                  <i class="nav-icon fa fa-code"></i>
+                  <h2>Software</h2>
+                </a>
+              </div>
+
+              <div id="nav-oss" class="col-xs-4">
+                <a href="{{ SITEURL }}">
+                  <img src="{{ SITEURL }}/theme/images/osi_white.png">
+                  <h2>Open source</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 nav-toggle">
+            <i class="fa fa-bars"></i>
+          </div>
+        </div>
+        {% block nav %}
+        {% if not (active_page and active_page != 'Home') %}
+        <script>var navbar_toggled = false;</script>
+        {% endif %}
+        <div class="actual-navbar {{ '' if active_page and active_page != 'Home' else 'shrink' }}">
+          <ul class="nav navbar-nav nav-pills">
+
+            {% for icon, url, name in NAV_LINKS %}
+            <li class="{% if active_page == name %}active{% endif %}"><a href="{{ url }}"><i class="fa fa-fw {{ icon }}"></i>{{ name }}
+            {% if active_page == name %}
+            <span class="sr-only">(current)</span>
+            {% endif %}
+          </a></li>
+          {% endfor %}
+          <li class="hidden-xs dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
               {% if articles %} {% for article in articles[:5] %}
-              <li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
+              <li>
+                <time datetime="{{ article.date.isoformat() }}" class="light-time">{{ article.date.strftime('%b \'%y') }}</time>
+                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+              </li>
               {% endfor %} {% endif %}
             </ul>
           </li>
-          <li class="dropdown">
+          <li class="hidden-xs dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-fw fa-tags"></i>Tags <span class="caret"></span></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu dropdown-menu-right">
                 {% for tag, articles in tags|sort %}
                 <li {% if tag in active_tags %}class="active" {% endif %}>
-                  <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+                  <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }} ({{ articles|length }})</a>
                 </li>
                 {% endfor %}
               </ul>
@@ -115,7 +121,7 @@
         </div>
 
       </nav>
-      <div id="navbar-spacer"></div>
+      <div class="navbar-spacer"></div>
     </div>
     {% endblock %}
   </div>
@@ -126,16 +132,17 @@
 <div class="container marketing">
   {% block sidebar %}{% endblock sidebar %}
   {% block content %} {% endblock content%}
-  
 
   <!-- /END THE FEATURETTES -->
+  <div class="clearfix"></div>
 
+  <hr class="featurette-divider">
 
   <!-- FOOTER -->
   <footer>
     <p class="pull-right"><a href="#">Back to top</a></p>
     <p>
-      © 2016 Phil Elson · <a href="#">About</a> · <a href="#">Contact</a>
+      © 2017 Phil Elson · <a href="{{ SITEURL }}#">About</a> · <a href="{{ SITEURL }}#contact">Contact</a>
       · <a href="#"><i class="fa fa-fw fa-rss-square"></i>RSS</a>
     </p>
   </footer>

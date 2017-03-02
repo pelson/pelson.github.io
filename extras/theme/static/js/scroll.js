@@ -1,16 +1,6 @@
-// $(window).scroll(function() {
-
 scrollBottom = function () {
    return $(document).height() - $(window).height() - $(window).scrollTop();
 }
-
-
-function resizer(event) {
-  $('#navbar-spacer').height($('nav').height() + 50);
-}
-
-$(window).ready(resizer);
-$(window).resize(resizer);
 
 $(window).scroll(function() {
   // Reduce the navbar once we have scrolled a little, but make it bigger again once we are near the bottom.
@@ -49,7 +39,7 @@ $('.nav-toggle').click(real_nav);
 
 
 $(document).keydown(function(e){
-    console.log(e.keyCode)
+    /* console.log(e.keyCode) */
     if (e.keyCode == 83) { 
        toggle_nav();
     }

@@ -86,20 +86,11 @@ body {
   border-color: black;
 }
 
-.navbar-spacer {
-  /*
-  The spacer that is the same height as the actual navbar, so that content
-  doesn't go underneath the nav. Height adjusted by JS dynamically.
-  */
-  margin-bottom: 500px;
-}
-
 .brand-icons {
   margin-left: auto;
   margin-right: auto;
   max-width: 50em;
   white-space: nowrap;
-  color: #3fd183;
   color: white;
   padding-bottom: 80px;
   margin-top: -10px;
@@ -134,8 +125,8 @@ body {
   top: 0.8em;
 }
 
-.nav-toggle i {
- font-size: 300% !important;
+.nav-toggle i, .navbar-spacer {
+ font-size: 300%;
  text-align: right;
 }
 
@@ -194,9 +185,92 @@ body {
   padding-top: 0.2em;
 }
 
+.navbar-spacer {
+  margin-bottom: 5em;
+}
+
 .center-block {
   margin-left: auto;
   margin-right: auto;
+  display: block;
+}
+
+.center-float {
+  float: left;
+  position: relative;
+  left: 50%;
+}
+
+.center-float-inner {
+  float: left;
+  position: relative;
+  left: -50%;
+}
+
+/* Package summary */
+.sep-spacer {
+  min-height: 5.5em;
+}
+
+.package-body{
+  border-top: #eaeaea 0.25px solid;
+  padding: 1em;
+  padding-bottom: 0px;
+  clear: both;
+}
+
+span.role {
+  color: gray;
+  padding-right: 1em;
+  padding-left: 0em;
+}
+
+.package-info {
+  min-height: 16em;
+}
+
+ul.tags {
+ list-style-type: none; 
+}
+
+ul.tags li {
+ display: inline-block;
+ padding: 0.25em;
+ vertical-align: middle;
+}
+
+.float-icon {
+  float: left;
+  margin: 0em 0.5em 0.5em 0em;
+}
+
+.item-content {
+  padding: 1em 2em 1em 2em;
+}
+
+.light-time {
+  color: #c1c1c1;
+  font-size: 0.75em;
+  min-width: 4.5em;
+  display: inline-block;
+}
+
+.light-time + a {
+  display: inline-block;
+  max-width: 80%;
+  vertical-align: middle;
+}
+
+
+.contact div a {
+ display: block;
+ text-align: center;
+ color: #43505e;
+}
+
+.contact div a i {
+ width: 100%;
+ font-size: 3em;
 }
 
 /* MARKETING CONTENT
@@ -220,14 +294,14 @@ body {
 ------------------------- */
 
 .featurette-divider {
-  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+  margin: 40px 0; /* Space out the Bootstrap <hr> more */
 }
 
 /* Thin out the marketing headings */
 .featurette-heading {
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -1px;
+  font-size: 1.1em;
+  margin-bottom: 1.5em;
+  line-height: 1.2;
 }
 
 
@@ -240,6 +314,7 @@ body {
 
 /**LG Rules**/
 @media (max-width: 1199px) {
+
 }
 
 /**MD Rules**/
@@ -259,6 +334,10 @@ body {
   }
   .brand-icons div {
     padding-top: 0.8em;
+  }
+
+  .navbar-spacer {
+    margin-bottom: 7em;
   }
 }
 
@@ -288,10 +367,6 @@ body {
     font-size: 21px;
     line-height: 1.4;
   }
-
-  .featurette-heading {
-    font-size: 50px;
-  }
 }
 
 /**XS Rules**/
@@ -308,10 +383,10 @@ body {
   .brand-icons i.shrink, .brand-icons img.shrink {
     font-size: 30px;
   }
-  .nav-toggle i {
-   font-size: 200% !important;
- }
- .brand-icons {
-  padding-bottom: 50px;
-}
+  .nav-toggle i, .navbar-spacer {
+    font-size: 200%;
+  }
+  .brand-icons {
+    padding-bottom: 50px;
+  }  
 }
