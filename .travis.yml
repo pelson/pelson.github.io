@@ -24,12 +24,13 @@ install:
 - conda config --set show_channel_urls True
 - conda install --yes --quiet -c conda-forge conda-execute python=3
 
+- openssl aes-256-cbc -K $encrypted_1d262b48bc9b_key -iv $encrypted_1d262b48bc9b_iv -in deploy-key.enc -out deploy-key -d
+- chmod 600 deploy-key && eval `ssh-agent -s` && ssh-add deploy-key
 - git config --global user.name "Phil Elson"
 - git config --global user.email $GIT_EMAIL
-- noleaky sed -i "s/git@github.com:/https:\/\/pelson:${GH_TOKEN}@github.com\//" .gitmodules
-- noleaky git submodule update --quiet --init --recursive
 
-- noleaky git clone --depth=50 --branch=master https://pelson:${GH_TOKEN}@github.com/pelson/pelson.github.io.git output_branch
+- noleaky git submodule update --quiet --init --recursive
+- noleaky git clone --depth=50 --branch=master git@github.com/pelson/pelson.github.io.git output_branch
 
 - echo "Built from the following commits:"
 - git log --oneline -n 1 >> log_message.txt
