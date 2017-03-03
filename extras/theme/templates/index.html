@@ -39,7 +39,7 @@
     </p>
     <div class="container">
       <div class="row">
-        <div class="col-md-4 col-sm-6 thumbnail package-info">
+        <div class="col-md-4 col-sm-6 thumbnail package-default">
           <div class="center-float">
             <div class="center-float-inner">
               <a href="http://matplotlib.org"><img src="{{ SITEURL }}/theme/images/mpl.svg" style="max-height: 5em;"></a>
@@ -56,7 +56,7 @@
             </p>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6 thumbnail package-info">
+        <div class="col-md-4 col-sm-6 thumbnail package-default">
           <div class="center-float">
             <div class="center-float-inner">
               <a href="http://scitools.org.uk/cartopy/docs/latest/"><img src="{{ SITEURL }}/theme/images/cartopy.png" style="max-height: 5em; padding: 0.1em;"></a>
@@ -72,7 +72,7 @@
             </p>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6 thumbnail package-info">
+        <div class="col-md-4 col-sm-6 thumbnail package-default">
           <div class="center-float">
             <div class="center-float-inner">
               <a href="https://conda-forge.org">
@@ -95,11 +95,11 @@
         <!-- Add the extra clearfix for only the required viewport -->
         <div class="clearfix visible-md-block visible-lg-block"></div>
 
-        <div class="col-md-4 col-sm-6 thumbnail package-info">
+        <div class="col-md-4 col-sm-6 thumbnail package-default">
           <div class="center-float">
             <div class="center-float-inner">
-              <a href="https://repohealth.info" ><img src="{{ SITEURL }}/theme/images/repohealth.gif" style="max-height: 5em; float: left;">
-                <h2 style="padding-left: 2.5em; font-size: 2.5em; color: gray; font-weight: 700; white-space: nowrap; font-family: Neucha;">RepoHealth.info</h2>
+              <a href="https://repohealth.default" ><img src="{{ SITEURL }}/theme/images/repohealth.gif" style="max-height: 5em; float: left;">
+                <h2 style="padding-left: 2.5em; font-size: 2.5em; color: gray; font-weight: 700; white-space: nowrap; font-family: Neucha;">RepoHealth.default</h2>
               </a>
             </div>
           </div>
@@ -109,12 +109,12 @@
               <span class="role">Role:</span>Creator
             </p>
             <p>
-              Measure the health of your favourite GitHub repositories with repohealth.info.
+              Measure the health of your favourite GitHub repositories with repohealth.default.
               Provides metrics and visualisations that may be used for assessing the state of repositories over time.
             </p>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6 thumbnail package-info">
+        <div class="col-md-4 col-sm-6 thumbnail package-default">
           <div class="center-float">
             <div class="center-float-inner">
               <a href="http://scitools.org.uk/iris/docs/latest/" ><img src="{{ SITEURL }}/theme/images/iris.png" style="max-height: 5em; float: left;">
@@ -133,7 +133,7 @@
           </div>
         </div>
 
-        <div class="col-md-4 col-sm-6 thumbnail package-info">
+        <div class="col-md-4 col-sm-6 thumbnail package-default">
           <a href="https://github.com/pelson/conda-execute">
             <div class="center-float">
               <div class="center-float-inner">
@@ -190,7 +190,8 @@
                     </li>
                     {% endfor %}
                   </ul>
-                  <a href="{{ SITE_URL }}/announce/">See all articles</a>.
+                  <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all articles</a>
+                  <div class="clearfix"></div>
                 </p>
               </div>
               {% endif %}
@@ -219,12 +220,13 @@
                   </li>
                   {% endfor %}
                 </ul>
-                <a href="{{ SITE_URL }}/announce/">See all announcements</a>.
+                <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all announcements</a>
+                <div class="clearfix"></div>
               </div>
               {% endif %}
             </div>
           </div>
-
+          <div class="clearfix"></div>
           <div class="col-xs-12 col-sm-6">
             <div class="item-content thumbnail">
               <div class="float-icon">
@@ -233,7 +235,7 @@
               <h3 class="media-heading">Hints & Tips</h3>
               {% set these_articles = articles_by_cat.get('hint', []) %}
               <p>
-                Tidbits of information, often as much as a reminder for myself as anybody else.
+                Tidbits of defaultrmation, often as much as a reminder for myself as anybody else.
               </p>
 
               {% if these_articles|length > 0 %}
@@ -247,7 +249,8 @@
                     </li>
                     {% endfor %}
                   </ul>
-                  <a href="{{ SITE_URL }}/announce/">See all hints & tips</a>.
+                  <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all hints & tips</a>
+                  <div class="clearfix"></div>
                 </p>
               </div>
               {% endif %}
@@ -276,7 +279,8 @@
                     </li>
                     {% endfor %}
                   </ul>
-                  <a href="{{ SITE_URL }}/announce/">See all field notes</a>.
+                  <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all field notes</a>
+                  <div class="clearfix"></div>
                 </p>
               </div>
               {% endif %}
@@ -310,22 +314,22 @@
           Contact me on social media:
         </p>
         <div class="row contact">
-          <div class="col-xs-6 col-sm-4 col-md-2">
+          <div class="col-xs-4 col-md-2">
             <a href="https://github.com/pelson"><i class="fa fa-github"></i> @pelson</a>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-2">
+          <div class="col-xs-4 col-md-2">
             <a href="https://twitter.com/pypelson"><i class="fa fa-twitter"></i>@pypelson</a>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-2">
+          <div class="col-xs-4 col-md-2">
             <a href="http://stackoverflow.com/users/741316/pelson"><i class="fa fa-stack-overflow"></i>@pelson</a>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-2">
+          <div class="col-xs-4 col-md-2">
             <a href="http://linkedin.com/in/philipelson/"><i class="fa fa-linkedin-square"></i>@philipelson</a>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-2">
+          <div class="col-xs-4 col-md-2">
             <a href="https://bitbucket.org/pelson"><i class="fa fa-bitbucket"></i>@pelson</a>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-2">
+          <div class="col-xs-4 col-md-2">
             <a href="mailto:pelson.pub+blog@gmail.com">
               <i class="fa fa-envelope"></i>gmail: pelson.pub</a>
             </div>

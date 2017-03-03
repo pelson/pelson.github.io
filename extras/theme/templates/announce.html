@@ -6,16 +6,6 @@
 {% block content %}
 
 {% set cat = dict(categories) %}
-
-{% set articles = cat.get('announce', []) %}
-
-{{ articles|length }}
-
-{% for article in articles %}
-	{{ article.title }}
-
-{% endfor %}
-
+{% set articles = articles_by_cat.get('announce', []) %}
 {{ render_articles(articles) }}
-
 {% endblock %}

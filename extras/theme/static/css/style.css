@@ -19,6 +19,7 @@ body {
 .navbar-nav {
   display: inline-block;
   float: none;
+  margin: 0;
 }
 
 .actual-navbar {
@@ -38,22 +39,16 @@ body {
 }
 
 .actual-navbar .navbar-nav>li {
-  padding-left: 1px;
-
+  margin: 0 1px;
 }
 .actual-navbar .navbar-nav>li>a {
-  max-height: 2.5em;
+  min-width: 8em;
   background-color: #B2B7BD;
   color: #43505e;
   font-weight: 500;
-  -moz-border-radius: 10px 10px 0px 0px;
-  border-radius: 10px 10px 0px 0px;
-  border: 0.5px black solid;
-  padding: 0.5em 1.5em 0.5em 1.5em;
-  border-bottom: 0px;
-
-  -webkit-transition: all 1s ease;
-  transition: all 1s ease;
+  padding: 0.4em 1em 0.4em 1em;
+  white-space: nowrap;
+  margin-bottom: 2px;
 }
 
 .actual-navbar .navbar-nav>li>a.shrink {
@@ -68,22 +63,24 @@ body {
 
 .actual-navbar .navbar-nav li.active>a {
   background-color: white;
-  font-weight: 1000;
   color: inherit;
-  border-bottom: 1px white solid;
 }
 
 .actual-navbar .navbar-nav li.active>a:hover {
-  background-color: inherit;
+  background-color: transparent;
 }
 
 .actual-navbar .navbar-nav li a:hover, .actual-navbar .navbar-nav li.dropdown.open {
   background-color: transparent;
 }
 
-.actual-navbar .navbar-nav li a:hover, .actual-navbar .navbar-nav li.dropdown.open>a, .actual-navbar .navbar-nav li.active>a:hover {
+.actual-navbar .navbar-nav li a:hover,
+.actual-navbar .navbar-nav li a:focus,
+.actual-navbar .navbar-nav li.dropdown.open>a,
+.actual-navbar .navbar-nav li.active>a:hover,
+.actual-navbar .navbar-nav li.active>a:focus
+{
   background-color: #878F98;
-  border-color: black;
 }
 
 .brand-icons {
@@ -262,6 +259,9 @@ ul.tags li {
 }
 
 
+.contact div {
+  padding: 1em;
+}
 .contact div a {
  display: block;
  text-align: center;
@@ -273,20 +273,54 @@ ul.tags li {
  font-size: 3em;
 }
 
-/* MARKETING CONTENT
--------------------------------------------------- */
 
-/* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {
-  margin-bottom: 20px;
+time.icon
+{
+  font-size: 0.9em;
+  display: block;
+  position: relative;
+  width: 7em;
+  height: 7em;
+  background-color: #fff;
+  border-radius: 0.6em;
+  box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd;
+  overflow: hidden;
+}
+
+time.icon *
+{
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  font-style: normal;
   text-align: center;
 }
-.marketing h2 {
-  font-weight: normal;
+
+time.icon .month
+{
+  position: absolute;
+  top: 0;
+  padding: 0.4em 0;
+  color: #fff;
+  background-color: #B2B7BD;
+  border-bottom: 1px dashed #f37302;
+  box-shadow: 0 2px 0 #B2B7BD;
 }
-.marketing .col-lg-4 p {
-  margin-right: 10px;
-  margin-left: 10px;
+
+time.icon .year
+{
+  position: absolute;
+  bottom: -0.5em;
+  color: #B2B7BD;
+}
+
+time.icon .day
+{
+  font-size: 2.8em;
+  letter-spacing: -0.05em;
+  padding-top: 0.8em;
+  color: #2f2f2f;
 }
 
 
@@ -320,7 +354,7 @@ ul.tags li {
 /**MD Rules**/
 @media (max-width: 992px) {
   .featurette-heading {
-    margin-top: 120px;
+    margin-top: 60px;
   }
   .by-phil {
     padding: 0px;
@@ -341,8 +375,19 @@ ul.tags li {
   }
 }
 
+/* Bespoke size rule for nav only */
+@media (max-width: 865px) {
+  .actual-navbar .navbar-nav>li {
+    min-width: 20%;
+  }
+}
+
 /**SM Rules**/
 @media (max-width: 768px) {
+  .actual-navbar .navbar-nav>li {
+    min-width: 49%;
+  }
+
   /* Navbar positioning foo */
   .navbar-wrapper {
     margin-top: 20px;
@@ -371,6 +416,9 @@ ul.tags li {
 
 /**XS Rules**/
 @media (max-width: 576px) {
+  .actual-navbar .navbar-nav>li {
+    font-size: 0.85em;
+  }
   .by-phil {
     font-size: 2em;
   }

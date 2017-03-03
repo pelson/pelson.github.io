@@ -1,6 +1,6 @@
 Title: Drawing a pseudo-colour blockplot (pcolormesh) in matplotlib with levels and specific colours
 Date: 2013-05-03 12:00
-Category: Python
+Category: article
 Tags: matplotlib, Python
 Slug: from_levels_and_colors
 Author: Phil Elson

@@ -4,18 +4,6 @@
 {% block title %}Hints and tips | {{ SITENAME }}{% endblock %}
 
 {% block content %}
-
-{% set cat = dict(categories) %}
-
-{% set articles = cat.get('hint', []) %}
-
-{{ articles|length }}
-
-{% for article in articles %}
-	{{ article.title }}
-
-{% endfor %}
-
+{% set articles = articles_by_cat.get('hint', []) %}
 {{ render_articles(articles) }}
-
 {% endblock %}

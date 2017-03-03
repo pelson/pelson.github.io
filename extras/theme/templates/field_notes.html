@@ -6,16 +6,6 @@
 {% block content %}
 
 {% set cat = dict(categories) %}
-
-{% set articles = cat['field-notes'] %}
-
-{{ articles|length }}
-
-{% for article in articles %}
-	{{ article.title }}
-
-{% endfor %}
-
+{% set articles = articles_by_cat.get('field-notes', []) %}
 {{ render_articles(articles) }}
-
 {% endblock %}

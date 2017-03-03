@@ -9,7 +9,7 @@ $(window).scroll(function() {
     elems = elems.not($('.actual-navbar').find('*'));
     elems = elems.not($('.actual-navbar'));
   }
-  if ($(document).scrollTop() > 90 && scrollBottom() > 40) {
+  if ($(document).scrollTop() > 90) {
     elems.addClass('shrink');
   } else {
     elems.removeClass('shrink');

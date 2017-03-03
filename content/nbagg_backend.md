@@ -1,6 +1,6 @@
 Title: Interactive matplotlib figures in the IPython notebook - they've landed!
 Date: 2014-06-03 12:00
-Category: Python
+Category: article
 Tags: matplotlib, Python
 Slug: nbagg_backend
 Author: Phil Elson
