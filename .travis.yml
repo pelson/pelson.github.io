@@ -31,9 +31,10 @@ install:
 
 
 script:
+- alias uh-oh='cat out.log | sed -e "s:${GH_TOKEN}:<secret>:g"'
 - conda execute -v make.py publish
 - cd output_branch
 - git add --all *
 - git status
 - git commit -am "${LOG_MESSAGE}"
-- git push origin master
+- git push origin master || uh-oh
