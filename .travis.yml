@@ -17,20 +17,20 @@ sudo: false
 
 install:
 - set -e
-- export CONDA_BASE=http://repo.continuum.io/miniconda/Miniconda
-- wget ${CONDA_BASE}3-latest-Linux-x86_64.sh -O miniconda.sh;
+- openssl aes-256-cbc -K $encrypted_9f32b8d262b8_key -iv $encrypted_9f32b8d262b8_iv -in deploy-key.enc -out deploy-key -d
+- chmod 600 deploy-key && eval `ssh-agent -s` && ssh-add deploy-key
+- git config --global user.name "Phil Elson"
+- git config --global user.email $GIT_EMAIL
+
+- export CONDA_BASE=http://repo.continuum.io/miniconda/Miniconda3
+- wget ${CONDA_BASE}-latest-Linux-x86_64.sh -O miniconda.sh;
 - bash miniconda.sh -b -p $HOME/miniconda
 - export PATH="$HOME/miniconda/bin:$PATH:$(pwd)"
 - conda config --set show_channel_urls True
 - conda install --yes --quiet -c conda-forge conda-execute python=3
 
-- openssl aes-256-cbc -K $encrypted_1d262b48bc9b_key -iv $encrypted_1d262b48bc9b_iv -in deploy-key.enc -out deploy-key -d
-- chmod 600 deploy-key && eval `ssh-agent -s` && ssh-add deploy-key
-- git config --global user.name "Phil Elson"
-- git config --global user.email $GIT_EMAIL
-
 - noleaky git submodule update --quiet --init --recursive
-- noleaky git clone --depth=50 --branch=master git@github.com/pelson/pelson.github.io.git output_branch
+- noleaky git clone --depth=50 --branch=master git@github.com:pelson/pelson.github.io.git output_branch
 
 - echo "Built from the following commits:"
 - git log --oneline -n 1 >> log_message.txt
