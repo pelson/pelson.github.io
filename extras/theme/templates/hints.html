@@ -1,0 +1,9 @@
+{% extends "article_archive.html" %}
+{% set active_page = 'Hints & Tips' %}
+
+{% block title %}Hints and tips | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+{% set articles = articles_by_cat.get('hint', []) %}
+{{ render_articles(articles) }}
+{% endblock %}

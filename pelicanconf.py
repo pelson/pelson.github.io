@@ -47,6 +47,21 @@ PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
 FEED_USE_SUMMARY = True
 
 THEME =  "extras/theme"
-DIRECT_TEMPLATES = ('index', 'archives', 'sitemap')
+DIRECT_TEMPLATES = ('index', 'archives', 'sitemap', 'announce', 'articles', 'field_notes', 'hints')
 SITEMAP_SAVE_AS = 'sitemap.xml'
 
+ANNOUNCE_SAVE_AS = 'announce/index.html'
+ARTICLES_SAVE_AS = 'articles/index.html'
+FIELD_NOTES_SAVE_AS = 'field-notes/index.html'
+HINTS_SAVE_AS = 'hints-n-tips/index.html'
+
+
+# Thanks http://stefaanlippens.net/quick-and-easy-tag-cloud-in-pelican.html
+import math
+JINJA_FILTERS = {
+    'count_to_font_size': lambda c: '{p:.1f}%'.format(p=100 + 25 * math.log(c, 2)),
+}
+
+
+# Code highlights. http://stackoverflow.com/a/33843925/741316
+#MARKDOWN = ['codehilite(noclasses=True, pygments_style=native)', 'extra']  # enable MD options

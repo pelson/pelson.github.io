@@ -1,6 +1,6 @@
 Title: Running scripts in temporary conda environments with conda execute
 Date: 2015-10-03 12:00
-Category: Python
+Category: announce
 Tags: Python, conda
 Slug: conda_execute
 Author: Phil Elson

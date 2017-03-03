@@ -1,0 +1,440 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+}
+
+.brand-icons *, .brand-icons {
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.navbar {
+  background-color: #43505e;
+}
+
+.navbar-nav {
+  display: inline-block;
+  float: none;
+  margin: 0;
+}
+
+.actual-navbar {
+  text-align: center;
+  line-height: 0px;
+}
+
+.navbar {
+  border: 0px;
+}
+.actual-navbar .navbar-nav {
+}
+
+.actual-navbar.shrink {
+  height: 0px;
+  overflow: hidden;
+}
+
+.actual-navbar .navbar-nav>li {
+  margin: 0 1px;
+}
+.actual-navbar .navbar-nav>li>a {
+  min-width: 8em;
+  background-color: #B2B7BD;
+  color: #43505e;
+  font-weight: 500;
+  padding: 0.4em 1em 0.4em 1em;
+  white-space: nowrap;
+  margin-bottom: 2px;
+}
+
+.actual-navbar .navbar-nav>li>a.shrink {
+  background-color: rgba(1,1,1,0) !important;
+  color: rgba(1,1,1,0) !important;
+  border-color: rgba(1,1,1,0) !important;
+}
+
+.actual-navbar .navbar-nav>li i {
+  padding-right: 1em;
+}
+
+.actual-navbar .navbar-nav li.active>a {
+  background-color: white;
+  color: inherit;
+}
+
+.actual-navbar .navbar-nav li.active>a:hover {
+  background-color: transparent;
+}
+
+.actual-navbar .navbar-nav li a:hover, .actual-navbar .navbar-nav li.dropdown.open {
+  background-color: transparent;
+}
+
+.actual-navbar .navbar-nav li a:hover,
+.actual-navbar .navbar-nav li a:focus,
+.actual-navbar .navbar-nav li.dropdown.open>a,
+.actual-navbar .navbar-nav li.active>a:hover,
+.actual-navbar .navbar-nav li.active>a:focus
+{
+  background-color: #878F98;
+}
+
+.brand-icons {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50em;
+  white-space: nowrap;
+  color: white;
+  padding-bottom: 80px;
+  margin-top: -10px;
+}
+
+.brand-icons div {
+  padding-top: 1.5em;
+}
+
+/* Don't do anything fancy for the top-level links */
+.brand-icons a, .by-phil a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar-container {
+  border-top: none !important;
+} 
+
+.nav-toggle {
+  position: absolute;
+  right: 0px;
+  top: 40px;
+  margin: 0px;
+  color: white;
+  text-align: right;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.nav-toggle.shrink {
+  top: 0.8em;
+}
+
+.nav-toggle i, .navbar-spacer {
+ font-size: 300%;
+ text-align: right;
+}
+
+.brand-icons i {
+  color: white;
+}
+
+.brand-icons i, .brand-icons img {
+  /* Control the size of both the icons and the image */
+  font-size: 100px;
+  height: 1em;
+  width: 1em;
+}
+
+.brand-icons i.shrink, .brand-icons img.shrink {
+  font-size: 50px;
+  margin-top: 0px;
+}
+
+/* We don't want the icons too far apart */
+.brand-icons {
+  max-width: 500px;
+}
+
+/* We want the smaller icons to be even closer */
+.brand-icons.shrink {
+  max-width: 300px;
+}
+
+.brand-icons h2 {
+  font-size: 175%;
+}
+
+.brand-icons h2.shrink {
+  font-size: 0%;
+  margin: 0px;
+}
+
+.emphasis {
+  font: 400 2em 'Pacifico', Helvetica, sans-serif;
+  color: #3fd183;
+  line-height: 1em;
+}
+
+.by-phil {
+  font: 400 3em 'Pacifico', Helvetica, sans-serif;
+  color: #3fd183;
+  padding-top: 1em;
+  text-align: center;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.by-phil.shrink {
+  font-size: 2.25em;
+  padding-top: 0.2em;
+}
+
+.navbar-spacer {
+  margin-bottom: 5em;
+}
+
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.center-float {
+  float: left;
+  position: relative;
+  left: 50%;
+}
+
+.center-float-inner {
+  float: left;
+  position: relative;
+  left: -50%;
+}
+
+/* Package summary */
+.sep-spacer {
+  min-height: 5.5em;
+}
+
+.package-body{
+  border-top: #eaeaea 0.25px solid;
+  padding: 1em;
+  padding-bottom: 0px;
+  clear: both;
+}
+
+span.role {
+  color: gray;
+  padding-right: 1em;
+  padding-left: 0em;
+}
+
+.package-info {
+  min-height: 16em;
+}
+
+ul.tags {
+ list-style-type: none; 
+}
+
+ul.tags li {
+ display: inline-block;
+ padding: 0.25em;
+ vertical-align: middle;
+}
+
+.float-icon {
+  float: left;
+  margin: 0em 0.5em 0.5em 0em;
+}
+
+.item-content {
+  padding: 1em 2em 1em 2em;
+}
+
+.light-time {
+  color: #c1c1c1;
+  font-size: 0.75em;
+  min-width: 4.5em;
+  display: inline-block;
+}
+
+.light-time + a {
+  display: inline-block;
+  max-width: 80%;
+  vertical-align: middle;
+}
+
+
+.contact div {
+  padding: 1em;
+}
+.contact div a {
+ display: block;
+ text-align: center;
+ color: #43505e;
+}
+
+.contact div a i {
+ width: 100%;
+ font-size: 3em;
+}
+
+
+time.icon
+{
+  font-size: 0.9em;
+  display: block;
+  position: relative;
+  width: 7em;
+  height: 7em;
+  background-color: #fff;
+  border-radius: 0.6em;
+  box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd;
+  overflow: hidden;
+}
+
+time.icon *
+{
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+}
+
+time.icon .month
+{
+  position: absolute;
+  top: 0;
+  padding: 0.4em 0;
+  color: #fff;
+  background-color: #B2B7BD;
+  border-bottom: 1px dashed #f37302;
+  box-shadow: 0 2px 0 #B2B7BD;
+}
+
+time.icon .year
+{
+  position: absolute;
+  bottom: -0.5em;
+  color: #B2B7BD;
+}
+
+time.icon .day
+{
+  font-size: 2.8em;
+  letter-spacing: -0.05em;
+  padding-top: 0.8em;
+  color: #2f2f2f;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 40px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-size: 1.1em;
+  margin-bottom: 1.5em;
+  line-height: 1.2;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+/**XL Rules**/
+@media (min-width: 1200px) {
+}
+
+/**LG Rules**/
+@media (max-width: 1199px) {
+
+}
+
+/**MD Rules**/
+@media (max-width: 992px) {
+  .featurette-heading {
+    margin-top: 60px;
+  }
+  .by-phil {
+    padding: 0px;
+  }
+  .by-phil.shrink {
+    /* Anything less than MD and the name disappears. */
+    font-size: 0px;
+  }
+  .nav-toggle {
+    top: 1em;
+  }
+  .brand-icons div {
+    padding-top: 0.8em;
+  }
+
+  .navbar-spacer {
+    margin-bottom: 7em;
+  }
+}
+
+/* Bespoke size rule for nav only */
+@media (max-width: 865px) {
+  .actual-navbar .navbar-nav>li {
+    min-width: 20%;
+  }
+}
+
+/**SM Rules**/
+@media (max-width: 768px) {
+  .actual-navbar .navbar-nav>li {
+    min-width: 49%;
+  }
+
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+}
+
+/**XS Rules**/
+@media (max-width: 576px) {
+  .actual-navbar .navbar-nav>li {
+    font-size: 0.85em;
+  }
+  .by-phil {
+    font-size: 2em;
+  }
+  .brand-icons h2 {
+    font-size: 1em;
+  }
+  .brand-icons i, .brand-icons img {
+    font-size: 3em;
+  }
+  .brand-icons i.shrink, .brand-icons img.shrink {
+    font-size: 30px;
+  }
+  .nav-toggle i, .navbar-spacer {
+    font-size: 200%;
+  }
+  .brand-icons {
+    padding-bottom: 50px;
+  }  
+}

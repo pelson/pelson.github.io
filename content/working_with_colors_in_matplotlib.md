@@ -1,6 +1,6 @@
 Title: Working with colours in matplotlib
 Date: 2013-06-03 12:00
-Category: Python
+Category: article
 Tags: matplotlib, Python
 Slug: working_with_colors_in_matplotlib
 Author: Phil Elson

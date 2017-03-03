@@ -1,0 +1,10 @@
+
+{% extends "article_archive.html" %}
+{% set active_page = 'Articles' %}
+
+{% block title %}Articles | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+{% set articles = articles_by_cat.get('article', []) %}
+{{ render_articles(articles) }}
+{% endblock %}

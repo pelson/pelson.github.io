@@ -6,8 +6,9 @@
 #  - pelican >=3.7
 #  - markdown
 #  - ipython
-#  - ipython-notebook
+#  - notebook
 #  - tidy-html5
+#  - pygments
 # channels:
 #  - IOOS
 #  - pelson

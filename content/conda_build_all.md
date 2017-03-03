@@ -2,6 +2,7 @@ Title: Building a matrix of conda distributions with conda-build-all
 Date: 2015-12-09 12:00
 Tags: conda
 Slug: conda_build_all
+Category: article
 Author: Phil Elson
 is_notebook: 0
 summaryimg: construction.gif

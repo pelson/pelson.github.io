@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+
+{% macro render_article(article) -%}
+<article class=" blog-teaser">
+  <header>
+    <h3 style="min-height: 2em;">
+
+      <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+      {% if article.category == 'article' %}
+      <i class="fa fa-fw fa-file-o" title="Articles"></i>
+      {% elif article.category == 'announce' %}
+      <i class="fa fa-fw fa-bullhorn" title="Announcements"></i>
+      {% elif article.category == 'field-notes' %}
+      <i class="fa fa-fw fa-map-o" title="Field notes"></i>
+      {% elif article.category == 'hint' %}
+      <i class="fa fa-fw fa-list-ul" title="Hints & Tips"></i>
+      {% endif %}
+    </h3>
+    <div style="float: left; padding: 0.5em 1em 0.5em 0em;">
+      <time datetime="{{ article.date.isoformat() }}" class="icon">
+        <p class="year">{{ article.date.year }}</p>
+        <p class="month">{{ article.date.strftime('%B') }}</p>
+        <span class="day">{{ article.date.day }}</span>
+      </time>
+    </div>
+    
+    {% if article.summaryimg %}
+    <a href="{{ article.url }}">
+      <img src="{{ SITEURL }}/images/{{ article.slug }}/{{ article.summaryimg }}" class="rss-img" style="float: right;" alt="Thumbnail for {{ article.slug }}" />
+    </a>
+    {% endif %}
+
+
+  </header>
+  <div class="body">
+    {{ article.summary|striptags }}
+  </div>
+  <div style="float: right; padding: 2em; clear: right;">
+    <a href="{{ SITEURL }}/{{ article.url }}" class="btn btn-info clearfix" role="button">Read on...</a>
+  </div>
+</article>
+{%- endmacro %}
+
+
+{% macro render_articles(articles, article_limit=3) -%}
+
+<div class="row">
+  {% for article in articles %}
+  {% if loop.index <= article_limit %}
+  
+  {% if articles|length == 1 %}
+  <div class="col-xs-12 col-md-12">
+  {% else %}
+  <div class="col-xs-12 col-md-6">
+  {% endif %}
+    {{ render_article(article) }}
+  </div>
+  
+  {% if loop.index % 2 == 0 %}
+  <div class="clearfix"></div>
+  {% endif %}
+  {% elif loop.index == article_limit + 1 %}
+  <div class="col-xs-12">
+    <a href="{{ SITEURL }}/archives.html"><h4>More articles...</h4></a>
+  </div>
+  {% endif %}
+  {% endfor %}
+
+</div>
+{%- endmacro %}
+
+
+{% set articles_by_cat = dict(categories) %}
+{% set articles_by_tag = dict(tags) %}
+
+
+{% block content_title %}
+{% endblock %}
+
+{% block content %}
+
+{% if articles %}
+
+{% if article_limit is not defined %}
+{% set article_limit = 2 %}
+{% endif %}
+
+<div id="article">
+  {{ render_articles(articles, article_limit=article_limit) }}
+</div>
+{% endif %}
+{% endblock content %}
+{% block sidebar %}
+{% endblock sidebar %}
