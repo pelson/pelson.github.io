@@ -16,6 +16,7 @@ git:
 sudo: false
 
 install:
+- set -e
 - export CONDA_BASE=http://repo.continuum.io/miniconda/Miniconda
 - wget ${CONDA_BASE}3-latest-Linux-x86_64.sh -O miniconda.sh;
 - bash miniconda.sh -b -p $HOME/miniconda
@@ -25,15 +26,14 @@ install:
 
 - git config --global user.name "Phil Elson"
 - git config --global user.email $GIT_EMAIL
-- sed -i "s/git@github.com:/https:\/\/pelson:${GH_TOKEN}@github.com\//" .gitmodules
-- git submodule update --quiet --init --recursive
+- noleaky sed -i "s/git@github.com:/https:\/\/pelson:${GH_TOKEN}@github.com\//" .gitmodules
+- noleaky git submodule update --quiet --init --recursive
 
-- git clone --depth=50 --branch=master https://pelson:${GH_TOKEN}@github.com/pelson/pelson.github.io.git output_branch
+- noleaky git clone --depth=50 --branch=master https://pelson:${GH_TOKEN}@github.com/pelson/pelson.github.io.git output_branch
 
 - echo "Built from the following commits:"
 - git log --oneline -n 1 >> log_message.txt
 - LOG_MESSAGE=$(cat log_message.txt)
-
 
 script:
 - conda execute -v make.py publish

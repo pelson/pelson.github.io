@@ -10,7 +10,7 @@
 #  - tidy-html5
 #  - pygments
 # channels:
-#  - IOOS
+#  - conda-forge
 #  - pelson
 # run_with: python
 
