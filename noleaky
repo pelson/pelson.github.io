@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+"$@" 2>&1 | sed -e "s:${GH_TOKEN}:<SECRET>:g";

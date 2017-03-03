@@ -5,6 +5,11 @@ env:
     # travis encrypt GIT_EMAIL=<commit email> GH_TOKEN=<personal access token>
     secure: muOdofd/oT849Qe5iFtEjn11vvOQUvYXCJ9gN+/K0TS9wUX9+QDk3qoTRKoyBKw8EAVfNT6wcfESRoRh8iug1YHUweKPlxUgoqzqTzT3ailxC2qX6n79lqaAyRK+AeclDZGH0ESze8wNZYZzKanicC3X84GVYJpst+DiEDue3MM=
 
+branches:
+  only:
+  - source
+  - better_travis
+
 git:
   submodules: false
 
@@ -14,9 +19,9 @@ install:
 - export CONDA_BASE=http://repo.continuum.io/miniconda/Miniconda
 - wget ${CONDA_BASE}3-latest-Linux-x86_64.sh -O miniconda.sh;
 - bash miniconda.sh -b -p $HOME/miniconda
-- export PATH="$HOME/miniconda/bin:$PATH"
+- export PATH="$HOME/miniconda/bin:$PATH:$(pwd)"
 - conda config --set show_channel_urls True
-- conda install --yes --quiet -c conda-forge conda-execute python=3.4
+- conda install --yes --quiet -c conda-forge conda-execute python=3
 
 - git config --global user.name "Phil Elson"
 - git config --global user.email $GIT_EMAIL
@@ -31,10 +36,9 @@ install:
 
 
 script:
-- alias uh-oh='cat out.log | sed -e "s:${GH_TOKEN}:<secret>:g"'
 - conda execute -v make.py publish
 - cd output_branch
 - git add --all *
 - git status
 - git commit -am "${LOG_MESSAGE}"
-- git push origin master || uh-oh
+- noleaky git push origin master
