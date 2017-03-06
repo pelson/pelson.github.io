@@ -5,7 +5,6 @@
 <article class=" blog-teaser">
   <header>
     <h3 style="min-height: 2em;">
-
       <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
       {% if article.category == 'article' %}
       <i class="fa fa-fw fa-file-o" title="Articles"></i>
@@ -14,15 +13,16 @@
       {% elif article.category == 'field-notes' %}
       <i class="fa fa-fw fa-map-o" title="Field notes"></i>
       {% elif article.category == 'hint' %}
-      <i class="fa fa-fw fa-list-ul" title="Hints & Tips"></i>
+      <i class="fa fa-fw fa-list-ul" title="Hints &amp; Tips"></i>
       {% endif %}
     </h3>
     <div style="float: left; padding: 0.5em 1em 0.5em 0em;">
-      <time datetime="{{ article.date.isoformat() }}" class="icon">
+      <time datetime="{{ article.date.isoformat() }}" class="icon" />
+      <div class="time-icon">
         <p class="year">{{ article.date.year }}</p>
         <p class="month">{{ article.date.strftime('%B') }}</p>
         <span class="day">{{ article.date.day }}</span>
-      </time>
+      </div>
     </div>
     
     {% if article.summaryimg %}
@@ -34,7 +34,7 @@
 
   </header>
   <div class="body">
-    {{ article.summary|striptags }}
+    <p>{{ article.summary|striptags }}</p>
   </div>
   <div style="float: right; padding: 2em; clear: right;">
     <a href="{{ SITEURL }}/{{ article.url }}" class="btn btn-info clearfix" role="button">Read on...</a>

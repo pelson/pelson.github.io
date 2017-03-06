@@ -27,4 +27,3 @@ necessarily the best approach - I'll leave that to a future article.
 Find this useful? How do you handle colours in your matplotlib figures? Is there a
 killer feature you think matplotlib is missing out on? Let me know via the comments
 section.
-
