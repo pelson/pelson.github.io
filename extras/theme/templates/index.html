@@ -13,7 +13,7 @@
 {% block content %}
 <div class="row media-body">
   <div class="col-sm-12">
-    <img src="{{ SITEURL }}/theme/images/pelson2.png" style="float: left; padding-right: 2em; margin-bottom: 1em;">
+    <img src="{{ SITEURL }}/theme/images/pelson.png" style="float: left; padding-right: 2em; margin-bottom: 1em;">
 
     <p>
       <span class="media-heading emphasis">Welcome</span> to this collection of articles, how-tos and announcements.
@@ -98,8 +98,8 @@
         <div class="col-md-4 col-sm-6 thumbnail package-default">
           <div class="center-float">
             <div class="center-float-inner">
-              <a href="https://repohealth.default" ><img src="{{ SITEURL }}/theme/images/repohealth.gif" style="max-height: 5em; float: left;">
-                <h2 style="padding-left: 2.5em; font-size: 2.5em; color: gray; font-weight: 700; white-space: nowrap; font-family: Neucha;">RepoHealth.default</h2>
+              <a href="https://repohealth.info" ><img src="{{ SITEURL }}/theme/images/repohealth.gif" style="max-height: 5em; float: left;">
+                <h2 style="padding-left: 2.5em; font-size: 2.5em; color: gray; font-weight: 700; white-space: nowrap; font-family: Neucha;">RepoHealth.info</h2>
               </a>
             </div>
           </div>
@@ -134,84 +134,55 @@
         </div>
 
         <div class="col-md-4 col-sm-6 thumbnail package-default">
-          <a href="https://github.com/pelson/conda-execute">
-            <div class="center-float">
-              <div class="center-float-inner">
+          <div class="center-float">
+            <div class="center-float-inner">
+              <a href="https://github.com/pelson/conda-execute">
                 <h2 style="color: black; font-weight: 700; white-space: nowrap; margin-top: 5px; text-align: center;">
                   <i class="fa fa-fw fa-bolt" style="font-size: 2em; color: black; vertical-align: middle;"></i>
-                  conda-execute</h2>
-                </a>
-              </div>
+                  conda-execute
+                </h2>
+              </a>
             </div>
-            <div class="sep-spacer"></div>
-            <div class="package-body">
-              <p>
-                <span class="role">Role:</span>Creator
-              </p>
-              <p>
-                Write scripts that express their dependencies, and execute them in isolated temporary (conda) environments.
-              </p>
-            </div>
+          </div>
+          <div class="sep-spacer"></div>
+          <div class="package-body">
+            <p>
+              <span class="role">Role:</span>Creator
+            </p>
+            <p>
+              Write scripts that express their dependencies, and execute them in isolated temporary (conda) environments.
+            </p>
           </div>
         </div>
       </div>
-      <p>
-        Other packages of note include Jupyter (notebook & IPython itself), Shapely, conda-build-all and biggus. My full GitHub profile can be found at
-        <a href="https://github.com/pelson"><i class="fa fa-fw fa-github" style="font-size: 2em; vertical-align: middle;"></i>github.com/pelson</a>.
+    </div>
+    <p>
+      Other packages of note include Jupyter (notebook & IPython itself), Shapely, conda-build-all and biggus. My full GitHub profile can be found at
+      <a href="https://github.com/pelson"><i class="fa fa-fw fa-github" style="font-size: 2em; vertical-align: middle;"></i>github.com/pelson</a>.
+    </p>
+
+
+    <hr class="featurette-divider">
+
+    <div class="row media-body">
+      <p class="featurette-heading">
+        Content for this site has been organised into the following categories:
       </p>
-
-
-      <hr class="featurette-divider">
-
-      <div class="row media-body">
-        <p class="featurette-heading">
-          Content for this site has been organised into the following categories:
-        </p>
-        <div class="row row-eq-height">
-          <div class="col-xs-12 col-sm-6">
-            <div class="item-content thumbnail">
-              <div class="float-icon">
-                <i class="fa fa-fw fa-5x fa-file-o"></i>
-              </div>
-              <h3 class="media-heading">Articles</h3>
-              {% set these_articles = articles_by_cat.get('article', []) %}
-              <p>
-                White-papers, prose and refined field notes. 
-              </p>
-
-              {% if these_articles|length > 0 %}
-              <div class="package-body">
-                <p>Most recently:
-                  <ul style="list-style: none; padding-left:0;">
-                    {% for article in these_articles[:3] %}
-                    <li>
-                      <time datetime="{{ article.date.isoformat() }}" class="light-time">{{ article.date.strftime('%b \'%y') }}</time>
-                      <a href="{{ article.url }}">{{ article.title }}</a>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                  <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all articles</a>
-                  <div class="clearfix"></div>
-                </p>
-              </div>
-              {% endif %}
+      <div class="row row-eq-height">
+        <div class="col-xs-12 col-sm-6">
+          <div class="item-content thumbnail">
+            <div class="float-icon">
+              <i class="fa fa-fw fa-5x fa-file-o"></i>
             </div>
-          </div>
+            <h3 class="media-heading">Articles</h3>
+            {% set these_articles = articles_by_cat.get('article', []) %}
+            <p>
+              White-papers, prose and refined field notes. 
+            </p>
 
-          <div class="col-xs-12 col-sm-6">
-            <div class="item-content thumbnail">
-              <div class="float-icon">
-                <i class="fa fa-fw fa-5x fa-bullhorn"></i>
-              </div>
-              <h3 class="media-heading">Announcements</h3>
-              {% set these_articles = articles_by_cat.get('announce', []) %}
-              <p>
-                Synopsis of new packages, releases and the occasional twitter feed.
-              </p>
-
-              {% if these_articles|length > 0 %}
-              <div class="package-body">
-                <p>Most recently:</p>
+            {% if these_articles|length > 0 %}
+            <div class="package-body">
+              <p>Most recently:
                 <ul style="list-style: none; padding-left:0;">
                   {% for article in these_articles[:3] %}
                   <li>
@@ -220,122 +191,152 @@
                   </li>
                   {% endfor %}
                 </ul>
-                <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all announcements</a>
+                <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all articles</a>
                 <div class="clearfix"></div>
-              </div>
-              {% endif %}
-            </div>
-          </div>
-          <div class="clearfix"></div>
-          <div class="col-xs-12 col-sm-6">
-            <div class="item-content thumbnail">
-              <div class="float-icon">
-                <i class="fa fa-fw fa-5x fa-list-ul"></i>
-              </div>
-              <h3 class="media-heading">Hints & Tips</h3>
-              {% set these_articles = articles_by_cat.get('hint', []) %}
-              <p>
-                Tidbits of defaultrmation, often as much as a reminder for myself as anybody else.
               </p>
-
-              {% if these_articles|length > 0 %}
-              <div class="package-body">
-                <p>Most recently:
-                  <ul style="list-style: none; padding-left:0;">
-                    {% for article in these_articles[:3] %}
-                    <li>
-                      <time datetime="{{ article.date.isoformat() }}" class="light-time">{{ article.date.strftime('%b \'%y') }}</time>
-                      <a href="{{ article.url }}">{{ article.title }}</a>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                  <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all hints & tips</a>
-                  <div class="clearfix"></div>
-                </p>
-              </div>
-              {% endif %}
             </div>
-          </div>
-
-          <div class="col-xs-12 col-sm-6">
-            <div class="item-content thumbnail">
-              <div class="float-icon">
-                <i class="fa fa-fw fa-5x fa-map-o"></i>
-              </div>
-              <h3 class="media-heading">Field notes</h3>
-              {% set these_articles = articles_by_cat.get('field-notes', []) %}
-              <p>
-                An unrefined log of technology/science investigations. With sufficient interest, occasionally notes are polished and turned into articles.
-              </p>
-
-              {% if these_articles|length > 0 %}
-              <div class="package-body">
-                <p>Most recently:
-                  <ul style="list-style: none; padding-left:0;">
-                    {% for article in these_articles[:3] %}
-                    <li>
-                      <time datetime="{{ article.date.isoformat() }}" class="light-time">{{ article.date.strftime('%b \'%y') }}</time>
-                      <a href="{{ article.url }}">{{ article.title }}</a>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                  <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all field notes</a>
-                  <div class="clearfix"></div>
-                </p>
-              </div>
-              {% endif %}
-            </div>
+            {% endif %}
           </div>
         </div>
 
-        <hr class="featurette-divider">
-        <div class="container">
-          <div class="row">
-            <p class="featurette-heading">
-              Articles can also be found based on their tag:
+        <div class="col-xs-12 col-sm-6">
+          <div class="item-content thumbnail">
+            <div class="float-icon">
+              <i class="fa fa-fw fa-5x fa-bullhorn"></i>
+            </div>
+            <h3 class="media-heading">Announcements</h3>
+            {% set these_articles = articles_by_cat.get('announce', []) %}
+            <p>
+              Synopsis of new packages, releases and the occasional twitter feed.
             </p>
-            <div class="col-md-6 col-md-offset-3 thumbnail">
-             <ul class="tags">
-              {% for tag, articles in tags|sort %}
-              <li>
-                <a href="{{ SITEURL }}/{{ tag.url }}"><span style="font-size: {{ articles|count|count_to_font_size }};">{{ tag }} </span>({{ articles|count }})</a>
-              </li>
-              {% endfor %}
-            </ul>
+
+            {% if these_articles|length > 0 %}
+            <div class="package-body">
+              <p>Most recently:</p>
+              <ul style="list-style: none; padding-left:0;">
+                {% for article in these_articles[:3] %}
+                <li>
+                  <time datetime="{{ article.date.isoformat() }}" class="light-time">{{ article.date.strftime('%b \'%y') }}</time>
+                  <a href="{{ article.url }}">{{ article.title }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+              <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all announcements</a>
+              <div class="clearfix"></div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="item-content thumbnail">
+            <div class="float-icon">
+              <i class="fa fa-fw fa-5x fa-list-ul"></i>
+            </div>
+            <h3 class="media-heading">Hints & Tips</h3>
+            {% set these_articles = articles_by_cat.get('hint', []) %}
+            <p>
+              Tidbits of defaultrmation, often as much as a reminder for myself as anybody else.
+            </p>
+
+            {% if these_articles|length > 0 %}
+            <div class="package-body">
+              <p>Most recently:
+                <ul style="list-style: none; padding-left:0;">
+                  {% for article in these_articles[:3] %}
+                  <li>
+                    <time datetime="{{ article.date.isoformat() }}" class="light-time">{{ article.date.strftime('%b \'%y') }}</time>
+                    <a href="{{ article.url }}">{{ article.title }}</a>
+                  </li>
+                  {% endfor %}
+                </ul>
+                <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all hints & tips</a>
+                <div class="clearfix"></div>
+              </p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6">
+          <div class="item-content thumbnail">
+            <div class="float-icon">
+              <i class="fa fa-fw fa-5x fa-map-o"></i>
+            </div>
+            <h3 class="media-heading">Field notes</h3>
+            {% set these_articles = articles_by_cat.get('field-notes', []) %}
+            <p>
+              An unrefined log of technology/science investigations. With sufficient interest, occasionally notes are polished and turned into articles.
+            </p>
+
+            {% if these_articles|length > 0 %}
+            <div class="package-body">
+              <p>Most recently:
+                <ul style="list-style: none; padding-left:0;">
+                  {% for article in these_articles[:3] %}
+                  <li>
+                    <time datetime="{{ article.date.isoformat() }}" class="light-time">{{ article.date.strftime('%b \'%y') }}</time>
+                    <a href="{{ article.url }}">{{ article.title }}</a>
+                  </li>
+                  {% endfor %}
+                </ul>
+                <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all field notes</a>
+                <div class="clearfix"></div>
+              </p>
+            </div>
+            {% endif %}
           </div>
         </div>
       </div>
 
       <hr class="featurette-divider">
-
       <div class="container">
-        <p class="featurette-heading">
-          <a name="contact"></a>
-          Contact me on social media:
-        </p>
-        <div class="row contact">
-          <div class="col-xs-4 col-md-2">
-            <a href="https://github.com/pelson"><i class="fa fa-github"></i> @pelson</a>
-          </div>
-          <div class="col-xs-4 col-md-2">
-            <a href="https://twitter.com/pypelson"><i class="fa fa-twitter"></i>@pypelson</a>
-          </div>
-          <div class="col-xs-4 col-md-2">
-            <a href="http://stackoverflow.com/users/741316/pelson"><i class="fa fa-stack-overflow"></i>@pelson</a>
-          </div>
-          <div class="col-xs-4 col-md-2">
-            <a href="http://linkedin.com/in/philipelson/"><i class="fa fa-linkedin-square"></i>@philipelson</a>
-          </div>
-          <div class="col-xs-4 col-md-2">
-            <a href="https://bitbucket.org/pelson"><i class="fa fa-bitbucket"></i>@pelson</a>
-          </div>
-          <div class="col-xs-4 col-md-2">
-            <a href="mailto:pelson.pub+blog@gmail.com">
-              <i class="fa fa-envelope"></i>gmail: pelson.pub</a>
-            </div>
+        <div class="row">
+          <p class="featurette-heading">
+            Articles can also be found based on their tag:
+          </p>
+          <div class="col-md-6 col-md-offset-3 thumbnail">
+           <ul class="tags">
+            {% for tag, articles in tags|sort %}
+            <li>
+              <a href="{{ SITEURL }}/{{ tag.url }}"><span style="font-size: {{ articles|count|count_to_font_size }};">{{ tag }} </span>({{ articles|count }})</a>
+            </li>
+            {% endfor %}
           </ul>
         </div>
       </div>
-      {% endblock content %}
-      {% block sidebar %}
-      {% endblock sidebar %}
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="container">
+      <p class="featurette-heading">
+        <a name="contact"></a>
+        Contact me on social media:
+      </p>
+      <div class="row contact">
+        <div class="col-xs-4 col-md-2">
+          <a href="https://github.com/pelson"><i class="fa fa-github"></i> @pelson</a>
+        </div>
+        <div class="col-xs-4 col-md-2">
+          <a href="https://twitter.com/pypelson"><i class="fa fa-twitter"></i>@pypelson</a>
+        </div>
+        <div class="col-xs-4 col-md-2">
+          <a href="http://stackoverflow.com/users/741316/pelson"><i class="fa fa-stack-overflow"></i>@pelson</a>
+        </div>
+        <div class="col-xs-4 col-md-2">
+          <a href="http://linkedin.com/in/philipelson/"><i class="fa fa-linkedin-square"></i>@philipelson</a>
+        </div>
+        <div class="col-xs-4 col-md-2">
+          <a href="https://bitbucket.org/pelson"><i class="fa fa-bitbucket"></i>@pelson</a>
+        </div>
+        <div class="col-xs-4 col-md-2">
+          <a href="mailto:pelson.pub+blog@gmail.com">
+            <i class="fa fa-envelope"></i>gmail: pelson.pub</a>
+          </div>
+        </ul>
+      </div>
+    </div>
+    {% endblock content %}
+    {% block sidebar %}
+    {% endblock sidebar %}

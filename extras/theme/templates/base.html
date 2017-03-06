@@ -4,7 +4,7 @@
   ['fa-file-o', SITEURL + '/articles/', 'Articles'],
   ['fa-bullhorn', SITEURL + '/announce/', 'Announcements'],
   ['fa-map-o', SITEURL + '/field-notes/', '&nbsp;Field notes'],
-  ['fa-list-ul', SITEURL + '/hints-n-tips/', 'Hints & Tips'],
+  ['fa-list-ul', SITEURL + '/hints-n-tips/', 'Hints &amp; Tips'],
   ] %}
 
   {%- block main %}
@@ -22,7 +22,7 @@
     <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ SITEURL }}/theme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{{ SITEURL }}/theme/css/style.css" rel="stylesheet">
@@ -30,7 +30,7 @@
 
     <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" /> 
     <link rel="stylesheet" href="{{ SITEURL }}/theme/font-awesome/css/font-awesome.min.css">
-    <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
 
     {% block header %}
     {% endblock %}
@@ -68,7 +68,7 @@
 
               <div id="nav-oss" class="col-xs-4">
                 <a href="{{ SITEURL }}">
-                  <img src="{{ SITEURL }}/theme/images/osi_white.png">
+                  <img src="{{ SITEURL }}/theme/images/osi_white.png" alt="Open Source">
                   <h2>Open source</h2>
                 </a>
               </div>
@@ -126,32 +126,28 @@
 
         </nav>
         <div class="navbar-spacer"></div>
+        {% endblock %}
       </div>
-      {% endblock %}
-    </div>
-  </div>
-  <!-- Marketing messaging and featurettes -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
 
-  <div class="container marketing">
-    {% block sidebar %}{% endblock sidebar %}
-    {% block content %} {% endblock content%}
+      <div class="container">
+        {% block sidebar %}{% endblock sidebar %}
+        {% block content %} {% endblock content%}
 
-    <!-- /END THE FEATURETTES -->
-    <div class="clearfix"></div>
+        <!-- /END THE FEATURETTES -->
+        <div class="clearfix"></div>
 
-    <hr class="featurette-divider">
+        <hr class="featurette-divider">
 
-    <!-- FOOTER -->
-    <footer>
-      <p class="pull-right"><a href="#">Back to top</a></p>
-      <p>
-        © 2017 Phil Elson · <a href="{{ SITEURL }}#">About</a> · <a href="{{ SITEURL }}#contact">Contact</a>
-        · <a href="{{ SITEURL }}/feeds/atom.xml"><i class="fa fa-fw fa-rss-square"></i>RSS</a>
-      </p>
-    </footer>
+        <!-- FOOTER -->
+        <footer>
+          <p class="pull-right"><a href="#">Back to top</a></p>
+          <p>
+            © 2017 Phil Elson · <a href="{{ SITEURL }}#">About</a> · <a href="{{ SITEURL }}#contact">Contact</a>
+            · <a href="{{ SITEURL }}/feeds/atom.xml"><i class="fa fa-fw fa-rss-square"></i>RSS</a>
+          </p>
+        </footer>
 
-  </div>
+      </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

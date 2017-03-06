@@ -10,7 +10,7 @@
 #  - tidy-html5
 #  - pygments
 # channels:
-#  - IOOS
+#  - conda-forge
 #  - pelson
 # run_with: python
 
@@ -41,6 +41,8 @@ def publish():
             shutil.rmtree(fname)
         else:
             os.unlink(fname)
+    if not os.path.exists('output_branch'):
+        os.mkdir('output_branch')
 
     # Copy all files
     for root, dirs, files in os.walk('output'):
