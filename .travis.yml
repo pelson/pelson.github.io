@@ -8,7 +8,6 @@ env:
 branches:
   only:
   - source
-  - better_travis
 
 git:
   submodules: false
