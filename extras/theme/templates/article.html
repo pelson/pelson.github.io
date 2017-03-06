@@ -8,14 +8,15 @@
 {% block content %}
 <h2 id="single">{{ article.title }}</h2>
 {% if article.summaryimg %}
-<img class="article-image" src="{{ SITEURL }}/images/{{ article.slug }}/{{ article.summaryimg }}" /> {% endif %}
+<img class="article-image" src="{{ SITEURL }}/images/{{ article.slug }}/{{ article.summaryimg }}" alt="" /> {% endif %}
 <div class="date entry-info">
   <div style="float: left; padding: 0.5em 1em 0.5em 0em;">
-    <time datetime="{{ article.date.isoformat() }}" class="icon">
+    <time datetime="{{ article.date.isoformat() }}" class="icon"></time>
+    <div class="time-icon">
       <p class="year">{{ article.date.year }}</p>
       <p class="month">{{ article.date.strftime('%B') }}</p>
       <span class="day">{{ article.date.day }}</span>
-    </time>
+    </div>
   </div>
   <p>Tags: 
     {% set articles_by_tag = dict(tags) %}
