@@ -10,3 +10,6 @@
 [submodule "content/notebooks/massive_virtual_arrays_with_biggus"]
 	path = content/notebooks/massive_virtual_arrays_with_biggus
 	url = https://gist.github.com/6139282.git
+[submodule "content/notebooks/xkcd_font_glyph_extract"]
+	path = content/notebooks/xkcd_font_glyph_extract
+	url = git@gist.github.com:b80e3b3ab9edbda9ac4304f742cf292b.git
