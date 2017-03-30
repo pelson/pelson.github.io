@@ -3,6 +3,7 @@
 {% set active_page = 'Home' %}
 
 {% block header %}
+{{ super() }}
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Neucha" rel="stylesheet">
 {% endblock %}
@@ -110,7 +111,7 @@
           <span class="role">Role:</span>Creator
         </p>
         <p>
-          Measure the health of your favourite GitHub repositories with repohealth.default.
+          Measure the health of your favourite GitHub repositories with repohealth.info.
           Provides metrics and visualisations that may be used for assessing the state of repositories over time.
         </p>
       </div>
@@ -192,7 +193,7 @@
             {% endfor %}
           </ul>
           <p>
-            <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all articles</a>
+            <a href="{{ SITE_URL }}/articles/" class="btn btn-default" style="float: right;" role="button">See all articles</a>
           </p>
           <div class="clearfix"></div>
         </div>
@@ -251,7 +252,7 @@
             </li>
             {% endfor %}
           </ul>
-          <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all hints &amp; tips</a>
+          <a href="{{ SITE_URL }}/hints-n-tips/" class="btn btn-default" style="float: right;" role="button">See all hints &amp; tips</a>
           <div class="clearfix"></div>
         </div>
         {% endif %}
@@ -280,7 +281,7 @@
             </li>
             {% endfor %}
           </ul>
-          <a href="{{ SITE_URL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all field notes</a>
+          <a href="{{ SITE_URL }}/field_notes/" class="btn btn-default" style="float: right;" role="button">See all field notes</a>
           <div class="clearfix"></div>
         </div>
         {% endif %}
