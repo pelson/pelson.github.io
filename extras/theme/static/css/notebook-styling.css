@@ -1,0 +1,27 @@
+.prompt {
+	float: left;
+	margin-left: -50px;
+	margin-top: 1em;
+}
+
+pre {
+	border: 0;
+}
+
+.output_area {
+	margin-left: 50px;
+}
+
+.output_area pre {
+	background-color: inherit;
+}
+
+.output {
+	border-left: 10px #C2DFFF solid;
+	margin-bottom: 4em;
+	padding-bottom: 0.5em;	
+}
+
+.output_prompt {
+	display: none;
+}

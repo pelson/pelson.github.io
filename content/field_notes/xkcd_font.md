@@ -25,7 +25,7 @@ These two details are important, as they will allow us to derive appropriate spa
 
 ![Alt text](./../../images/xkcd-font/full-small.png)
 
-(full image available on GitHub at https://github.com/ipython/xkcd-font/issues/9#issuecomment-127412261)
+(full image available on GitHub at [https://github.com/ipython/xkcd-font/issues/9#issuecomment-127412261](https://github.com/ipython/xkcd-font/issues/9#issuecomment-127412261))
 
 Notice some interesting features of this sample, including ligatures (notice that "LB" is a single mark) and
 kerning (see the spacing of "VA"):
@@ -53,7 +53,7 @@ weren't perfect, and the complexities (e.g. handling of bits that dissapeared, s
 In the next phase, we will use the techinque shown here to generate individual image files. In addition, we will apply some heuristics
 merge back together glyphs such as the dot and comma of a semi-colon.
 
-*The next article in this series is entitled*: **[Merging together labels, and generating label images](./xkcd_font_pt2.md)**. 
+*The next article in this series is*: **[Segment, extract, and combine features of an image with SciPy and scikit-image](./xkcd_font_pt2.md)**. 
 
 
 Follow up items (some not yet written):

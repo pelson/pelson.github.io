@@ -2,8 +2,13 @@
 {% set active_tags = article.tags %}
 
 
-{% block title %}{{ article.title|striptags }} by {{ SITENAME }}{% endblock %} {% block extra_head %}
-{% endblock extra_head%}
+{% block title %}{{ article.title|striptags }} by {{ SITENAME }}{% endblock %}
+
+{% block header %}
+{{ super() }}
+<link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments-default.css">
+<link rel="stylesheet" href="{{ SITEURL }}/theme/css/notebook-styling.css">
+{% endblock header %}
 
 {% block content %}
 <h2 id="single">{{ article.title }}</h2>
