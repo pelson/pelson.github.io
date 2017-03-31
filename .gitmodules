@@ -13,3 +13,6 @@
 [submodule "content/notebooks/xkcd_font_glyph_extract"]
 	path = content/notebooks/xkcd_font_glyph_extract
 	url = git@gist.github.com:b80e3b3ab9edbda9ac4304f742cf292b.git
+[submodule "content/notebooks/xkcd_font_stroke_classification"]
+	path = content/notebooks/xkcd_font_stroke_classification
+	url = https://gist.github.com/pelson/1d6460289f06acabb650797b88c15ae0

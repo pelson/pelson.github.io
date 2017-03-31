@@ -53,7 +53,7 @@ weren't perfect, and the complexities (e.g. handling of bits that dissapeared, s
 In the next phase, we will use the techinque shown here to generate individual image files. In addition, we will apply some heuristics
 merge back together glyphs such as the dot and comma of a semi-colon.
 
-*The next article in this series is*: **[Segment, extract, and combine features of an image with SciPy and scikit-image](./xkcd_font_pt2.md)**. 
+*The next article in this series is*: **[Segment, extract, and combine features of an image with SciPy and scikit-image]({filename}./xkcd_font_pt2.md)**. 
 
 
 Follow up items (some not yet written):
