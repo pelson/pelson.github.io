@@ -1,6 +1,10 @@
+.code_cell {
+	clear: both;
+}
+
 .prompt {
 	float: left;
-	margin-left: -50px;
+	margin-left: -60px;
 	margin-top: 1em;
 }
 

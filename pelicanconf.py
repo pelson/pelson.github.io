@@ -65,3 +65,5 @@ JINJA_FILTERS = {
 
 # Code highlights. http://stackoverflow.com/a/33843925/741316
 #MARKDOWN = ['codehilite(noclasses=True, pygments_style=native)', 'extra']  # enable MD options
+
+IGNORE_FILES = ['README.md']

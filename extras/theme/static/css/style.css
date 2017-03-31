@@ -323,6 +323,10 @@ ul.tags li {
   color: #2f2f2f;
 }
 
+.article-image {
+  float: right;
+  padding-left: 2em;
+}
 
 /* Featurettes
 ------------------------- */
