@@ -4,7 +4,6 @@
 {% block title %}Field notes | {{ SITENAME }}{% endblock %}
 
 {% block content %}
-
 {% set cat = dict(categories) %}
 {% set articles = articles_by_cat.get('field-notes', []) %}
 {{ render_articles(articles) }}

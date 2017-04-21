@@ -16,3 +16,6 @@
 [submodule "content/notebooks/xkcd_font_stroke_classification"]
 	path = content/notebooks/xkcd_font_stroke_classification
 	url = https://gist.github.com/pelson/1d6460289f06acabb650797b88c15ae0
+[submodule "content/notebooks/xkcd_font_svg_and_creation"]
+	path = content/notebooks/xkcd_font_svg_and_creation
+	url = git@gist.github.com:18434e3bd37dcde8dd28a5a24def0060.git

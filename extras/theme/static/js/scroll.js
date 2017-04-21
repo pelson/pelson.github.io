@@ -37,7 +37,7 @@ function real_nav() {
 
 $('.nav-toggle').click(real_nav);
 
-
+/*
 $(document).keydown(function(e){
     /* console.log(e.keyCode) */
     if (e.keyCode == 83) { 
@@ -47,6 +47,8 @@ $(document).keydown(function(e){
       real_nav();
     }
 });
+*/
+
 
 if (navbar_toggled === undefined) {
   /* TODO: Use a data attribute on the object. */
