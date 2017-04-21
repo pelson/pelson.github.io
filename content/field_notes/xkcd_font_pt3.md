@@ -30,4 +30,5 @@ In this edition, I merged the few remaining strokes together to produce the fini
 characters (mostly unicode). I then saved these rasters out to a semantic filename in the PPM format. Next up, convert the rasters to vector SVGs
 so that we can import them into our font tool programatically.
 
-[//]: # (*The next article in this series is*: **[Converting rasters to SVG]({filename}/field_notes/xkcd_font_pt3.md)**.)
+
+*The next article in this series is*: **[Converting PPM to SVG, and creating a font with FontForge]({filename}/field_notes/xkcd_font_pt4.md)**.
