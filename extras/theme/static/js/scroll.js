@@ -39,7 +39,7 @@ $('.nav-toggle').click(real_nav);
 
 /*
 $(document).keydown(function(e){
-    /* console.log(e.keyCode) */
+    // console.log(e.keyCode)
     if (e.keyCode == 83) { 
        toggle_nav();
     }
