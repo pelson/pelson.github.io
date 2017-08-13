@@ -21,7 +21,7 @@ LINKS =  []
 # Social widget
 SOCIAL = []
 
-STATIC_PATHS = ['images', 'favicon.ico']
+STATIC_PATHS = ['images', 'favicon.ico', 'field_notes/images']
 EXTRA_PATH_METADATA = {
     'extra/theme/favicon.ico': {'path': 'favicon.ico'}
 }
