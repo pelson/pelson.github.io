@@ -14,11 +14,11 @@ The ultimate aim is to automatically produce a font-file using open source tools
 The thing about fonts is that there is actually a lot going on:
 
  * **spacing** - the whitespace around a character
- * **kering** - special case whitespace adjustments (e.g. notice the space between "Aw" is much closer than between "As")
+ * **kerning** - special case whitespace adjustments (e.g. notice the space between "Aw" is much closer than between "As")
  * **hinting** - techniques for improved rasterization at low resolution
- * **liatures** - special pairs/groups of characters. The traditional example is ffi, but for hand-writing, any character combination is plausible.
+ * **ligatures** - special pairs/groups of characters. The traditional example is ffi, but for hand-writing, any character combination is plausible.
 
-The raw material I'm going to use is a scan produced by XKCD author Randall Munroe containing many charaters, as well as some spacing and ligature information.
+The raw material I'm going to use is a scan produced by XKCD author Randall Munroe containing many characters, as well as some spacing and ligature information.
 Importantly, all of the glyphs have been written at the same scale and using the same pen.
 These two details are important, as they will allow us to derive appropriate spacing and kerning information, and should result in a font that is well balanced.
 
@@ -45,12 +45,12 @@ Let's get stuck in by separating each of the glyphs from the image into their ow
 In this initial phase, we haven't done anything particularly clever - we've simply loaded in the image,
 taken a subset, and used scipy's image labelling capabilities to understand what the labelling process looks like.
 Originally I had planned to try to separate some of the glyphs that were obviously fused together - I'd even gone as far
-as protyping using a filter to disolve the outline (so that I could separate the labels) and then subsequently growing the
+as prototyping using a filter to dissolve the outline (so that I could separate the labels) and then subsequently growing the
 labels again back to their original form (but keeping the separate labels). This technique worked, but it produced shapes that
-weren't perfect, and the complexities (e.g. handling of bits that dissapeared, such as dots on the letter "i") weren't worth it.
+weren't perfect, and the complexities (e.g. handling of bits that disappeared, such as dots on the letter "i") weren't worth it.
 
 
-In the next phase, we will use the techinque shown here to generate individual image files. In addition, we will apply some heuristics
+In the next phase, we will use the technique shown here to generate individual image files. In addition, we will apply some heuristics
 merge back together glyphs such as the dot and comma of a semi-colon.
 
 *The next article in this series is*: **[Segment, extract, and combine features of an image with SciPy and scikit-image]({filename}./xkcd_font_pt2.md)**. 

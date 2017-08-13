@@ -7,7 +7,7 @@ Author: Phil Elson
 
 In [part one]({filename}/field_notes/xkcd_font.md) of XKCD font saga I gave some background on the XKCD handwriting dataset, and took an initial look at image
 segmentation in order to extract the individual strokes from the scanned image.
-In this installment, I will apply the technique from part 1, as well as attempting to merge together strokes to form (some of) the glyphs desired.
+In this instalment, I will apply the technique from part 1, as well as attempting to merge together strokes to form (some of) the glyphs desired.
 
 I'm going to pay particular attention to "dotted" glyphs, such as "i", "j", ";" and "?". I will need to do future work to merge together
 non-dotted glyphs such as the two arrows from "≫", as these are indistinguishable from two characters that happen to be close to one another.
