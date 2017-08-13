@@ -61,7 +61,7 @@ def main():
 
 A big part of the challenge was making use of the GitHub API (v3) to query information about the PR in question, and to update things like the commit status and PR labels.
 
-The first thing to note is the GitHub data model. It is a strange quirk that pull requests are actually issues (though issues obviously aren't all pull requests), and pull request statuses are actually statuses on *commits*. Updating the labels of a pull request therefore involves using the ```POST /repos/:owner/:repo/issues/:number/labels``` API. Updating the commit status first involves finding the HEAD commit of the pull request, and then using the ```POST /repos/:owner/:repo/statuses/:sha```.
+The first thing to note is the GitHub data model. It is a strange quirk that pull requests are actually issues (though not all issues are pull requests), and pull request statuses are actually statuses on *commits*. Updating the labels of a pull request therefore involves using the ```POST /repos/:owner/:repo/issues/:number/labels``` API. Updating the commit status first involves finding the HEAD commit of the pull request, and then using the ```POST /repos/:owner/:repo/statuses/:sha```.
 
 
 ### Authentication of GitHub API
