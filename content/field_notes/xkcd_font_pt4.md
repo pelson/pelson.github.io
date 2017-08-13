@@ -6,7 +6,7 @@ Slug: xkcd_font_raster_to_vector_and_basic_font_creation
 Author: Phil Elson
 
 In [part three]({filename}/field_notes/xkcd_font_pt3.md) of my XKCD font saga I generated several hundred glyphs as PPM images, and
-classified them with their associated character(s). In this installment, I will convert the raster glyphs into vector form (SVG) and then
+classified them with their associated character(s). In this instalment, I will convert the raster glyphs into vector form (SVG) and then
 generate a rudimentary font using fontforge.
 
 <!-- PELICAN_END_SUMMARY -->
@@ -15,7 +15,7 @@ If you'd like to follow along, the input files for this article may be found at 
 while the code (in notebook form) and output may be found at [https://gist.github.com/pelson/18434e3bd37dcde8dd28a5a24def0060](https://gist.github.com/pelson/18434e3bd37dcde8dd28a5a24def0060).
 
 I make no apologies for the amount of code here - I've tidied it up a little, but it is representative of the journey I have taken to produce
-a fully functional XKCD font. If you just want to see the resulting font you can scroll about three-quaters of the way down the page to 
+a fully functional XKCD font. If you just want to see the resulting font you can scroll about three-quarters of the way down the page to 
 [play with the final font in your browser](#font-final).
 
 

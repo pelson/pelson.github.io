@@ -9,7 +9,7 @@ In [part two]({filename}/field_notes/xkcd_font_pt2.md) of my XKCD font saga I wa
 handwriting dataset into many smaller images. I also handled the easier cases of merging some of the strokes back together - I particularly
 focussed on "dotty" or "liney" type glyphs, such as i, !, % and =.
 
-Now I want to attribute a unicode character to my segmented images, so that I can subsequently generate a font-file. 
+Now I want to attribute a Unicode character to my segmented images, so that I can subsequently generate a font-file. 
 We are well and truly in the domain of optical character recognition (OCR) here, but because I want absolute control of the results
 (and 100% accuracy) I'm going to take the simple approach of mapping glyph positions to characters myself.
 
@@ -28,7 +28,7 @@ As a reminder, here is a downsampled version the XKCD handwriting file:
 
 In this edition, I merged the few remaining strokes together to produce the finished glyphs, and classified each of the glyphs with associated
 characters (mostly unicode). I then saved these rasters out to a semantic filename in the PPM format. Next up, convert the rasters to vector SVGs
-so that we can import them into our font tool programatically.
+so that we can import them into our font tool programmatically.
 
 
 *The next article in this series is*: **[Converting PPM to SVG, and creating a font with FontForge]({filename}/field_notes/xkcd_font_pt4.md)**.
