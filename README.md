@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/pelson/pelson.github.io.svg?branch=master)](https://travis-ci.org/pelson/pelson.github.io)
+[![Build Status](https://travis-ci.org/pelson/pelson.github.io.svg?branch=source)](https://travis-ci.org/pelson/pelson.github.io)
 
 This is the blog of @pelson which can be viewed at [pelson.github.io](https://pelson.github.io).
 If you'd like to get in touch with me, check out the blog and you will find my contact information.
