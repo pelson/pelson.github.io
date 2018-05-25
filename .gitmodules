@@ -19,3 +19,6 @@
 [submodule "content/notebooks/xkcd_font_svg_and_creation"]
 	path = content/notebooks/xkcd_font_svg_and_creation
 	url = git@gist.github.com:18434e3bd37dcde8dd28a5a24def0060.git
+[submodule "content/field_notes/lfric_containment"]
+	path = content/field_notes/lfric_containment
+	url = git@gist.github.com:26b288663d67f8a418cfd7e023520e3c.git
