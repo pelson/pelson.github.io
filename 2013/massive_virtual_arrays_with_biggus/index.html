@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
+    <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.30">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -89,14 +89,14 @@
                   <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replcace</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
+                  <a href="https://pelson.github.io/2017/hints/npm_link/">Installing a package from source using npm</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2017/hints/nmap_ip_scan/">Using nmap to find all devices on network listening on a particular port</a>
+                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
                 </li>
                 <li class="nav-divider"></li>
                 <li>
-                  <a href="https://pelson.github.io/archives.html">See full archive (18)</a>
+                  <a href="https://pelson.github.io/archives.html">See full archive (19)</a>
                 </li>
               </ul>
             </li>
@@ -188,12 +188,708 @@
         </p>
       </div>
       <div class="entry">
-        <p>
-          {% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[:1] %}
-        </p><!-- PELICAN_END_SUMMARY -->
-        <p>
-          {% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[1:] %}
-        </p>
+        <p></p>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                I often deal with huge gridded datasets which either stretch or indeed are beyond the limits of my computer's memory. In the past I've implemented a couple of workarounds to help me handle this data to extract meaningful analyses from them. One of the most intuitive ways of reducing gridded datasets is through indexing/slicing and in this regard netcdf4-python's excellent ability to slice subsets of a larger NetCDF file is invaluable. The problem with the netcdf4-python implementation is that this capability is only available if you have NetCDF files, and doing any analysis on the data involves loading all of the data into memory in the form of a numpy array.
+              </p>
+              <p>
+                That is where <a href="https://github.com/SciTools/biggus">biggus</a> steps in.
+              </p>
+            </div>
+          </div>
+        </div>
+        <p></p>
+        <p></p>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[2]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="kn">import</span> <span class="nn">biggus</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                In this article I will cover some of the basic <code>biggus</code> classes and demonstrate its use in visualising part of an array which is an order of magnitude larger than my machine's memory.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                A very convenient and extremely large dataset is the map tile images made available via the folks over at mapquest.com. As some very rudimentary background, the map tiles are split into distinct zoom levels with each zoom level z having <code>2**z by 2**z</code> images of <code>256x256</code> pixels each. So at zoom level 0, there is 1 image to represent the whole globe, with a resolution of <code>256x256</code> pixels. At zoom level 1 that turns into 2x2 images, with a combined resolution of <code>512x512</code>. In the case of these images there is also an RGB channel, which means at zoom level 9 we have a combined resolution image of shape <code>(131072, 131072, 3)</code>.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Ok, lets start by implementing a class which represents a given <code>x, y, z</code> map tile. We will also add a <code>__getitem__</code> method which actually retrieves the data from the web server.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[3]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">urllib</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">PIL.Image</span>
+
+
+<span class="k">class</span> <span class="nc">TileLoader</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">URL_TEMPLATE</span> <span class="o">=</span> <span class="s1">'http://otile1.mqcdn.com/tiles/1.0.0/sat/</span><span class="si">{z}</span><span class="s1">/</span><span class="si">{x}</span><span class="s1">/</span><span class="si">{y}</span><span class="s1">.jpg'</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xyz</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+        <span class="c1">#: A cached version of the array that is downloaded.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cached_array</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="c1"># The required attributes of a "concrete" array, according</span>
+        <span class="c1"># to biggus, are 'ndim', 'dtype', and 'shape'.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slices</span><span class="p">):</span> 
+        <span class="c1"># Implement the getitem/slicing interface which is the interface needed for biggus to create numpy arrays.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_array</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s1">'Downloading tile x=</span><span class="si">{}</span><span class="s1"> y=</span><span class="si">{}</span><span class="s1"> z=</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">xyz</span><span class="p">)</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">URL_TEMPLATE</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">z</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">tile_fh</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="n">image_file</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">tile_fh</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cached_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_file</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_array</span><span class="p">[</span><span class="n">slices</span><span class="p">]</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                A <code>TileLoader</code> instance can now be created by passing just the x, y, z coordinates of the tile which is of interest. Notice how the data isn't actually loaded until we ask for it with the index notation.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[4]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="n">defered_img</span> <span class="o">=</span> <span class="n">TileLoader</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[5]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="nb">print</span> <span class="n">defered_img</span><span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+<span class="nb">print</span> <span class="n">defered_img</span><span class="p">[::</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="mi">35</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_subarea output_stream output_stdout output_text">
+                  <pre>
+Downloading tile x=1 y=2 z=3
+(256, 256, 3)
+(52, 25)
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                So far this hasn't required any Biggus specific code, but using this new <code>TileLoder</code> class we can go ahead and create a <code>biggus.ArrayAdapter</code> instance.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[6]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="kn">import</span> <span class="nn">biggus</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">biggus</span><span class="o">.</span><span class="n">ArrayAdapter</span><span class="p">(</span><span class="n">TileLoader</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="nb">print</span> <span class="n">img</span>
+<span class="n">sub_img</span> <span class="o">=</span> <span class="n">img</span><span class="p">[::</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="mi">35</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span> <span class="n">sub_img</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_subarea output_stream output_stdout output_text">
+                  <pre>
+&lt;biggus.Array type (ArrayAdapter) shape=(256, 256, 3) dtype=&lt;type 'numpy.uint8'&gt;&gt;
+&lt;biggus.Array type (ArrayAdapter) shape=(52, 25) dtype=&lt;type 'numpy.uint8'&gt;&gt;
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Notice how no "Downloading tile..." message has been printed, yet the correct shape is calculated for the indexed sub-image. This is because <code>biggus</code> helps us to defer the actual data loading step until the data is required and the <code>Array.ndarray()</code> method is called.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[7]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="n">sub_img_array</span> <span class="o">=</span> <span class="n">sub_img</span><span class="o">.</span><span class="n">ndarray</span><span class="p">()</span>
+<span class="nb">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">sub_img_array</span><span class="p">),</span> <span class="n">sub_img_array</span><span class="o">.</span><span class="n">shape</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_subarea output_stream output_stdout output_text">
+                  <pre>
+Downloading tile x=15 y=10 z=5
+&lt;type 'numpy.ndarray'&gt; (52, 25)
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                So we can now arbitrarily index any sized array and the data is not realized until we actually request the data. This is generally the paradigm in Biggus and it allows one to build up complex operations on arrays without needing access to all of the data at once.
+              </p>
+              <p>
+                Whilst in this example we've still had to load the full 256x256 image before indexing it (see the <code>__getitem__</code> implementation above), we <em>could</em> implement some clever image loader which picks off the appropriate data from disk. In truth an image of 256x256 is so small that we probably don't need to worry about implementing such a tricky low level data reader in this case, but if you are using <code>netcdf4-python</code> with massive variables then being able to read only the sections of data which are requested becomes invaluable.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Now that we can create <code>biggus.Array</code> instances (<code>biggus.ArrayAdapter</code> is a subclass of <code>biggus.Array</code>) we can use some of its more interesting features. One of the really interesting classes in biggus is <code>LinearMosaic</code> (which again is a <code>biggus.Array</code> subclass) - this class allows one to join together a list of homogeneous <code>biggus.Array</code> instances to form a bigger array.
+              </p>
+              <p>
+                Lets create a <code>biggus.LinearMosaic</code> to represent a column of map tiles at zoom level 5, just to the west of the Greenwich meridian (x=15 at z=5):
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[8]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="n">arrays</span> <span class="o">=</span> <span class="p">[</span><span class="n">biggus</span><span class="o">.</span><span class="n">ArrayAdapter</span><span class="p">(</span><span class="n">TileLoader</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">5</span><span class="p">)]</span>
+<span class="n">col</span> <span class="o">=</span> <span class="n">biggus</span><span class="o">.</span><span class="n">LinearMosaic</span><span class="p">(</span><span class="n">arrays</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[9]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="nb">print</span> <span class="n">col</span><span class="o">.</span><span class="n">shape</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_subarea output_stream output_stdout output_text">
+                  <pre>
+(8192, 256, 3)
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                We can go ahead and slice a subset of the big column of images and visualise the resulting ndarray. Notice how <strong>only the necessary images from the 32 image mosaic are actually downloaded</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[10]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">smaller_column</span> <span class="o">=</span> <span class="n">col</span><span class="p">[</span><span class="mi">2000</span><span class="p">:</span><span class="mi">3500</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">smaller_column</span><span class="o">.</span><span class="n">ndarray</span><span class="p">())</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_subarea output_stream output_stdout output_text">
+                  <pre>
+Downloading tile x=15 y=7 z=5
+Downloading tile x=15 y=8 z=5
+Downloading tile x=15 y=9 z=5
+Downloading tile x=15 y=10 z=5
+Downloading tile x=15 y=11 z=5
+Downloading tile x=15 y=12 z=5
+Downloading tile x=15 y=13 z=5
+</pre>
+                </div>
+              </div>
+              <div class="output_area">
+                <div class="prompt output_prompt">
+                  Out[10]:
+                </div>
+                <div class="output_text output_subarea output_execute_result">
+                  <pre>
+&lt;matplotlib.image.AxesImage at 0x10c650810&gt;
+</pre>
+                </div>
+              </div>
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_png output_subarea">
+                  <img src="../../images/massive_virtual_arrays_with_biggus/massive_arrays_with_biggus_output_17_2.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                The <code>biggus.LinearMosaic</code> will take any <code>biggus.Array</code> instances in its mosaic, including other <code>biggus.LinearMosaic</code> instances.
+              </p>
+              <p>
+                Lets go ahead an make a horizontal mosaic of column mosaics to represent the whole z=9 dataset (that's <code>2^18</code> tiles at a resolution of 256x256 each).
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[11]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="k">def</span> <span class="nf">tile_array</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">z</span><span class="p">):</span>
+        <span class="n">column</span> <span class="o">=</span> <span class="p">[</span><span class="n">biggus</span><span class="o">.</span><span class="n">ArrayAdapter</span><span class="p">(</span><span class="n">TileLoader</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">))</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">z</span><span class="p">)]</span>
+        <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">biggus</span><span class="o">.</span><span class="n">LinearMosaic</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">biggus</span><span class="o">.</span><span class="n">LinearMosaic</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">z9</span> <span class="o">=</span> <span class="n">tile_array</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[12]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="nb">print</span> <span class="n">z9</span><span class="o">.</span><span class="n">shape</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_subarea output_stream output_stdout output_text">
+                  <pre>
+(131072, 131072, 3)
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Just in case you were wondering whether you could actually create a numpy array of this size in memory, the answer is only if you are on a machine with at least 48GB of contiguous memory:
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[13]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="k">def</span> <span class="nf">sizeof_fmt</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'bytes'</span><span class="p">,</span><span class="s1">'KB'</span><span class="p">,</span><span class="s1">'MB'</span><span class="p">,</span><span class="s1">'GB'</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mf">1024.0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"</span><span class="si">%3.1f%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="n">num</span> <span class="o">/=</span> <span class="mf">1024.0</span>
+    <span class="k">return</span> <span class="s2">"</span><span class="si">%3.1f%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s1">'TB'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">sizeof_array</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sizeof_fmt</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="p">()</span><span class="o">.</span><span class="n">itemsize</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+
+<span class="nb">print</span> <span class="n">sizeof_array</span><span class="p">(</span><span class="n">z9</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_subarea output_stream output_stdout output_text">
+                  <pre>
+48.0GB
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Again, we can easily visualise a subset of this large array by using the numpy indexing notation.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[14]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="n">smaller_img</span> <span class="o">=</span> <span class="n">z9</span><span class="p">[</span><span class="mi">54600</span><span class="p">:</span><span class="mi">55000</span><span class="p">,</span> <span class="mi">59300</span><span class="p">:</span><span class="mi">59850</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">smaller_img</span><span class="o">.</span><span class="n">ndarray</span><span class="p">())</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_subarea output_stream output_stdout output_text">
+                  <pre>
+Downloading tile x=231 y=213 z=9
+Downloading tile x=231 y=214 z=9
+Downloading tile x=232 y=213 z=9
+Downloading tile x=232 y=214 z=9
+Downloading tile x=233 y=213 z=9
+Downloading tile x=233 y=214 z=9
+</pre>
+                </div>
+              </div>
+              <div class="output_area">
+                <div class="prompt output_prompt">
+                  Out[14]:
+                </div>
+                <div class="output_text output_subarea output_execute_result">
+                  <pre>
+&lt;matplotlib.image.AxesImage at 0x1107d1990&gt;
+</pre>
+                </div>
+              </div>
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_png output_subarea">
+                  <img src="../../images/massive_virtual_arrays_with_biggus/massive_arrays_with_biggus_output_24_2.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Note, this is not a tutorial on spatial extraction of data - there are better ways to extract specific regions of big images than using the pixel index, but that is beyond the scope of this notebook.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                So far, we've had to index the <code>biggus.Array</code> in order to pass the data through to matplotlib for visualisation, but wouldn't it be better if we made matplotlib index the array as appropriate for the viewing pane? That way we could pan and zoom on this huge array whilst under the hood, just the parts of the data that need loading actually are.
+              </p>
+              <p>
+                Fortunately, with a bit of jiggling of the underling matplotlib code this is relatively easy to achieve. The following code block will modify some of the matplotlib internals so that we can go ahead and add the <code>z9</code> image array as an image to matplotlib and ultimately pan and zoom on that data. Feel free to skip the details of the next code block:
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[15]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mimg</span>
+<span class="kn">import</span> <span class="nn">matplotlib._image</span> <span class="k">as</span> <span class="nn">_image</span>
+
+
+<span class="k">class</span> <span class="nc">AxesBiggusImage</span><span class="p">(</span><span class="n">mimg</span><span class="o">.</span><span class="n">AxesImage</span><span class="p">):</span>
+    <span class="sd">"""Subclasses AxesImage to support biggus.Array instances."""</span>
+    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_A</span> <span class="o">=</span> <span class="n">A</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_A</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span> <span class="ow">and</span>
+            <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">can_cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_A</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Image data can not convert to float"</span><span class="p">)</span>
+  
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_A</span><span class="o">.</span><span class="n">ndim</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_A</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Invalid dimensions for image data"</span><span class="p">)</span>
+  
+        <span class="bp">self</span><span class="o">.</span><span class="n">_imcache</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rgbacache</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_oldxslice</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_oldyslice</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">frombyte</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">"""Override frombyte to handle biggus.Array instances."""</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">biggus</span><span class="o">.</span><span class="n">Array</span><span class="p">):</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">ndarray</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">_image</span><span class="o">.</span><span class="n">frombyte_orig</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="n">_image</span><span class="o">.</span><span class="n">frombyte_orig</span> <span class="o">=</span> <span class="n">_image</span><span class="o">.</span><span class="n">frombyte</span>
+<span class="n">_image</span><span class="o">.</span><span class="n">frombyte</span> <span class="o">=</span> <span class="n">frombyte</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Now for the magic. If you are running this notebook with an interactive matplotlib backend (which I encourage you to try) the following code will produce a standard matplotlib figure with an image of our zoom level 9 data (centered at Tenerife in the Canary Islands) which you can interactively pan and zoom in the same way as you can for any other matplotlib figure - the key difference is that the image that you are viewing is far larger than most machines could possibly hold in memory and therefore only the tiles which are currently being displayed are actually being downloaded from the server. [Note: This has been tested with v1.3.0 of matplotlib]
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[16]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+    
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">AxesBiggusImage</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">'upper'</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">z9</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+ 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">59300</span><span class="p">,</span> <span class="mi">59850</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">55000</span><span class="p">,</span> <span class="mi">54600</span><span class="p">)</span>
+ 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_png output_subarea">
+                  <img src="../../images/massive_virtual_arrays_with_biggus/massive_arrays_with_biggus_output_29_0.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                In summary, I've shown Biggus' easy to implement <code>biggus.ArrayAdapter</code> interface which gives us a familiar numpy-like interface to any data fit for a numpy array, with the added benefit that combined with off the shelf tools such as the python4-netcdf <code>Variable</code> objects, can quickly make deferred data analysis workflows a reality. The <code>biggus.LinearMosaic</code> allows you to easily build up concatenations of <code>biggus.Arrays</code> (including other <code>biggus.LinearMosaic</code>) instances to form arrays far bigger than could be held in RAM, and allows one to index the data arrays to get hold of smaller, more manageable subsets of the super array. Finally I demonstrated the prospect that matplotlib could one day handle <code>biggus.Array</code> instances without ever needing to read in data that it doesn't ultimately visualise.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Whilst <code>biggus</code> is still very much in its infancy (there is no docs and just a handfull of tests at this point), there is even more to <code>biggus</code> that I haven't discussed here - one very exciting prospect is its ability to do whole dataset operations (such as mean, stddev etc.) without ever needing to allocate all of the memory that the larger array represents - with the added prospect that these operations will become multi-threaded and potentially quicker than the standard numpy operations. In my next post on <a href="http://pelson.github.io">http://pelson.github.io</a> I will try to cover some of these operations on massive datasets and compare the performance with other tools currently available.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Do you deal with arrays of data that are bigger than your machine can deal with? How do you get around the obstacle of running out of memory? Let me know what you think in the comments section.
+              </p>
+            </div>
+          </div>
+        </div>
+        <p></p>
       </div>
       <hr>
       <div id="disqus_thread"></div>

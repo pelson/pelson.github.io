@@ -17,6 +17,11 @@
   </url>
 
   <url>
+    <loc>https://pelson.github.io/2017/hints/npm_link/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://pelson.github.io/2017/hints/applicationize/</loc>
     <priority>0.8</priority>
   </url>

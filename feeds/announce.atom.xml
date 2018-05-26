@@ -1,97 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Phil Elson - Software | Science | Python - announce</title><link href="https://pelson.github.io/" rel="alternate"></link><link href="https://pelson.github.io/feeds/announce.atom.xml" rel="self"></link><id>https://pelson.github.io/</id><updated>2015-10-03T12:00:00+01:00</updated><entry><title>Running scripts in temporary conda environments with conda execute</title><link href="https://pelson.github.io/2015/conda_execute/" rel="alternate"></link><published>2015-10-03T12:00:00+01:00</published><updated>2015-10-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2015-10-03:/2015/conda_execute/</id><summary type="html">&lt;p&gt;Conda is awesome - it is a simple package manager which allows me to create isolated software environments
-much like virtualenv. Unlike virtualenv though it can handle any package type, not just python ones.&lt;/p&gt;
-&lt;p&gt;The more I use it, the more I want to make use of conda's dependency tracking for …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Conda is awesome - it is a simple package manager which allows me to create isolated software environments
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Phil Elson - Software | Science | Python - announce</title><link href="https://pelson.github.io/" rel="alternate"></link><link href="https://pelson.github.io/feeds/announce.atom.xml" rel="self"></link><id>https://pelson.github.io/</id><updated>2015-10-03T12:00:00+01:00</updated><entry><title>Running scripts in temporary conda environments with conda execute</title><link href="https://pelson.github.io/2015/conda_execute/" rel="alternate"></link><published>2015-10-03T12:00:00+01:00</published><updated>2015-10-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2015-10-03:2015/conda_execute/</id><summary type="html">&lt;p&gt;Conda is awesome - it is a simple package manager which allows me to create isolated software environments
 much like virtualenv. Unlike virtualenv though it can handle any package type, not just python ones.&lt;/p&gt;
 &lt;p&gt;The more I use it, the more I want to make use of conda's dependency tracking for my own simple scripts to
 ensure they were being executed in a suitable environment with the expected dependencies already installed.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;conda build&lt;/code&gt; is an excellent tool for building your own distributions and sharing them on anaconda.org,
 but creating a distribution is tiresome if all you have is a single script, rather than a fully-fledged
 software package. That is where &lt;code&gt;conda execute&lt;/code&gt; comes in.&lt;/p&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
-
-&lt;p&gt;&lt;code&gt;conda execute&lt;/code&gt; allows you to run a script of any kind in a temporary environment defined by metadata in the script itself.&lt;/p&gt;
-&lt;p&gt;For example, take the following Python script:&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2
-3
-4
-5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/env python&lt;/span&gt;
-
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
-
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;poisson&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
-&lt;p&gt;By adding appropriate &lt;code&gt;conda execute&lt;/code&gt; metadata to our script, we can describe the kind of environment
-we would need to be able to run this code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;my_script&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
-
-&lt;span class="c1"&gt;#!/usr/bin/env python&lt;/span&gt;
-
-&lt;span class="c1"&gt;# conda execute&lt;/span&gt;
-&lt;span class="c1"&gt;# env:&lt;/span&gt;
-&lt;span class="c1"&gt;#  - python &amp;gt;=3&lt;/span&gt;
-&lt;span class="c1"&gt;#  - numpy&lt;/span&gt;
-
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
-
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="kp"&gt;poisson&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kp"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;code&gt;conda execute&lt;/code&gt; can now be used to run this script:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ conda execute -v my_script.py
-
-Using specification: 
-env: &lt;span class="o"&gt;[&lt;/span&gt;python &amp;gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;, numpy&lt;span class="o"&gt;]&lt;/span&gt;
-run_with: &lt;span class="o"&gt;[&lt;/span&gt;/usr/bin/env, python&lt;span class="o"&gt;]&lt;/span&gt;
-
-Prefix: /Users/pelson/miniconda/tmp_envs/ea977067a8fbeb21a594
-
-&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;As you can see, the special comment in the script has been read, and an appropriate temporary environment has been created.&lt;/p&gt;
-&lt;h2&gt;Temporary environments&lt;/h2&gt;
-&lt;p&gt;In order to provision suitable environments for the executed scripts, &lt;code&gt;conda-execute&lt;/code&gt; implements a temporary environment concept.
-Rather than adding a new environment in your conda environments directory (and thus filling up the available environments listed in &lt;code&gt;conda env list&lt;/code&gt;), a new "tmp_envs" environments directory has been created, within which &lt;code&gt;conda-execute&lt;/code&gt;'s temporary environments are created (this location is configurable with the &lt;code&gt;conda-execute/env-dir&lt;/code&gt; conda config item).
-As you may have noticed in the previous example, where the environment created was named &lt;code&gt;ea977067a8fbeb21a594&lt;/code&gt;, these temporary environments are named by a hashing algorithm (SHA 256, trunkated to 20 characters).
-The hash is taken from the &lt;code&gt;conda-execute&lt;/code&gt; metadata of your script, which means that you can re-run a script many times and only need one environment to be created. Additionally, it has the advantage that multiple scripts can share the same environment if their &lt;code&gt;conda-execute&lt;/code&gt; metadata is the same.&lt;/p&gt;
-&lt;p&gt;Each time a temporary environment is run with &lt;code&gt;conda-execute&lt;/code&gt; a log entry is added, allowing it to keep track of which environments are still in use. Once an environment has been unused for 25 hours any subsequent &lt;code&gt;conda-execute&lt;/code&gt; call will trigger it to be garbage collected, thus preventing your disk filling up with unneeded temporary environments.&lt;/p&gt;
-&lt;h2&gt;Configurability&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;conda-execute&lt;/code&gt; builds on top of &lt;code&gt;conda&lt;/code&gt;'s configuration to allow some customisation in behaviour.
-The following &lt;code&gt;condarc&lt;/code&gt; shows the configuration options that are available:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;conda-execute:
-    # The directory to use to hold the temporary environments.
-    env-dir: &amp;quot;{config.envs_dirs[0]}/../tmp_envs&amp;quot;
-
-    # The number of hours that an environment should be unused for to be
-    # considered for garbage collection.
-    remove-if-unused-for: 25
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2&gt;Reproducibility of scripts with &lt;code&gt;conda-execute&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;There are a few really interesting usecases which I'm keen to explore with &lt;code&gt;conda-execute&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;I'm already making use of &lt;code&gt;conda-execute&lt;/code&gt; as a form of Makefile for this blog. My &lt;a href="https://github.com/pelson/pelson.github.io/blob/source/make.py"&gt;make.py&lt;/a&gt; is simply a command line wrapper to the appropriate &lt;code&gt;pelican&lt;/code&gt; subcommand:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&amp;gt; ./make.py --help
-usage: Help [-h] {html,publish,reload} ...
-
-positional arguments:
-  {html,publish,reload}
-    html                Make the html
-    publish             Make publishable html, and put it in the
-                        output_branch.
-    reload              Make the html, and watch the folder for any changes.
-
-optional arguments:
-  -h, --help            show this help message and exit
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The concept of creating reproducible scripts goes far wider than trivial Makefiles though - with &lt;code&gt;conda-execute&lt;/code&gt;, because the metadata in the script &lt;strong&gt;is&lt;/strong&gt; the definition of the execution environment, important information about its dependencies and how it is run are all embedded into the script itself.&lt;/p&gt;
-&lt;p&gt;I'm particularly keen to explore the reproducibility angle that &lt;code&gt;conda-execute&lt;/code&gt; brings, particularly for scientific applications.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;conda-execute&lt;/code&gt; can be found at &lt;a href="https://github.com/pelson/conda-execute"&gt;github.com/pelson/conda-execute&lt;/a&gt;, and installed with &lt;code&gt;conda install conda-execute --channel conda-forge&lt;/code&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="conda"></category></entry></feed>
+</summary><category term="Python"></category><category term="conda"></category></entry></feed>

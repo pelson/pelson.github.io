@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
+    <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.30">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -87,14 +87,14 @@
                   <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replcace</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
+                  <a href="https://pelson.github.io/2017/hints/npm_link/">Installing a package from source using npm</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2017/hints/nmap_ip_scan/">Using nmap to find all devices on network listening on a particular port</a>
+                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
                 </li>
                 <li class="nav-divider"></li>
                 <li>
-                  <a href="https://pelson.github.io/archives.html">See full archive (18)</a>
+                  <a href="https://pelson.github.io/archives.html">See full archive (19)</a>
                 </li>
               </ul>
             </li>
@@ -187,7 +187,7 @@
             </header>
             <div class="body">
               <p>
-                {% notebook ../field_notes/lfric_containment/LFRic_UGRID_containment.ipynb %}
+                UGRID and LFRic: Polygon mesh intersections¶I'm aiming to investigate whether it is possible to use the existing python tools to compute intersections of cells definied on the Met Office's LFRic cubesphere. A (possibly out of date but still enlightening) presentation about the LFRic datamodel can also be found here …
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -215,7 +215,7 @@
             </header>
             <div class="body">
               <p>
-                {% notebook ../field_notes/coast_path_pt1/coast_path.ipynb cells[1:] %}
+                I'm fortunate to live near to one of the best continuous coastal walking/hiking routes in the world. The UK's South West Coast Path is a scenic, cultural and culinary delight spanning 630 miles from Minehead to Poole. It is steeped with history, and apparently was originally created by the …
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -256,6 +256,35 @@
           <article class=" blog-teaser">
             <header>
               <h3 style="min-height: 2em;">
+                <a href="https://pelson.github.io/2017/hints/npm_link/">Installing a package from source using npm</a> <i class="fa fa-fw fa-list-ul" title="Hints &amp; Tips"></i>
+              </h3>
+              <div style="float: left; padding: 0.5em 1em 0.5em 0em;">
+                <time datetime="2017-12-09T12:00:00+00:00" class="icon"></time>
+                <div class="time-icon">
+                  <p class="year">
+                    2017
+                  </p>
+                  <p class="month">
+                    December
+                  </p><span class="day">9</span>
+                </div>
+              </div>
+            </header>
+            <div class="body">
+              <p>
+                npm link ./directory
+              </p>
+            </div>
+            <div style="float: right; padding: 2em; clear: right;">
+              <a href="https://pelson.github.io/2017/hints/npm_link/" class="btn btn-info clearfix" role="button">Read on...</a>
+            </div>
+          </article>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-xs-12 col-md-6">
+          <article class=" blog-teaser">
+            <header>
+              <h3 style="min-height: 2em;">
                 <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a> <i class="fa fa-fw fa-list-ul" title="Hints &amp; Tips"></i>
               </h3>
               <div style="float: left; padding: 0.5em 1em 0.5em 0em;">
@@ -280,7 +309,6 @@
             </div>
           </article>
         </div>
-        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -301,7 +329,7 @@
             </header>
             <div class="body">
               <p>
-                Finding all IPs listening on a particular port using nmap: nmap -p 80 --open -sV 192.168.1.0/24 Refs: * http://thoughtsbyclayg.blogspot.co.uk/2008/06/use-nmap-to-scan-for-ssh-servers-on.html * https://www.digitalocean.com/community/tutorials/how-to-use-nmap-to-scan-for-open-ports-on-your-vps
+                Finding all IPs listening on a particular port using nmap: nmap -p 80 --open -sV 192.168.1.0/24
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -309,6 +337,7 @@
             </div>
           </article>
         </div>
+        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -329,7 +358,7 @@
             </header>
             <div class="body">
               <p>
-                Contributor license agreements are a thing. As much as I dislike the bureaucracy of them, they do provide some additional cover to the owners of an open source project, and some companies insist on having them. I find myself in such a situation in the SciTools organisation, for which I …
+                Contributor license agreements are a thing. As much as I dislike the bureaucracy of them, they do provide some additional cover to the owners of an open source project, and some companies insist on having them. I find myself in such a situation in the SciTools organisation, for which I am one of the lead developers. We have a CLA form, a signing process, and a list of signatories - but the really painful part is having to remember to cross check that list of signatories each time we want to merge a pull request. This is the story of how (and to some extent why) I went about automating that process.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -337,7 +366,6 @@
             </div>
           </article>
         </div>
-        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -358,7 +386,7 @@
             </header>
             <div class="body">
               <p>
-                In part three of my XKCD font saga I generated several hundred glyphs as PPM images, and classified them with their associated character(s). In this instalment, I will convert the raster glyphs into vector form (SVG) and then generate a rudimentary font using fontforge. If you'd like to follow …
+                In part three of my XKCD font saga I generated several hundred glyphs as PPM images, and classified them with their associated character(s). In this instalment, I will convert the raster glyphs into vector form (SVG) and then generate a rudimentary font using fontforge.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -366,6 +394,7 @@
             </div>
           </article>
         </div>
+        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -386,7 +415,7 @@
             </header>
             <div class="body">
               <p>
-                In part two of my XKCD font saga I was able to separate strokes from the XKCD handwriting dataset into many smaller images. I also handled the easier cases of merging some of the strokes back together - I particularly focussed on "dotty" or "liney" type glyphs, such as i, !, % and …
+                In part two of my XKCD font saga I was able to separate strokes from the XKCD handwriting dataset into many smaller images. I also handled the easier cases of merging some of the strokes back together - I particularly focussed on "dotty" or "liney" type glyphs, such as i, !, % and =. Now I want to attribute a Unicode character to my segmented images, so that I can subsequently generate a font-file. We are well and truly in the domain of optical character recognition (OCR) here, but because I want absolute control of the results (and 100% accuracy) I'm going to take the simple approach of mapping glyph positions to characters myself.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -394,7 +423,6 @@
             </div>
           </article>
         </div>
-        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -415,7 +443,7 @@
             </header>
             <div class="body">
               <p>
-                In part one of XKCD font saga I gave some background on the XKCD handwriting dataset, and took an initial look at image segmentation in order to extract the individual strokes from the scanned image. In this instalment, I will apply the technique from part 1, as well as attempting …
+                In part one of XKCD font saga I gave some background on the XKCD handwriting dataset, and took an initial look at image segmentation in order to extract the individual strokes from the scanned image. In this instalment, I will apply the technique from part 1, as well as attempting to merge together strokes to form (some of) the glyphs desired. I'm going to pay particular attention to "dotted" glyphs, such as "i", "j", ";" and "?". I will need to do future work to merge together non-dotted glyphs such as the two arrows from "≫", as these are indistinguishable from two characters that happen to be close to one another.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -423,6 +451,7 @@
             </div>
           </article>
         </div>
+        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -443,7 +472,7 @@
             </header>
             <div class="body">
               <p>
-                The XKCD font (as used by matplotlib et al.) recently got an update to include lower-case characters. For some time now I have been aware of a handwriting sample produced by Randall Munroe (XKCD's creator) that I was interested in exploring. The ultimate aim is to automatically produce a font-file …
+                The XKCD font (as used by matplotlib et al.) recently got an update to include lower-case characters. For some time now I have been aware of a handwriting sample produced by Randall Munroe (XKCD's creator) that I was interested in exploring. The ultimate aim is to automatically produce a font-file using open source tools, and to learn a few things along the way.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -451,7 +480,6 @@
             </div>
           </article>
         </div>
-        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -472,7 +500,7 @@
             </header>
             <div class="body">
               <p>
-                This evening I'm going to take a different approach to how I would normaly blog. Rather than reporting the results of a technical investigation or highlighting a new/shiny package, I wanted to paint a realistic picture of the technical exploration process. As it happens, this particular investigation consumed a …
+                This evening I'm going to take a different approach to how I would normaly blog. Rather than reporting the results of a technical investigation or highlighting a new/shiny package, I wanted to paint a realistic picture of the technical exploration process. As it happens, this particular investigation consumed a couple of hours and appears to have drawn an unsucessful result. Despite this, the learnings are invaluable as they will be directly and immediately applicable to other areas of my work.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -480,6 +508,7 @@
             </div>
           </article>
         </div>
+        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -500,7 +529,7 @@
             </header>
             <div class="body">
               <p>
-                Introducing conda-build-all, a tool which extends conda-build to provide powerful build matrix capabilities. Repositories such as conda-forge/stages-recipes, SciTools/conda-recipes-scitools and ioos/conda-recipes exist to provide a set of conda recipes, and ultimately, channels from which users can access the product of conda-build-ing those recipes. The build phase of …
+                Introducing conda-build-all, a tool which extends conda-build to provide powerful build matrix capabilities.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -508,7 +537,6 @@
             </div>
           </article>
         </div>
-        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -529,7 +557,7 @@
             </header>
             <div class="body">
               <p>
-                A powerful combination of commands for search and replace across multiple files with Vim. http://vim.wikia.com/wiki/Opening_multiple_files_from_a_single_command-line http://vim.wikia.com/wiki/Search_and_replace_in_multiple_buffers :arg **/*.cpp :argdo %s/pattern/replace/ge | update
+                A powerful combination of commands for search and replace across multiple files with Vim.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -537,6 +565,7 @@
             </div>
           </article>
         </div>
+        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -557,7 +586,7 @@
             </header>
             <div class="body">
               <p>
-                Conda is awesome - it is a simple package manager which allows me to create isolated software environments much like virtualenv. Unlike virtualenv though it can handle any package type, not just python ones. The more I use it, the more I want to make use of conda's dependency tracking for …
+                Conda is awesome - it is a simple package manager which allows me to create isolated software environments much like virtualenv. Unlike virtualenv though it can handle any package type, not just python ones. The more I use it, the more I want to make use of conda's dependency tracking for my own simple scripts to ensure they were being executed in a suitable environment with the expected dependencies already installed. conda build is an excellent tool for building your own distributions and sharing them on anaconda.org, but creating a distribution is tiresome if all you have is a single script, rather than a fully-fledged software package. That is where conda execute comes in.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -565,7 +594,6 @@
             </div>
           </article>
         </div>
-        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -586,7 +614,7 @@
             </header>
             <div class="body">
               <p>
-                {% notebook nbagg_backend/nbagg_backend.ipynb cells[1:2] %} {% notebook nbagg_backend/nbagg_backend.ipynb cells[2:] %}
+                After what feels like years chipping away at the problem, not least from some awesome developers including the whole of the IPython development team, Michael Droetboom and Jason Grout, I recently closed the development loop and added a new matplotlib backend providing interactive figures in the IPython notebook environment.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -594,6 +622,7 @@
             </div>
           </article>
         </div>
+        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -614,7 +643,7 @@
             </header>
             <div class="body">
               <p>
-                {% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[:1] %} {% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[1:] %}
+                I often deal with huge gridded datasets which either stretch or indeed are beyond the limits of my computer's memory. In the past I've implemented a couple of workarounds to help me handle this data to extract meaningful analyses from them. One of the most intuitive ways of reducing gridded datasets is through indexing/slicing and in this regard netcdf4-python's excellent ability to slice subsets of a larger NetCDF file is invaluable. The problem with the netcdf4-python implementation is that this capability is only available if you have NetCDF files, and doing any analysis on the data involves loading all of the data into memory in the form of a numpy array. That is where biggus steps in.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -622,7 +651,6 @@
             </div>
           </article>
         </div>
-        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -643,7 +671,7 @@
             </header>
             <div class="body">
               <p>
-                When dealing with colours in scientific visualisations some people like to have a colourmap which can be indexed into to pick specific colours. Whilst this isn't necessarily the best way of handling colours in matplotlib, it certainly adds a degree of familiarity to users who have come over from other …
+                When dealing with colours in scientific visualisations some people like to have a colourmap which can be indexed into to pick specific colours. Whilst this isn't necessarily the best way of handling colours in matplotlib, it certainly adds a degree of familiarity to users who have come over from other visualisation tools, such as IDL. In this article I'll cover one approach to using the colour-by-index paradigm in matplotlib.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -651,6 +679,7 @@
             </div>
           </article>
         </div>
+        <div class="clearfix"></div>
         <div class="col-xs-12 col-md-6">
           <article class=" blog-teaser">
             <header>
@@ -671,7 +700,7 @@
             </header>
             <div class="body">
               <p>
-                I recently added a new function to matplotlib to make it easier to draw pseudo-colour plots given specific levels and colours, in exactly the same way as you can with contour and contourf. {% notebook from_levels_and_colors/using.ipynb cells[1:] %}
+                I recently added a new function to matplotlib to make it easier to draw pseudo-colour plots given specific levels and colours, in exactly the same way as you can with contour and contourf.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -679,7 +708,6 @@
             </div>
           </article>
         </div>
-        <div class="clearfix"></div>
       </div><!-- /END THE FEATURETTES -->
       <div class="clearfix"></div>
       <hr class="featurette-divider">

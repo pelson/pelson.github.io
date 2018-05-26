@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
+    <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.30">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -89,14 +89,14 @@
                   <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replcace</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
+                  <a href="https://pelson.github.io/2017/hints/npm_link/">Installing a package from source using npm</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2017/hints/nmap_ip_scan/">Using nmap to find all devices on network listening on a particular port</a>
+                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
                 </li>
                 <li class="nav-divider"></li>
                 <li>
-                  <a href="https://pelson.github.io/archives.html">See full archive (18)</a>
+                  <a href="https://pelson.github.io/archives.html">See full archive (19)</a>
                 </li>
               </ul>
             </li>
@@ -190,7 +190,7 @@
       <div class="entry">
         <p>
           Introducing <code>conda-build-all</code>, a tool which extends <code>conda-build</code> to provide powerful build matrix capabilities.
-        </p><!-- PELICAN_END_SUMMARY -->
+        </p>
         <p>
           Repositories such as <a href="https://github.com/ioos/conda-recipes">conda-forge/stages-recipes</a>, <a href="https://github.com/SciTools/conda-recipes-scitools">SciTools/conda-recipes-scitools</a> and <a href="https://github.com/ioos/conda-recipes">ioos/conda-recipes</a> exist to provide a set of conda recipes, and ultimately, channels from which users can access the product of <code>conda-build</code>-ing those recipes. The build phase of all of these repositories looks very similar: a tool (ObviousCI) computes the build matrix, builds those distributions which haven't already been built, and then uploads them to their respective channels. The functionality is tried and tested, and has been powering these repositories for over a year with huge success, however, I recently had need to use this functionality without wanting to upload the built distributions to <a href="http://conda.anaconda.org">conda.anaconda.org</a> and found the tool didn't <em>quite</em> fit the bill. Additionally, having originally cobbled together ObviousCI with string and sticky-tape to prove the concept of a continuously integrated repo of recipes, I didn't have huge confidence in its ability to function between python/conda/conda-build upgrades.
         </p>

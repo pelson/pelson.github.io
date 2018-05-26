@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
+    <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.30">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -179,7 +179,7 @@
               </header>
               <div class="body">
                 <p>
-                  {% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[:1] %} {% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[1:] %}
+                  I often deal with huge gridded datasets which either stretch or indeed are beyond the limits of my computer's memory. In the past I've implemented a couple of workarounds to help me handle this data to extract meaningful analyses from them. One of the most intuitive ways of reducing gridded datasets is through indexing/slicing and in this regard netcdf4-python's excellent ability to slice subsets of a larger NetCDF file is invaluable. The problem with the netcdf4-python implementation is that this capability is only available if you have NetCDF files, and doing any analysis on the data involves loading all of the data into memory in the form of a numpy array. That is where biggus steps in.
                 </p>
               </div>
               <div style="float: right; padding: 2em; clear: right;">

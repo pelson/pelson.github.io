@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
+    <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.30">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,14 +84,14 @@
                   <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replcace</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
+                  <a href="https://pelson.github.io/2017/hints/npm_link/">Installing a package from source using npm</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2017/hints/nmap_ip_scan/">Using nmap to find all devices on network listening on a particular port</a>
+                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
                 </li>
                 <li class="nav-divider"></li>
                 <li>
-                  <a href="https://pelson.github.io/archives.html">See full archive (18)</a>
+                  <a href="https://pelson.github.io/archives.html">See full archive (19)</a>
                 </li>
               </ul>
             </li>
@@ -184,7 +184,7 @@
             </header>
             <div class="body">
               <p>
-                {% notebook ../field_notes/lfric_containment/LFRic_UGRID_containment.ipynb %}
+                UGRID and LFRic: Polygon mesh intersections¶I'm aiming to investigate whether it is possible to use the existing python tools to compute intersections of cells definied on the Met Office's LFRic cubesphere. A (possibly out of date but still enlightening) presentation about the LFRic datamodel can also be found here …
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -212,7 +212,7 @@
             </header>
             <div class="body">
               <p>
-                {% notebook ../field_notes/coast_path_pt1/coast_path.ipynb cells[1:] %}
+                I'm fortunate to live near to one of the best continuous coastal walking/hiking routes in the world. The UK's South West Coast Path is a scenic, cultural and culinary delight spanning 630 miles from Minehead to Poole. It is steeped with history, and apparently was originally created by the …
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -241,7 +241,7 @@
             </header>
             <div class="body">
               <p>
-                Contributor license agreements are a thing. As much as I dislike the bureaucracy of them, they do provide some additional cover to the owners of an open source project, and some companies insist on having them. I find myself in such a situation in the SciTools organisation, for which I …
+                Contributor license agreements are a thing. As much as I dislike the bureaucracy of them, they do provide some additional cover to the owners of an open source project, and some companies insist on having them. I find myself in such a situation in the SciTools organisation, for which I am one of the lead developers. We have a CLA form, a signing process, and a list of signatories - but the really painful part is having to remember to cross check that list of signatories each time we want to merge a pull request. This is the story of how (and to some extent why) I went about automating that process.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -269,7 +269,7 @@
             </header>
             <div class="body">
               <p>
-                In part three of my XKCD font saga I generated several hundred glyphs as PPM images, and classified them with their associated character(s). In this instalment, I will convert the raster glyphs into vector form (SVG) and then generate a rudimentary font using fontforge. If you'd like to follow …
+                In part three of my XKCD font saga I generated several hundred glyphs as PPM images, and classified them with their associated character(s). In this instalment, I will convert the raster glyphs into vector form (SVG) and then generate a rudimentary font using fontforge.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -298,7 +298,7 @@
             </header>
             <div class="body">
               <p>
-                In part two of my XKCD font saga I was able to separate strokes from the XKCD handwriting dataset into many smaller images. I also handled the easier cases of merging some of the strokes back together - I particularly focussed on "dotty" or "liney" type glyphs, such as i, !, % and …
+                In part two of my XKCD font saga I was able to separate strokes from the XKCD handwriting dataset into many smaller images. I also handled the easier cases of merging some of the strokes back together - I particularly focussed on "dotty" or "liney" type glyphs, such as i, !, % and =. Now I want to attribute a Unicode character to my segmented images, so that I can subsequently generate a font-file. We are well and truly in the domain of optical character recognition (OCR) here, but because I want absolute control of the results (and 100% accuracy) I'm going to take the simple approach of mapping glyph positions to characters myself.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -326,7 +326,7 @@
             </header>
             <div class="body">
               <p>
-                In part one of XKCD font saga I gave some background on the XKCD handwriting dataset, and took an initial look at image segmentation in order to extract the individual strokes from the scanned image. In this instalment, I will apply the technique from part 1, as well as attempting …
+                In part one of XKCD font saga I gave some background on the XKCD handwriting dataset, and took an initial look at image segmentation in order to extract the individual strokes from the scanned image. In this instalment, I will apply the technique from part 1, as well as attempting to merge together strokes to form (some of) the glyphs desired. I'm going to pay particular attention to "dotted" glyphs, such as "i", "j", ";" and "?". I will need to do future work to merge together non-dotted glyphs such as the two arrows from "≫", as these are indistinguishable from two characters that happen to be close to one another.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -355,7 +355,7 @@
             </header>
             <div class="body">
               <p>
-                The XKCD font (as used by matplotlib et al.) recently got an update to include lower-case characters. For some time now I have been aware of a handwriting sample produced by Randall Munroe (XKCD's creator) that I was interested in exploring. The ultimate aim is to automatically produce a font-file …
+                The XKCD font (as used by matplotlib et al.) recently got an update to include lower-case characters. For some time now I have been aware of a handwriting sample produced by Randall Munroe (XKCD's creator) that I was interested in exploring. The ultimate aim is to automatically produce a font-file using open source tools, and to learn a few things along the way.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -383,7 +383,7 @@
             </header>
             <div class="body">
               <p>
-                This evening I'm going to take a different approach to how I would normaly blog. Rather than reporting the results of a technical investigation or highlighting a new/shiny package, I wanted to paint a realistic picture of the technical exploration process. As it happens, this particular investigation consumed a …
+                This evening I'm going to take a different approach to how I would normaly blog. Rather than reporting the results of a technical investigation or highlighting a new/shiny package, I wanted to paint a realistic picture of the technical exploration process. As it happens, this particular investigation consumed a couple of hours and appears to have drawn an unsucessful result. Despite this, the learnings are invaluable as they will be directly and immediately applicable to other areas of my work.
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
+    <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.30">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -89,14 +89,14 @@
                   <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replcace</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
+                  <a href="https://pelson.github.io/2017/hints/npm_link/">Installing a package from source using npm</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2017/hints/nmap_ip_scan/">Using nmap to find all devices on network listening on a particular port</a>
+                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
                 </li>
                 <li class="nav-divider"></li>
                 <li>
-                  <a href="https://pelson.github.io/archives.html">See full archive (18)</a>
+                  <a href="https://pelson.github.io/archives.html">See full archive (19)</a>
                 </li>
               </ul>
             </li>
@@ -190,7 +190,7 @@
       <div class="entry">
         <p>
           The XKCD font (as used by matplotlib et al.) recently <a href="https://github.com/ipython/xkcd-font/pull/13">got an update</a> to include lower-case characters. For some time now I have been aware of a handwriting sample produced by Randall Munroe (XKCD's creator) that I was interested in exploring. The ultimate aim is to automatically produce a font-file using open source tools, and to learn a few things along the way.
-        </p><!-- PELICAN_END_SUMMARY -->
+        </p>
         <p>
           The thing about fonts is that there is actually a lot going on:
         </p>
@@ -229,9 +229,305 @@
         <p>
           Let's get stuck in by separating each of the glyphs from the image into their own image.
         </p>
-        <p>
-          {% notebook ../field_notes/xkcd/part1.ipynb %}
-        </p>
+        <p></p>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                We start by getting hold of the image as a numpy array. Original image cropped from <a href="https://github.com/ipython/xkcd-font/issues/9#issuecomment-127412261">https://github.com/ipython/xkcd-font/issues/9#issuecomment-127412261</a>:
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[1]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">hand</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">'../../images/xkcd-font/handwriting_minimal.png'</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                This is a pretty beefy image, so we will want to cut it down a little whilst doing some development. Once we are happy with the process, we can then use the full image:
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[2]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">hand</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_subarea output_stream output_stdout output_text">
+                  <pre>
+(6099, 11429, 3)
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[3]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hand</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_png output_subarea">
+                  <img src="../../images/../field_notes/xkcd/part1_output_4_0.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Before we even start, notice that some of the characters overlap, and even touch one another. This isn't going to be a clean bounding box type problem:
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[9]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="n">small_image</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="mi">3000</span><span class="p">:</span><span class="mi">4500</span><span class="p">,</span> <span class="mi">4000</span><span class="p">:</span><span class="mi">7000</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">small_image</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_png output_subarea">
+                  <img src="../../images/../field_notes/xkcd/part1_output_6_0.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[10]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="kn">from</span> <span class="nn">skimage.color</span> <span class="k">import</span> <span class="n">rgb2gray</span>
+<span class="kn">from</span> <span class="nn">skimage.color.colorlabel</span> <span class="k">import</span> <span class="n">label2rgb</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">ndimage</span> <span class="k">as</span> <span class="n">ndi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Convert to grayscale, and label the image by distinct marks.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[11]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="n">small_image_gray</span> <span class="o">=</span> <span class="n">rgb2gray</span><span class="p">(</span><span class="n">small_image</span><span class="p">)</span>
+<span class="n">labels</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ndi</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">small_image_gray</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Now convert the labels to RGB so that we can see our different segmentations:
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[13]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">label_img</span> <span class="o">=</span> <span class="n">label2rgb</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">'red'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">,</span> <span class="s1">'green'</span><span class="p">,</span> <span class="s1">'black'</span><span class="p">,</span> <span class="s1">'yellow'</span><span class="p">],</span>
+                      <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">bg_color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">label_img</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_png output_subarea">
+                  <img src="../../images/../field_notes/xkcd/part1_output_11_0.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Our first attempt to separate the letters has had some success. Let's compute each glyph's bounding box, and add that to the image. Initially, I tried using <code>scipy.ndimage.measurements.extrema</code> to give me each label's bounding box, but ended up needing to brute-force it using <code>np.where</code>.
+              </p>
+              <p>
+                <strong>Note from the future:</strong> <em><a href="http://scikit-image.org/docs/dev/api/skimage.measure.html#skimage.measure.regionprops">skimage.measure.regionprops</a> is the best tool for the job.</em>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[14]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="n">glyph_locations</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">labels</span><span class="o">.</span><span class="n">max</span><span class="p">()):</span>
+    <span class="n">ys</span><span class="p">,</span> <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="n">xs</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">ys</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">xs</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">ys</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+    <span class="n">glyph_locations</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">bbox</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered">
+          <div class="prompt input_prompt"></div>
+          <div class="inner_cell">
+            <div class="text_cell_render border-box-sizing rendered_html">
+              <p>
+                Now that we have the locations of the labels, let's draw a rectangle around each distinct label.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="cell border-box-sizing code_cell rendered">
+          <div class="input">
+            <div class="prompt input_prompt">
+              In&nbsp;[15]:
+            </div>
+            <div class="inner_cell">
+              <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                  <pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">label_img</span><span class="p">)</span>
+ 
+<span class="k">for</span> <span class="n">glyph_i</span><span class="p">,</span> <span class="n">bbox</span> <span class="ow">in</span> <span class="n">glyph_locations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">([</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span>
+                             <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="output_wrapper">
+            <div class="output">
+              <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_png output_subarea">
+                  <img src="../../images/../field_notes/xkcd/part1_output_15_0.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p></p>
         <h2>
           Conclusion
         </h2>
