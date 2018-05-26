@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Philip Elson">
+    <link rel="icon" href="https://pelson.github.io/theme/images/favicon.ico">
+    <title>
+      Recursive search and replcace by Phil Elson - Software | Science | Python
+    </title><!-- Bootstrap core CSS -->
+    <link href="https://pelson.github.io/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet"><!-- Custom styles for this template -->
+    <link href="https://pelson.github.io/theme/css/style.css" rel="stylesheet">
+    <link href="https://pelson.github.io/" type="application/atom+xml" rel="alternate" title="Phil Elson - Software | Science | Python ATOM Feed">
+    <link rel="stylesheet" href="https://pelson.github.io/theme/font-awesome/css/font-awesome.min.css">
+    <link href="//fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://pelson.github.io/theme/css/pygments-default.css">
+    <link rel="stylesheet" href="https://pelson.github.io/theme/css/notebook-styling.css">
+  </head><!-- NAVBAR ================================================== -->
+  <body>
+    <div class="container-fullwidth">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="row">
+          <div id="banner" class="col-md-3 shrinker">
+            <div>
+              <p class="by-phil">
+                <a href="https://pelson.github.io">Phil Elson</a>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 text-center">
+            <div class="brand-icons">
+              <div id="nav-sci" class="col-xs-4">
+                <a href="https://pelson.github.io"><i class="fa fa-icon fa-fw fa-flask"></i>
+                <h2>
+                  Science
+                </h2></a>
+              </div>
+              <div id="nav-software" class="col-xs-4">
+                <a href="https://pelson.github.io"><i class="nav-icon fa fa-code"></i>
+                <h2>
+                  Software
+                </h2></a>
+              </div>
+              <div id="nav-oss" class="col-xs-4">
+                <a href="https://pelson.github.io"><img src="https://pelson.github.io/theme/images/osi_white.png" alt="Open Source">
+                <h2>
+                  Open source
+                </h2></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 nav-toggle">
+            <i class="fa fa-bars"></i>
+          </div>
+        </div>
+        <script>
+        var navbar_toggled = false;
+        </script>
+        <div class="actual-navbar shrink">
+          <ul class="nav navbar-nav nav-pills">
+            <li class="hidden-xs clearfix">
+              <a href="https://pelson.github.io"><i class="fa fa-fw fa-home"></i>Home</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/articles/"><i class="fa fa-fw fa-file-o"></i>Articles</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/announce/"><i class="fa fa-fw fa-bullhorn"></i>Announcements</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/field-notes/"><i class="fa fa-fw fa-map-o"></i>&nbsp;Field notes</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/hints-n-tips/"><i class="fa fa-fw fa-list-ul"></i>Hints &amp; Tips</a>
+            </li>
+            <li class="hidden-xs dropdown clearfix">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                  <a href="https://pelson.github.io/2018/LFRic_containment/">Investigating containment testing on LFRic's cubedsphere</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2018/coast-path/">Analysing walks on the South West Coast Path</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replcace</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2017/hints/nmap_ip_scan/">Using nmap to find all devices on network listening on a particular port</a>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                  <a href="https://pelson.github.io/archives.html">See full archive (18)</a>
+                </li>
+              </ul>
+            </li>
+            <li class="hidden-xs dropdown clearfix">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-tags"></i>Tags <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                  <a href="https://pelson.github.io/tag/biggus/">biggus (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/cartopy/">cartopy (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/cla/">CLA (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/conda/">conda (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/docker/">docker (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/fiona/">fiona (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/folium/">folium (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/fonts/">fonts (4)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/fuse/">FUSE (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/github/">GitHub (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/heroku/">heroku (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/lfric/">LFRic (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/matplotlib/">matplotlib (4)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/python/">Python (10)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/shapely/">shapely (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/tornado/">tornado (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/voluminous-data/">voluminous data (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/xarray/">xarray (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/xkcd/">XKCD (4)</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="navbar-spacer"></div>
+    </div>
+    <div class="container">
+      <h2 id="single">
+        Recursive search and replcace
+      </h2>
+      <div class="date entry-info">
+        <div style="float: left; padding: 0.5em 1em 0.5em 0em;">
+          <time datetime="2018-05-21T12:00:00+01:00" class="icon"></time>
+          <div class="time-icon">
+            <p class="year">
+              2018
+            </p>
+            <p class="month">
+              May
+            </p><span class="day">21</span>
+          </div>
+        </div>
+        <p>
+          Tags:
+        </p>
+      </div>
+      <div class="entry">
+        <p>
+          I had a need to recursively search and replace for a particular string within a git repository. A combination of find and sed is all that is needed, but one must be careful to avoid modifying the contents of the ".git" directory (I accidentally did this, and effectively destroyed my clone).
+        </p>
+        <p>
+          The command necessary on my OSX, in all its glory:
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span>LC_ALL=C find . \
+    -path ./.git -prune \
+    -o -type f \
+    -exec sh -c 'sed -i "" -- "s|old|new|g" {};' \;
+</pre>
+        </div>
+        <p>
+          Unfortunately, this has the effect of adding newlines at the end of each file that doesn't have them. This can be seen in a number of StackOverflow questions, such as <a href="https://stackoverflow.com/questions/13325138/why-does-sed-add-a-new-line-in-osx">this one</a>.
+        </p>
+        <p>
+          Instead of sed therefore, perl can be used instead:
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span>LC_ALL=C find . \
+    -path ./.git -prune \
+    -o -type f \
+    -exec sh -c 'perl -pi -e "s|old|new|g" {};' \;
+</pre>
+        </div>
+      </div>
+      <hr>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+      var disqus_shortname = "pelson";
+      var disqus_identifier = "hints/search-and-replace";
+
+      (function() {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+      })();
+      </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> <!-- /END THE FEATURETTES -->
+      <div class="clearfix"></div>
+      <hr class="featurette-divider">
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>
+          © 2017 Phil Elson · <a href="https://pelson.github.io#">About</a> · <a href="https://pelson.github.io#contact">Contact</a> · <a href="https://pelson.github.io/feeds/atom.xml"><i class="fa fa-fw fa-rss-square"></i>RSS</a>
+        </p>
+      </footer>
+    </div><!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://pelson.github.io/theme/jquery.min.js">
+    </script> 
+    <script src="https://pelson.github.io/theme/bootstrap.min.js">
+    </script> 
+    <script src="https://pelson.github.io/theme/js/scroll.js">
+    </script> 
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-29774503-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </body>
+</html>

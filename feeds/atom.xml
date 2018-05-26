@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Phil Elson - Software | Science | Python</title><link href="https://pelson.github.io/" rel="alternate"></link><link href="https://pelson.github.io/feeds/atom.xml" rel="self"></link><id>https://pelson.github.io/</id><updated>2018-05-29T00:00:00+01:00</updated><entry><title>Investigating containment testing on LFRic's cubedsphere</title><link href="https://pelson.github.io/2018/LFRic_containment/" rel="alternate"></link><published>2018-05-29T00:00:00+01:00</published><updated>2018-05-29T00:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2018-05-29:/2018/LFRic_containment/</id><summary type="html">&lt;p&gt;{% notebook ../field_notes/lfric_containment/LFRic_UGRID_containment.ipynb %}&lt;/p&gt;</summary><content type="html">&lt;p&gt;{% notebook ../field_notes/lfric_containment/LFRic_UGRID_containment.ipynb %}&lt;/p&gt;</content><category term="LFRic"></category><category term="cartopy"></category><category term="shapely"></category><category term="xarray"></category></entry><entry><title>Analysing walks on the South West Coast Path</title><link href="https://pelson.github.io/2018/coast-path/" rel="alternate"></link><published>2018-05-26T00:00:00+01:00</published><updated>2018-05-26T00:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2018-05-26:/2018/coast-path/</id><summary type="html">&lt;p&gt;{% notebook ../field_notes/coast_path_pt1/coast_path.ipynb cells[1:] %}&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A typical coast path sight" src="./../../images/coast_path.png"&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;{% notebook ../field_notes/coast_path_pt1/coast_path.ipynb cells[1:] %}&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A typical coast path sight" src="./../../images/coast_path.png"&gt;&lt;/p&gt;</content><category term="fiona"></category><category term="shapely"></category><category term="folium"></category><category term="cartopy"></category></entry><entry><title>Recursive search and replcace</title><link href="https://pelson.github.io/2018/hints/search-and-replace/" rel="alternate"></link><published>2018-05-21T12:00:00+01:00</published><updated>2018-05-21T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2018-05-21:/2018/hints/search-and-replace/</id><summary type="html">&lt;p&gt;I had a need to recursively search and replace for a particular string within a git repository.
+A combination of find and sed is all that is needed, but one must be careful to avoid modifying the contents of the ".git" directory (I accidentally did this, and effectively destroyed my …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I had a need to recursively search and replace for a particular string within a git repository.
+A combination of find and sed is all that is needed, but one must be careful to avoid modifying the contents of the ".git" directory (I accidentally did this, and effectively destroyed my clone).&lt;/p&gt;
+&lt;p&gt;The command necessary on my OSX, in all its glory:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;LC_ALL=C find . \
+    -path ./.git -prune \
+    -o -type f \
+    -exec sh -c &amp;#39;sed -i &amp;quot;&amp;quot; -- &amp;quot;s|old|new|g&amp;quot; {};&amp;#39; \;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Unfortunately, this has the effect of adding newlines at the end of each file that doesn't have them.
+This can be seen in a number of StackOverflow questions, such as 
+&lt;a href="https://stackoverflow.com/questions/13325138/why-does-sed-add-a-new-line-in-osx"&gt;this one&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Instead of sed therefore, perl can be used instead:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;LC_ALL=C find . \
+    -path ./.git -prune \
+    -o -type f \
+    -exec sh -c &amp;#39;perl -pi -e &amp;quot;s|old|new|g&amp;quot; {};&amp;#39; \;
+&lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>Creating an application for a website on OSX</title><link href="https://pelson.github.io/2017/hints/applicationize/" rel="alternate"></link><published>2017-09-20T12:00:00+01:00</published><updated>2017-09-20T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2017-09-20:/2017/hints/applicationize/</id><summary type="html">&lt;p&gt;I wanted to get a desktop application for a website that doesn't provide one, and had success with https://github.com/eladnava/applicationize. This worked a treat for my local Home Assistant instance, so now I don't need to open a tab in my web-browser.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I wanted to get a desktop application for a website that doesn't provide one, and had success with https://github.com/eladnava/applicationize. This worked a treat for my local Home Assistant instance, so now I don't need to open a tab in my web-browser.&lt;/p&gt;</content></entry><entry><title>Using nmap to find all devices on network listening on a particular port</title><link href="https://pelson.github.io/2017/hints/nmap_ip_scan/" rel="alternate"></link><published>2017-08-20T12:00:00+01:00</published><updated>2017-08-20T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2017-08-20:/2017/hints/nmap_ip_scan/</id><summary type="html">&lt;p&gt;Finding all IPs listening on a particular port using nmap:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nmap -p 80 --open -sV 192.168.1.0/24
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;Refs:
+ * http://thoughtsbyclayg.blogspot.co.uk/2008/06/use-nmap-to-scan-for-ssh-servers-on.html
+ * https://www.digitalocean.com/community/tutorials/how-to-use-nmap-to-scan-for-open-ports-on-your-vps&lt;/p&gt;</summary><content type="html">&lt;p&gt;Finding all IPs listening on a particular port using nmap:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nmap -p 80 --open -sV 192.168.1.0/24
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;Refs:
+ * http://thoughtsbyclayg.blogspot.co.uk/2008/06/use-nmap-to-scan-for-ssh-servers-on.html
+ * https://www.digitalocean.com/community/tutorials/how-to-use-nmap-to-scan-for-open-ports-on-your-vps&lt;/p&gt;</content></entry><entry><title>Creating a continuous integration service to check CLAs on GitHub</title><link href="https://pelson.github.io/2017/scitools_cla_service/" rel="alternate"></link><published>2017-08-13T00:00:00+01:00</published><updated>2017-08-13T00:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2017-08-13:/2017/scitools_cla_service/</id><summary type="html">&lt;p&gt;Contributor license agreements are a thing. As much as I dislike the bureaucracy of them, they do provide some additional cover
+to the owners of an open source project, and some companies insist on having them. I find myself in such a situation in the
+&lt;a href="https://github.com/SciTools"&gt;SciTools&lt;/a&gt; organisation, for which I …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Contributor license agreements are a thing. As much as I dislike the bureaucracy of them, they do provide some additional cover
+to the owners of an open source project, and some companies insist on having them. I find myself in such a situation in the
+&lt;a href="https://github.com/SciTools"&gt;SciTools&lt;/a&gt; organisation, for which I am one of the lead developers. We have a CLA form, a signing process, and a list of signatories -
+but the really painful part is having to remember to cross check that list of signatories each time we want to merge a pull request.&lt;/p&gt;
+&lt;p&gt;This is the story of how (and to some extent why) I went about automating that process.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;hr&gt;
+&lt;p&gt;In early August 2017, I ran a 2 day tutorial for my team to improve knowledge and give practical experience of
+using and creating "webapps, webhooks and SaaS".
+I picked off a few useful technologies to play with, and presented a few hours of material to them.
+In particular, I focussed on tornado, the GitHub API, and Heroku.&lt;/p&gt;
+&lt;p&gt;Next, we took the knowledge I presented and came up with a bunch of ideas to hack on. I decided to focus on the pesky human-in-the-loop process of cross checking our CLA signatories list, and see if I could turn it into a fully fledged CI service in less than 1.5 days (in practice, since I led the tutorial and helped others whenever they got stuck, I only got a fraction of that time &lt;em&gt;actually&lt;/em&gt; working at my machine).&lt;/p&gt;
+&lt;p&gt;My basic plan was as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Write a CLI tool that gets our CLA signatories list and prints it&lt;/li&gt;
+&lt;li&gt;Write a CLI tool that gets the authors of a GitHub PR (there may be more than one - it is the commits we actually care about)&lt;/li&gt;
+&lt;li&gt;Write a CLI tool that &lt;em&gt;updates&lt;/em&gt; a PR's status and labels based on the status of a CLA check&lt;/li&gt;
+&lt;li&gt;Write a webapp that listens for GitHub webhooks, and applies the tool developed each time a PR is created/updated&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since I knew I was targeting a tornado webapp at the end, I ensured all of the key components were written as asynchronous coroutines, and only at the very top level of the CLI tool would I call the coroutines synchronously. It is important to note that writing coroutines generally requires making use of other coroutines - it is somewhat invasive, and much easier to start off in the knowledge that you want your code to be asynchronous.&lt;/p&gt;
+&lt;h3&gt;Calling (asynchronous) coroutines from a (synchronous) CLI tool&lt;/h3&gt;
+&lt;p&gt;The pattern that I followed to make my tools asynchronous, but my CLI synchronous was simply to use tornado's &lt;code&gt;run_sync&lt;/code&gt; method on an IOLoop instance:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@tornado.gen.coroutine
+def my_coroutine(arg1, arg2):
+    result1 = yield another_coroutine_1(arg1) 
+    result2 = yield another_coroutine_2(arg2)
+    return result1, result2
+
+
+def main():
+    ...
+    # argparse stuff
+    ...
+
+
+    # Finally, call the coroutine with the argparse arguments.
+    result1, result2 = tornado.ioloop.IOLoop.current().run_sync(
+        lambda: my_coroutine(args.arg1, args.arg2))
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Using the GitHub API for labels and statuses&lt;/h3&gt;
+&lt;p&gt;A big part of the challenge was making use of the GitHub API (v3) to query information about the PR in question, and to update things like the commit status and PR labels.&lt;/p&gt;
+&lt;p&gt;The first thing to note is the GitHub data model. It is a strange quirk that pull requests are actually issues (though not all issues are pull requests), and pull request statuses are actually statuses on &lt;em&gt;commits&lt;/em&gt;. Updating the labels of a pull request therefore involves using the &lt;code&gt;POST /repos/:owner/:repo/issues/:number/labels&lt;/code&gt; API. Updating the commit status first involves finding the HEAD commit of the pull request, and then using the &lt;code&gt;POST /repos/:owner/:repo/statuses/:sha&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Authentication of GitHub API&lt;/h3&gt;
+&lt;p&gt;Because I was writing this tool for a very niche set of repositories, I didn't need anything fancy in terms of authentication.
+I simply created a personal access token with the necessary scopes, and updated all GitHub API calls to include the extra &lt;code&gt;Authorization: token ${TOKEN}&lt;/code&gt; http header.
+When it comes to deploying this, there is an option to set secure environment variables on Heroku (under settings) which is where the token is put under the environment variable name &lt;code&gt;TOKEN&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If I did need a more sophisticated authentication scheme there are two options available.
+Both have reasonably good solutions for use with tornado:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OAuth - useful for interactive (mostly browser based) services that act at the time the user visits the service&lt;/li&gt;
+&lt;li&gt;GitHub apps - useful for non-interactive services, where scheduled tasks or other event triggers require authenticated work to occur (e.g. a status updater when a PR is modified)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It is worth noting that, despite my description of GitHub apps, tools like Travis-CI &lt;em&gt;could&lt;/em&gt; happily make use of personal access tokens as a means of setting commit statuses because they are happy to report as the @travis-ci &lt;em&gt;user&lt;/em&gt;, not the user who registered a repo's travis-ci integration.&lt;/p&gt;
+&lt;p&gt;An example of GitHub's OAuth with tornado can be found on GitHub at &lt;a href="https://github.com/jkeylu/torngithub"&gt;jkeylu/torngithub&lt;/a&gt;, and an example of creating a GitHub app with python can be found in a &lt;a href="https://gist.github.com/pelson/47c0c89a3522ed8da5cc305afc2562b0#file-example-ipynb"&gt;gist I created at https://gist.github.com/pelson/47c0c89a3522ed8da5cc305afc2562b0&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Writing a webhook&lt;/h3&gt;
+&lt;p&gt;GitHub webhooks are simply a POST request to a pre-determined URL. Of course, you need to have a webapp listening at that URL in order to &lt;em&gt;do&lt;/em&gt; anything with it. In this instance, I simply pushed my webapp up to the cloud (Heroku in this case). &lt;a href="https://developer.github.com/webhooks/"&gt;The docs for webhooks&lt;/a&gt; are pretty good, but the single most important piece of advice for when creating one is to take a look at the "manage webhooks" page. You can find this in your webhooks' settings page, and you get some invaluable info about the deliveries that have been made, as well as having a button to get the hook redelivered:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Recent Deliveries screenshot" src="https://pelson.github.io/2017/scitools_cla_service/images/webhooks_recent_delivery.png"&gt;&lt;/p&gt;
+&lt;h3&gt;Preventing man-in-the-middle webhooks&lt;/h3&gt;
+&lt;p&gt;The default webhook essentially requires a POST request of the right form sent to the right address.
+With this information anybody could submit their own POST request and get your service to do something.
+If you want to have confidence that the POST request does originate from GitHub, and hasn't been tampered with, you need to
+define a secret that GitHub will use to sign the POST content. The secret can be anything, and will be used to create a HMAC digest of the request being sent. You simply need to use the same secret to create a digest on the webapp side, and confirm that they match.
+If they don't match, the message hasn't come from GitHub.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://developer.github.com/webhooks/securing/#validating-payloads-from-github"&gt;docs on "Securing your webhooks"&lt;/a&gt; are pretty extensive. They show an example in ruby, but almost exactly the same calls are required to validate the HMAC signature in Python:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;hmac&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;hashlib&lt;/span&gt;
+
+
+&lt;span class="n"&gt;hmac_digest&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;X-Hub-Signature&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;webhook_secret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;WEBHOOK_SECRET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Compute the payload&amp;#39;s hmac digest.&lt;/span&gt;
+&lt;span class="n"&gt;expected_hmac&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;hmac&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;webhook_secret&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;hashlib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sha1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hexdigest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;expected_digest&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;sha1={}&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;expected_hmac&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;hmac_digest&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;expected_digest&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;warning&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;HMAC FAIL: expected: {}; got: {};&amp;#39;&lt;/span&gt;
+                    &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;expected_digest&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;hmac_digest&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_status&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;403&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Tornado async user agent&lt;/h3&gt;
+&lt;p&gt;Towards the end of the 2 day session, we were all frantically trying to deploy our own developments, and as the leader of the tutorial it was inevitable that I would be called up to help each group finalise their work. I too was frantically trying to get my CLA checker deployed, and was running up against the most peculiar of issues...&lt;/p&gt;
+&lt;p&gt;Tornado's AsyncHttpClient was returning a 403 (Authentication failure) on the GitHub API on my Herkou deployment, but not locally. In addition, I was able to ssh onto my Heroku instance and verify that the exact same call using the exact same token worked like a charm using requests and curl.&lt;/p&gt;
+&lt;p&gt;Had I not been all over the place trying to help others out, and perhaps had a shorter iteration cycle (I was having to deploy to Heroku to debug), I may have solved the problem a little quicker. It took a good hour to realise that the problem was that I was getting 403 because the User-Agent wasn't being set by AsyncHttpClient, and GitHub have a strict enforcement policy on it needing to exist. Simply adding the user agent when calling &lt;code&gt;fetch&lt;/code&gt; solved this issue:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;yield http_client.fetch(URL, method=&amp;#39;GET&amp;#39;,
+                        user_agent=&amp;#39;MY-CLI-CHECKER&amp;#39;,
+                        headers=headers)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Round-up&lt;/h2&gt;
+&lt;p&gt;So there you have it... I put together a CLA checking service in less than a couple of days, and in the process was able to help my team learn about webapp, Heroku and the GitHub API. A screenshot of the kind of behaviour I have created shows both the status and labels being set when a CLA is missing:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CLA Checker screenshot" src="https://pelson.github.io/2017/scitools_cla_service/images/cla_checker.png"&gt;&lt;/p&gt;
+&lt;p&gt;Although I've actually written a CI type tool on top of the GitHub API before, there were a bunch of things I learnt along the way.
+Hopefully this shows you that you really can have the integrations you've always dreamed of on GitHub with just a small amount of development effort.&lt;/p&gt;
+&lt;p&gt;You can see the code for the SciTools CLA checker I produced at &lt;a href="https://github.com/SciTools-incubator/scitools-cla-checker"&gt;SciTools-incubator/scitools-cla-checker&lt;/a&gt;.&lt;/p&gt;</content><category term="GitHub"></category><category term="CLA"></category><category term="heroku"></category><category term="tornado"></category></entry><entry><title>Converting rasters to SVG, and creating a rudimentary font with font-forge - Part 4 of an XKCD font saga</title><link href="https://pelson.github.io/2017/xkcd_font_raster_to_vector_and_basic_font_creation/" rel="alternate"></link><published>2017-04-21T00:00:00+01:00</published><updated>2017-04-21T00:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2017-04-21:/2017/xkcd_font_raster_to_vector_and_basic_font_creation/</id><summary type="html">&lt;p&gt;In &lt;a href="https://pelson.github.io/2017/xkcd_font_classifying_strokes/"&gt;part three&lt;/a&gt; of my XKCD font saga I generated several hundred glyphs as PPM images, and
+classified them with their associated character(s). In this instalment, I will convert the raster glyphs into vector form (SVG) and then
+generate a rudimentary font using fontforge.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;If you'd like to follow …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In &lt;a href="https://pelson.github.io/2017/xkcd_font_classifying_strokes/"&gt;part three&lt;/a&gt; of my XKCD font saga I generated several hundred glyphs as PPM images, and
+classified them with their associated character(s). In this instalment, I will convert the raster glyphs into vector form (SVG) and then
+generate a rudimentary font using fontforge.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;If you'd like to follow along, the input files for this article may be found at &lt;a href="https://gist.github.com/pelson/1d6460289f06acabb650797b88c15ae0"&gt;https://gist.github.com/pelson/1d6460289f06acabb650797b88c15ae0&lt;/a&gt;,
+while the code (in notebook form) and output may be found at &lt;a href="https://gist.github.com/pelson/18434e3bd37dcde8dd28a5a24def0060"&gt;https://gist.github.com/pelson/18434e3bd37dcde8dd28a5a24def0060&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I make no apologies for the amount of code here - I've tidied it up a little, but it is representative of the journey I have taken to produce
+a fully functional XKCD font. If you just want to see the resulting font you can scroll about three-quarters of the way down the page to 
+&lt;a href="#font-final"&gt;play with the final font in your browser&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;{% notebook ./xkcd_font_svg_and_creation/notebook.ipynb %}&lt;/p&gt;</content><category term="XKCD"></category><category term="fonts"></category><category term="Python"></category></entry><entry><title>Classifying segmented strokes as characters - Part 3 of an XKCD font saga</title><link href="https://pelson.github.io/2017/xkcd_font_classifying_strokes/" rel="alternate"></link><published>2017-04-01T00:00:00+01:00</published><updated>2017-04-01T00:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2017-04-01:/2017/xkcd_font_classifying_strokes/</id><summary type="html">&lt;p&gt;In &lt;a href="https://pelson.github.io/2017/xkcd_font_merge_then_extract_glyphs/"&gt;part two&lt;/a&gt; of my XKCD font saga I was able to separate strokes from the XKCD
+handwriting dataset into many smaller images. I also handled the easier cases of merging some of the strokes back together - I particularly
+focussed on "dotty" or "liney" type glyphs, such as i, !, % and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In &lt;a href="https://pelson.github.io/2017/xkcd_font_merge_then_extract_glyphs/"&gt;part two&lt;/a&gt; of my XKCD font saga I was able to separate strokes from the XKCD
+handwriting dataset into many smaller images. I also handled the easier cases of merging some of the strokes back together - I particularly
+focussed on "dotty" or "liney" type glyphs, such as i, !, % and =.&lt;/p&gt;
+&lt;p&gt;Now I want to attribute a Unicode character to my segmented images, so that I can subsequently generate a font-file. 
+We are well and truly in the domain of optical character recognition (OCR) here, but because I want absolute control of the results
+(and 100% accuracy) I'm going to take the simple approach of mapping glyph positions to characters myself.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;If you'd like to follow along, the input files for this article may be found at &lt;a href="https://gist.github.com/pelson/b80e3b3ab9edbda9ac4304f742cf292b"&gt;https://gist.github.com/pelson/b80e3b3ab9edbda9ac4304f742cf292b&lt;/a&gt;, the notebook and output may be found &lt;a href="https://gist.github.com/pelson/1d6460289f06acabb650797b88c15ae0"&gt;https://gist.github.com/pelson/1d6460289f06acabb650797b88c15ae0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As a reminder, here is a downsampled version the XKCD handwriting file:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XKCD handwriting" src="./../../images/xkcd-font/full-small.png"&gt;&lt;/p&gt;
+&lt;p&gt;{% notebook ./xkcd_font_stroke_classification/classification.ipynb %}&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this edition, I merged the few remaining strokes together to produce the finished glyphs, and classified each of the glyphs with associated
+characters (mostly unicode). I then saved these rasters out to a semantic filename in the PPM format. Next up, convert the rasters to vector SVGs
+so that we can import them into our font tool programmatically.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The next article in this series is&lt;/em&gt;: &lt;strong&gt;&lt;a href="https://pelson.github.io/2017/xkcd_font_raster_to_vector_and_basic_font_creation/"&gt;Converting PPM to SVG, and creating a font with FontForge&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;</content><category term="XKCD"></category><category term="fonts"></category><category term="Python"></category></entry><entry><title>Segment, extract, and combine features of an image with SciPy and scikit-image - Part 2 of an XKCD font saga</title><link href="https://pelson.github.io/2017/xkcd_font_merge_then_extract_glyphs/" rel="alternate"></link><published>2017-03-20T00:00:00+00:00</published><updated>2017-03-20T00:00:00+00:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2017-03-20:/2017/xkcd_font_merge_then_extract_glyphs/</id><summary type="html">&lt;p&gt;In &lt;a href="https://pelson.github.io/2017/xkcd_font/"&gt;part one&lt;/a&gt; of XKCD font saga I gave some background on the XKCD handwriting dataset, and took an initial look at image
+segmentation in order to extract the individual strokes from the scanned image.
+In this instalment, I will apply the technique from part 1, as well as attempting …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In &lt;a href="https://pelson.github.io/2017/xkcd_font/"&gt;part one&lt;/a&gt; of XKCD font saga I gave some background on the XKCD handwriting dataset, and took an initial look at image
+segmentation in order to extract the individual strokes from the scanned image.
+In this instalment, I will apply the technique from part 1, as well as attempting to merge together strokes to form (some of) the glyphs desired.&lt;/p&gt;
+&lt;p&gt;I'm going to pay particular attention to "dotted" glyphs, such as "i", "j", ";" and "?". I will need to do future work to merge together
+non-dotted glyphs such as the two arrows from "≫", as these are indistinguishable from two characters that happen to be close to one another.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;If you'd like to follow along, this notebook and the handwriting file may be found at &lt;a href="https://gist.github.com/pelson/b80e3b3ab9edbda9ac4304f742cf292b"&gt;https://gist.github.com/pelson/b80e3b3ab9edbda9ac4304f742cf292b&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;{% notebook ./xkcd_font_glyph_extract/part2.ipynb %}&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In summary, I first used &lt;code&gt;scipy.ndimage.label&lt;/code&gt; to pick out the individual features of the handwriting image.
+I then extracted the labels from the image, before blending together suitably small images (mostly the dots and short+wide strokes)
+into slightly larger composite-strokes. This was an effective technique for bringing back together things like the dots on the glyphs
+i, j and !, as well as joining together things like =, % and ±.&lt;/p&gt;
+&lt;p&gt;Inputs, code, and output can all be found at &lt;a href="https://gist.github.com/pelson/b80e3b3ab9edbda9ac4304f742cf292b"&gt;https://gist.github.com/pelson/b80e3b3ab9edbda9ac4304f742cf292b&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The next article in this series is&lt;/em&gt;: &lt;strong&gt;&lt;a href="https://pelson.github.io/2017/xkcd_font_classifying_strokes/"&gt;Classifying segmented strokes as characters&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;</content><category term="XKCD"></category><category term="fonts"></category><category term="Python"></category></entry><entry><title>Playing with Randall Munroe's XKCD handwriting</title><link href="https://pelson.github.io/2017/xkcd_font/" rel="alternate"></link><published>2017-03-16T00:00:00+00:00</published><updated>2017-03-16T00:00:00+00:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2017-03-16:/2017/xkcd_font/</id><summary type="html">&lt;p&gt;The XKCD font (as used by matplotlib et al.) recently &lt;a href="https://github.com/ipython/xkcd-font/pull/13"&gt;got an update&lt;/a&gt; to include lower-case characters.
+For some time now I have been aware of a handwriting sample produced by Randall Munroe (XKCD's creator) that I was interested in exploring.
+The ultimate aim is to automatically produce a font-file …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The XKCD font (as used by matplotlib et al.) recently &lt;a href="https://github.com/ipython/xkcd-font/pull/13"&gt;got an update&lt;/a&gt; to include lower-case characters.
+For some time now I have been aware of a handwriting sample produced by Randall Munroe (XKCD's creator) that I was interested in exploring.
+The ultimate aim is to automatically produce a font-file using open source tools, and to learn a few things along the way.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;The thing about fonts is that there is actually a lot going on:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;spacing&lt;/strong&gt; - the whitespace around a character&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;kerning&lt;/strong&gt; - special case whitespace adjustments (e.g. notice the space between "Aw" is much closer than between "As")&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hinting&lt;/strong&gt; - techniques for improved rasterization at low resolution&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ligatures&lt;/strong&gt; - special pairs/groups of characters. The traditional example is ffi, but for hand-writing, any character combination is plausible.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The raw material I'm going to use is a scan produced by XKCD author Randall Munroe containing many characters, as well as some spacing and ligature information.
+Importantly, all of the glyphs have been written at the same scale and using the same pen.
+These two details are important, as they will allow us to derive appropriate spacing and kerning information, and should result in a font that is well balanced.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="./../../images/xkcd-font/full-small.png"&gt;&lt;/p&gt;
+&lt;p&gt;(full image available on GitHub at &lt;a href="https://github.com/ipython/xkcd-font/issues/9#issuecomment-127412261"&gt;https://github.com/ipython/xkcd-font/issues/9#issuecomment-127412261&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Notice some interesting features of this sample, including ligatures (notice that "LB" is a single mark) and
+kerning (see the spacing of "VA"):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="./../../images/xkcd-font/small-detail.png"&gt;&lt;/p&gt;
+&lt;p&gt;There are a few useful articles already out there on this topic, particularly one from 2010 regarding the creation of fonts from a &lt;a href="http://scruss.com/blog/2010/05/09/creating-a-truetype-font-from-your-handwriting-with-your-scanner-your-printer-and-fontforge/"&gt;hand-written sample&lt;/a&gt;.
+Notably though, there isn't much that is automated - this is a rub for me, as without automation it is challenging for others to contribute to the font in an open and diffable way.&lt;/p&gt;
+&lt;p&gt;Let's get stuck in by separating each of the glyphs from the image into their own image.&lt;/p&gt;
+&lt;p&gt;{% notebook ../field_notes/xkcd/part1.ipynb %}&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this initial phase, we haven't done anything particularly clever - we've simply loaded in the image,
+taken a subset, and used scipy's image labelling capabilities to understand what the labelling process looks like.
+Originally I had planned to try to separate some of the glyphs that were obviously fused together - I'd even gone as far
+as prototyping using a filter to dissolve the outline (so that I could separate the labels) and then subsequently growing the
+labels again back to their original form (but keeping the separate labels). This technique worked, but it produced shapes that
+weren't perfect, and the complexities (e.g. handling of bits that disappeared, such as dots on the letter "i") weren't worth it.&lt;/p&gt;
+&lt;p&gt;In the next phase, we will use the technique shown here to generate individual image files. In addition, we will apply some heuristics
+merge back together glyphs such as the dot and comma of a semi-colon.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The next article in this series is&lt;/em&gt;: &lt;strong&gt;&lt;a href="https://pelson.github.io/2017/xkcd_font_merge_then_extract_glyphs/"&gt;Segment, extract, and combine features of an image with SciPy and scikit-image&lt;/a&gt;&lt;/strong&gt;. &lt;/p&gt;
+&lt;p&gt;Follow up items (some not yet written):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Blending together obvious glyphs&lt;/li&gt;
+&lt;li&gt;Converting to vector&lt;/li&gt;
+&lt;li&gt;Generating the font with font-forge&lt;/li&gt;
+&lt;/ul&gt;</content><category term="XKCD"></category><category term="fonts"></category><category term="Python"></category></entry><entry><title>Mounting a FUSE filesystem in Heroku</title><link href="https://pelson.github.io/2017/heroku_fuse_mount/" rel="alternate"></link><published>2017-02-06T00:00:00+00:00</published><updated>2017-02-06T00:00:00+00:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2017-02-06:/2017/heroku_fuse_mount/</id><summary type="html">&lt;p&gt;This evening I'm going to take a different approach to how I would normaly blog.&lt;/p&gt;
+&lt;p&gt;Rather than reporting the results of a technical investigation or highlighting a new/shiny package, I wanted to
+paint a realistic picture of the technical exploration process.&lt;/p&gt;
+&lt;p&gt;As it happens, this particular investigation consumed a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This evening I'm going to take a different approach to how I would normaly blog.&lt;/p&gt;
+&lt;p&gt;Rather than reporting the results of a technical investigation or highlighting a new/shiny package, I wanted to
+paint a realistic picture of the technical exploration process.&lt;/p&gt;
+&lt;p&gt;As it happens, this particular investigation consumed a couple of hours and appears to have drawn an unsucessful
+result. Despite this, the learnings are invaluable as they will be directly and immediately applicable to other areas of my work.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;h2&gt;The problem&lt;/h2&gt;
+&lt;p&gt;I run a number of services on Heroku. It's an amazing platform for rapid prototyping of (mostly web) applications. The beauty of Heroku is the ease of deployment as well as its availablity, scalability and cost.&lt;/p&gt;
+&lt;p&gt;I have one particular application on Heroku that draws statistics from a moderately sized, slow paced, filestore.
+Unfortunately, since all storage on Heroku is ephermeral, that means I must fetch the data at least once every 24 hours (when Heroku restarts the container) to recompute my statistics (which are cached for application performance). Fetching the data is a costly operation, and I'd rather avoid it if possible.&lt;/p&gt;
+&lt;p&gt;Instead of fetching the data on a daily basis, I'd like to have a third-party filestore that can be used from within the Heroku application for its statistics generation.
+I'd also like to use the store for the cache (which itself can be mem-cached/cached to the ephemeral Heroku disk).
+In order to invalidate the cache I will want an efficient means of getting a checksum or pertinent fstat info.
+The detail here isn't important, suffice to say I'd just like &lt;em&gt;some&lt;/em&gt; persistence my source data for an otherwise stateless application.&lt;/p&gt;
+&lt;h2&gt;The proposal&lt;/h2&gt;
+&lt;p&gt;Having read a little in the past about libfuse, it seemed that using FUSE to mount a networked resource would be a great match for the problem.
+Because I have a few GB lying around on Dropbox, and there appeared to be a python based Dropbox-fuse client (ff4d), I decided to investigate the feasibility of mounting my Dropbox directory inside my Heroku application. 
+Other options would have worked just as a well, including an S3 bucket (with s3fs-fuse), or a direct ssh connection (with sshfs).&lt;/p&gt;
+&lt;p&gt;I had also read a little bit about Heroku's new Docker container registry and runtime environment (https://devcenter.heroku.com/articles/container-registry-and-runtime) and thought this would be a great opportunity to shorten the deployment cycle.&lt;/p&gt;
+&lt;h2&gt;The findings&lt;/h2&gt;
+&lt;h3&gt;Mounting a dropbox directory through ff4d&lt;/h3&gt;
+&lt;p&gt;The first step is to get FUSE up-and-running on my own machine (OSX). libfuse is the first thing in a while
+that I've not been able to get hold of through conda, so I ended up dusting off my homebrew installation and going through
+a pretty heafty update. Once complete I tried:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew install libfuse
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;With no success. Turns out that osxfuse is a thing, and so I:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew install osxfuse
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Again, no luck, but homebrew does point me in the direction of a cask version (pre-compiled, rather than building it from source on my machine). I'm pretty keen to get going with this, so I go ahead and install the casked version:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew install Caskroom/cask/osxfuse
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After a short wait, the result is positive, and it looks like I have a local FUSE installation.&lt;/p&gt;
+&lt;p&gt;Next, I want to try it out. Rather than choose to do somethign simple, I go straight for the jugular and try to get a dropbox FUSE mount working. I clone https://github.com/realriot/ff4d and get myself set up with a legacy python installation (in a clean environment named "ff4d_py2":&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;conda create -n ff4d_py2 python=2 pip
+source activate ff4d_py2
+pip install dropbox
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I take a note of the dependency on a legacy version of Python, and vow to submit a merge request making the codebase python (3) compatible should I want to turn this proof-of-concept into something more.&lt;/p&gt;
+&lt;p&gt;Next, I create a "Dropbox API" -&amp;gt; "Full Dropbox" application on https://www.dropbox.com/developers/apps/create and run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python getDropboxAccessToken.py
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I follow on the on-screen prompts and am eventually rewarded with an OAuth token that I store securely.
+With my token in hand:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir foobar
+python ff4d.py  ./foobar -ap &amp;lt;my_token&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Gives me a directory called foobar containing my dropbox content, and reminds me that I can delete nearly a GB of images that
+were shared with colleagues on my dropbox account. As I delete the files (&lt;code&gt;rm -rf ./foobar/my_image_directory&lt;/code&gt;) I'm aware that
+there are a number of 404 error type messages being logged by ff4d.py - I take a note that there is something that needs deeper investigation here.&lt;/p&gt;
+&lt;p&gt;So there we have it, a locally mounted dropbox folder sitting on my OSX machine, thanks to ff4d.
+Now, I want to create a webapp that can show the contents of my directory (as a proof-of-concept), and to replicate this
+setup in a docker container, and then ultimately in a Heroku web app deployment.&lt;/p&gt;
+&lt;h3&gt;Creating the webapp&lt;/h3&gt;
+&lt;p&gt;I'm a big fan of &lt;a href="http://www.tornadoweb.org/en/stable/"&gt;tornado&lt;/a&gt;, and since the application that could benefit from
+access to my dropbox mount is also using tornado I put together a quick web-app to browse the directory.&lt;/p&gt;
+&lt;p&gt;I'd assumed that creating a http handler that allows directory listing would be built-in to tornado, but it appears not,
+so I ended up re-using code from https://github.com/imom0/SimpleTornadoServer/blob/master/SimpleTornadoServer.py (BSD-3)
+to allow me to navigate my directories from within the webapp.&lt;/p&gt;
+&lt;p&gt;In order for my webapp and ff4d mount to be run on the same process within Heroku (not the only option - it is easy enough to create new processes on Heroku, I just like the ability to control them all from a single process) I need to get the webapp to
+mount the dropbox directory itself.
+Since mounting through ff4d is blocking, I am going to need to run one 2 IOLoops, one on the main thread (for tornado) and the other in a ThreadPoolExecutor managed thread (for ff4d).&lt;/p&gt;
+&lt;p&gt;Getting another thread to run a blocking script whilst still running a responsive tornado main IOLoop thread is something I have done a few times now.
+In other situations I have wanted to commuicate through Kafka ((example)[http://stackoverflow.com/a/40602866/741316]) in my tornado application, and in another application I wanted the ability to (optionally) spawn a Dask scheduler, workers and client. Truth be told, in most of these situations processes are a better choice, but I digress.&lt;/p&gt;
+&lt;p&gt;Getting a tornado webapp to run a blocking process in another thread is surprisingly easy.
+We need a ThreadPool, and an asyncronous function that can run on the main thread:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@tornado.gen.coroutine
+def async(executor, function, *args, **kwargs):
+    yield executor.submit(function, *args, **kwargs)
+
+thread_pool = ThreadPoolExecutor(1)
+tornado.ioloop.IOLoop.current().spawn_callback(async, thread_pool, start_mount, mount_dir=mount_dir)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The function itself is fairly trivial, and simply spawns a sub-process which mounts my dropbox directory:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def start_mount(mount_dir):
+    dropbox_token = os.environ.get(&amp;#39;DROPBOX_TOKEN&amp;#39;)
+    if not os.path.exists(mount_dir):
+        os.mkdir(mount_dir)
+    subprocess.check_call([sys.executable, &amp;#39;ff4d.py&amp;#39;, mount_dir, &amp;#39;-ap&amp;#39;, dropbox_token])
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;With all of this in place, I'm able to fire up my tornado webapp, and navigate my dropbox content from within the browser.&lt;/p&gt;
+&lt;p&gt;The complete code can be found at https://github.com/pelson/heroku-with-dropbox-mount.&lt;/p&gt;
+&lt;h3&gt;Build &amp;amp; deploy with Docker&lt;/h3&gt;
+&lt;p&gt;Groundwork complete, we now want to put some scaffolding around our proof-of-concept so that we can easily test and deploy
+the application on Heroku.&lt;/p&gt;
+&lt;p&gt;As I mentioned at the beginning, I recently read-up about the new docker based Heroku deployment option, and want to give it a shot.
+Since I'm on OSX, I fire up docker-machine (needed an update) and get started with writing my Dockerfile.&lt;/p&gt;
+&lt;p&gt;I was aware of Continuum's Docker images, and so reached for that as the base image, before extending to my requirements.
+There is nothing earth-shattering about the Dockerfile I produced (available at https://github.com/pelson/heroku-with-dropbox-mount),
+and my build -&amp;gt; test workflow looks like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker build --tag=docker_webapp_test
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker run -p 5000:5000 -e PORT=5000 -e DROPBOX_TOKEN=&amp;lt;my_token&amp;gt; -t -i docker_webapp_test
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As mentioned, I'm using docker-machine to run docker - it essentially manages a VirtualBox machine to run a suitable
+host OS for docker. This means that even though the the port was forwarded in my &lt;code&gt;docker run&lt;/code&gt; call, it won't be visible to me on localhost. To find out what IP my machine is running on, we can call &lt;code&gt;docker-machine ip &amp;lt;machine_name&amp;gt;&lt;/code&gt;.
+It is this address (+":5000") that I use to see the webapp in my browser.&lt;/p&gt;
+&lt;p&gt;Things are starting to come together nicely, except the mount of my device was failing with messages similar to:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Starting FUSE...
+fuse: failed to open /dev/fuse: Operation not permitted
+[ERROR] Failed to start FUSE... (Traceback (most recent call last):
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It turns out that we need elevated priveledges to mount a FUSE device within docker.
+Adding &lt;code&gt;--cap-add SYS_ADMIN&lt;/code&gt; and &lt;code&gt;--device /dev/fuse&lt;/code&gt; to docker should be enough (though it appears there was once a bug in docker that meant the container needed to be run with &lt;em&gt;full&lt;/em&gt; priveledges).
+I make a note of this as a potential problem for our Heroku deployment.&lt;/p&gt;
+&lt;p&gt;Finally, I'm able to launch my docker image and navigate my dropbox content through my web app.
+The final step is to push this image to Heroku:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;heroku container:push web
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After a considerable amount of time waiting for all of the image layers to upload I get an error in my heroku logs.
+Simply changing CMD to something that should obviously work (&lt;code&gt;ls -ltr&lt;/code&gt;) I get a similar error:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2017-02-07T11:13:48.755363+00:00 heroku[web.1]: State changed from crashed to starting
+2017-02-07T11:13:56.607038+00:00 heroku[web.1]: Starting process with command `/bin/sh -c \&amp;quot;ls\ -ltr\&amp;quot;`
+2017-02-07T11:13:59.043845+00:00 app[web.1]: Error: No such file or directory
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It may be a red-herring, but the command escaping looks a little off.
+I iterate further with just &lt;code&gt;ls&lt;/code&gt; as the CMD, but get the same error.
+Iterating takes about 30s, so a trial and error approach to solving the problem is proving tedious - I would love to be able to reproduce the issue locally to shorten the loop.
+I try removing the quotes within the Dockerfile's CMD section and I ensure that PATH is correctly set - still nothing.&lt;/p&gt;
+&lt;p&gt;I look back at the docs learn about docker-compose - looks like an interesting tool for managing processes in a similar way to the Proc file within Heroku - definitely something to note for future exploration.&lt;/p&gt;
+&lt;p&gt;With frustration setting in, I roll back to the Dockerfile provided in the documentation.
+This uses alpine as is base and takes some time to upload, but eventually I'm able to confirm that I can at least run CMD on Heroku with that Dockerfile.
+Whilst I'd love to understand what is wrong different between Continuum's image and the alpine image (other than the whole OS), my focus on getting my proof-of-concept up and running on Heroku, so I change tactic and update my Dockerfile derive FROM the alpine base image.&lt;/p&gt;
+&lt;p&gt;After a little more iteration, I eventually manage to use alpine as the base for my webapp's image (including installing ca-certificates to prevent urllib from raising a CERTIFICATE_VERIFY_FAILED exception). I push the image to heroku, and define the DROPBOX_TOKEN environment variable that my code expects in the heroku web portal, but alas there is a problem with the FUSE mount:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2017-02-07T14:36:06.997268+00:00 app[web.1]: Starting FUSE...
+2017-02-07T14:36:06.997269+00:00 app[web.1]: [ERROR] Failed to start FUSE... (Traceback (most recent call last):
+2017-02-07T14:36:06.997270+00:00 app[web.1]:   File &amp;quot;ff4d/ff4d.py&amp;quot;, line 812, in &amp;lt;module&amp;gt;
+2017-02-07T14:36:06.997271+00:00 app[web.1]:     FUSE(Dropbox(ar), mountpoint, foreground=args.background, debug=debug_fuse, sync_read=True, allow_other=allow_other, allow_root=allow_root)
+2017-02-07T14:36:06.997271+00:00 app[web.1]:   File &amp;quot;/opt/webapp/ff4d/fuse.py&amp;quot;, line 405, in __init__
+2017-02-07T14:36:06.997272+00:00 app[web.1]:     raise RuntimeError(err)
+2017-02-07T14:36:06.997273+00:00 app[web.1]: RuntimeError: 1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In addition, there is a message in the log along the lines of:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;fuse&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;found&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;modprobe fuse&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It may be as I feared: Heroku doesn't currently support FUSE mounts.&lt;/p&gt;
+&lt;p&gt;In order to get one final datapoint, I put together the equivalent Dockerfile for ubuntu rather than alpine. Unfortunately the results are the same.&lt;/p&gt;</content><category term="Heroku"></category><category term="FUSE"></category><category term="python"></category><category term="docker"></category></entry><entry><title>Building a matrix of conda distributions with conda-build-all</title><link href="https://pelson.github.io/2015/conda_build_all/" rel="alternate"></link><published>2015-12-09T12:00:00+00:00</published><updated>2015-12-09T12:00:00+00:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2015-12-09:/2015/conda_build_all/</id><summary type="html">&lt;p&gt;Introducing &lt;code&gt;conda-build-all&lt;/code&gt;, a tool which extends &lt;code&gt;conda-build&lt;/code&gt; to provide powerful build
+matrix capabilities.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;Repositories such as &lt;a href="https://github.com/ioos/conda-recipes"&gt;conda-forge/stages-recipes&lt;/a&gt;, &lt;a href="https://github.com/SciTools/conda-recipes-scitools"&gt;SciTools/conda-recipes-scitools&lt;/a&gt; and &lt;a href="https://github.com/ioos/conda-recipes"&gt;ioos/conda-recipes&lt;/a&gt; exist to provide a set of conda recipes, and ultimately, channels from which users can access the product of &lt;code&gt;conda-build&lt;/code&gt;-ing those recipes.
+The build phase of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Introducing &lt;code&gt;conda-build-all&lt;/code&gt;, a tool which extends &lt;code&gt;conda-build&lt;/code&gt; to provide powerful build
+matrix capabilities.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;Repositories such as &lt;a href="https://github.com/ioos/conda-recipes"&gt;conda-forge/stages-recipes&lt;/a&gt;, &lt;a href="https://github.com/SciTools/conda-recipes-scitools"&gt;SciTools/conda-recipes-scitools&lt;/a&gt; and &lt;a href="https://github.com/ioos/conda-recipes"&gt;ioos/conda-recipes&lt;/a&gt; exist to provide a set of conda recipes, and ultimately, channels from which users can access the product of &lt;code&gt;conda-build&lt;/code&gt;-ing those recipes.
+The build phase of all of these repositories looks very similar: a tool (ObviousCI) computes the build matrix, builds those distributions which haven't already been built, and then uploads them to their respective channels.
+The functionality is tried and tested, and has been powering these repositories for over a year with huge success, however, I recently had need to use this functionality without wanting to upload the built distributions to &lt;a href="http://conda.anaconda.org"&gt;conda.anaconda.org&lt;/a&gt; and found the tool didn't &lt;em&gt;quite&lt;/em&gt; fit the bill.
+Additionally, having originally cobbled together ObviousCI with string and sticky-tape to prove the concept of a continuously integrated repo of recipes, I didn't have huge confidence in its ability to function between python/conda/conda-build upgrades.&lt;/p&gt;
+&lt;p&gt;As a result, I have re-factored the build part of ObviousCI into a general purpose library which can now be used for the original "conda recipe repository" usecase as much as it can for the ad-hoc "just build this" usecase. Critically, the most significant part of this re-factoring was adding a huge array of unit and integration tests which can be used to ensure expected behaviour is unchanged through future dependency version upgrades.&lt;/p&gt;
+&lt;p&gt;The new CLI is &lt;code&gt;conda-build-all&lt;/code&gt; (BSD license) and is developed at &lt;a href="https://github.com/SciTools/conda-build-all"&gt;SciTools/conda-build-all&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;The build matrix&lt;/h3&gt;
+&lt;p&gt;So what does a build matrix actually look like? Let's jump in at the deep-end and look at a package which has a numpy C-API dependency.
+Whilst numpy's ABI is (intended to be) &lt;a href="http://stackoverflow.com/a/18369312/741316"&gt;forward-compatible&lt;/a&gt;, in practice it is safer to compile against a specific version and "pin" the distribution to that version.
+Essentially, that means we need to build our recipe N times, where N is the number of numpy versions we wish to support.
+Of course, the same is true for Python itself, leading to a permutation problem of up to &lt;code&gt;NxM&lt;/code&gt; builds (N: number of supported numpy versions; M: number of supported Python versions).&lt;/p&gt;
+&lt;p&gt;The current conda recipe form for such a package looks like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;package&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;my_library&lt;/span&gt;
+    &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;
+&lt;span class="n"&gt;requirements&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+        &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;
+    &lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+        &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Whilst I believe there is &lt;a href="https://github.com/conda/conda-build/pull/650"&gt;room for improvement&lt;/a&gt; in the recipe definition, it is still pretty easy to define a complex set of build- and run-time dependencies.&lt;/p&gt;
+&lt;p&gt;With the existing &lt;code&gt;conda-build&lt;/code&gt; tool, should we want to build this for Python 2.7, 3.4 and 3.5, and against numpy 1.9 and 1.10 (the latest versions of these libraries at the time of writing), things can get a little tedious:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;CONDA_PY=27 CONDA_NPY=19 conda build my_library
+CONDA_PY=34 CONDA_NPY=19 conda build my_library
+CONDA_PY=35 CONDA_NPY=19 conda build my_library
+CONDA_PY=27 CONDA_NPY=110 conda build my_library
+CONDA_PY=34 CONDA_NPY=110 conda build my_library
+CONDA_PY=35 CONDA_NPY=110 conda build my_library
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;With &lt;code&gt;conda-build-all&lt;/code&gt; the special environment variables are taken care of for you (and importantly there is future scope to generalise beyond Python &amp;amp; numpy) and a build matrix is computed:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ conda-build-all my_library
+Resolving distributions from &lt;span class="m"&gt;1&lt;/span&gt; recipes... 
+Computed that there are &lt;span class="m"&gt;7&lt;/span&gt; distributions from the &lt;span class="m"&gt;1&lt;/span&gt; recipes:
+Resolved dependencies, will be built in the following order: 
+    my_library-1.0-np19py26_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py34_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py34_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Notice how this command is not conceptually equivalent to the original &lt;code&gt;conda-build&lt;/code&gt; calls as I have not asked for particular versions to build against.
+&lt;code&gt;conda-build-all&lt;/code&gt; has chosen the top two major versions and within those, the top two minor versions of the packages which require "pinning". Unfortunately, that included Python 2.6, which I didn't really want - to resolve that, we can add extra conditions to our build:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ conda-build-all my_library --matrix-conditions &lt;span class="s2"&gt;&amp;quot;python &amp;gt;=2.7&amp;quot;&lt;/span&gt;
+Fetching package metadata: ........
+Resolving distributions from &lt;span class="m"&gt;1&lt;/span&gt; recipes... 
+Computed that there are &lt;span class="m"&gt;6&lt;/span&gt; distributions from the &lt;span class="m"&gt;1&lt;/span&gt; recipes:
+Resolved dependencies, will be built in the following order: 
+    my_library-1.0-np110py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py34_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py34_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We now have functionally equivalent behaviour that will move forwards as new Python and numpy versions become available.&lt;/p&gt;
+&lt;h3&gt;Building multiple recipes in a single call&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;conda-build-all&lt;/code&gt; knows what a conda recipe looks like, and will traverse the directories you give it to look for things to build.&lt;/p&gt;
+&lt;p&gt;Supposing we have a directory of recipes which we wish to build, such as the following:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ find * -name meta.yaml -exec sh -c &lt;span class="s2"&gt;&amp;quot;echo RECIPE: {}; cat {}; echo&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\;&lt;/span&gt;
+RECIPE: my_recipes_directory/my_library/meta.yaml
+package:
+    name: my_library
+    version: &lt;span class="m"&gt;1&lt;/span&gt;.0
+requirements:
+    build:
+        - python
+        - numpy x.x
+    run:
+        - python
+        - numpy x.x
+
+RECIPE: my_recipes_directory/my_other_library/meta.yaml
+package:
+    name: my_other_library
+    version: &lt;span class="m"&gt;1&lt;/span&gt;.0
+requirements:
+    build:
+        - python
+        - numpy x.x
+    run:
+        - python
+        - numpy x.x
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We can simply call &lt;code&gt;conda-build-all&lt;/code&gt; on the directory of recipes to have them built appropriately:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ conda-build-all my_recipes_directory --matrix-conditions &lt;span class="s2"&gt;&amp;quot;python 2.7.*|3.5.*&amp;quot;&lt;/span&gt;
+Fetching package metadata: ........
+Resolving distributions from &lt;span class="m"&gt;2&lt;/span&gt; recipes... 
+Computed that there are &lt;span class="m"&gt;8&lt;/span&gt; distributions from the &lt;span class="m"&gt;2&lt;/span&gt; recipes:
+Resolved dependencies, will be built in the following order: 
+    my_library-1.0-np110py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_other_library-1.0-np110py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_other_library-1.0-np19py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_other_library-1.0-np110py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_other_library-1.0-np19py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This functionality becomes invaluable when we wish to build many packages, such is the case for the conda-recipes repositories mentioned earlier.&lt;/p&gt;
+&lt;h3&gt;Only building the missing distributions&lt;/h3&gt;
+&lt;p&gt;The build matrix is supremely useful, but it does come at the cost of the extra time needed to build the many distributions.
+With repositories full of recipes, it is easy to come to hundreds of build matrix items. If we want to be able to run &lt;code&gt;conda-build-all&lt;/code&gt; on a regular basis, we can't reasonably expect to build each of those items each time.
+Therefore, &lt;code&gt;conda-build-all&lt;/code&gt; has the ability to inspect various locations to determine if a distribution has already been built.
+In fact, the default behaviour is to inspect the local conda-build directory to determine if a distribution has already been built locally.
+Other options include the ability to inspect conda channels as well as arbitrary local directories.
+Supposing we wanted the &lt;code&gt;pelson/channel/testing&lt;/code&gt; channel to have all of the built distributions from &lt;code&gt;my_recipes_directory&lt;/code&gt;, we can use &lt;code&gt;conda-build-all&lt;/code&gt; to good effect:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;conda-build-all my_recipes_directory/ --matrix-conditions &amp;quot;python 2.7.*|3.5.*&amp;quot; \
+    --inspect-channels &amp;quot;pelson/channel/testing&amp;quot; \
+    --upload-channels &amp;quot;pelson/channel/testing&amp;quot; \
+    --no-inspect-conda-bld-directory
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;conda-build-all&lt;/code&gt; is a tool which builds on top of &lt;code&gt;conda-build&lt;/code&gt; to give powerful build-matrix options when building conda distributions.
+It has come from &lt;code&gt;ObviousCI&lt;/code&gt;, whose primary objective was to simplify the build and upload of many recipes in a Continuous Integration environment.
+In migrating the codebase from &lt;code&gt;ObviousCI&lt;/code&gt; several new test strategies have been developed - making &lt;code&gt;conda-build-all&lt;/code&gt; easier to maintain, and giving rise to the possibility of improving the &lt;code&gt;conda&lt;/code&gt; and &lt;code&gt;conda-build&lt;/code&gt; test suites themselves.&lt;/p&gt;</content><category term="conda"></category></entry><entry><title>Vim search and replace across many files</title><link href="https://pelson.github.io/2015/hints/vim_search_replace/" rel="alternate"></link><published>2015-12-03T12:00:00+00:00</published><updated>2015-12-03T12:00:00+00:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2015-12-03:/2015/hints/vim_search_replace/</id><summary type="html">&lt;p&gt;A powerful combination of commands for search and replace across multiple files with Vim.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;http://vim.wikia.com/wiki/Opening_multiple_files_from_a_single_command-line
+http://vim.wikia.com/wiki/Search_and_replace_in_multiple_buffers&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;:arg **/*.cpp
+
+:argdo %s/pattern/replace/ge | update   
+&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;A powerful combination of commands for search and replace across multiple files with Vim.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;http://vim.wikia.com/wiki/Opening_multiple_files_from_a_single_command-line
+http://vim.wikia.com/wiki/Search_and_replace_in_multiple_buffers&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;:arg **/*.cpp
+
+:argdo %s/pattern/replace/ge | update   
+&lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>Running scripts in temporary conda environments with conda execute</title><link href="https://pelson.github.io/2015/conda_execute/" rel="alternate"></link><published>2015-10-03T12:00:00+01:00</published><updated>2015-10-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2015-10-03:/2015/conda_execute/</id><summary type="html">&lt;p&gt;Conda is awesome - it is a simple package manager which allows me to create isolated software environments
+much like virtualenv. Unlike virtualenv though it can handle any package type, not just python ones.&lt;/p&gt;
+&lt;p&gt;The more I use it, the more I want to make use of conda's dependency tracking for …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Conda is awesome - it is a simple package manager which allows me to create isolated software environments
+much like virtualenv. Unlike virtualenv though it can handle any package type, not just python ones.&lt;/p&gt;
+&lt;p&gt;The more I use it, the more I want to make use of conda's dependency tracking for my own simple scripts to
+ensure they were being executed in a suitable environment with the expected dependencies already installed.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;conda build&lt;/code&gt; is an excellent tool for building your own distributions and sharing them on anaconda.org,
+but creating a distribution is tiresome if all you have is a single script, rather than a fully-fledged
+software package. That is where &lt;code&gt;conda execute&lt;/code&gt; comes in.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;&lt;code&gt;conda execute&lt;/code&gt; allows you to run a script of any kind in a temporary environment defined by metadata in the script itself.&lt;/p&gt;
+&lt;p&gt;For example, take the following Python script:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/env python&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;poisson&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;By adding appropriate &lt;code&gt;conda execute&lt;/code&gt; metadata to our script, we can describe the kind of environment
+we would need to be able to run this code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;my_script&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+
+&lt;span class="c1"&gt;#!/usr/bin/env python&lt;/span&gt;
+
+&lt;span class="c1"&gt;# conda execute&lt;/span&gt;
+&lt;span class="c1"&gt;# env:&lt;/span&gt;
+&lt;span class="c1"&gt;#  - python &amp;gt;=3&lt;/span&gt;
+&lt;span class="c1"&gt;#  - numpy&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="kp"&gt;poisson&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kp"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;conda execute&lt;/code&gt; can now be used to run this script:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ conda execute -v my_script.py
+
+Using specification: 
+env: &lt;span class="o"&gt;[&lt;/span&gt;python &amp;gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;, numpy&lt;span class="o"&gt;]&lt;/span&gt;
+run_with: &lt;span class="o"&gt;[&lt;/span&gt;/usr/bin/env, python&lt;span class="o"&gt;]&lt;/span&gt;
+
+Prefix: /Users/pelson/miniconda/tmp_envs/ea977067a8fbeb21a594
+
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As you can see, the special comment in the script has been read, and an appropriate temporary environment has been created.&lt;/p&gt;
+&lt;h2&gt;Temporary environments&lt;/h2&gt;
+&lt;p&gt;In order to provision suitable environments for the executed scripts, &lt;code&gt;conda-execute&lt;/code&gt; implements a temporary environment concept.
+Rather than adding a new environment in your conda environments directory (and thus filling up the available environments listed in &lt;code&gt;conda env list&lt;/code&gt;), a new "tmp_envs" environments directory has been created, within which &lt;code&gt;conda-execute&lt;/code&gt;'s temporary environments are created (this location is configurable with the &lt;code&gt;conda-execute/env-dir&lt;/code&gt; conda config item).
+As you may have noticed in the previous example, where the environment created was named &lt;code&gt;ea977067a8fbeb21a594&lt;/code&gt;, these temporary environments are named by a hashing algorithm (SHA 256, trunkated to 20 characters).
+The hash is taken from the &lt;code&gt;conda-execute&lt;/code&gt; metadata of your script, which means that you can re-run a script many times and only need one environment to be created. Additionally, it has the advantage that multiple scripts can share the same environment if their &lt;code&gt;conda-execute&lt;/code&gt; metadata is the same.&lt;/p&gt;
+&lt;p&gt;Each time a temporary environment is run with &lt;code&gt;conda-execute&lt;/code&gt; a log entry is added, allowing it to keep track of which environments are still in use. Once an environment has been unused for 25 hours any subsequent &lt;code&gt;conda-execute&lt;/code&gt; call will trigger it to be garbage collected, thus preventing your disk filling up with unneeded temporary environments.&lt;/p&gt;
+&lt;h2&gt;Configurability&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;conda-execute&lt;/code&gt; builds on top of &lt;code&gt;conda&lt;/code&gt;'s configuration to allow some customisation in behaviour.
+The following &lt;code&gt;condarc&lt;/code&gt; shows the configuration options that are available:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;conda-execute:
+    # The directory to use to hold the temporary environments.
+    env-dir: &amp;quot;{config.envs_dirs[0]}/../tmp_envs&amp;quot;
+
+    # The number of hours that an environment should be unused for to be
+    # considered for garbage collection.
+    remove-if-unused-for: 25
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Reproducibility of scripts with &lt;code&gt;conda-execute&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;There are a few really interesting usecases which I'm keen to explore with &lt;code&gt;conda-execute&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I'm already making use of &lt;code&gt;conda-execute&lt;/code&gt; as a form of Makefile for this blog. My &lt;a href="https://github.com/pelson/pelson.github.io/blob/source/make.py"&gt;make.py&lt;/a&gt; is simply a command line wrapper to the appropriate &lt;code&gt;pelican&lt;/code&gt; subcommand:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&amp;gt; ./make.py --help
+usage: Help [-h] {html,publish,reload} ...
+
+positional arguments:
+  {html,publish,reload}
+    html                Make the html
+    publish             Make publishable html, and put it in the
+                        output_branch.
+    reload              Make the html, and watch the folder for any changes.
+
+optional arguments:
+  -h, --help            show this help message and exit
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The concept of creating reproducible scripts goes far wider than trivial Makefiles though - with &lt;code&gt;conda-execute&lt;/code&gt;, because the metadata in the script &lt;strong&gt;is&lt;/strong&gt; the definition of the execution environment, important information about its dependencies and how it is run are all embedded into the script itself.&lt;/p&gt;
+&lt;p&gt;I'm particularly keen to explore the reproducibility angle that &lt;code&gt;conda-execute&lt;/code&gt; brings, particularly for scientific applications.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;conda-execute&lt;/code&gt; can be found at &lt;a href="https://github.com/pelson/conda-execute"&gt;github.com/pelson/conda-execute&lt;/a&gt;, and installed with &lt;code&gt;conda install conda-execute --channel conda-forge&lt;/code&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="conda"></category></entry><entry><title>Interactive matplotlib figures in the IPython notebook - they've landed!</title><link href="https://pelson.github.io/2014/nbagg_backend/" rel="alternate"></link><published>2014-06-03T12:00:00+01:00</published><updated>2014-06-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2014-06-03:/2014/nbagg_backend/</id><summary type="html">&lt;p&gt;{% notebook nbagg_backend/nbagg_backend.ipynb cells[1:2] %}&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook nbagg_backend/nbagg_backend.ipynb cells[2:] %}&lt;/p&gt;</summary><content type="html">&lt;p&gt;{% notebook nbagg_backend/nbagg_backend.ipynb cells[1:2] %}&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook nbagg_backend/nbagg_backend.ipynb cells[2:] %}&lt;/p&gt;</content><category term="matplotlib"></category><category term="Python"></category></entry><entry><title>Dealing with arrays which are bigger than memory - an intoduction to biggus</title><link href="https://pelson.github.io/2013/massive_virtual_arrays_with_biggus/" rel="alternate"></link><published>2013-09-25T12:00:00+01:00</published><updated>2013-09-25T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-09-25:/2013/massive_virtual_arrays_with_biggus/</id><summary type="html">&lt;p&gt;{% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[:1] %}&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[1:] %}&lt;/p&gt;</summary><content type="html">&lt;p&gt;{% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[:1] %}&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[1:] %}&lt;/p&gt;</content><category term="matplotlib"></category><category term="Python"></category><category term="biggus"></category><category term="voluminous data"></category></entry><entry><title>Working with colours in matplotlib</title><link href="https://pelson.github.io/2013/working_with_colors_in_matplotlib/" rel="alternate"></link><published>2013-06-03T12:00:00+01:00</published><updated>2013-06-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-06-03:/2013/working_with_colors_in_matplotlib/</id><summary type="html">&lt;p&gt;When dealing with colours in scientific visualisations some people like to have a colourmap
+which can be indexed into to pick specific colours. Whilst this isn't necessarily the best
+way of handling colours in matplotlib, it certainly adds a degree of familiarity to users
+who have come over from other …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When dealing with colours in scientific visualisations some people like to have a colourmap
+which can be indexed into to pick specific colours. Whilst this isn't necessarily the best
+way of handling colours in matplotlib, it certainly adds a degree of familiarity to users
+who have come over from other visualisation tools, such as IDL.&lt;/p&gt;
+&lt;p&gt;In this article I'll cover one approach to using the colour-by-index paradigm in matplotlib.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook working_with_colors_in_mpl/working_with_colors.ipynb cells[1:] %}&lt;/p&gt;
+&lt;p&gt;This article certainly shows a way of handling the colour-by-index paradigm,
+though it must be said that handling colours like this in matplotlib is not
+necessarily the best approach - I'll leave that to a future article.&lt;/p&gt;
+&lt;p&gt;Find this useful? How do you handle colours in your matplotlib figures? Is there a
+killer feature you think matplotlib is missing out on? Let me know via the comments
+section.&lt;/p&gt;</content><category term="matplotlib"></category><category term="Python"></category></entry><entry><title>Drawing a pseudo-colour blockplot (pcolormesh) in matplotlib with levels and specific colours</title><link href="https://pelson.github.io/2013/from_levels_and_colors/" rel="alternate"></link><published>2013-05-03T12:00:00+01:00</published><updated>2013-05-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-05-03:/2013/from_levels_and_colors/</id><summary type="html">&lt;p&gt;I recently added a new function to matplotlib to make it easier to draw pseudo-colour
+plots given specific levels and colours, in exactly the same way as you can with contour
+and contourf.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook from_levels_and_colors/using.ipynb cells[1:] %}&lt;/p&gt;</summary><content type="html">&lt;p&gt;I recently added a new function to matplotlib to make it easier to draw pseudo-colour
+plots given specific levels and colours, in exactly the same way as you can with contour
+and contourf.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook from_levels_and_colors/using.ipynb cells[1:] %}&lt;/p&gt;</content><category term="matplotlib"></category><category term="Python"></category></entry></feed>

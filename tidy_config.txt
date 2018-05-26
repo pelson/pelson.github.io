@@ -1,5 +1,0 @@
-indent: yes
-indent-spaces: 2
-wrap: 0
-drop-empty-elements: no
-quiet: yes

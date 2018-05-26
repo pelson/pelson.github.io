@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Phil Elson - Software | Science | Python - article</title><link href="https://pelson.github.io/" rel="alternate"></link><link href="https://pelson.github.io/feeds/article.atom.xml" rel="self"></link><id>https://pelson.github.io/</id><updated>2015-12-09T12:00:00+00:00</updated><entry><title>Building a matrix of conda distributions with conda-build-all</title><link href="https://pelson.github.io/2015/conda_build_all/" rel="alternate"></link><published>2015-12-09T12:00:00+00:00</published><updated>2015-12-09T12:00:00+00:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2015-12-09:/2015/conda_build_all/</id><summary type="html">&lt;p&gt;Introducing &lt;code&gt;conda-build-all&lt;/code&gt;, a tool which extends &lt;code&gt;conda-build&lt;/code&gt; to provide powerful build
+matrix capabilities.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;Repositories such as &lt;a href="https://github.com/ioos/conda-recipes"&gt;conda-forge/stages-recipes&lt;/a&gt;, &lt;a href="https://github.com/SciTools/conda-recipes-scitools"&gt;SciTools/conda-recipes-scitools&lt;/a&gt; and &lt;a href="https://github.com/ioos/conda-recipes"&gt;ioos/conda-recipes&lt;/a&gt; exist to provide a set of conda recipes, and ultimately, channels from which users can access the product of &lt;code&gt;conda-build&lt;/code&gt;-ing those recipes.
+The build phase of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Introducing &lt;code&gt;conda-build-all&lt;/code&gt;, a tool which extends &lt;code&gt;conda-build&lt;/code&gt; to provide powerful build
+matrix capabilities.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;Repositories such as &lt;a href="https://github.com/ioos/conda-recipes"&gt;conda-forge/stages-recipes&lt;/a&gt;, &lt;a href="https://github.com/SciTools/conda-recipes-scitools"&gt;SciTools/conda-recipes-scitools&lt;/a&gt; and &lt;a href="https://github.com/ioos/conda-recipes"&gt;ioos/conda-recipes&lt;/a&gt; exist to provide a set of conda recipes, and ultimately, channels from which users can access the product of &lt;code&gt;conda-build&lt;/code&gt;-ing those recipes.
+The build phase of all of these repositories looks very similar: a tool (ObviousCI) computes the build matrix, builds those distributions which haven't already been built, and then uploads them to their respective channels.
+The functionality is tried and tested, and has been powering these repositories for over a year with huge success, however, I recently had need to use this functionality without wanting to upload the built distributions to &lt;a href="http://conda.anaconda.org"&gt;conda.anaconda.org&lt;/a&gt; and found the tool didn't &lt;em&gt;quite&lt;/em&gt; fit the bill.
+Additionally, having originally cobbled together ObviousCI with string and sticky-tape to prove the concept of a continuously integrated repo of recipes, I didn't have huge confidence in its ability to function between python/conda/conda-build upgrades.&lt;/p&gt;
+&lt;p&gt;As a result, I have re-factored the build part of ObviousCI into a general purpose library which can now be used for the original "conda recipe repository" usecase as much as it can for the ad-hoc "just build this" usecase. Critically, the most significant part of this re-factoring was adding a huge array of unit and integration tests which can be used to ensure expected behaviour is unchanged through future dependency version upgrades.&lt;/p&gt;
+&lt;p&gt;The new CLI is &lt;code&gt;conda-build-all&lt;/code&gt; (BSD license) and is developed at &lt;a href="https://github.com/SciTools/conda-build-all"&gt;SciTools/conda-build-all&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;The build matrix&lt;/h3&gt;
+&lt;p&gt;So what does a build matrix actually look like? Let's jump in at the deep-end and look at a package which has a numpy C-API dependency.
+Whilst numpy's ABI is (intended to be) &lt;a href="http://stackoverflow.com/a/18369312/741316"&gt;forward-compatible&lt;/a&gt;, in practice it is safer to compile against a specific version and "pin" the distribution to that version.
+Essentially, that means we need to build our recipe N times, where N is the number of numpy versions we wish to support.
+Of course, the same is true for Python itself, leading to a permutation problem of up to &lt;code&gt;NxM&lt;/code&gt; builds (N: number of supported numpy versions; M: number of supported Python versions).&lt;/p&gt;
+&lt;p&gt;The current conda recipe form for such a package looks like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;package&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;my_library&lt;/span&gt;
+    &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;
+&lt;span class="n"&gt;requirements&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+        &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;
+    &lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+        &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Whilst I believe there is &lt;a href="https://github.com/conda/conda-build/pull/650"&gt;room for improvement&lt;/a&gt; in the recipe definition, it is still pretty easy to define a complex set of build- and run-time dependencies.&lt;/p&gt;
+&lt;p&gt;With the existing &lt;code&gt;conda-build&lt;/code&gt; tool, should we want to build this for Python 2.7, 3.4 and 3.5, and against numpy 1.9 and 1.10 (the latest versions of these libraries at the time of writing), things can get a little tedious:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;CONDA_PY=27 CONDA_NPY=19 conda build my_library
+CONDA_PY=34 CONDA_NPY=19 conda build my_library
+CONDA_PY=35 CONDA_NPY=19 conda build my_library
+CONDA_PY=27 CONDA_NPY=110 conda build my_library
+CONDA_PY=34 CONDA_NPY=110 conda build my_library
+CONDA_PY=35 CONDA_NPY=110 conda build my_library
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;With &lt;code&gt;conda-build-all&lt;/code&gt; the special environment variables are taken care of for you (and importantly there is future scope to generalise beyond Python &amp;amp; numpy) and a build matrix is computed:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ conda-build-all my_library
+Resolving distributions from &lt;span class="m"&gt;1&lt;/span&gt; recipes... 
+Computed that there are &lt;span class="m"&gt;7&lt;/span&gt; distributions from the &lt;span class="m"&gt;1&lt;/span&gt; recipes:
+Resolved dependencies, will be built in the following order: 
+    my_library-1.0-np19py26_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py34_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py34_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Notice how this command is not conceptually equivalent to the original &lt;code&gt;conda-build&lt;/code&gt; calls as I have not asked for particular versions to build against.
+&lt;code&gt;conda-build-all&lt;/code&gt; has chosen the top two major versions and within those, the top two minor versions of the packages which require "pinning". Unfortunately, that included Python 2.6, which I didn't really want - to resolve that, we can add extra conditions to our build:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ conda-build-all my_library --matrix-conditions &lt;span class="s2"&gt;&amp;quot;python &amp;gt;=2.7&amp;quot;&lt;/span&gt;
+Fetching package metadata: ........
+Resolving distributions from &lt;span class="m"&gt;1&lt;/span&gt; recipes... 
+Computed that there are &lt;span class="m"&gt;6&lt;/span&gt; distributions from the &lt;span class="m"&gt;1&lt;/span&gt; recipes:
+Resolved dependencies, will be built in the following order: 
+    my_library-1.0-np110py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py34_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py34_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We now have functionally equivalent behaviour that will move forwards as new Python and numpy versions become available.&lt;/p&gt;
+&lt;h3&gt;Building multiple recipes in a single call&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;conda-build-all&lt;/code&gt; knows what a conda recipe looks like, and will traverse the directories you give it to look for things to build.&lt;/p&gt;
+&lt;p&gt;Supposing we have a directory of recipes which we wish to build, such as the following:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ find * -name meta.yaml -exec sh -c &lt;span class="s2"&gt;&amp;quot;echo RECIPE: {}; cat {}; echo&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\;&lt;/span&gt;
+RECIPE: my_recipes_directory/my_library/meta.yaml
+package:
+    name: my_library
+    version: &lt;span class="m"&gt;1&lt;/span&gt;.0
+requirements:
+    build:
+        - python
+        - numpy x.x
+    run:
+        - python
+        - numpy x.x
+
+RECIPE: my_recipes_directory/my_other_library/meta.yaml
+package:
+    name: my_other_library
+    version: &lt;span class="m"&gt;1&lt;/span&gt;.0
+requirements:
+    build:
+        - python
+        - numpy x.x
+    run:
+        - python
+        - numpy x.x
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We can simply call &lt;code&gt;conda-build-all&lt;/code&gt; on the directory of recipes to have them built appropriately:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ conda-build-all my_recipes_directory --matrix-conditions &lt;span class="s2"&gt;&amp;quot;python 2.7.*|3.5.*&amp;quot;&lt;/span&gt;
+Fetching package metadata: ........
+Resolving distributions from &lt;span class="m"&gt;2&lt;/span&gt; recipes... 
+Computed that there are &lt;span class="m"&gt;8&lt;/span&gt; distributions from the &lt;span class="m"&gt;2&lt;/span&gt; recipes:
+Resolved dependencies, will be built in the following order: 
+    my_library-1.0-np110py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np110py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_library-1.0-np19py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_other_library-1.0-np110py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_other_library-1.0-np19py27_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_other_library-1.0-np110py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+    my_other_library-1.0-np19py35_0 &lt;span class="o"&gt;(&lt;/span&gt;will be built: True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This functionality becomes invaluable when we wish to build many packages, such is the case for the conda-recipes repositories mentioned earlier.&lt;/p&gt;
+&lt;h3&gt;Only building the missing distributions&lt;/h3&gt;
+&lt;p&gt;The build matrix is supremely useful, but it does come at the cost of the extra time needed to build the many distributions.
+With repositories full of recipes, it is easy to come to hundreds of build matrix items. If we want to be able to run &lt;code&gt;conda-build-all&lt;/code&gt; on a regular basis, we can't reasonably expect to build each of those items each time.
+Therefore, &lt;code&gt;conda-build-all&lt;/code&gt; has the ability to inspect various locations to determine if a distribution has already been built.
+In fact, the default behaviour is to inspect the local conda-build directory to determine if a distribution has already been built locally.
+Other options include the ability to inspect conda channels as well as arbitrary local directories.
+Supposing we wanted the &lt;code&gt;pelson/channel/testing&lt;/code&gt; channel to have all of the built distributions from &lt;code&gt;my_recipes_directory&lt;/code&gt;, we can use &lt;code&gt;conda-build-all&lt;/code&gt; to good effect:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;conda-build-all my_recipes_directory/ --matrix-conditions &amp;quot;python 2.7.*|3.5.*&amp;quot; \
+    --inspect-channels &amp;quot;pelson/channel/testing&amp;quot; \
+    --upload-channels &amp;quot;pelson/channel/testing&amp;quot; \
+    --no-inspect-conda-bld-directory
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;conda-build-all&lt;/code&gt; is a tool which builds on top of &lt;code&gt;conda-build&lt;/code&gt; to give powerful build-matrix options when building conda distributions.
+It has come from &lt;code&gt;ObviousCI&lt;/code&gt;, whose primary objective was to simplify the build and upload of many recipes in a Continuous Integration environment.
+In migrating the codebase from &lt;code&gt;ObviousCI&lt;/code&gt; several new test strategies have been developed - making &lt;code&gt;conda-build-all&lt;/code&gt; easier to maintain, and giving rise to the possibility of improving the &lt;code&gt;conda&lt;/code&gt; and &lt;code&gt;conda-build&lt;/code&gt; test suites themselves.&lt;/p&gt;</content><category term="conda"></category></entry><entry><title>Interactive matplotlib figures in the IPython notebook - they've landed!</title><link href="https://pelson.github.io/2014/nbagg_backend/" rel="alternate"></link><published>2014-06-03T12:00:00+01:00</published><updated>2014-06-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2014-06-03:/2014/nbagg_backend/</id><summary type="html">&lt;p&gt;{% notebook nbagg_backend/nbagg_backend.ipynb cells[1:2] %}&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook nbagg_backend/nbagg_backend.ipynb cells[2:] %}&lt;/p&gt;</summary><content type="html">&lt;p&gt;{% notebook nbagg_backend/nbagg_backend.ipynb cells[1:2] %}&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook nbagg_backend/nbagg_backend.ipynb cells[2:] %}&lt;/p&gt;</content><category term="matplotlib"></category><category term="Python"></category></entry><entry><title>Dealing with arrays which are bigger than memory - an intoduction to biggus</title><link href="https://pelson.github.io/2013/massive_virtual_arrays_with_biggus/" rel="alternate"></link><published>2013-09-25T12:00:00+01:00</published><updated>2013-09-25T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-09-25:/2013/massive_virtual_arrays_with_biggus/</id><summary type="html">&lt;p&gt;{% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[:1] %}&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[1:] %}&lt;/p&gt;</summary><content type="html">&lt;p&gt;{% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[:1] %}&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook massive_virtual_arrays_with_biggus/massive_arrays_with_biggus.ipynb cells[1:] %}&lt;/p&gt;</content><category term="matplotlib"></category><category term="Python"></category><category term="biggus"></category><category term="voluminous data"></category></entry><entry><title>Working with colours in matplotlib</title><link href="https://pelson.github.io/2013/working_with_colors_in_matplotlib/" rel="alternate"></link><published>2013-06-03T12:00:00+01:00</published><updated>2013-06-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-06-03:/2013/working_with_colors_in_matplotlib/</id><summary type="html">&lt;p&gt;When dealing with colours in scientific visualisations some people like to have a colourmap
+which can be indexed into to pick specific colours. Whilst this isn't necessarily the best
+way of handling colours in matplotlib, it certainly adds a degree of familiarity to users
+who have come over from other …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When dealing with colours in scientific visualisations some people like to have a colourmap
+which can be indexed into to pick specific colours. Whilst this isn't necessarily the best
+way of handling colours in matplotlib, it certainly adds a degree of familiarity to users
+who have come over from other visualisation tools, such as IDL.&lt;/p&gt;
+&lt;p&gt;In this article I'll cover one approach to using the colour-by-index paradigm in matplotlib.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook working_with_colors_in_mpl/working_with_colors.ipynb cells[1:] %}&lt;/p&gt;
+&lt;p&gt;This article certainly shows a way of handling the colour-by-index paradigm,
+though it must be said that handling colours like this in matplotlib is not
+necessarily the best approach - I'll leave that to a future article.&lt;/p&gt;
+&lt;p&gt;Find this useful? How do you handle colours in your matplotlib figures? Is there a
+killer feature you think matplotlib is missing out on? Let me know via the comments
+section.&lt;/p&gt;</content><category term="matplotlib"></category><category term="Python"></category></entry><entry><title>Drawing a pseudo-colour blockplot (pcolormesh) in matplotlib with levels and specific colours</title><link href="https://pelson.github.io/2013/from_levels_and_colors/" rel="alternate"></link><published>2013-05-03T12:00:00+01:00</published><updated>2013-05-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-05-03:/2013/from_levels_and_colors/</id><summary type="html">&lt;p&gt;I recently added a new function to matplotlib to make it easier to draw pseudo-colour
+plots given specific levels and colours, in exactly the same way as you can with contour
+and contourf.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook from_levels_and_colors/using.ipynb cells[1:] %}&lt;/p&gt;</summary><content type="html">&lt;p&gt;I recently added a new function to matplotlib to make it easier to draw pseudo-colour
+plots given specific levels and colours, in exactly the same way as you can with contour
+and contourf.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;{% notebook from_levels_and_colors/using.ipynb cells[1:] %}&lt;/p&gt;</content><category term="matplotlib"></category><category term="Python"></category></entry></feed>

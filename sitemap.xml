@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://pelson.github.io/2018/LFRic_containment/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2018/coast-path/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2018/hints/search-and-replace/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2017/hints/applicationize/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2017/hints/nmap_ip_scan/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2017/scitools_cla_service/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2017/xkcd_font_raster_to_vector_and_basic_font_creation/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2017/xkcd_font_classifying_strokes/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2017/xkcd_font_merge_then_extract_glyphs/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2017/xkcd_font/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2017/heroku_fuse_mount/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2015/conda_build_all/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2015/hints/vim_search_replace/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2015/conda_execute/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2014/nbagg_backend/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2013/massive_virtual_arrays_with_biggus/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2013/working_with_colors_in_matplotlib/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/2013/from_levels_and_colors/</loc>
+    <priority>0.8</priority>
+  </url>
+
+
+  <url>
+    <loc>https://pelson.github.io/404.html</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/from_levels_and_colors.html</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/massive_virtual_arrays_with_biggus.html</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://pelson.github.io/working_with_colors_in_matplotlib.html</loc>
+    <priority>1.0</priority>
+  </url>
+
+
+</urlset>

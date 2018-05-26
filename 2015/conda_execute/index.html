@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Philip Elson">
+    <link rel="icon" href="https://pelson.github.io/theme/images/favicon.ico">
+    <title>
+      Running scripts in temporary conda environments with conda execute by Phil Elson - Software | Science | Python
+    </title><!-- Bootstrap core CSS -->
+    <link href="https://pelson.github.io/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet"><!-- Custom styles for this template -->
+    <link href="https://pelson.github.io/theme/css/style.css" rel="stylesheet">
+    <link href="https://pelson.github.io/" type="application/atom+xml" rel="alternate" title="Phil Elson - Software | Science | Python ATOM Feed">
+    <link rel="stylesheet" href="https://pelson.github.io/theme/font-awesome/css/font-awesome.min.css">
+    <link href="//fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://pelson.github.io/theme/css/pygments-default.css">
+    <link rel="stylesheet" href="https://pelson.github.io/theme/css/notebook-styling.css">
+  </head><!-- NAVBAR ================================================== -->
+  <body>
+    <div class="container-fullwidth">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="row">
+          <div id="banner" class="col-md-3 shrinker">
+            <div>
+              <p class="by-phil">
+                <a href="https://pelson.github.io">Phil Elson</a>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 text-center">
+            <div class="brand-icons">
+              <div id="nav-sci" class="col-xs-4">
+                <a href="https://pelson.github.io"><i class="fa fa-icon fa-fw fa-flask"></i>
+                <h2>
+                  Science
+                </h2></a>
+              </div>
+              <div id="nav-software" class="col-xs-4">
+                <a href="https://pelson.github.io"><i class="nav-icon fa fa-code"></i>
+                <h2>
+                  Software
+                </h2></a>
+              </div>
+              <div id="nav-oss" class="col-xs-4">
+                <a href="https://pelson.github.io"><img src="https://pelson.github.io/theme/images/osi_white.png" alt="Open Source">
+                <h2>
+                  Open source
+                </h2></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 nav-toggle">
+            <i class="fa fa-bars"></i>
+          </div>
+        </div>
+        <script>
+        var navbar_toggled = false;
+        </script>
+        <div class="actual-navbar shrink">
+          <ul class="nav navbar-nav nav-pills">
+            <li class="hidden-xs clearfix">
+              <a href="https://pelson.github.io"><i class="fa fa-fw fa-home"></i>Home</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/articles/"><i class="fa fa-fw fa-file-o"></i>Articles</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/announce/"><i class="fa fa-fw fa-bullhorn"></i>Announcements</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/field-notes/"><i class="fa fa-fw fa-map-o"></i>&nbsp;Field notes</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/hints-n-tips/"><i class="fa fa-fw fa-list-ul"></i>Hints &amp; Tips</a>
+            </li>
+            <li class="hidden-xs dropdown clearfix">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                  <a href="https://pelson.github.io/2018/LFRic_containment/">Investigating containment testing on LFRic's cubedsphere</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2018/coast-path/">Analysing walks on the South West Coast Path</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replcace</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2017/hints/nmap_ip_scan/">Using nmap to find all devices on network listening on a particular port</a>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                  <a href="https://pelson.github.io/archives.html">See full archive (18)</a>
+                </li>
+              </ul>
+            </li>
+            <li class="hidden-xs dropdown clearfix">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-tags"></i>Tags <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                  <a href="https://pelson.github.io/tag/biggus/">biggus (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/cartopy/">cartopy (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/cla/">CLA (1)</a>
+                </li>
+                <li class="active">
+                  <a href="https://pelson.github.io/tag/conda/">conda (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/docker/">docker (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/fiona/">fiona (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/folium/">folium (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/fonts/">fonts (4)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/fuse/">FUSE (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/github/">GitHub (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/heroku/">heroku (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/lfric/">LFRic (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/matplotlib/">matplotlib (4)</a>
+                </li>
+                <li class="active">
+                  <a href="https://pelson.github.io/tag/python/">Python (10)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/shapely/">shapely (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/tornado/">tornado (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/voluminous-data/">voluminous data (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/xarray/">xarray (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/xkcd/">XKCD (4)</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="navbar-spacer"></div>
+    </div>
+    <div class="container">
+      <h2 id="single">
+        Running scripts in temporary conda environments with conda execute
+      </h2>
+      <div class="date entry-info">
+        <div style="float: left; padding: 0.5em 1em 0.5em 0em;">
+          <time datetime="2015-10-03T12:00:00+01:00" class="icon"></time>
+          <div class="time-icon">
+            <p class="year">
+              2015
+            </p>
+            <p class="month">
+              October
+            </p><span class="day">3</span>
+          </div>
+        </div>
+        <p>
+          Tags: <a href="https://pelson.github.io/tag/conda/">conda (2)</a>, <a href="https://pelson.github.io/tag/python/">Python (10)</a>
+        </p>
+      </div>
+      <div class="entry">
+        <p>
+          Conda is awesome - it is a simple package manager which allows me to create isolated software environments much like virtualenv. Unlike virtualenv though it can handle any package type, not just python ones.
+        </p>
+        <p>
+          The more I use it, the more I want to make use of conda's dependency tracking for my own simple scripts to ensure they were being executed in a suitable environment with the expected dependencies already installed.
+        </p>
+        <p>
+          <code>conda build</code> is an excellent tool for building your own distributions and sharing them on anaconda.org, but creating a distribution is tiresome if all you have is a single script, rather than a fully-fledged software package. That is where <code>conda execute</code> comes in.
+        </p><!-- PELICAN_END_SUMMARY -->
+        <p>
+          <code>conda execute</code> allows you to run a script of any kind in a temporary environment defined by metadata in the script itself.
+        </p>
+        <p>
+          For example, take the following Python script:
+        </p>
+        <table class="highlighttable">
+          <tr>
+            <td class="linenos">
+              <div class="linenodiv">
+                <pre>
+1
+2
+3
+4
+5
+</pre>
+              </div>
+            </td>
+            <td class="code">
+              <div class="highlight">
+                <pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+</pre>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <p>
+          By adding appropriate <code>conda execute</code> metadata to our script, we can describe the kind of environment we would need to be able to run this code:
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span><span class="err">$</span> <span class="n">cat</span> <span class="n">my_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="c1">#!/usr/bin/env python</span>
+
+<span class="c1"># conda execute</span>
+<span class="c1"># env:</span>
+<span class="c1">#  - python &gt;=3</span>
+<span class="c1">#  - numpy</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="kp">poisson</span><span class="p">(</span><span class="kp">size</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+</pre>
+        </div>
+        <p>
+          <code>conda execute</code> can now be used to run this script:
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span>$ conda execute -v my_script.py
+
+Using specification: 
+env: <span class="o">[</span>python &gt;<span class="o">=</span><span class="m">3</span>, numpy<span class="o">]</span>
+run_with: <span class="o">[</span>/usr/bin/env, python<span class="o">]</span>
+
+Prefix: /Users/pelson/miniconda/tmp_envs/ea977067a8fbeb21a594
+
+<span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span><span class="o">]</span>
+</pre>
+        </div>
+        <p>
+          As you can see, the special comment in the script has been read, and an appropriate temporary environment has been created.
+        </p>
+        <h2>
+          Temporary environments
+        </h2>
+        <p>
+          In order to provision suitable environments for the executed scripts, <code>conda-execute</code> implements a temporary environment concept. Rather than adding a new environment in your conda environments directory (and thus filling up the available environments listed in <code>conda env list</code>), a new "tmp_envs" environments directory has been created, within which <code>conda-execute</code>'s temporary environments are created (this location is configurable with the <code>conda-execute/env-dir</code> conda config item). As you may have noticed in the previous example, where the environment created was named <code>ea977067a8fbeb21a594</code>, these temporary environments are named by a hashing algorithm (SHA 256, trunkated to 20 characters). The hash is taken from the <code>conda-execute</code> metadata of your script, which means that you can re-run a script many times and only need one environment to be created. Additionally, it has the advantage that multiple scripts can share the same environment if their <code>conda-execute</code> metadata is the same.
+        </p>
+        <p>
+          Each time a temporary environment is run with <code>conda-execute</code> a log entry is added, allowing it to keep track of which environments are still in use. Once an environment has been unused for 25 hours any subsequent <code>conda-execute</code> call will trigger it to be garbage collected, thus preventing your disk filling up with unneeded temporary environments.
+        </p>
+        <h2>
+          Configurability
+        </h2>
+        <p>
+          <code>conda-execute</code> builds on top of <code>conda</code>'s configuration to allow some customisation in behaviour. The following <code>condarc</code> shows the configuration options that are available:
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span>conda-execute:
+    # The directory to use to hold the temporary environments.
+    env-dir: "{config.envs_dirs[0]}/../tmp_envs"
+
+    # The number of hours that an environment should be unused for to be
+    # considered for garbage collection.
+    remove-if-unused-for: 25
+</pre>
+        </div>
+        <h2>
+          Reproducibility of scripts with <code>conda-execute</code>
+        </h2>
+        <p>
+          There are a few really interesting usecases which I'm keen to explore with <code>conda-execute</code>.
+        </p>
+        <p>
+          I'm already making use of <code>conda-execute</code> as a form of Makefile for this blog. My <a href="https://github.com/pelson/pelson.github.io/blob/source/make.py">make.py</a> is simply a command line wrapper to the appropriate <code>pelican</code> subcommand:
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span>$&gt; ./make.py --help
+usage: Help [-h] {html,publish,reload} ...
+
+positional arguments:
+  {html,publish,reload}
+    html                Make the html
+    publish             Make publishable html, and put it in the
+                        output_branch.
+    reload              Make the html, and watch the folder for any changes.
+
+optional arguments:
+  -h, --help            show this help message and exit
+</pre>
+        </div>
+        <p>
+          The concept of creating reproducible scripts goes far wider than trivial Makefiles though - with <code>conda-execute</code>, because the metadata in the script <strong>is</strong> the definition of the execution environment, important information about its dependencies and how it is run are all embedded into the script itself.
+        </p>
+        <p>
+          I'm particularly keen to explore the reproducibility angle that <code>conda-execute</code> brings, particularly for scientific applications.
+        </p>
+        <p>
+          <code>conda-execute</code> can be found at <a href="https://github.com/pelson/conda-execute">github.com/pelson/conda-execute</a>, and installed with <code>conda install conda-execute --channel conda-forge</code>.
+        </p>
+      </div>
+      <hr>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+      var disqus_shortname = "pelson";
+      var disqus_identifier = "conda_execute";
+
+      (function() {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+      })();
+      </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> <!-- /END THE FEATURETTES -->
+      <div class="clearfix"></div>
+      <hr class="featurette-divider">
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>
+          © 2017 Phil Elson · <a href="https://pelson.github.io#">About</a> · <a href="https://pelson.github.io#contact">Contact</a> · <a href="https://pelson.github.io/feeds/atom.xml"><i class="fa fa-fw fa-rss-square"></i>RSS</a>
+        </p>
+      </footer>
+    </div><!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://pelson.github.io/theme/jquery.min.js">
+    </script> 
+    <script src="https://pelson.github.io/theme/bootstrap.min.js">
+    </script> 
+    <script src="https://pelson.github.io/theme/js/scroll.js">
+    </script> 
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-29774503-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </body>
+</html>
