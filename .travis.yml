@@ -7,7 +7,7 @@ env:
 
 branches:
   only:
-  - source
+  - source_disabled
 
 git:
   submodules: false
