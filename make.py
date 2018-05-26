@@ -2,14 +2,15 @@
 
 # conda execute
 # env:
-#  - python 
+#  - python>3.5
 #  - pelican
 #  - markdown
-#  - ipython
+#  - ipython<6
 #  - notebook
 #  - tidy-html5
 #  - pygments
 # channels:
+#  - defaults
 #  - conda-forge
 #  - pelson
 # run_with: python
