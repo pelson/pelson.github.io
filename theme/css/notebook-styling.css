@@ -13,16 +13,18 @@ pre {
 }
 
 .output_area {
-	margin-left: 50px;
+	margin-left: 5px;
+    padding-top: 0.5em;
 }
 
 .output_area pre {
 	background-color: inherit;
+    margin: 0px;
 }
 
 .output {
 	border-left: 10px #C2DFFF solid;
-	margin-bottom: 4em;
+	margin-bottom: 2.5em;
 	padding-bottom: 0.5em;	
 }
 
