@@ -14,7 +14,7 @@
 {% block content %}
 <div class="row media-body">
   <div class="col-sm-12">
-    <img src="{{ SITEURL }}/theme/images/pelson.png" style="float: left; padding-right: 2em; margin-bottom: 1em;">
+    <img src="{{ SITEURL }}/theme/images/pelson.png" style="float: left; padding-right: 2em; margin-bottom: 1em; max-width: 85vw;">
 
     <p>
       <span class="media-heading emphasis">Welcome</span> to this collection of articles, how-tos and announcements.
@@ -41,7 +41,7 @@
 </p>
 <div class="container">
   <div class="row">
-    <div class="col-md-4 col-sm-6 thumbnail package-default">
+    <div class="col-lg-4 col-sm-6 thumbnail package-default">
       <div class="center-float">
         <div class="center-float-inner">
           <a href="http://matplotlib.org"><img src="{{ SITEURL }}/theme/images/mpl.svg" style="max-height: 5em;" alt="matplotlib"></a>
@@ -58,7 +58,7 @@
         </p>
       </div>
     </div>
-    <div class="col-md-4 col-sm-6 thumbnail package-default">
+    <div class="col-lg-4 col-sm-6 thumbnail package-default">
       <div class="center-float">
         <div class="center-float-inner">
           <a href="http://scitools.org.uk/cartopy/docs/latest/"><img src="{{ SITEURL }}/theme/images/cartopy.png" style="max-height: 5em; padding: 0.1em;" alt="cartopy"></a>
@@ -74,7 +74,11 @@
         </p>
       </div>
     </div>
-    <div class="col-md-4 col-sm-6 thumbnail package-default">
+
+    <!-- Add the extra clearfix for only the required viewport -->
+    <div class="clearfix visible-md-block"></div>
+
+    <div class="col-lg-4 col-sm-6 thumbnail package-default">
       <div class="center-float">
         <div class="center-float-inner">
           <a href="https://conda-forge.org">
@@ -95,9 +99,9 @@
     </div>
 
     <!-- Add the extra clearfix for only the required viewport -->
-    <div class="clearfix visible-md-block visible-lg-block"></div>
+    <div class="clearfix visible-lg-block"></div>
 
-    <div class="col-md-4 col-sm-6 thumbnail package-default">
+    <div class="col-lg-4 col-sm-6 thumbnail package-default">
       <div class="center-float">
         <div class="center-float-inner">
           <a href="https://repohealth.info" ><img src="{{ SITEURL }}/theme/images/repohealth.gif" style="max-height: 5em; float: left;" alt="repohealth.info">
@@ -116,7 +120,7 @@
         </p>
       </div>
     </div>
-    <div class="col-md-4 col-sm-6 thumbnail package-default">
+    <div class="col-lg-4 col-sm-6 thumbnail package-default">
       <div class="center-float">
         <div class="center-float-inner">
           <a href="http://scitools.org.uk/iris/docs/latest/" ><img src="{{ SITEURL }}/theme/images/iris.png" style="max-height: 5em; float: left;" alt="iris">
@@ -135,7 +139,7 @@
       </div>
     </div>
 
-    <div class="col-md-4 col-sm-6 thumbnail package-default">
+    <div class="col-lg-4 col-sm-6 thumbnail package-default">
       <div class="center-float">
         <div class="center-float-inner">
           <a href="https://github.com/pelson/conda-execute">
