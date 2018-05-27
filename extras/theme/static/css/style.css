@@ -7,6 +7,12 @@ body {
   color: #5a5a5a;
 }
 
+
+img {
+  max-width: 80vw;
+  display: inline-block;
+}
+
 .brand-icons *, .brand-icons {
   -webkit-transition: all 1s ease;
   transition: all 1s ease;
