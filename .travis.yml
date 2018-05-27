@@ -7,7 +7,7 @@ env:
 
 branches:
   only:
-  - source_disabled
+  - source
 
 git:
   submodules: false
@@ -43,4 +43,5 @@ script:
 - git add --all *
 - git status
 - git commit -am "${LOG_MESSAGE}"
-- noleaky git push origin master
+#- noleaky git push origin master
+- echo "PUSH IS DISABLED (because I was losing content)!"
