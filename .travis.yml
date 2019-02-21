@@ -26,7 +26,7 @@ install:
 - bash miniconda.sh -b -p $HOME/miniconda
 - export PATH="$HOME/miniconda/bin:$PATH:$(pwd)"
 - conda config --set show_channel_urls True
-- conda install --yes --quiet -c conda-forge conda-execute
+- conda install --yes --quiet -c conda-forge conda-execute conda=4.5.3
 
 - noleaky git submodule update --quiet --init --recursive
 - noleaky git clone --depth=50 --branch=master git@github.com:pelson/pelson.github.io.git output_branch
