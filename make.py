@@ -5,7 +5,7 @@
 #  - python>3.5
 #  - pelican
 #  - markdown
-#  - ipython<6
+#  - ipython
 #  - notebook
 #  - tidy-html5
 #  - pygments
