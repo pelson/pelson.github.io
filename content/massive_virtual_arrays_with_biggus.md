@@ -1,4 +1,4 @@
-Title: Dealing with arrays which are bigger than memory - an intoduction to biggus
+Title: Dealing with arrays which are bigger than memory - an introduction to biggus
 Date: 2013-09-25 12:00
 Category: article
 Tags: matplotlib, Python, biggus, voluminous data

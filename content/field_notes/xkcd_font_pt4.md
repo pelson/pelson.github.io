@@ -7,7 +7,7 @@ Author: Phil Elson
 
 In [part three]({filename}/field_notes/xkcd_font_pt3.md) of my XKCD font saga I generated several hundred glyphs as PPM images, and
 classified them with their associated character(s). In this instalment, I will convert the raster glyphs into vector form (SVG) and then
-generate a rudimentary font using fontforge.
+generate a rudimentary font using FontForge.
 
 <!-- PELICAN_END_SUMMARY -->
 

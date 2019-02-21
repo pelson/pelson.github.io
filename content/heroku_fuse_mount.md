@@ -6,22 +6,22 @@ Slug: heroku_fuse_mount
 Author: Phil Elson
 
 
-This evening I'm going to take a different approach to how I would normaly blog.
+This evening I'm going to take a different approach to how I would normally blog.
 
 Rather than reporting the results of a technical investigation or highlighting a new/shiny package, I wanted to
 paint a realistic picture of the technical exploration process.
 
-As it happens, this particular investigation consumed a couple of hours and appears to have drawn an unsucessful
+As it happens, this particular investigation consumed a couple of hours and appears to have drawn an unsuccessful
 result. Despite this, the learnings are invaluable as they will be directly and immediately applicable to other areas of my work.
 
 <!-- PELICAN_END_SUMMARY -->
 
 ## The problem
 
-I run a number of services on Heroku. It's an amazing platform for rapid prototyping of (mostly web) applications. The beauty of Heroku is the ease of deployment as well as its availablity, scalability and cost.
+I run a number of services on Heroku. It's an amazing platform for rapid prototyping of (mostly web) applications. The beauty of Heroku is the ease of deployment as well as its availability, scalability and cost.
 
 I have one particular application on Heroku that draws statistics from a moderately sized, slow paced, filestore.
-Unfortunately, since all storage on Heroku is ephermeral, that means I must fetch the data at least once every 24 hours (when Heroku restarts the container) to recompute my statistics (which are cached for application performance). Fetching the data is a costly operation, and I'd rather avoid it if possible.
+Unfortunately, since all storage on Heroku is ephemeral, that means I must fetch the data at least once every 24 hours (when Heroku restarts the container) to recompute my statistics (which are cached for application performance). Fetching the data is a costly operation, and I'd rather avoid it if possible.
 
 Instead of fetching the data on a daily basis, I'd like to have a third-party filestore that can be used from within the Heroku application for its statistics generation.
 I'd also like to use the store for the cache (which itself can be mem-cached/cached to the ephemeral Heroku disk).
@@ -40,11 +40,11 @@ I had also read a little bit about Heroku's new Docker container registry and ru
 
 ## The findings
 
-### Mounting a dropbox directory through ff4d
+### Mounting a Dropbox directory through ff4d
 
 The first step is to get FUSE up-and-running on my own machine (OSX). libfuse is the first thing in a while
 that I've not been able to get hold of through conda, so I ended up dusting off my homebrew installation and going through
-a pretty heafty update. Once complete I tried:
+a pretty hefty update. Once complete I tried:
 
     brew install libfuse
 
@@ -52,13 +52,13 @@ With no success. Turns out that osxfuse is a thing, and so I:
 
     brew install osxfuse
 
-Again, no luck, but homebrew does point me in the direction of a cask version (pre-compiled, rather than building it from source on my machine). I'm pretty keen to get going with this, so I go ahead and install the casked version:
+Again, no luck, but homebrew does point me in the direction of a cask version (pre-compiled, rather than building it from source on my machine). I'm pretty keen to get going with this, so I go ahead and install the cask version:
 
     brew install Caskroom/cask/osxfuse
 
 After a short wait, the result is positive, and it looks like I have a local FUSE installation.
 
-Next, I want to try it out. Rather than choose to do somethign simple, I go straight for the jugular and try to get a dropbox FUSE mount working. I clone https://github.com/realriot/ff4d and get myself set up with a legacy python installation (in a clean environment named "ff4d_py2":
+Next, I want to try it out. Rather than choose to do something simple, I go straight for the jugular and try to get a Dropbox FUSE mount working. I clone https://github.com/realriot/ff4d and get myself set up with a legacy python installation (in a clean environment named "ff4d_py2":
 
     conda create -n ff4d_py2 python=2 pip
     source activate ff4d_py2
@@ -76,11 +76,11 @@ With my token in hand:
     mkdir foobar
     python ff4d.py  ./foobar -ap <my_token>
 
-Gives me a directory called foobar containing my dropbox content, and reminds me that I can delete nearly a GB of images that
-were shared with colleagues on my dropbox account. As I delete the files (```rm -rf ./foobar/my_image_directory```) I'm aware that
+Gives me a directory called foobar containing my Dropbox content, and reminds me that I can delete nearly a GB of images that
+were shared with colleagues on my Dropbox account. As I delete the files (```rm -rf ./foobar/my_image_directory```) I'm aware that
 there are a number of 404 error type messages being logged by ff4d.py - I take a note that there is something that needs deeper investigation here.
 
-So there we have it, a locally mounted dropbox folder sitting on my OSX machine, thanks to ff4d.
+So there we have it, a locally mounted Dropbox folder sitting on my OSX machine, thanks to ff4d.
 Now, I want to create a webapp that can show the contents of my directory (as a proof-of-concept), and to replicate this
 setup in a docker container, and then ultimately in a Heroku web app deployment.
 
@@ -88,21 +88,21 @@ setup in a docker container, and then ultimately in a Heroku web app deployment.
 ### Creating the webapp
 
 I'm a big fan of [tornado](http://www.tornadoweb.org/en/stable/), and since the application that could benefit from
-access to my dropbox mount is also using tornado I put together a quick web-app to browse the directory.
+access to my Dropbox mount is also using tornado I put together a quick web-app to browse the directory.
 
 I'd assumed that creating a http handler that allows directory listing would be built-in to tornado, but it appears not,
 so I ended up re-using code from https://github.com/imom0/SimpleTornadoServer/blob/master/SimpleTornadoServer.py (BSD-3)
 to allow me to navigate my directories from within the webapp.
 
 In order for my webapp and ff4d mount to be run on the same process within Heroku (not the only option - it is easy enough to create new processes on Heroku, I just like the ability to control them all from a single process) I need to get the webapp to
-mount the dropbox directory itself.
+mount the Dropbox directory itself.
 Since mounting through ff4d is blocking, I am going to need to run one 2 IOLoops, one on the main thread (for tornado) and the other in a ThreadPoolExecutor managed thread (for ff4d).
 
 Getting another thread to run a blocking script whilst still running a responsive tornado main IOLoop thread is something I have done a few times now.
-In other situations I have wanted to commuicate through Kafka ((example)[http://stackoverflow.com/a/40602866/741316]) in my tornado application, and in another application I wanted the ability to (optionally) spawn a Dask scheduler, workers and client. Truth be told, in most of these situations processes are a better choice, but I digress.
+In other situations I have wanted to communicate through Kafka ((example)[http://stackoverflow.com/a/40602866/741316]) in my tornado application, and in another application I wanted the ability to (optionally) spawn a Dask scheduler, workers and client. Truth be told, in most of these situations processes are a better choice, but I digress.
 
 Getting a tornado webapp to run a blocking process in another thread is surprisingly easy.
-We need a ThreadPool, and an asyncronous function that can run on the main thread:
+We need a ThreadPool, and an asynchronous function that can run on the main thread:
 
     
     @tornado.gen.coroutine
@@ -113,7 +113,7 @@ We need a ThreadPool, and an asyncronous function that can run on the main threa
     tornado.ioloop.IOLoop.current().spawn_callback(async, thread_pool, start_mount, mount_dir=mount_dir)
 
 
-The function itself is fairly trivial, and simply spawns a sub-process which mounts my dropbox directory:
+The function itself is fairly trivial, and simply spawns a sub-process which mounts my Dropbox directory:
 
 
     def start_mount(mount_dir):
@@ -123,7 +123,7 @@ The function itself is fairly trivial, and simply spawns a sub-process which mou
         subprocess.check_call([sys.executable, 'ff4d.py', mount_dir, '-ap', dropbox_token])
 
 
-With all of this in place, I'm able to fire up my tornado webapp, and navigate my dropbox content from within the browser.
+With all of this in place, I'm able to fire up my tornado webapp, and navigate my Dropbox content from within the browser.
 
 The complete code can be found at https://github.com/pelson/heroku-with-dropbox-mount.
 
@@ -156,12 +156,12 @@ Things are starting to come together nicely, except the mount of my device was f
     fuse: failed to open /dev/fuse: Operation not permitted
     [ERROR] Failed to start FUSE... (Traceback (most recent call last):
 
-It turns out that we need elevated priveledges to mount a FUSE device within docker.
-Adding ```--cap-add SYS_ADMIN``` and ```--device /dev/fuse``` to docker should be enough (though it appears there was once a bug in docker that meant the container needed to be run with *full* priveledges).
+It turns out that we need elevated privileges to mount a FUSE device within docker.
+Adding ```--cap-add SYS_ADMIN``` and ```--device /dev/fuse``` to docker should be enough (though it appears there was once a bug in docker that meant the container needed to be run with *full* privileges).
 I make a note of this as a potential problem for our Heroku deployment.
 
 
-Finally, I'm able to launch my docker image and navigate my dropbox content through my web app.
+Finally, I'm able to launch my docker image and navigate my Dropbox content through my web app.
 The final step is to push this image to Heroku:
 
     heroku container:push web
@@ -201,5 +201,5 @@ In addition, there is a message in the log along the lines of:
 
 It may be as I feared: Heroku doesn't currently support FUSE mounts.
 
-In order to get one final datapoint, I put together the equivalent Dockerfile for ubuntu rather than alpine. Unfortunately the results are the same.
+In order to get one final datapoint, I put together the equivalent Dockerfile for Ubuntu rather than alpine. Unfortunately the results are the same.
 

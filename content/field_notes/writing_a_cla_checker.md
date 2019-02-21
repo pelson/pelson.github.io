@@ -18,7 +18,7 @@ This is the story of how (and to some extent why) I went about automating that p
 In early August 2017, I ran a 2 day tutorial for my team to improve knowledge and give practical experience of
 using and creating "webapps, webhooks and SaaS".
 I picked off a few useful technologies to play with, and presented a few hours of material to them.
-In particular, I focussed on tornado, the GitHub API, and Heroku.
+In particular, I focused on tornado, the GitHub API, and Heroku.
 
 Next, we took the knowledge I presented and came up with a bunch of ideas to hack on. I decided to focus on the pesky human-in-the-loop process of cross checking our CLA signatories list, and see if I could turn it into a fully fledged CI service in less than 1.5 days (in practice, since I led the tutorial and helped others whenever they got stuck, I only got a fraction of that time *actually* working at my machine).
 
@@ -122,7 +122,7 @@ if hmac_digest != expected_digest:
 
 Towards the end of the 2 day session, we were all frantically trying to deploy our own developments, and as the leader of the tutorial it was inevitable that I would be called up to help each group finalise their work. I too was frantically trying to get my CLA checker deployed, and was running up against the most peculiar of issues...
 
-Tornado's AsyncHttpClient was returning a 403 (Authentication failure) on the GitHub API on my Herkou deployment, but not locally. In addition, I was able to ssh onto my Heroku instance and verify that the exact same call using the exact same token worked like a charm using requests and curl.
+Tornado's AsyncHttpClient was returning a 403 (Authentication failure) on the GitHub API on my Heroku deployment, but not locally. In addition, I was able to ssh onto my Heroku instance and verify that the exact same call using the exact same token worked like a charm using requests and curl.
 
 Had I not been all over the place trying to help others out, and perhaps had a shorter iteration cycle (I was having to deploy to Heroku to debug), I may have solved the problem a little quicker. It took a good hour to realise that the problem was that I was getting 403 because the User-Agent wasn't being set by AsyncHttpClient, and GitHub have a strict enforcement policy on it needing to exist. Simply adding the user agent when calling ``fetch`` solved this issue:
 

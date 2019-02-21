@@ -1,4 +1,4 @@
-Title: Recursive search and replcace
+Title: Recursive search and replace
 Date: 2018-05-21 12:00
 Category: hint
 Slug: hints/search-and-replace

@@ -7,7 +7,7 @@ Author: Phil Elson
 
 I recently worked on a feature to allow [cf-units](https://github.com/SciTools/cf-units) to produce a [TeX](https://en.wikipedia.org/wiki/TeX) representation of a unit so that it can be quickly copy-and-pasted into a LaTeX document, or simply visualised nicely with [matplotlib's LaTeX writer](https://matplotlib.org/users/usetex.html).
 
-It turns out that "doing it right" was quite involved, and has ultimately led to some really interesting opportunities for those who use UDUNITS-2. This article expliains what was involved, and briefly discusses some of those opportunities.
+It turns out that "doing it right" was quite involved, and has ultimately led to some really interesting opportunities for those who use UDUNITS-2. This article explains what was involved, and briefly discusses some of those opportunities.
 
 <!-- PELICAN_END_SUMMARY -->
 
@@ -26,7 +26,7 @@ Read on if you want to find out about the journey to this functionality...
 
 ### Motivation
 
-The cf-units implementation goes out of its way to ensure common Earth Sciences units are preserved as much as possible when interfacing with UDUNITS-2. For example, specific humidity is the density of water vapor (kg/m3) divided by the density of all air, and [is commonly expressed in "grams per killogram"](https://www.e-education.psu.edu/meteo300/node/519). It seems that expressing the unit as "grams per killogram" rather than a dimensionless unit helps to avoid doubt about whether the quantity is a mass ratio [or a volume ratio](https://earthscience.stackexchange.com/questions/5033), and so I've had a number of people state that expressing the unit as "g/kg" is prefered.
+The cf-units implementation goes out of its way to ensure common Earth Sciences units are preserved as much as possible when interfacing with UDUNITS-2. For example, specific humidity is the density of water vapour (kg/m3) divided by the density of all air, and [is commonly expressed in "grams per kilogram"](https://www.e-education.psu.edu/meteo300/node/519). It seems that expressing the unit as "grams per kilogram" rather than a dimensionless unit helps to avoid doubt about whether the quantity is a mass ratio [or a volume ratio](https://earthscience.stackexchange.com/questions/5033), and so I've had a number of people state that expressing the unit as "g/kg" is preferred.
 
 Unfortunately, when *parsing* the unit "g km-1" UDUNITS-2 does the reasonable thing of simplifying it to its dimensionless form. There is no way for UDUNITS-2 to hold on to this information - the [parsing is tightly bound to the units-system in operation](https://github.com/Unidata/UDUNITS-2/issues/81). In order to turn "g/kg" into a TeX representation, we will therefore first need to parse the string ourselves.
 
@@ -36,7 +36,7 @@ The UDUNITS-2 includes a Backus–Naur form of its [unit grammar](https://www.un
 
 For example, in UDUNITS-2 ``m2.3`` is equivalent to the unit ``3*m^2`` whereas ``2.3m`` is ``2.3 * m``, and so we can't tokenize floats unless we know the context of what we have already seen.
 
-Writing a parser often involves two independent steps: tokenizing the input with a lexer, and then parsing the tokens using a grammar (for example, if parsing a spoken language the lexer would turn characters into words, and the parser would turn words into gramatically correct sentences). In the UDUNITS-2 case it would simplify the grammar rules if we can encapsulate some of the necessary state into the lexer's rules. It is for this reason (combined with ease of use and desired target language for the generated parser) that I choose to use [ANTLR](https://www.antlr.org/) as my parser generator.
+Writing a parser often involves two independent steps: tokenizing the input with a lexer, and then parsing the tokens using a grammar (for example, if parsing a spoken language the lexer would turn characters into words, and the parser would turn words into grammatically correct sentences). In the UDUNITS-2 case it would simplify the grammar rules if we can encapsulate some of the necessary state into the lexer's rules. It is for this reason (combined with ease of use and desired target language for the generated parser) that I choose to use [ANTLR](https://www.antlr.org/) as my parser generator.
 
 
 ### ANTLR
@@ -54,7 +54,7 @@ One issue I did encounter with ANTLR and its handling of state (known as lexer m
 ### Parse tree into an abstract representation
 
 
-Once I'd produced the ANTLR rules, it is easy to turn this into a parser in any of the supported langagues. In my case I chose the Python 3 target.
+Once I'd produced the ANTLR rules, it is easy to turn this into a parser in any of the supported languages. In my case I chose the Python 3 target.
 
 For the lexer:
 
@@ -113,7 +113,7 @@ Divide(lhs=Multiply(lhs=Identifier(content='kg'), rhs=Identifier(content='m')), 
 
 The [Climate-Forecast (CF) conventions](http://cfconventions.org/) are designed to promote the processing and sharing of files created using the NetCDF API. The conventions are the common denominator of much of the open source Earth Sciences stack, so if you've ever used any Earth Sciences NetCDF data or tools, the chances are you've used the CF conventions. 
 
-It has always struck me as odd that, when refering to metadata regarding the units of measure, the CF conventions [defer to an implementation](http://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/cf-conventions.html#units) (UDUNITS-2) rather than citing a specification or formal grammar.
+It has always struck me as odd that, when referring to metadata regarding the units of measure, the CF conventions [defer to an implementation](http://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/cf-conventions.html#units) (UDUNITS-2) rather than citing a specification or formal grammar.
 
 Perhaps the grammar produced for this work could be adopted by the CF conventions, and UDUNITS-2 move to becoming the reference implementation rather than the standard itself?
 
@@ -127,21 +127,21 @@ I put together a quick proof of concept that takes UDUNITS-2 compatible unit spe
 
 #### Alternative simplification and factoring
 
-UDUNITS-2 comes with unit simplification and factorization, but there are tools out there that are even more powerful for this purpose. Once such tool is [SymPy](https://www.sympy.org/en/index.html). Given the ease of traversing the expression graph we now have for our unit, constructing a SymPy expression is relatively simple. I'm confident that we could combine this with the XML files that are shipped with UDUNITS-2 to entirely replace the UDUNITS-2 implementation, should we need to do such a thing.
+UDUNITS-2 comes with unit simplification and factorisation, but there are tools out there that are even more powerful for this purpose. Once such tool is [SymPy](https://www.sympy.org/en/index.html). Given the ease of traversing the expression graph we now have for our unit, constructing a SymPy expression is relatively simple. I'm confident that we could combine this with the XML files that are shipped with UDUNITS-2 to entirely replace the UDUNITS-2 implementation, should we need to do such a thing.
 
-A less controversial option is to improve the handling of offseted units. For example, degrees Celcisus (°C) is [defined by UDUNITS](https://github.com/Unidata/UDUNITS-2/blob/v2.2.27.6/lib/udunits2-derived.xml#L127-L136) to be ``Kelvin + 273.15``, yet offset units such as this [lose their offset when squared](https://github.com/Unidata/UDUNITS-2/issues/82) - if we were to use a tool such as SymPy to preserve the quantities we'd be able to benefit from its strong mathematical heritage and preserve these quantities.
+A less controversial option is to improve the handling of offsetted units. For example, degrees Celsius (°C) is [defined by UDUNITS](https://github.com/Unidata/UDUNITS-2/blob/v2.2.27.6/lib/udunits2-derived.xml#L127-L136) to be ``Kelvin + 273.15``, yet offset units such as this [lose their offset when squared](https://github.com/Unidata/UDUNITS-2/issues/82) - if we were to use a tool such as SymPy to preserve the quantities we'd be able to benefit from its strong mathematical heritage and preserve these quantities.
 
 
 ### Python 3 only
 
 This is the first feature that has been added to cf-units which is Python 3 only. The decision was pragmatic as cf-units isn't *quite* ready to drop legacy Python (though it is coming) but it was more work to get ANTLR to produce a Python 2 compatible parser.
 
-Having syntactically invalid Python 2 code in a repository that supports Python 2 comes with a few challenges. We must ensrue that the Python 3 code is *never* imported (else you get a ``SyntaxError``, not an ``ImportError``).
+Having syntactically invalid Python 2 code in a repository that supports Python 2 comes with a few challenges. We must ensure that the Python 3 code is *never* imported (else you get a ``SyntaxError``, not an ``ImportError``).
 This involves some care when handling packaging and test discovery. In the latter case it was necessary to define a [conftest](https://github.com/SciTools/cf-units/blob/v2.1.1/cf_units/conftest.py) to prevent pytest from importing the Python 3 files in order to discover tests it can run.
 
 ## Conclusion
 
-It has been an interesting journey solving this problem. Having never written a full-blown parser before the ANTLR experience has been a real journey of discovery - I started out writing more and more parser rules to cover the corner cases, until I realised that a refactor of the lexer rules would make most of them redundant (a bit like how the more you know of the scipy stack, the shorter your code gets). I believe the [UDUNITS-2](https://www.unidata.ucar.edu/software/udunits/) library, and the Python wrapper [cf-units](https://github.com/SciTools/cf-units), are great choices for the CF conventions, but that it would also be healthy for the conventions to reference a specific grammar and base unit set, and for the conventions to cite UDUNITS-2 as a *reference implementation* rather than the specification itself.
+It has been an interesting journey solving this problem. Having never written a full-blown parser before the ANTLR experience has been a real journey of discovery - I started out writing more and more parser rules to cover the corner cases, until I realised that a refactor of the lexer rules would make most of them redundant (a bit like how the more you know of the SciPy stack, the shorter your code gets). I believe the [UDUNITS-2](https://www.unidata.ucar.edu/software/udunits/) library, and the Python wrapper [cf-units](https://github.com/SciTools/cf-units), are great choices for the CF conventions, but that it would also be healthy for the conventions to reference a specific grammar and base unit set, and for the conventions to cite UDUNITS-2 as a *reference implementation* rather than the specification itself.
 
 
 Have a go with cf-units and its (La)TeX generation - there are definitely still cases that the grammar doesn't support, but on the whole it has excellent coverage.

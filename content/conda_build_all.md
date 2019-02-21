@@ -17,16 +17,16 @@ The build phase of all of these repositories looks very similar: a tool (Obvious
 The functionality is tried and tested, and has been powering these repositories for over a year with huge success, however, I recently had need to use this functionality without wanting to upload the built distributions to [conda.anaconda.org](http://conda.anaconda.org) and found the tool didn't *quite* fit the bill.
 Additionally, having originally cobbled together ObviousCI with string and sticky-tape to prove the concept of a continuously integrated repo of recipes, I didn't have huge confidence in its ability to function between python/conda/conda-build upgrades.
 
-As a result, I have re-factored the build part of ObviousCI into a general purpose library which can now be used for the original "conda recipe repository" usecase as much as it can for the ad-hoc "just build this" usecase. Critically, the most significant part of this re-factoring was adding a huge array of unit and integration tests which can be used to ensure expected behaviour is unchanged through future dependency version upgrades.
+As a result, I have re-factored the build part of ObviousCI into a general purpose library which can now be used for the original "conda recipe repository" use-case as much as it can for the ad-hoc "just build this" use-case. Critically, the most significant part of this re-factoring was adding a huge array of unit and integration tests which can be used to ensure expected behaviour is unchanged through future dependency version upgrades.
 
 The new CLI is ``conda-build-all`` (BSD license) and is developed at [SciTools/conda-build-all](https://github.com/SciTools/conda-build-all).
 
 ### The build matrix
 
-So what does a build matrix actually look like? Let's jump in at the deep-end and look at a package which has a numpy C-API dependency.
-Whilst numpy's ABI is (intended to be) [forward-compatible](http://stackoverflow.com/a/18369312/741316), in practice it is safer to compile against a specific version and "pin" the distribution to that version.
-Essentially, that means we need to build our recipe N times, where N is the number of numpy versions we wish to support.
-Of course, the same is true for Python itself, leading to a permutation problem of up to ``NxM`` builds (N: number of supported numpy versions; M: number of supported Python versions).
+So what does a build matrix actually look like? Let's jump in at the deep-end and look at a package which has a NumPy C-API dependency.
+Whilst NumPy's ABI is (intended to be) [forward-compatible](http://stackoverflow.com/a/18369312/741316), in practice it is safer to compile against a specific version and "pin" the distribution to that version.
+Essentially, that means we need to build our recipe N times, where N is the number of NumPy versions we wish to support.
+Of course, the same is true for Python itself, leading to a permutation problem of up to ``NxM`` builds (N: number of supported NumPy versions; M: number of supported Python versions).
 
 The current conda recipe form for such a package looks like:
  
@@ -45,7 +45,7 @@ requirements:
 
 Whilst I believe there is [room for improvement](https://github.com/conda/conda-build/pull/650) in the recipe definition, it is still pretty easy to define a complex set of build- and run-time dependencies.
 
-With the existing ``conda-build`` tool, should we want to build this for Python 2.7, 3.4 and 3.5, and against numpy 1.9 and 1.10 (the latest versions of these libraries at the time of writing), things can get a little tedious:
+With the existing ``conda-build`` tool, should we want to build this for Python 2.7, 3.4 and 3.5, and against NumPy 1.9 and 1.10 (the latest versions of these libraries at the time of writing), things can get a little tedious:
 
 ```
 CONDA_PY=27 CONDA_NPY=19 conda build my_library
@@ -56,7 +56,7 @@ CONDA_PY=34 CONDA_NPY=110 conda build my_library
 CONDA_PY=35 CONDA_NPY=110 conda build my_library
 ```
 
-With ``conda-build-all`` the special environment variables are taken care of for you (and importantly there is future scope to generalise beyond Python & numpy) and a build matrix is computed:
+With ``conda-build-all`` the special environment variables are taken care of for you (and importantly there is future scope to generalise beyond Python & NumPy) and a build matrix is computed:
 
 ```
 $ conda-build-all my_library
@@ -89,7 +89,7 @@ Resolved dependencies, will be built in the following order:
     my_library-1.0-np19py35_0 (will be built: True)
 ```
 
-We now have functionally equivalent behaviour that will move forwards as new Python and numpy versions become available.
+We now have functionally equivalent behaviour that will move forwards as new Python and NumPy versions become available.
 
 ### Building multiple recipes in a single call
 
@@ -165,4 +165,4 @@ conda-build-all my_recipes_directory/ --matrix-conditions "python 2.7.*|3.5.*" \
 
 ``conda-build-all`` is a tool which builds on top of ``conda-build`` to give powerful build-matrix options when building conda distributions.
 It has come from ``ObviousCI``, whose primary objective was to simplify the build and upload of many recipes in a Continuous Integration environment.
-In migrating the codebase from ``ObviousCI`` several new test strategies have been developed - making ``conda-build-all`` easier to maintain, and giving rise to the possibility of improving the ``conda`` and ``conda-build`` test suites themselves.
+In migrating the code base from ``ObviousCI`` several new test strategies have been developed - making ``conda-build-all`` easier to maintain, and giving rise to the possibility of improving the ``conda`` and ``conda-build`` test suites themselves.

@@ -71,7 +71,7 @@ As you can see, the special comment in the script has been read, and an appropri
 
 In order to provision suitable environments for the executed scripts, ``conda-execute`` implements a temporary environment concept.
 Rather than adding a new environment in your conda environments directory (and thus filling up the available environments listed in ``conda env list``), a new "tmp_envs" environments directory has been created, within which ``conda-execute``'s temporary environments are created (this location is configurable with the ``conda-execute/env-dir`` conda config item).
-As you may have noticed in the previous example, where the environment created was named ``ea977067a8fbeb21a594``, these temporary environments are named by a hashing algorithm (SHA 256, trunkated to 20 characters).
+As you may have noticed in the previous example, where the environment created was named ``ea977067a8fbeb21a594``, these temporary environments are named by a hashing algorithm (SHA 256, truncated to 20 characters).
 The hash is taken from the ``conda-execute`` metadata of your script, which means that you can re-run a script many times and only need one environment to be created. Additionally, it has the advantage that multiple scripts can share the same environment if their ``conda-execute`` metadata is the same.
 
 Each time a temporary environment is run with ``conda-execute`` a log entry is added, allowing it to keep track of which environments are still in use. Once an environment has been unused for 25 hours any subsequent ``conda-execute`` call will trigger it to be garbage collected, thus preventing your disk filling up with unneeded temporary environments.
@@ -93,9 +93,9 @@ conda-execute:
 
 ## Reproducibility of scripts with ``conda-execute``
 
-There are a few really interesting usecases which I'm keen to explore with ``conda-execute``.
+There are a few really interesting use-cases which I'm keen to explore with ``conda-execute``.
 
-I'm already making use of ``conda-execute`` as a form of Makefile for this blog. My [make.py](https://github.com/pelson/pelson.github.io/blob/source/make.py) is simply a command line wrapper to the appropriate ``pelican`` subcommand:
+I'm already making use of ``conda-execute`` as a form of Makefile for this blog. My [make.py](https://github.com/pelson/pelson.github.io/blob/source/make.py) is simply a command line wrapper to the appropriate ``pelican`` sub-command:
 
 ```
 $> ./make.py --help
