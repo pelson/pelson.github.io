@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Phil Elson - Software | Science | Python - hint</title><link href="https://pelson.github.io/" rel="alternate"></link><link href="https://pelson.github.io/feeds/hint.atom.xml" rel="self"></link><id>https://pelson.github.io/</id><updated>2018-05-21T12:00:00+01:00</updated><entry><title>Recursive search and replcace</title><link href="https://pelson.github.io/2018/hints/search-and-replace/" rel="alternate"></link><published>2018-05-21T12:00:00+01:00</published><updated>2018-05-21T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2018-05-21:2018/hints/search-and-replace/</id><summary type="html">&lt;p&gt;I had a need to recursively search and replace for a particular string within a git repository.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Phil Elson - Software | Science | Python - hint</title><link href="https://pelson.github.io/" rel="alternate"></link><link href="https://pelson.github.io/feeds/hint.atom.xml" rel="self"></link><id>https://pelson.github.io/</id><updated>2018-05-21T12:00:00+01:00</updated><entry><title>Recursive search and replace</title><link href="https://pelson.github.io/2018/hints/search-and-replace/" rel="alternate"></link><published>2018-05-21T12:00:00+01:00</published><updated>2018-05-21T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2018-05-21:2018/hints/search-and-replace/</id><summary type="html">&lt;p&gt;I had a need to recursively search and replace for a particular string within a git repository.
 A combination of find and sed is all that is needed, but one must be careful to avoid modifying the contents of the ".git" directory (I accidentally did this, and effectively destroyed my …&lt;/p&gt;</summary></entry><entry><title>Creating an application for a website on OSX</title><link href="https://pelson.github.io/2017/hints/applicationize/" rel="alternate"></link><published>2017-09-20T12:00:00+01:00</published><updated>2017-09-20T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2017-09-20:2017/hints/applicationize/</id><summary type="html">&lt;p&gt;I wanted to get a desktop application for a website that doesn't provide one, and had success with https://github.com/eladnava/applicationize. This worked a treat for my local Home Assistant instance, so now I don't need to open a tab in my web-browser.&lt;/p&gt;</summary></entry><entry><title>Using nmap to find all devices on network listening on a particular port</title><link href="https://pelson.github.io/2017/hints/nmap_ip_scan/" rel="alternate"></link><published>2017-08-20T12:00:00+01:00</published><updated>2017-08-20T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2017-08-20:2017/hints/nmap_ip_scan/</id><summary type="html">&lt;p&gt;Finding all IPs listening on a particular port using nmap:&lt;/p&gt;
-nmap -p 80 --open -sV 192.168.1.0/24
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nmap -p 80 --open -sV 192.168.1.0/24
+&lt;/pre&gt;&lt;/div&gt;
 
 
-</summary></entry><entry><title>Vim search and replace across many files</title><link href="https://pelson.github.io/2015/hints/vim_search_replace/" rel="alternate"></link><published>2015-12-03T12:00:00+00:00</published><updated>2015-12-03T12:00:00+00:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2015-12-03:2015/hints/vim_search_replace/</id><summary type="html">&lt;p&gt;A powerful combination of commands for search and replace across multiple files with Vim.&lt;/p&gt;
-</summary></entry></feed>
+
+
+&lt;p&gt;Refs:
+ * http://thoughtsbyclayg.blogspot.co.uk/2008/06/use-nmap-to-scan-for-ssh-servers-on.html
+ * https://www.digitalocean.com/community/tutorials/how-to-use-nmap-to-scan-for-open-ports-on-your-vps&lt;/p&gt;</summary></entry><entry><title>Vim search and replace across many files</title><link href="https://pelson.github.io/2015/hints/vim_search_replace/" rel="alternate"></link><published>2015-12-03T12:00:00+00:00</published><updated>2015-12-03T12:00:00+00:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2015-12-03:2015/hints/vim_search_replace/</id><summary type="html">&lt;p&gt;A powerful combination of commands for search and replace across multiple files with Vim.&lt;/p&gt;
+
+
+&lt;p&gt;http://vim.wikia.com/wiki/Opening_multiple_files_from_a_single_command-line
+http://vim.wikia.com/wiki/Search_and_replace_in_multiple_buffers&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;:arg **/*.cpp
+
+:argdo %s/pattern/replace/ge | update   
+&lt;/pre&gt;&lt;/div&gt;</summary></entry></feed>

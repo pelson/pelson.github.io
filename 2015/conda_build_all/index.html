@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.30">
+    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,23 +80,23 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <li>
+                  <a href="https://pelson.github.io/2019/cf_units_tex/">cf-units get (La)TeX unit repr... and a UDUNITS-2 parser to boot</a>
+                </li>
+                <li>
                   <a href="https://pelson.github.io/2018/LFRic_containment/">Investigating containment testing on LFRic's cubedsphere</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/2018/coast-path/">Analysing walks on the South West Coast Path</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replcace</a>
+                  <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replace</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
                 </li>
-                <li>
-                  <a href="https://pelson.github.io/2017/hints/nmap_ip_scan/">Using nmap to find all devices on network listening on a particular port</a>
-                </li>
                 <li class="nav-divider"></li>
                 <li>
-                  <a href="https://pelson.github.io/archives.html">See full archive (18)</a>
+                  <a href="https://pelson.github.io/archives.html">See full archive (19)</a>
                 </li>
               </ul>
             </li>
@@ -108,6 +108,9 @@
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/cartopy/">cartopy (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/cf-units/">cf-units (1)</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/cla/">CLA (1)</a>
@@ -150,6 +153,9 @@
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/tornado/">tornado (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/udunits-2/">UDUNITS-2 (1)</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/voluminous-data/">voluminous data (1)</a>
@@ -195,7 +201,7 @@
           Repositories such as <a href="https://github.com/ioos/conda-recipes">conda-forge/stages-recipes</a>, <a href="https://github.com/SciTools/conda-recipes-scitools">SciTools/conda-recipes-scitools</a> and <a href="https://github.com/ioos/conda-recipes">ioos/conda-recipes</a> exist to provide a set of conda recipes, and ultimately, channels from which users can access the product of <code>conda-build</code>-ing those recipes. The build phase of all of these repositories looks very similar: a tool (ObviousCI) computes the build matrix, builds those distributions which haven't already been built, and then uploads them to their respective channels. The functionality is tried and tested, and has been powering these repositories for over a year with huge success, however, I recently had need to use this functionality without wanting to upload the built distributions to <a href="http://conda.anaconda.org">conda.anaconda.org</a> and found the tool didn't <em>quite</em> fit the bill. Additionally, having originally cobbled together ObviousCI with string and sticky-tape to prove the concept of a continuously integrated repo of recipes, I didn't have huge confidence in its ability to function between python/conda/conda-build upgrades.
         </p>
         <p>
-          As a result, I have re-factored the build part of ObviousCI into a general purpose library which can now be used for the original "conda recipe repository" usecase as much as it can for the ad-hoc "just build this" usecase. Critically, the most significant part of this re-factoring was adding a huge array of unit and integration tests which can be used to ensure expected behaviour is unchanged through future dependency version upgrades.
+          As a result, I have re-factored the build part of ObviousCI into a general purpose library which can now be used for the original "conda recipe repository" use-case as much as it can for the ad-hoc "just build this" use-case. Critically, the most significant part of this re-factoring was adding a huge array of unit and integration tests which can be used to ensure expected behaviour is unchanged through future dependency version upgrades.
         </p>
         <p>
           The new CLI is <code>conda-build-all</code> (BSD license) and is developed at <a href="https://github.com/SciTools/conda-build-all">SciTools/conda-build-all</a>.
@@ -204,7 +210,7 @@
           The build matrix
         </h3>
         <p>
-          So what does a build matrix actually look like? Let's jump in at the deep-end and look at a package which has a numpy C-API dependency. Whilst numpy's ABI is (intended to be) <a href="http://stackoverflow.com/a/18369312/741316">forward-compatible</a>, in practice it is safer to compile against a specific version and "pin" the distribution to that version. Essentially, that means we need to build our recipe N times, where N is the number of numpy versions we wish to support. Of course, the same is true for Python itself, leading to a permutation problem of up to <code>NxM</code> builds (N: number of supported numpy versions; M: number of supported Python versions).
+          So what does a build matrix actually look like? Let's jump in at the deep-end and look at a package which has a NumPy C-API dependency. Whilst NumPy's ABI is (intended to be) <a href="http://stackoverflow.com/a/18369312/741316">forward-compatible</a>, in practice it is safer to compile against a specific version and "pin" the distribution to that version. Essentially, that means we need to build our recipe N times, where N is the number of NumPy versions we wish to support. Of course, the same is true for Python itself, leading to a permutation problem of up to <code>NxM</code> builds (N: number of supported NumPy versions; M: number of supported Python versions).
         </p>
         <p>
           The current conda recipe form for such a package looks like:
@@ -227,7 +233,7 @@
           Whilst I believe there is <a href="https://github.com/conda/conda-build/pull/650">room for improvement</a> in the recipe definition, it is still pretty easy to define a complex set of build- and run-time dependencies.
         </p>
         <p>
-          With the existing <code>conda-build</code> tool, should we want to build this for Python 2.7, 3.4 and 3.5, and against numpy 1.9 and 1.10 (the latest versions of these libraries at the time of writing), things can get a little tedious:
+          With the existing <code>conda-build</code> tool, should we want to build this for Python 2.7, 3.4 and 3.5, and against NumPy 1.9 and 1.10 (the latest versions of these libraries at the time of writing), things can get a little tedious:
         </p>
         <div class="highlight">
           <pre>
@@ -240,7 +246,7 @@ CONDA_PY=35 CONDA_NPY=110 conda build my_library
 </pre>
         </div>
         <p>
-          With <code>conda-build-all</code> the special environment variables are taken care of for you (and importantly there is future scope to generalise beyond Python &amp; numpy) and a build matrix is computed:
+          With <code>conda-build-all</code> the special environment variables are taken care of for you (and importantly there is future scope to generalise beyond Python &amp; NumPy) and a build matrix is computed:
         </p>
         <div class="highlight">
           <pre>
@@ -276,7 +282,7 @@ Resolved dependencies, will be built in the following order:
 </pre>
         </div>
         <p>
-          We now have functionally equivalent behaviour that will move forwards as new Python and numpy versions become available.
+          We now have functionally equivalent behaviour that will move forwards as new Python and NumPy versions become available.
         </p>
         <h3>
           Building multiple recipes in a single call
@@ -356,7 +362,7 @@ Resolved dependencies, will be built in the following order:
           Summary
         </h3>
         <p>
-          <code>conda-build-all</code> is a tool which builds on top of <code>conda-build</code> to give powerful build-matrix options when building conda distributions. It has come from <code>ObviousCI</code>, whose primary objective was to simplify the build and upload of many recipes in a Continuous Integration environment. In migrating the codebase from <code>ObviousCI</code> several new test strategies have been developed - making <code>conda-build-all</code> easier to maintain, and giving rise to the possibility of improving the <code>conda</code> and <code>conda-build</code> test suites themselves.
+          <code>conda-build-all</code> is a tool which builds on top of <code>conda-build</code> to give powerful build-matrix options when building conda distributions. It has come from <code>ObviousCI</code>, whose primary objective was to simplify the build and upload of many recipes in a Continuous Integration environment. In migrating the code base from <code>ObviousCI</code> several new test strategies have been developed - making <code>conda-build-all</code> easier to maintain, and giving rise to the possibility of improving the <code>conda</code> and <code>conda-build</code> test suites themselves.
         </p>
       </div>
       <hr>

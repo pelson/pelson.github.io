@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.30">
+    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,23 +80,23 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <li>
+                  <a href="https://pelson.github.io/2019/cf_units_tex/">cf-units get (La)TeX unit repr... and a UDUNITS-2 parser to boot</a>
+                </li>
+                <li>
                   <a href="https://pelson.github.io/2018/LFRic_containment/">Investigating containment testing on LFRic's cubedsphere</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/2018/coast-path/">Analysing walks on the South West Coast Path</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replcace</a>
+                  <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replace</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
                 </li>
-                <li>
-                  <a href="https://pelson.github.io/2017/hints/nmap_ip_scan/">Using nmap to find all devices on network listening on a particular port</a>
-                </li>
                 <li class="nav-divider"></li>
                 <li>
-                  <a href="https://pelson.github.io/archives.html">See full archive (18)</a>
+                  <a href="https://pelson.github.io/archives.html">See full archive (19)</a>
                 </li>
               </ul>
             </li>
@@ -108,6 +108,9 @@
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/cartopy/">cartopy (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/cf-units/">cf-units (1)</a>
                 </li>
                 <li class="active">
                   <a href="https://pelson.github.io/tag/cla/">CLA (1)</a>
@@ -150,6 +153,9 @@
                 </li>
                 <li class="active">
                   <a href="https://pelson.github.io/tag/tornado/">tornado (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/udunits-2/">UDUNITS-2 (1)</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/voluminous-data/">voluminous data (1)</a>
@@ -196,7 +202,7 @@
         </p>
         <hr>
         <p>
-          In early August 2017, I ran a 2 day tutorial for my team to improve knowledge and give practical experience of using and creating "webapps, webhooks and SaaS". I picked off a few useful technologies to play with, and presented a few hours of material to them. In particular, I focussed on tornado, the GitHub API, and Heroku.
+          In early August 2017, I ran a 2 day tutorial for my team to improve knowledge and give practical experience of using and creating "webapps, webhooks and SaaS". I picked off a few useful technologies to play with, and presented a few hours of material to them. In particular, I focused on tornado, the GitHub API, and Heroku.
         </p>
         <p>
           Next, we took the knowledge I presented and came up with a bunch of ideas to hack on. I decided to focus on the pesky human-in-the-loop process of cross checking our CLA signatories list, and see if I could turn it into a fully fledged CI service in less than 1.5 days (in practice, since I led the tutorial and helped others whenever they got stuck, I only got a fraction of that time <em>actually</em> working at my machine).
@@ -318,7 +324,7 @@ def main():
           Towards the end of the 2 day session, we were all frantically trying to deploy our own developments, and as the leader of the tutorial it was inevitable that I would be called up to help each group finalise their work. I too was frantically trying to get my CLA checker deployed, and was running up against the most peculiar of issues...
         </p>
         <p>
-          Tornado's AsyncHttpClient was returning a 403 (Authentication failure) on the GitHub API on my Herkou deployment, but not locally. In addition, I was able to ssh onto my Heroku instance and verify that the exact same call using the exact same token worked like a charm using requests and curl.
+          Tornado's AsyncHttpClient was returning a 403 (Authentication failure) on the GitHub API on my Heroku deployment, but not locally. In addition, I was able to ssh onto my Heroku instance and verify that the exact same call using the exact same token worked like a charm using requests and curl.
         </p>
         <p>
           Had I not been all over the place trying to help others out, and perhaps had a shorter iteration cycle (I was having to deploy to Heroku to debug), I may have solved the problem a little quicker. It took a good hour to realise that the problem was that I was getting 403 because the User-Agent wasn't being set by AsyncHttpClient, and GitHub have a strict enforcement policy on it needing to exist. Simply adding the user agent when calling <code>fetch</code> solved this issue:

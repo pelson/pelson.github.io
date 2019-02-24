@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Phil Elson - Software | Science | Python - article</title><link href="https://pelson.github.io/" rel="alternate"></link><link href="https://pelson.github.io/feeds/article.atom.xml" rel="self"></link><id>https://pelson.github.io/</id><updated>2015-12-09T12:00:00+00:00</updated><entry><title>Building a matrix of conda distributions with conda-build-all</title><link href="https://pelson.github.io/2015/conda_build_all/" rel="alternate"></link><published>2015-12-09T12:00:00+00:00</published><updated>2015-12-09T12:00:00+00:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2015-12-09:2015/conda_build_all/</id><summary type="html">&lt;p&gt;Introducing &lt;code&gt;conda-build-all&lt;/code&gt;, a tool which extends &lt;code&gt;conda-build&lt;/code&gt; to provide powerful build
 matrix capabilities.&lt;/p&gt;
-</summary><category term="conda"></category></entry><entry><title>Interactive matplotlib figures in the IPython notebook - they've landed!</title><link href="https://pelson.github.io/2014/nbagg_backend/" rel="alternate"></link><published>2014-06-03T12:00:00+01:00</published><updated>2014-06-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2014-06-03:2014/nbagg_backend/</id><summary type="html">&lt;p&gt;
 
 
-
-
+&lt;p&gt;Repositories such as &lt;a href="https://github.com/ioos/conda-recipes"&gt;conda-forge/stages-recipes&lt;/a&gt;, &lt;a href="https://github.com/SciTools/conda-recipes-scitools"&gt;SciTools/conda-recipes-scitools&lt;/a&gt; and &lt;a href="https://github.com/ioos/conda-recipes"&gt;ioos/conda-recipes&lt;/a&gt; exist to provide a set of conda recipes, and ultimately, channels from which users can access the product of &lt;code&gt;conda-build&lt;/code&gt;-ing those recipes.
+The build phase of …&lt;/p&gt;</summary><category term="conda"></category></entry><entry><title>Interactive matplotlib figures in the IPython notebook - they've landed!</title><link href="https://pelson.github.io/2014/nbagg_backend/" rel="alternate"></link><published>2014-06-03T12:00:00+01:00</published><updated>2014-06-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2014-06-03:2014/nbagg_backend/</id><summary type="html">&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;After what feels like years chipping away at the problem, not least from some awesome developers including the whole of the IPython development team, Michael Droetboom and Jason Grout, I recently closed the development loop and added a new matplotlib backend providing interactive figures in the IPython notebook environment.&lt;/p&gt;
 
-
-
-
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
  
 
 &lt;/p&gt;
-</summary><category term="matplotlib"></category><category term="Python"></category></entry><entry><title>Dealing with arrays which are bigger than memory - an intoduction to biggus</title><link href="https://pelson.github.io/2013/massive_virtual_arrays_with_biggus/" rel="alternate"></link><published>2013-09-25T12:00:00+01:00</published><updated>2013-09-25T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-09-25:2013/massive_virtual_arrays_with_biggus/</id><summary type="html">&lt;p&gt;
 
 
-
-
-&lt;p&gt;I often deal with huge gridded datasets which either stretch or indeed are beyond the limits of my computer's memory. In the past I've implemented a couple of workarounds to help me handle this data to extract meaningful analyses from them. One of the most intuitive ways of reducing gridded datasets is through indexing/slicing and in this regard netcdf4-python's excellent ability to slice subsets of a larger NetCDF file is invaluable. The problem with the netcdf4-python implementation is that this capability is only available if you have NetCDF files, and doing any analysis on the data involves loading all of the data into memory in the form of a numpy array.&lt;/p&gt;
-&lt;p&gt;That is where &lt;a href="https://github.com/SciTools/biggus"&gt;biggus&lt;/a&gt; steps in.&lt;/p&gt;
-
-
-
-
- 
-
-&lt;/p&gt;
-</summary><category term="matplotlib"></category><category term="Python"></category><category term="biggus"></category><category term="voluminous data"></category></entry><entry><title>Working with colours in matplotlib</title><link href="https://pelson.github.io/2013/working_with_colors_in_matplotlib/" rel="alternate"></link><published>2013-06-03T12:00:00+01:00</published><updated>2013-06-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-06-03:2013/working_with_colors_in_matplotlib/</id><summary type="html">&lt;p&gt;When dealing with colours in scientific visualisations some people like to have a colourmap
+&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;</summary><category term="matplotlib"></category><category term="Python"></category></entry><entry><title>Dealing with arrays which are bigger than memory - an introduction to biggus</title><link href="https://pelson.github.io/2013/massive_virtual_arrays_with_biggus/" rel="alternate"></link><published>2013-09-25T12:00:00+01:00</published><updated>2013-09-25T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-09-25:2013/massive_virtual_arrays_with_biggus/</id><summary type="html">&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;I often deal with huge gridded datasets which either stretch or indeed are beyond the limits of my computer's memory. In the past I've implemented a couple of workarounds to help me handle this data to extract meaningful analyses from them. One of the most intuitive ways of reducing gridded …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;</summary><category term="matplotlib"></category><category term="Python"></category><category term="biggus"></category><category term="voluminous data"></category></entry><entry><title>Working with colours in matplotlib</title><link href="https://pelson.github.io/2013/working_with_colors_in_matplotlib/" rel="alternate"></link><published>2013-06-03T12:00:00+01:00</published><updated>2013-06-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-06-03:2013/working_with_colors_in_matplotlib/</id><summary type="html">&lt;p&gt;When dealing with colours in scientific visualisations some people like to have a colourmap
 which can be indexed into to pick specific colours. Whilst this isn't necessarily the best
 way of handling colours in matplotlib, it certainly adds a degree of familiarity to users
-who have come over from other visualisation tools, such as IDL.&lt;/p&gt;
-&lt;p&gt;In this article I'll cover one approach to using the colour-by-index paradigm in matplotlib.&lt;/p&gt;
-</summary><category term="matplotlib"></category><category term="Python"></category></entry><entry><title>Drawing a pseudo-colour blockplot (pcolormesh) in matplotlib with levels and specific colours</title><link href="https://pelson.github.io/2013/from_levels_and_colors/" rel="alternate"></link><published>2013-05-03T12:00:00+01:00</published><updated>2013-05-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-05-03:2013/from_levels_and_colors/</id><summary type="html">&lt;p&gt;I recently added a new function to matplotlib to make it easier to draw pseudo-colour
+who have come over from other …&lt;/p&gt;</summary><category term="matplotlib"></category><category term="Python"></category></entry><entry><title>Drawing a pseudo-colour blockplot (pcolormesh) in matplotlib with levels and specific colours</title><link href="https://pelson.github.io/2013/from_levels_and_colors/" rel="alternate"></link><published>2013-05-03T12:00:00+01:00</published><updated>2013-05-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2013-05-03:2013/from_levels_and_colors/</id><summary type="html">&lt;p&gt;I recently added a new function to matplotlib to make it easier to draw pseudo-colour
 plots given specific levels and colours, in exactly the same way as you can with contour
 and contourf.&lt;/p&gt;
-</summary><category term="matplotlib"></category><category term="Python"></category></entry></feed>
+
+
+&lt;p&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.colors&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;from_levels_and_colors&lt;/span&gt;
+
+&lt;span class="n"&gt;cmap …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;</summary><category term="matplotlib"></category><category term="Python"></category></entry></feed>

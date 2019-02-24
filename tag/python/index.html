@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.30">
+    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -108,6 +108,9 @@
                   <a href="https://pelson.github.io/tag/cartopy/">cartopy (2)</a>
                 </li>
                 <li>
+                  <a href="https://pelson.github.io/tag/cf-units/">cf-units (1)</a>
+                </li>
+                <li>
                   <a href="https://pelson.github.io/tag/cla/">CLA (1)</a>
                 </li>
                 <li>
@@ -148,6 +151,9 @@
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/tornado/">tornado (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/udunits-2/">UDUNITS-2 (1)</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/voluminous-data/">voluminous data (1)</a>
@@ -191,7 +197,7 @@
               </header>
               <div class="body">
                 <p>
-                  In part three of my XKCD font saga I generated several hundred glyphs as PPM images, and classified them with their associated character(s). In this instalment, I will convert the raster glyphs into vector form (SVG) and then generate a rudimentary font using fontforge.
+                  In part three of my XKCD font saga I generated several hundred glyphs as PPM images, and classified them with their associated character(s). In this instalment, I will convert the raster glyphs into vector form (SVG) and then generate a rudimentary font using FontForge. If you'd like to follow …
                 </p>
               </div>
               <div style="float: right; padding: 2em; clear: right;">
@@ -219,7 +225,7 @@
               </header>
               <div class="body">
                 <p>
-                  In part two of my XKCD font saga I was able to separate strokes from the XKCD handwriting dataset into many smaller images. I also handled the easier cases of merging some of the strokes back together - I particularly focussed on "dotty" or "liney" type glyphs, such as i, !, % and =. Now I want to attribute a Unicode character to my segmented images, so that I can subsequently generate a font-file. We are well and truly in the domain of optical character recognition (OCR) here, but because I want absolute control of the results (and 100% accuracy) I'm going to take the simple approach of mapping glyph positions to characters myself.
+                  In part two of my XKCD font saga I was able to separate strokes from the XKCD handwriting dataset into many smaller images. I also handled the easier cases of merging some of the strokes back together - I particularly focused on "dotty" or "liney" type glyphs, such as i, !, % and …
                 </p>
               </div>
               <div style="float: right; padding: 2em; clear: right;">
@@ -248,7 +254,7 @@
               </header>
               <div class="body">
                 <p>
-                  In part one of XKCD font saga I gave some background on the XKCD handwriting dataset, and took an initial look at image segmentation in order to extract the individual strokes from the scanned image. In this instalment, I will apply the technique from part 1, as well as attempting to merge together strokes to form (some of) the glyphs desired. I'm going to pay particular attention to "dotted" glyphs, such as "i", "j", ";" and "?". I will need to do future work to merge together non-dotted glyphs such as the two arrows from "≫", as these are indistinguishable from two characters that happen to be close to one another.
+                  In part one of XKCD font saga I gave some background on the XKCD handwriting dataset, and took an initial look at image segmentation in order to extract the individual strokes from the scanned image. In this instalment, I will apply the technique from part 1, as well as attempting …
                 </p>
               </div>
               <div style="float: right; padding: 2em; clear: right;">
@@ -276,7 +282,7 @@
               </header>
               <div class="body">
                 <p>
-                  The XKCD font (as used by matplotlib et al.) recently got an update to include lower-case characters. For some time now I have been aware of a handwriting sample produced by Randall Munroe (XKCD's creator) that I was interested in exploring. The ultimate aim is to automatically produce a font-file using open source tools, and to learn a few things along the way.
+                  The XKCD font (as used by matplotlib et al.) recently got an update to include lower-case characters. For some time now I have been aware of a handwriting sample produced by Randall Munroe (XKCD's creator) that I was interested in exploring. The ultimate aim is to automatically produce a font-file …
                 </p>
               </div>
               <div style="float: right; padding: 2em; clear: right;">
@@ -305,7 +311,7 @@
               </header>
               <div class="body">
                 <p>
-                  This evening I'm going to take a different approach to how I would normaly blog. Rather than reporting the results of a technical investigation or highlighting a new/shiny package, I wanted to paint a realistic picture of the technical exploration process. As it happens, this particular investigation consumed a couple of hours and appears to have drawn an unsucessful result. Despite this, the learnings are invaluable as they will be directly and immediately applicable to other areas of my work.
+                  This evening I'm going to take a different approach to how I would normally blog. Rather than reporting the results of a technical investigation or highlighting a new/shiny package, I wanted to paint a realistic picture of the technical exploration process. As it happens, this particular investigation consumed a …
                 </p>
               </div>
               <div style="float: right; padding: 2em; clear: right;">
@@ -333,7 +339,7 @@
               </header>
               <div class="body">
                 <p>
-                  Conda is awesome - it is a simple package manager which allows me to create isolated software environments much like virtualenv. Unlike virtualenv though it can handle any package type, not just python ones. The more I use it, the more I want to make use of conda's dependency tracking for my own simple scripts to ensure they were being executed in a suitable environment with the expected dependencies already installed. conda build is an excellent tool for building your own distributions and sharing them on anaconda.org, but creating a distribution is tiresome if all you have is a single script, rather than a fully-fledged software package. That is where conda execute comes in.
+                  Conda is awesome - it is a simple package manager which allows me to create isolated software environments much like virtualenv. Unlike virtualenv though it can handle any package type, not just python ones. The more I use it, the more I want to make use of conda's dependency tracking for …
                 </p>
               </div>
               <div style="float: right; padding: 2em; clear: right;">
@@ -362,7 +368,7 @@
               </header>
               <div class="body">
                 <p>
-                  After what feels like years chipping away at the problem, not least from some awesome developers including the whole of the IPython development team, Michael Droetboom and Jason Grout, I recently closed the development loop and added a new matplotlib backend providing interactive figures in the IPython notebook environment.
+                  After what feels like years chipping away at the problem, not least from some awesome developers including the whole of the IPython development team, Michael Droetboom and Jason Grout, I recently closed the development loop and added a new matplotlib backend providing interactive figures in the IPython notebook environment. The …
                 </p>
               </div>
               <div style="float: right; padding: 2em; clear: right;">
@@ -374,7 +380,7 @@
             <article class=" blog-teaser">
               <header>
                 <h3 style="min-height: 2em;">
-                  <a href="https://pelson.github.io/2013/massive_virtual_arrays_with_biggus/">Dealing with arrays which are bigger than memory - an intoduction to biggus</a> <i class="fa fa-fw fa-file-o" title="Articles"></i>
+                  <a href="https://pelson.github.io/2013/massive_virtual_arrays_with_biggus/">Dealing with arrays which are bigger than memory - an introduction to biggus</a> <i class="fa fa-fw fa-file-o" title="Articles"></i>
                 </h3>
                 <div style="float: left; padding: 0.5em 1em 0.5em 0em;">
                   <time datetime="2013-09-25T12:00:00+01:00" class="icon"></time>
@@ -390,7 +396,7 @@
               </header>
               <div class="body">
                 <p>
-                  I often deal with huge gridded datasets which either stretch or indeed are beyond the limits of my computer's memory. In the past I've implemented a couple of workarounds to help me handle this data to extract meaningful analyses from them. One of the most intuitive ways of reducing gridded datasets is through indexing/slicing and in this regard netcdf4-python's excellent ability to slice subsets of a larger NetCDF file is invaluable. The problem with the netcdf4-python implementation is that this capability is only available if you have NetCDF files, and doing any analysis on the data involves loading all of the data into memory in the form of a numpy array. That is where biggus steps in.
+                  I often deal with huge gridded datasets which either stretch or indeed are beyond the limits of my computer's memory. In the past I've implemented a couple of workarounds to help me handle this data to extract meaningful analyses from them. One of the most intuitive ways of reducing gridded …
                 </p>
               </div>
               <div style="float: right; padding: 2em; clear: right;">
@@ -419,7 +425,7 @@
               </header>
               <div class="body">
                 <p>
-                  When dealing with colours in scientific visualisations some people like to have a colourmap which can be indexed into to pick specific colours. Whilst this isn't necessarily the best way of handling colours in matplotlib, it certainly adds a degree of familiarity to users who have come over from other visualisation tools, such as IDL. In this article I'll cover one approach to using the colour-by-index paradigm in matplotlib.
+                  When dealing with colours in scientific visualisations some people like to have a colourmap which can be indexed into to pick specific colours. Whilst this isn't necessarily the best way of handling colours in matplotlib, it certainly adds a degree of familiarity to users who have come over from other …
                 </p>
               </div>
               <div style="float: right; padding: 2em; clear: right;">
@@ -447,7 +453,7 @@
               </header>
               <div class="body">
                 <p>
-                  I recently added a new function to matplotlib to make it easier to draw pseudo-colour plots given specific levels and colours, in exactly the same way as you can with contour and contourf.
+                  I recently added a new function to matplotlib to make it easier to draw pseudo-colour plots given specific levels and colours, in exactly the same way as you can with contour and contourf. In&nbsp;[2]: import numpy as np import matplotlib.pyplot as plt from matplotlib.colors import from_levels_and_colors cmap …
                 </p>
               </div>
               <div style="float: right; padding: 2em; clear: right;">

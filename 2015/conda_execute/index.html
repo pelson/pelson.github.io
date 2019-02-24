@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.30">
+    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,23 +80,23 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <li>
+                  <a href="https://pelson.github.io/2019/cf_units_tex/">cf-units get (La)TeX unit repr... and a UDUNITS-2 parser to boot</a>
+                </li>
+                <li>
                   <a href="https://pelson.github.io/2018/LFRic_containment/">Investigating containment testing on LFRic's cubedsphere</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/2018/coast-path/">Analysing walks on the South West Coast Path</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replcace</a>
+                  <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replace</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
                 </li>
-                <li>
-                  <a href="https://pelson.github.io/2017/hints/nmap_ip_scan/">Using nmap to find all devices on network listening on a particular port</a>
-                </li>
                 <li class="nav-divider"></li>
                 <li>
-                  <a href="https://pelson.github.io/archives.html">See full archive (18)</a>
+                  <a href="https://pelson.github.io/archives.html">See full archive (19)</a>
                 </li>
               </ul>
             </li>
@@ -108,6 +108,9 @@
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/cartopy/">cartopy (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/cf-units/">cf-units (1)</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/cla/">CLA (1)</a>
@@ -150,6 +153,9 @@
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/tornado/">tornado (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/udunits-2/">UDUNITS-2 (1)</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/voluminous-data/">voluminous data (1)</a>
@@ -271,7 +277,7 @@ Prefix: /Users/pelson/miniconda/tmp_envs/ea977067a8fbeb21a594
           Temporary environments
         </h2>
         <p>
-          In order to provision suitable environments for the executed scripts, <code>conda-execute</code> implements a temporary environment concept. Rather than adding a new environment in your conda environments directory (and thus filling up the available environments listed in <code>conda env list</code>), a new "tmp_envs" environments directory has been created, within which <code>conda-execute</code>'s temporary environments are created (this location is configurable with the <code>conda-execute/env-dir</code> conda config item). As you may have noticed in the previous example, where the environment created was named <code>ea977067a8fbeb21a594</code>, these temporary environments are named by a hashing algorithm (SHA 256, trunkated to 20 characters). The hash is taken from the <code>conda-execute</code> metadata of your script, which means that you can re-run a script many times and only need one environment to be created. Additionally, it has the advantage that multiple scripts can share the same environment if their <code>conda-execute</code> metadata is the same.
+          In order to provision suitable environments for the executed scripts, <code>conda-execute</code> implements a temporary environment concept. Rather than adding a new environment in your conda environments directory (and thus filling up the available environments listed in <code>conda env list</code>), a new "tmp_envs" environments directory has been created, within which <code>conda-execute</code>'s temporary environments are created (this location is configurable with the <code>conda-execute/env-dir</code> conda config item). As you may have noticed in the previous example, where the environment created was named <code>ea977067a8fbeb21a594</code>, these temporary environments are named by a hashing algorithm (SHA 256, truncated to 20 characters). The hash is taken from the <code>conda-execute</code> metadata of your script, which means that you can re-run a script many times and only need one environment to be created. Additionally, it has the advantage that multiple scripts can share the same environment if their <code>conda-execute</code> metadata is the same.
         </p>
         <p>
           Each time a temporary environment is run with <code>conda-execute</code> a log entry is added, allowing it to keep track of which environments are still in use. Once an environment has been unused for 25 hours any subsequent <code>conda-execute</code> call will trigger it to be garbage collected, thus preventing your disk filling up with unneeded temporary environments.
@@ -297,10 +303,10 @@ Prefix: /Users/pelson/miniconda/tmp_envs/ea977067a8fbeb21a594
           Reproducibility of scripts with <code>conda-execute</code>
         </h2>
         <p>
-          There are a few really interesting usecases which I'm keen to explore with <code>conda-execute</code>.
+          There are a few really interesting use-cases which I'm keen to explore with <code>conda-execute</code>.
         </p>
         <p>
-          I'm already making use of <code>conda-execute</code> as a form of Makefile for this blog. My <a href="https://github.com/pelson/pelson.github.io/blob/source/make.py">make.py</a> is simply a command line wrapper to the appropriate <code>pelican</code> subcommand:
+          I'm already making use of <code>conda-execute</code> as a form of Makefile for this blog. My <a href="https://github.com/pelson/pelson.github.io/blob/source/make.py">make.py</a> is simply a command line wrapper to the appropriate <code>pelican</code> sub-command:
         </p>
         <div class="highlight">
           <pre>

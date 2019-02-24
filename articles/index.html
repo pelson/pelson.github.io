@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.30">
+    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,23 +75,23 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <li>
+                  <a href="https://pelson.github.io/2019/cf_units_tex/">cf-units get (La)TeX unit repr... and a UDUNITS-2 parser to boot</a>
+                </li>
+                <li>
                   <a href="https://pelson.github.io/2018/LFRic_containment/">Investigating containment testing on LFRic's cubedsphere</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/2018/coast-path/">Analysing walks on the South West Coast Path</a>
                 </li>
                 <li>
-                  <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replcace</a>
+                  <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replace</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
                 </li>
-                <li>
-                  <a href="https://pelson.github.io/2017/hints/nmap_ip_scan/">Using nmap to find all devices on network listening on a particular port</a>
-                </li>
                 <li class="nav-divider"></li>
                 <li>
-                  <a href="https://pelson.github.io/archives.html">See full archive (18)</a>
+                  <a href="https://pelson.github.io/archives.html">See full archive (19)</a>
                 </li>
               </ul>
             </li>
@@ -103,6 +103,9 @@
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/cartopy/">cartopy (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/cf-units/">cf-units (1)</a>
                 </li>
                 <li>
                   <a href="https://pelson.github.io/tag/cla/">CLA (1)</a>
@@ -147,6 +150,9 @@
                   <a href="https://pelson.github.io/tag/tornado/">tornado (1)</a>
                 </li>
                 <li>
+                  <a href="https://pelson.github.io/tag/udunits-2/">UDUNITS-2 (1)</a>
+                </li>
+                <li>
                   <a href="https://pelson.github.io/tag/voluminous-data/">voluminous data (1)</a>
                 </li>
                 <li>
@@ -184,7 +190,7 @@
             </header>
             <div class="body">
               <p>
-                Introducing conda-build-all, a tool which extends conda-build to provide powerful build matrix capabilities.
+                Introducing conda-build-all, a tool which extends conda-build to provide powerful build matrix capabilities. Repositories such as conda-forge/stages-recipes, SciTools/conda-recipes-scitools and ioos/conda-recipes exist to provide a set of conda recipes, and ultimately, channels from which users can access the product of conda-build-ing those recipes. The build phase of …
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -212,7 +218,7 @@
             </header>
             <div class="body">
               <p>
-                After what feels like years chipping away at the problem, not least from some awesome developers including the whole of the IPython development team, Michael Droetboom and Jason Grout, I recently closed the development loop and added a new matplotlib backend providing interactive figures in the IPython notebook environment.
+                After what feels like years chipping away at the problem, not least from some awesome developers including the whole of the IPython development team, Michael Droetboom and Jason Grout, I recently closed the development loop and added a new matplotlib backend providing interactive figures in the IPython notebook environment. The …
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -225,7 +231,7 @@
           <article class=" blog-teaser">
             <header>
               <h3 style="min-height: 2em;">
-                <a href="https://pelson.github.io/2013/massive_virtual_arrays_with_biggus/">Dealing with arrays which are bigger than memory - an intoduction to biggus</a> <i class="fa fa-fw fa-file-o" title="Articles"></i>
+                <a href="https://pelson.github.io/2013/massive_virtual_arrays_with_biggus/">Dealing with arrays which are bigger than memory - an introduction to biggus</a> <i class="fa fa-fw fa-file-o" title="Articles"></i>
               </h3>
               <div style="float: left; padding: 0.5em 1em 0.5em 0em;">
                 <time datetime="2013-09-25T12:00:00+01:00" class="icon"></time>
@@ -241,7 +247,7 @@
             </header>
             <div class="body">
               <p>
-                I often deal with huge gridded datasets which either stretch or indeed are beyond the limits of my computer's memory. In the past I've implemented a couple of workarounds to help me handle this data to extract meaningful analyses from them. One of the most intuitive ways of reducing gridded datasets is through indexing/slicing and in this regard netcdf4-python's excellent ability to slice subsets of a larger NetCDF file is invaluable. The problem with the netcdf4-python implementation is that this capability is only available if you have NetCDF files, and doing any analysis on the data involves loading all of the data into memory in the form of a numpy array. That is where biggus steps in.
+                I often deal with huge gridded datasets which either stretch or indeed are beyond the limits of my computer's memory. In the past I've implemented a couple of workarounds to help me handle this data to extract meaningful analyses from them. One of the most intuitive ways of reducing gridded …
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -269,7 +275,7 @@
             </header>
             <div class="body">
               <p>
-                When dealing with colours in scientific visualisations some people like to have a colourmap which can be indexed into to pick specific colours. Whilst this isn't necessarily the best way of handling colours in matplotlib, it certainly adds a degree of familiarity to users who have come over from other visualisation tools, such as IDL. In this article I'll cover one approach to using the colour-by-index paradigm in matplotlib.
+                When dealing with colours in scientific visualisations some people like to have a colourmap which can be indexed into to pick specific colours. Whilst this isn't necessarily the best way of handling colours in matplotlib, it certainly adds a degree of familiarity to users who have come over from other …
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">
@@ -298,7 +304,7 @@
             </header>
             <div class="body">
               <p>
-                I recently added a new function to matplotlib to make it easier to draw pseudo-colour plots given specific levels and colours, in exactly the same way as you can with contour and contourf.
+                I recently added a new function to matplotlib to make it easier to draw pseudo-colour plots given specific levels and colours, in exactly the same way as you can with contour and contourf. In&nbsp;[2]: import numpy as np import matplotlib.pyplot as plt from matplotlib.colors import from_levels_and_colors cmap …
               </p>
             </div>
             <div style="float: right; padding: 2em; clear: right;">

@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Phil Elson - Software | Science | Python - announce</title><link href="https://pelson.github.io/" rel="alternate"></link><link href="https://pelson.github.io/feeds/announce.atom.xml" rel="self"></link><id>https://pelson.github.io/</id><updated>2015-10-03T12:00:00+01:00</updated><entry><title>Running scripts in temporary conda environments with conda execute</title><link href="https://pelson.github.io/2015/conda_execute/" rel="alternate"></link><published>2015-10-03T12:00:00+01:00</published><updated>2015-10-03T12:00:00+01:00</updated><author><name>Phil Elson</name></author><id>tag:pelson.github.io,2015-10-03:2015/conda_execute/</id><summary type="html">&lt;p&gt;Conda is awesome - it is a simple package manager which allows me to create isolated software environments
 much like virtualenv. Unlike virtualenv though it can handle any package type, not just python ones.&lt;/p&gt;
-&lt;p&gt;The more I use it, the more I want to make use of conda's dependency tracking for my own simple scripts to
-ensure they were being executed in a suitable environment with the expected dependencies already installed.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;conda build&lt;/code&gt; is an excellent tool for building your own distributions and sharing them on anaconda.org,
-but creating a distribution is tiresome if all you have is a single script, rather than a fully-fledged
-software package. That is where &lt;code&gt;conda execute&lt;/code&gt; comes in.&lt;/p&gt;
-</summary><category term="Python"></category><category term="conda"></category></entry></feed>
+&lt;p&gt;The more I use it, the more I want to make use of conda's dependency tracking for …&lt;/p&gt;</summary><category term="Python"></category><category term="conda"></category></entry></feed>

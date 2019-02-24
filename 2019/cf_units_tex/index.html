@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 4.9.30">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Philip Elson">
+    <link rel="icon" href="https://pelson.github.io/theme/images/favicon.ico">
+    <title>
+      cf-units get (La)TeX unit repr... and a UDUNITS-2 parser to boot by Phil Elson - Software | Science | Python
+    </title><!-- Bootstrap core CSS -->
+    <link href="https://pelson.github.io/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet"><!-- Custom styles for this template -->
+    <link href="https://pelson.github.io/theme/css/style.css" rel="stylesheet">
+    <link href="https://pelson.github.io/" type="application/atom+xml" rel="alternate" title="Phil Elson - Software | Science | Python ATOM Feed">
+    <link rel="stylesheet" href="https://pelson.github.io/theme/font-awesome/css/font-awesome.min.css">
+    <link href="//fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://pelson.github.io/theme/css/pygments-default.css">
+    <link rel="stylesheet" href="https://pelson.github.io/theme/css/notebook-styling.css">
+  </head><!-- NAVBAR ================================================== -->
+  <body>
+    <div class="container-fullwidth">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="row">
+          <div id="banner" class="col-md-3 shrinker">
+            <div>
+              <p class="by-phil">
+                <a href="https://pelson.github.io">Phil Elson</a>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 text-center">
+            <div class="brand-icons">
+              <div id="nav-sci" class="col-xs-4">
+                <a href="https://pelson.github.io"><i class="fa fa-icon fa-fw fa-flask"></i>
+                <h2>
+                  Science
+                </h2></a>
+              </div>
+              <div id="nav-software" class="col-xs-4">
+                <a href="https://pelson.github.io"><i class="nav-icon fa fa-code"></i>
+                <h2>
+                  Software
+                </h2></a>
+              </div>
+              <div id="nav-oss" class="col-xs-4">
+                <a href="https://pelson.github.io"><img src="https://pelson.github.io/theme/images/osi_white.png" alt="Open Source">
+                <h2>
+                  Open source
+                </h2></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 nav-toggle">
+            <i class="fa fa-bars"></i>
+          </div>
+        </div>
+        <script>
+        var navbar_toggled = false;
+        </script>
+        <div class="actual-navbar shrink">
+          <ul class="nav navbar-nav nav-pills">
+            <li class="hidden-xs clearfix">
+              <a href="https://pelson.github.io"><i class="fa fa-fw fa-home"></i>Home</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/articles/"><i class="fa fa-fw fa-file-o"></i>Articles</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/announce/"><i class="fa fa-fw fa-bullhorn"></i>Announcements</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/field-notes/"><i class="fa fa-fw fa-map-o"></i>&nbsp;Field notes</a>
+            </li>
+            <li class=" clearfix">
+              <a href="https://pelson.github.io/hints-n-tips/"><i class="fa fa-fw fa-list-ul"></i>Hints &amp; Tips</a>
+            </li>
+            <li class="hidden-xs dropdown clearfix">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-clock-o"></i>Recent <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                  <a href="https://pelson.github.io/2019/cf_units_tex/">cf-units get (La)TeX unit repr... and a UDUNITS-2 parser to boot</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2018/LFRic_containment/">Investigating containment testing on LFRic's cubedsphere</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2018/coast-path/">Analysing walks on the South West Coast Path</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2018/hints/search-and-replace/">Recursive search and replace</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/2017/hints/applicationize/">Creating an application for a website on OSX</a>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                  <a href="https://pelson.github.io/archives.html">See full archive (19)</a>
+                </li>
+              </ul>
+            </li>
+            <li class="hidden-xs dropdown clearfix">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-tags"></i>Tags <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                  <a href="https://pelson.github.io/tag/biggus/">biggus (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/cartopy/">cartopy (2)</a>
+                </li>
+                <li class="active">
+                  <a href="https://pelson.github.io/tag/cf-units/">cf-units (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/cla/">CLA (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/conda/">conda (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/docker/">docker (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/fiona/">fiona (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/folium/">folium (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/fonts/">fonts (4)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/fuse/">FUSE (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/github/">GitHub (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/heroku/">heroku (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/lfric/">LFRic (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/matplotlib/">matplotlib (4)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/python/">Python (10)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/shapely/">shapely (2)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/tornado/">tornado (1)</a>
+                </li>
+                <li class="active">
+                  <a href="https://pelson.github.io/tag/udunits-2/">UDUNITS-2 (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/voluminous-data/">voluminous data (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/xarray/">xarray (1)</a>
+                </li>
+                <li>
+                  <a href="https://pelson.github.io/tag/xkcd/">XKCD (4)</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="navbar-spacer"></div>
+    </div>
+    <div class="container">
+      <h2 id="single">
+        cf-units get (La)TeX unit repr... and a UDUNITS-2 parser to boot
+      </h2>
+      <div class="date entry-info">
+        <div style="float: left; padding: 0.5em 1em 0.5em 0em;">
+          <time datetime="2019-02-15T00:00:00+00:00" class="icon"></time>
+          <div class="time-icon">
+            <p class="year">
+              2019
+            </p>
+            <p class="month">
+              February
+            </p><span class="day">15</span>
+          </div>
+        </div>
+        <p>
+          Tags: <a href="https://pelson.github.io/tag/cf-units/">cf-units (1)</a>, <a href="https://pelson.github.io/tag/udunits-2/">UDUNITS-2 (1)</a>
+        </p>
+      </div>
+      <div class="entry">
+        <p>
+          I recently worked on a feature to allow <a href="https://github.com/SciTools/cf-units">cf-units</a> to produce a <a href="https://en.wikipedia.org/wiki/TeX">TeX</a> representation of a unit so that it can be quickly copy-and-pasted into a LaTeX document, or simply visualised nicely with <a href="https://matplotlib.org/users/usetex.html">matplotlib's LaTeX writer</a>.
+        </p>
+        <p>
+          It turns out that "doing it right" was quite involved, and has ultimately led to some really interesting opportunities for those who use UDUNITS-2. This article explains what was involved, and briefly discusses some of those opportunities.
+        </p>
+        <h3>
+          tl;dr
+        </h3>
+        <p>
+          If you came here to find out how to turn your UDUNITS-2 compatible unit into a (La)TeX string, you need python 3 and <a href="https://github.com/SciTools/cf-units">cf-units</a> (version <code>&gt;=2.1</code>):
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">cf_units.tex</span> <span class="kn">import</span> <span class="n">tex</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">tex</span><span class="p">(</span><span class="s1">'microW per s'</span><span class="p">))</span>
+<span class="s1">'</span><span class="se">\f</span><span class="s1">rac{{\mu}W}{s}'</span>
+</pre>
+        </div>
+        <p>
+          Read on if you want to find out about the journey to this functionality...
+        </p>
+        <h3>
+          Motivation
+        </h3>
+        <p>
+          The cf-units implementation goes out of its way to ensure common Earth Sciences units are preserved as much as possible when interfacing with UDUNITS-2. For example, specific humidity is the density of water vapour (kg/m3) divided by the density of all air, and <a href="https://www.e-education.psu.edu/meteo300/node/519">is commonly expressed in "grams per kilogram"</a>. It seems that expressing the unit as "grams per kilogram" rather than a dimensionless unit helps to avoid doubt about whether the quantity is a mass ratio <a href="https://earthscience.stackexchange.com/questions/5033">or a volume ratio</a>, and so I've had a number of people state that expressing the unit as "g/kg" is preferred.
+        </p>
+        <p>
+          Unfortunately, when <em>parsing</em> the unit "g km-1" UDUNITS-2 does the reasonable thing of simplifying it to its dimensionless form. There is no way for UDUNITS-2 to hold on to this information - the <a href="https://github.com/Unidata/UDUNITS-2/issues/81">parsing is tightly bound to the units-system in operation</a>. In order to turn "g/kg" into a TeX representation, we will therefore first need to parse the string ourselves.
+        </p>
+        <h3>
+          UDUNITS-2 parsing
+        </h3>
+        <p>
+          The UDUNITS-2 includes a Backus–Naur form of its <a href="https://www.unidata.ucar.edu/software/udunits/udunits-2.0.4/udunits2lib.html#Grammar">unit grammar</a>, so you might think that we can use this directly in a parser generator such as <a href="http://www.gnu.org/software/bison/">bison</a>. Unfortunately, the documented grammar doesn't actually reflect what is implemented in UDUNITS-2 (<a href="https://github.com/Unidata/UDUNITS-2/issues/81">issue</a>) as the actual rules are much more sensitive to state than they first appear.
+        </p>
+        <p>
+          For example, in UDUNITS-2 <code>m2.3</code> is equivalent to the unit <code>3*m^2</code> whereas <code>2.3m</code> is <code>2.3 * m</code>, and so we can't tokenize floats unless we know the context of what we have already seen.
+        </p>
+        <p>
+          Writing a parser often involves two independent steps: tokenizing the input with a lexer, and then parsing the tokens using a grammar (for example, if parsing a spoken language the lexer would turn characters into words, and the parser would turn words into grammatically correct sentences). In the UDUNITS-2 case it would simplify the grammar rules if we can encapsulate some of the necessary state into the lexer's rules. It is for this reason (combined with ease of use and desired target language for the generated parser) that I choose to use <a href="https://www.antlr.org/">ANTLR</a> as my parser generator.
+        </p>
+        <h3>
+          ANTLR
+        </h3>
+        <p>
+          ANTRL is "ANother Tool for Language Recognition" and is "a powerful parser generator for reading, processing, executing, or translating structured text or binary files". Whilst it is written in Java, it can generate parsers for a number of desired languages, including Python.
+        </p>
+        <p>
+          It took me several days to become familiar enough with the tool to use ANTLR to its full potential (coming from a place of having never written a formal grammar before), but I ultimately was able to take the documented UDUNITS-2 grammar and translate it to a ANTLR (v4) compatible form.
+        </p>
+        <p>
+          The <strong>most</strong> important thing that I did whilst developing the grammar was to have a comprehensive test suite of cases - I ended up with <a href="https://github.com/SciTools/cf-units/blob/v2.1.1/cf_units/tests/integration/parse/test_parse.py#L26-L144">several hundred forms of unit supported by UDUNITS-2</a>. Not only did this help me quickly learn the ANTLR ropes, but I was also able to spot performance regressions when handling left-recursive cases (for example, <code>meters second-1</code> is actually two separate units joined together by the rule <code>unit: base_unit | (unit whitespace+ base_unit)</code>) (<a href="https://github.com/SciTools/cf-units/blob/v2.1.1/cf_units/_udunits2_parser/udunits2Parser.g4#L24">actual rule</a>).
+        </p>
+        <p>
+          One issue I did encounter with ANTLR and its handling of state (known as lexer modes) is that there was a lot of duplication that would result in a grammar that was very easy to forget to update in all places. For this reason, I ended up templating the lexer rules using Jinja2 - allowing me to define the concepts once and apply them in several places (<a href="https://github.com/SciTools/cf-units/blob/v2.1.1/cf_units/_udunits2_parser/udunits2Lexer.g4.jinja#L139-L141">example</a> and <a href="https://github.com/SciTools/cf-units/blob/v2.1.1/cf_units/_udunits2_parser/compile.py#L52-L77">jinja code</a>). It seems that this might become a core part of the grammar language in the future, but for now the Jinja2 approach worked well for me.
+        </p>
+        <h3>
+          Parse tree into an abstract representation
+        </h3>
+        <p>
+          Once I'd produced the ANTLR rules, it is easy to turn this into a parser in any of the supported languages. In my case I chose the Python 3 target.
+        </p>
+        <p>
+          For the lexer:
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span>java -jar &lt;antlr-jarfile&gt; -Dlanguage=Python3 udunits2Lexer.g4 -o ./parser/
+</pre>
+        </div>
+        <p>
+          And I chose to implement the parser itself using the visitor pattern rather than the <a href="https://github.com/antlr/antlr4/blob/master/doc/listeners.md">listener pattern</a>, this choice made it a little bit easier for me to create a context-free abstract representation later on:
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span>java -jar &lt;antlr-jarfile&gt; -Dlanguage=Python3 udunits2Parser.g4 -no-listener -visitor -o ./parser/
+</pre>
+        </div>
+        <p>
+          With all of this in place, I went about producing a clean abstract representation of the unit that I could produce based on the parse tree. I implemented <a href="https://github.com/SciTools/cf-units/blob/v2.1.1/cf_units/_udunits2_parser/graph.py#L19-L111">basic nodes for an expression graph</a>, and a <a href="https://github.com/SciTools/cf-units/blob/v2.1.1/cf_units/_udunits2_parser/__init__.py#L42-LL167">Visitor to construct the graph</a>.
+        </p>
+        <p>
+          Finally, I had a simple unit representation that could be used for any purpose - including converting to (La)TeX. As an illustrative example, the unit <code>kg m / s^2</code> is shown below:
+        </p>
+        <p>
+          <img alt="A demonstration of the abstract unit expression" src="https://pelson.github.io/2019/cf_units_tex/images/cf_units_tex_nodes.svg">
+        </p>
+        <h3>
+          Abstract graph to (La)TeX
+        </h3>
+        <p>
+          Once I had the graph in the form illustrated above, converting it to TeX is relatively straightforward. Out trusty friend the Visitor pattern makes light work of it with so few node types.
+        </p>
+        <p>
+          As an exercise for the reader, you may like to have a go yourself... Take the following expression produced with cf-units <a href="https://github.com/SciTools/cf-units/blob/v2.1.1/cf_units/_udunits2_parser/graph.py">expression nodes</a>:
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span><span class="kn">import</span> <span class="nn">cf_units._udunits2_parser.graph</span> <span class="kn">as</span> <span class="nn">g</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">Divide</span><span class="p">(</span><span class="n">lhs</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">Terminal</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s1">'m'</span><span class="p">),</span> 
+                <span class="n">rhs</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">Terminal</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s1">'s'</span><span class="p">))</span>
+</pre>
+        </div>
+        <p>
+          Using the knowledge that Terminal nodes have a ".content" attribute, whereas binary nodes have a <code>.lhs</code> and a <code>.rhs</code> attribute, convert the expression into the following string:
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span>\frac{m}{s}
+</pre>
+        </div>
+        <p>
+          You may wish to use the <a href="https://github.com/SciTools/cf-units/blob/v2.1.1/cf_units/_udunits2_parser/graph.py#L114-L140">Visitor base class</a> provided (available as <code>g.Visitor</code> in the above code).
+        </p>
+        <p>
+          If you want more interesting cases, you can generate arbitrary expression graphs from UDUNITS-2 compatible strings:
+        </p>
+        <div class="highlight">
+          <pre>
+<span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">cf_units._udunits2_parser</span> <span class="kn">as</span> <span class="nn">p</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">'kg.m/s-2'</span><span class="p">)</span>
+<span class="n">Divide</span><span class="p">(</span><span class="n">lhs</span><span class="o">=</span><span class="n">Multiply</span><span class="p">(</span><span class="n">lhs</span><span class="o">=</span><span class="n">Identifier</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s1">'kg'</span><span class="p">),</span> <span class="n">rhs</span><span class="o">=</span><span class="n">Identifier</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s1">'m'</span><span class="p">)),</span> <span class="n">rhs</span><span class="o">=</span><span class="n">Raise</span><span class="p">(</span><span class="n">lhs</span><span class="o">=</span><span class="n">Identifier</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s1">'s'</span><span class="p">),</span> <span class="n">rhs</span><span class="o">=</span><span class="n">Number</span><span class="p">(</span><span class="n">content</span><span class="o">=-</span><span class="mi">2</span><span class="p">)))</span>
+</pre>
+        </div>
+        <p>
+          <strong>Solution</strong>: The actual implementation to turn an expression graph into TeX form is <a href="https://github.com/SciTools/cf-units/blob/v2.1.1/cf_units/_udunits2_parser/graph.py#L114-L140">available here</a>.
+        </p>
+        <h3>
+          Opportunities of a working UDUNITS-2 grammar
+        </h3>
+        <h4>
+          CF conventions
+        </h4>
+        <p>
+          The <a href="http://cfconventions.org/">Climate-Forecast (CF) conventions</a> are designed to promote the processing and sharing of files created using the NetCDF API. The conventions are the common denominator of much of the open source Earth Sciences stack, so if you've ever used any Earth Sciences NetCDF data or tools, the chances are you've used the CF conventions.
+        </p>
+        <p>
+          It has always struck me as odd that, when referring to metadata regarding the units of measure, the CF conventions <a href="http://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/cf-conventions.html#units">defer to an implementation</a> (UDUNITS-2) rather than citing a specification or formal grammar.
+        </p>
+        <p>
+          Perhaps the grammar produced for this work could be adopted by the CF conventions, and UDUNITS-2 move to becoming the reference implementation rather than the standard itself?
+        </p>
+        <h4>
+          Online unit validation
+        </h4>
+        <p>
+          Once an ANTLR grammar has been defined, it is relatively easy to generate a parser for any of <a href="https://github.com/antlr/antlr4/blob/4.7.2/doc/targets.md">ANTLR's runtime languages</a>. This includes Python, C++, and JavaScript targets. We could therefore quickly produce a browser based tool to validate UDUNITS-2 units on the client-side.
+        </p>
+        <p>
+          I put together a quick proof of concept that takes UDUNITS-2 compatible unit specifications and parses them entirely client-side. In theory this could be the basis for implementing a UDUNITS-2 like system natively in the browser. If you'd like to learn more tweet a request (@pypelson) for a write-up.
+        </p>
+        <h4>
+          Alternative simplification and factoring
+        </h4>
+        <p>
+          UDUNITS-2 comes with unit simplification and factorisation, but there are tools out there that are even more powerful for this purpose. Once such tool is <a href="https://www.sympy.org/en/index.html">SymPy</a>. Given the ease of traversing the expression graph we now have for our unit, constructing a SymPy expression is relatively simple. I'm confident that we could combine this with the XML files that are shipped with UDUNITS-2 to entirely replace the UDUNITS-2 implementation, should we need to do such a thing.
+        </p>
+        <p>
+          A less controversial option is to improve the handling of offsetted units. For example, degrees Celsius (°C) is <a href="https://github.com/Unidata/UDUNITS-2/blob/v2.2.27.6/lib/udunits2-derived.xml#L127-L136">defined by UDUNITS</a> to be <code>Kelvin + 273.15</code>, yet offset units such as this <a href="https://github.com/Unidata/UDUNITS-2/issues/82">lose their offset when squared</a> - if we were to use a tool such as SymPy to preserve the quantities we'd be able to benefit from its strong mathematical heritage and preserve these quantities.
+        </p>
+        <h3>
+          Python 3 only
+        </h3>
+        <p>
+          This is the first feature that has been added to cf-units which is Python 3 only. The decision was pragmatic as cf-units isn't <em>quite</em> ready to drop legacy Python (though it is coming) but it was more work to get ANTLR to produce a Python 2 compatible parser.
+        </p>
+        <p>
+          Having syntactically invalid Python 2 code in a repository that supports Python 2 comes with a few challenges. We must ensure that the Python 3 code is <em>never</em> imported (else you get a <code>SyntaxError</code>, not an <code>ImportError</code>). This involves some care when handling packaging and test discovery. In the latter case it was necessary to define a <a href="https://github.com/SciTools/cf-units/blob/v2.1.1/cf_units/conftest.py">conftest</a> to prevent pytest from importing the Python 3 files in order to discover tests it can run.
+        </p>
+        <h2>
+          Conclusion
+        </h2>
+        <p>
+          It has been an interesting journey solving this problem. Having never written a full-blown parser before the ANTLR experience has been a real journey of discovery - I started out writing more and more parser rules to cover the corner cases, until I realised that a refactor of the lexer rules would make most of them redundant (a bit like how the more you know of the SciPy stack, the shorter your code gets). I believe the <a href="https://www.unidata.ucar.edu/software/udunits/">UDUNITS-2</a> library, and the Python wrapper <a href="https://github.com/SciTools/cf-units">cf-units</a>, are great choices for the CF conventions, but that it would also be healthy for the conventions to reference a specific grammar and base unit set, and for the conventions to cite UDUNITS-2 as a <em>reference implementation</em> rather than the specification itself.
+        </p>
+        <p>
+          Have a go with cf-units and its (La)TeX generation - there are definitely still cases that the grammar doesn't support, but on the whole it has excellent coverage. If you have other ideas about how we can make use of this new capability, let me know (comments or via twitter).
+        </p>
+      </div>
+      <hr>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+      var disqus_shortname = "pelson";
+      var disqus_identifier = "cf_units_tex";
+
+      (function() {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+      })();
+      </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> <!-- /END THE FEATURETTES -->
+      <div class="clearfix"></div>
+      <hr class="featurette-divider">
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>
+          © 2017 Phil Elson · <a href="https://pelson.github.io#">About</a> · <a href="https://pelson.github.io#contact">Contact</a> · <a href="https://pelson.github.io/feeds/atom.xml"><i class="fa fa-fw fa-rss-square"></i>RSS</a>
+        </p>
+      </footer>
+    </div><!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://pelson.github.io/theme/jquery.min.js">
+    </script> 
+    <script src="https://pelson.github.io/theme/bootstrap.min.js">
+    </script> 
+    <script src="https://pelson.github.io/theme/js/scroll.js">
+    </script> 
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-29774503-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </body>
+</html>
