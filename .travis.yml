@@ -43,5 +43,4 @@ script:
 - git add --all *
 - git status
 - git commit -am "${LOG_MESSAGE}"
-#- noleaky git push origin master
-- echo "PUSH IS DISABLED (because I was losing content)!"
+- noleaky git push origin master
