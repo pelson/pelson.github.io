@@ -11,6 +11,6 @@ sys.path.append(os.getcwd())
 from pelicanconf import *
 
 SITEURL = 'https://pelson.github.io'
-RELATIVE_URLS = False
+RELATIVE_URLS = True
 
 DELETE_OUTPUT_DIRECTORY = True
