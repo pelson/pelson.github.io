@@ -24,4 +24,4 @@
 	url = https://gist.github.com/21fbdc5a944f478bdd896faa95ab3cc7.git
 [submodule "extras/liquid-tags"]
 	path = extras/liquid-tags
-	url = git@github.com:pelson/liquid-tags.git
+	url =  https://github.com/pelson/liquid-tags.git

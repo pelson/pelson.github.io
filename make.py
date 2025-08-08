@@ -61,7 +61,6 @@ def publish():
             old = os.path.join(root, fname)
             new = os.path.join(new_root, fname)
             if fname.endswith('.html'):
-                print('\nConverting {}:'.format(old))
                 cmd = ['tidy', '-config', 'tidy_config.txt', old]
                 with open(new, 'w') as fh:
                     try:
