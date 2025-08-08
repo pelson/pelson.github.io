@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="{{ SITEURL }}/theme/font-awesome/css/font-awesome.min.css">
     <link href="//fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
 
+    {% if EXTRA_HEADER %}
+      {{ EXTRA_HEADER }}
+    {% endif %}
     {% block header %}
     {% endblock %}
   </head>
