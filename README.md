@@ -18,14 +18,16 @@ OR
 
 Next, create an environment:
 
-    conda create -p ./build_env ...
+    uv venv ./venv
+    source ./venv/bin/activate
+    uv pip install -r requirements.txt ./extras/liquid-tags
 
-Finally, for a local server that watches all changed files:
+To run a local server that watches all changed files:
 
     python make.py reload
 
+To update the requirements.txt:
 
-Note on branches
-----------------
-The source branch is the master/trunk for the actual source to generate the site, and the master branch is where
-the rendered html lives (this is a result of the way github pages are done). 
+   uv pip compile requirements.in | grep -v pelican-liquid-tags > requirements.txt 
+
+

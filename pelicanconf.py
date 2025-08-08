@@ -40,11 +40,9 @@ NOTEBOOK_OUTPUT = 'images'
 TAG_URL = 'tag/{slug}/'
 TAG_SAVE_AS = 'tag/{slug}/index.html'
 
-PLUGIN_PATHS = ['extras/pelican-plugins']
+PLUGIN_PATHS = ['extras/liquid-tags/pelican/plugins']
 PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
-           'liquid_tags.include_code', 'liquid_tags.notebook', 'summary',
-           'feed_summary']
-FEED_USE_SUMMARY = True
+           'liquid_tags.include_code', 'liquid_tags.notebook']
 
 THEME =  "extras/theme"
 DIRECT_TEMPLATES = ('index', 'archives', 'sitemap', 'announce', 'articles', 'field_notes', 'hints')
@@ -67,3 +65,10 @@ JINJA_FILTERS = {
 #MARKDOWN = ['codehilite(noclasses=True, pygments_style=native)', 'extra']  # enable MD options
 
 IGNORE_FILES = ['README.md']
+
+# Include notebook CSS header
+try:
+    with open('_nb_header.html', 'r', encoding='utf-8') as f:
+        EXTRA_HEADER = f.read()
+except FileNotFoundError:
+    EXTRA_HEADER = ''

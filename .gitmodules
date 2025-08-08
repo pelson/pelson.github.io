@@ -4,9 +4,6 @@
 [submodule "content/notebooks/working_with_colors_in_mpl"]
 	path = content/notebooks/working_with_colors_in_mpl
 	url = https://gist.github.com/5636372.git
-[submodule "extras/pelican-plugins"]
-    path = extras/pelican-plugins
-    url = https://github.com/pelson/pelican-plugins.git
 [submodule "content/notebooks/massive_virtual_arrays_with_biggus"]
 	path = content/notebooks/massive_virtual_arrays_with_biggus
 	url = https://gist.github.com/6139282.git
@@ -25,3 +22,6 @@
 [submodule "content/field_notes/coast_path_pt1"]
 	path = content/field_notes/coast_path_pt1
 	url = https://gist.github.com/21fbdc5a944f478bdd896faa95ab3cc7.git
+[submodule "extras/liquid-tags"]
+	path = extras/liquid-tags
+	url = git@github.com:pelson/liquid-tags.git
