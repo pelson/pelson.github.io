@@ -1,0 +1,8 @@
+pelican==3.7
+markdown<3.0
+ipython==3.*
+notebook
+nbconvert==5.*
+pygments
+jinja2<3.0
+markupsafe<2.0

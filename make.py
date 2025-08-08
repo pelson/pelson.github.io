@@ -62,7 +62,7 @@ def publish():
             new = os.path.join(new_root, fname)
             if fname.endswith('.html'):
                 print('\nConverting {}:'.format(old))
-                cmd = ['tidy5', '-config', 'tidy_config.txt', old]
+                cmd = ['tidy', '-config', 'tidy_config.txt', old]
                 with open(new, 'w') as fh:
                     try:
                         code = subprocess.check_call(cmd, stdout=fh)
@@ -77,7 +77,7 @@ def publish():
         if os.path.isdir(fname):
             shutil.copytree(fname, os.path.join('output_branch', os.path.basename(fname)))
         elif fname.endswith('.html'):
-            cmd = ['tidy5', '-config', 'tidy_config.txt', fname]
+            cmd = ['tidy', '-config', 'tidy_config.txt', fname]
             with open(os.path.join('output_branch', os.path.basename(fname)), 'w') as fh:
                 subprocess.check_call(cmd, stdout=fh)
         else:
