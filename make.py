@@ -27,7 +27,7 @@ def html():
 
 
 def reload():
-    cmd = ['pelican', 'content', '--autoreload', '--output', 'output',
+    cmd = ['pelican', 'content', '--autoreload', '--listen', '--output', 'output',
            '--settings', 'pelicanconf.py']
     subprocess.check_call(cmd)
 

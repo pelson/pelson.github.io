@@ -24,7 +24,7 @@ Next, create an environment:
 
 To run a local server that watches all changed files:
 
-    python make.py reload
+    uv run --no-project --with-requirements ./requirements.txt python make.py reload
 
 To update the requirements.txt:
 
