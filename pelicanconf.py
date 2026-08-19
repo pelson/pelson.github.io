@@ -26,7 +26,16 @@ EXTRA_PATH_METADATA = {
     'extra/theme/favicon.ico': {'path': 'favicon.ico'}
 }
 
-DISQUS_SITENAME = "pelson"
+# Giscus comments — fill in the IDs from https://giscus.app after enabling
+# Discussions on the repo and installing the giscus GitHub App.
+GISCUS_REPO = "pelson/pelson.github.io"
+GISCUS_REPO_ID = "MDEwOlJlcG9zaXRvcnkxMjExNjUzNg=="
+GISCUS_CATEGORY = "General"
+GISCUS_CATEGORY_ID = "DIC_kwDOALjiOM4DDnL7"
+GISCUS_MAPPING = "pathname"
+GISCUS_STRICT = "0"
+GISCUS_EMIT_METADATA = "1"
+GISCUS_INPUT_POSITION = "bottom"
 GOOGLE_ANALYTICS = "UA-43268601-1"
 
 PAGE_URL = "{slug}.html"
