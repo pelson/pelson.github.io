@@ -65,8 +65,25 @@ HINTS_SAVE_AS = 'hints-n-tips/index.html'
 
 # Thanks http://stefaanlippens.net/quick-and-easy-tag-cloud-in-pelican.html
 import math
+import re
+
+_SENTENCE_RE = re.compile(r'(?<=[.!?])\s+(?=[A-Z0-9"\'“])')
+
+def first_sentences(text, n=2, min_chars=80):
+    """Return the first `n` sentences of `text`, extending if the result is too short."""
+    if not text:
+        return ''
+    parts = _SENTENCE_RE.split(text.strip())
+    take = max(1, n)
+    out = ' '.join(parts[:take]).strip()
+    while len(out) < min_chars and take < len(parts):
+        take += 1
+        out = ' '.join(parts[:take]).strip()
+    return out
+
 JINJA_FILTERS = {
     'count_to_font_size': lambda c: '{p:.1f}%'.format(p=100 + 25 * math.log(c, 2)),
+    'first_sentences': first_sentences,
 }
 
 

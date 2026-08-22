@@ -7,13 +7,13 @@
     <h3 style="min-height: 2em;">
       <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
       {% if article.category == 'article' %}
-      <i class="fa fa-fw fa-file-o" title="Articles"></i>
+      <i class="fa-regular fa-fw fa-file" title="Articles"></i>
       {% elif article.category == 'announce' %}
-      <i class="fa fa-fw fa-bullhorn" title="Announcements"></i>
+      <i class="fa-solid fa-fw fa-bullhorn" title="Announcements"></i>
       {% elif article.category == 'field-notes' %}
-      <i class="fa fa-fw fa-map-o" title="Field notes"></i>
+      <i class="fa-regular fa-fw fa-map" title="Field notes"></i>
       {% elif article.category == 'hint' %}
-      <i class="fa fa-fw fa-list-ul" title="Hints &amp; Tips"></i>
+      <i class="fa-solid fa-fw fa-list-ul" title="Hints &amp; Tips"></i>
       {% endif %}
     </h3>
     <div style="float: left; padding: 0.5em 1em 0.5em 0em;">

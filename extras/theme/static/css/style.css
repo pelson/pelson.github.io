@@ -2,6 +2,32 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
+/* Reserve scrollbar gutter so short-then-long pages don't shift horizontally
+   when the scrollbar appears late. `scrollbar-gutter` is the modern approach;
+   `overflow-y: scroll` is the fallback for browsers that don't honour it. */
+html {
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
+}
+
+@font-face {
+  font-family: 'xkcd Script';
+  src: url('../fonts/xkcd-script/xkcd-script-2026.2.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  /* Licensed under CC BY-NC 3.0 (see ../fonts/xkcd-script/LICENSE). */
+}
+
+@font-face {
+  font-family: 'Pacifico';
+  src: url('../fonts/pacifico/pacifico-v23-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  /* Latin subset from Google Fonts v23; licensed under SIL OFL 1.1 (see ../fonts/pacifico/OFL.txt). */
+}
+
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
@@ -109,6 +135,16 @@ img {
   color: inherit;
 }
 
+/* The <a> in each brand-icons column contains an inline/inline-block icon
+   plus a block-level <h2>. Leaving <a> as its default inline layout gives
+   the browser a mixed inline+block anchor, and the resulting anonymous
+   wrapping can offset the h2 relative to the icon. Making the anchor a
+   block puts icon and h2 into the same centered stack. */
+.brand-icons a {
+  display: block;
+  text-align: center;
+}
+
 .navbar-container {
   border-top: none !important;
 } 
@@ -137,14 +173,31 @@ img {
   color: white;
 }
 
-.brand-icons i, .brand-icons img {
+.brand-icons i, .brand-icons img, .brand-icons svg {
   /* Control the size of both the icons and the image */
   font-size: 100px;
   height: 1em;
+}
+/* Only force a square box on img/svg — FA icons already know their intrinsic
+   width via the font (or via fa-fw for uniform 1.25em), and forcing width:
+   1em on a non-square glyph (like fa-code, viewBox 640x512) clips the glyph
+   and pushes its visible ink off-centre. */
+.brand-icons img, .brand-icons svg {
   width: 1em;
 }
 
-.brand-icons i.shrink, .brand-icons img.shrink {
+.brand-icons svg {
+  fill: white;
+  vertical-align: middle;
+  height: 1em;
+  width: auto;
+}
+
+.brand-icons i.shrink, .brand-icons img.shrink,
+.brand-icons.shrink svg {
+  /* SVG's className is an SVGAnimatedString, which jQuery 1.x can't set via
+     .addClass(), so the svg never gets its own `.shrink` marker. Rely on the
+     parent .brand-icons.shrink state instead. */
   font-size: 50px;
   margin-top: 0px;
 }
@@ -161,6 +214,9 @@ img {
 
 .brand-icons h2 {
   font-size: 175%;
+  font-family: 'xkcd Script', 'Pacifico', Helvetica, sans-serif;
+  font-weight: 400;
+  text-align: center;
 }
 
 .brand-icons h2.shrink {
@@ -169,7 +225,7 @@ img {
 }
 
 .emphasis {
-  font: 400 2em 'Pacifico', Helvetica, sans-serif;
+  font: 400 2em 'xkcd Script', 'Pacifico', Helvetica, sans-serif;
   color: #3fd183;
   line-height: 1em;
 }
@@ -265,18 +321,31 @@ ul.tags li {
 }
 
 
+.contact {
+  /* Override Bootstrap 3's floated row so the icons centre regardless of
+     how many there are or where they wrap. */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .contact div {
   padding: 1em;
 }
-.contact div a {
+.contact div a,
+.contact div a:hover,
+.contact div a:focus {
  display: block;
  text-align: center;
  color: #43505e;
+ text-decoration: none;
 }
 
 .contact div a i {
+ display: block;
  width: 100%;
+ text-align: center;
  font-size: 3em;
+ margin-bottom: 0.25em;
 }
 
 
@@ -376,9 +445,6 @@ ul.tags li {
   .nav-toggle {
     top: 1em;
   }
-  .brand-icons div {
-    padding-top: 0.8em;
-  }
 
   .navbar-spacer {
     margin-bottom: 7em;
@@ -396,6 +462,11 @@ ul.tags li {
 @media (max-width: 768px) {
   .actual-navbar .navbar-nav>li {
     min-width: 49%;
+  }
+
+  .post-summary,
+  .post-category {
+    display: none;
   }
 
   /* Navbar positioning foo */
@@ -435,10 +506,10 @@ ul.tags li {
   .brand-icons h2 {
     font-size: 1em;
   }
-  .brand-icons i, .brand-icons img {
+  .brand-icons i, .brand-icons img, .brand-icons svg {
     font-size: 3em;
   }
-  .brand-icons i.shrink, .brand-icons img.shrink {
+  .brand-icons i.shrink, .brand-icons img.shrink, .brand-icons.shrink svg {
     font-size: 30px;
   }
   .nav-toggle i, .navbar-spacer {
