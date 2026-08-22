@@ -1,4 +1,5 @@
 {% extends "article_archive.html" %}
+{% from "article_archive.html" import render_articles with context %}
 
 {% set active_page = 'Home' %}
 
@@ -12,286 +13,44 @@
 {% endblock %}
 
 {% block content %}
-<div class="row media-body">
-  <div class="col-sm-12">
-    <img src="{{ SITEURL }}/theme/images/pelson.png" style="float: left; padding-right: 2em; margin-bottom: 1em; max-width: 85vw;">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="thumbnail welcome-card" style="padding: 1.5em 2em;">
+      <img src="{{ SITEURL }}/theme/images/pelson.png" width="600" height="600" alt="Phil Elson" style="float: left; padding-right: 2em; margin-bottom: 1em; max-width: min(38vw, 10cm); height: auto;">
 
-    <p>
-      <span class="media-heading emphasis">Welcome</span> to this collection of articles, how-tos and announcements.
-    </p>
-    <p style="padding-top: 1em; line-height: 2em;">
-      As a scientific technical lead at a leading natural sciences research institute, I'm fortunate to contribute to a body of tools that empower
-      <span class="media-heading emphasis">researchers and data scientists</span> across a broad spectrum of fields.
-    </p>
-    <p>
-      I'm driven by the idea that the modern <span class="media-heading emphasis">scientific method</span> is now almost entirely dependent
-      upon <span class="media-heading emphasis">software</span>, and that, in order to facilitate transparency and reproducibility of results,
-      scientific software must increasingly become <span class="media-heading emphasis">open source.</span>
-    </p>
-    <p style="padding-top: 1em; line-height: 2em;">
-      As well as deep knowledge of the rapidly changing technology landscape, development of useful scientific tools depends upon a solid understanding of the underlying scientific problem space. For these reasons you will find these pages cover the broad spectrum of topics from technology through to scientific.
-    </p>
-    <div class="clearfix"></div>
+      <p>
+        I am a technologist who loves to build tools and communities,
+        often for scientists and engineers who do not consider their main job to be software engineering.
+        This is the blog where I document my own discovery and intrigue, and occasionally announce things that I have created.
+      </p>
+      <p style="padding-top: 1em; line-height: 2em;">
+        Professionally, I lead the Python 🐍 community for accelerator controls at
+        CERN ⚛️. In the past, I was a tech lead for Python in the data analysis and
+        visualisation community at the Met Office ⛅.
+      </p>
+      <p style="padding-top: 1em; line-height: 2em;">
+        I've worked in the scientific Python community for many years, and
+        even though I may now have moved on from the projects, I am proud of
+        my past contributions:
+      </p>
+      {# Make the ul its own block formatting context so it doesn't wrap under
+         the floated image mid-list. All bullets then share a single left
+         edge, and that edge sits to the right of the image while paragraphs
+         above still wrap freely. #}
+      <ul style="line-height: 1.8; overflow: hidden; list-style: none; padding-left: 1em;">
+        <li>📊 maintainer and steering-council member of <a href="https://matplotlib.org">matplotlib</a> during its 1.x evolution;</li>
+        <li>🌦️ co-creator of <a href="https://scitools-iris.readthedocs.io/">Iris</a>, a data model and analysis library for numerical weather prediction. Iris was contemporary with the early days of pandas, and a direct influence on later tools such as xarray and dask;</li>
+        <li>🗺️ creator of <a href="https://scitools.org.uk/cartopy/docs/latest/">cartopy</a>, a matplotlib-based library for geospatial visualisation, with particular attention to the dateline-wraparound cases that matter for global atmospheric and oceanographic modelling;</li>
+        <li>📦 founder of <a href="https://conda-forge.org">conda-forge</a>, which brought together disparate scientific communities under a single packaging effort and still plays an important role in how the stack gets distributed today.</li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </div>
-<hr class="featurette-divider">
-
-<p class="featurette-heading">
-  Open source tools that I have made significant contributions towards include:
-</p>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4 col-sm-6 thumbnail package-info">
-      <div class="center-float">
-        <div class="center-float-inner">
-          <a href="http://matplotlib.org"><img src="{{ SITEURL }}/theme/images/mpl.svg" style="max-height: 5em;" alt="matplotlib"></a>
-        </div>
-      </div>
-      <div class="sep-spacer"></div>
-      <div class="package-body">
-        <p>
-          <span class="role">Role:</span>Member of steering-committee
-        </p>
-        <p>
-          Still the go-to visualisation Python package, matplotlib is a cross-platform 2D plotting library which produces publication quality
-          figures in a variety of hard copy and interactive formats.
-        </p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 thumbnail package-info">
-      <div class="center-float">
-        <div class="center-float-inner">
-          <a href="http://scitools.org.uk/cartopy/docs/latest/"><img src="{{ SITEURL }}/theme/images/cartopy.png" style="max-height: 5em; padding: 0.1em;" alt="cartopy"></a>
-        </div>
-      </div>
-      <div class="sep-spacer"></div>
-      <div class="package-body">
-        <p>
-          <span class="role">Role:</span>Creator
-        </p>
-        <p>
-          A Python package for geospatial data visualisation with a powerful matplotlib interface.
-        </p>
-      </div>
-    </div>
-
-    <!-- Add the extra clearfix for only the required viewport -->
-    <div class="clearfix visible-md-block"></div>
-
-    <div class="col-lg-4 col-sm-6 thumbnail package-info">
-      <div class="center-float">
-        <div class="center-float-inner">
-          <a href="https://conda-forge.org">
-            <img src="{{ SITEURL }}/theme/images/conda-forge.png" style="max-height: 5em; float: left;" alt="conda-forge">
-            <h2 style="padding-left: 3em; font-size: 2em; color: black; font-weight: 700; white-space: nowrap; font-family: Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif; text-transform: uppercase;">conda-forge</h2>
-          </a>
-        </div>
-      </div>
-      <div class="sep-spacer"></div>
-      <div class="package-body">
-        <p>
-          <span class="role">Role:</span>Creator
-        </p>
-        <p>
-          A community led collection of recipes, build infrastructure and distributions for the conda package manager.
-        </p>
-      </div>
-    </div>
-
-    <!-- Add the extra clearfix for only the required viewport -->
-    <div class="clearfix visible-lg-block"></div>
-
-    <div class="col-lg-4 col-sm-6 thumbnail package-info">
-      <div class="center-float">
-        <div class="center-float-inner">
-          <a href="https://repohealth.info" ><img src="{{ SITEURL }}/theme/images/repohealth.gif" style="max-height: 5em; float: left;" alt="repohealth.info">
-            <h2 style="padding-left: 2.5em; font-size: 2.5em; color: gray; font-weight: 700; white-space: nowrap; font-family: Neucha;">RepoHealth.info</h2>
-          </a>
-        </div>
-      </div>
-      <div class="sep-spacer"></div>
-      <div class="package-body">
-        <p>
-          <span class="role">Role:</span>Creator
-        </p>
-        <p>
-          Measure the health of your favourite GitHub repositories with repohealth.info.
-          Provides metrics and visualisations that may be used for assessing the state of repositories over time.
-        </p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 thumbnail package-info">
-      <div class="center-float">
-        <div class="center-float-inner">
-          <a href="http://scitools.org.uk/iris/docs/latest/" ><img src="{{ SITEURL }}/theme/images/iris.png" style="max-height: 5em; float: left;" alt="iris">
-            <h2 style="padding-left: 2em; font-size: 3.5em; color: black; font-weight: 700; white-space: nowrap; margin-top: 10px;">Iris</h2>
-          </a>
-        </div>
-      </div>
-      <div class="sep-spacer"></div>
-      <div class="package-body">
-        <p>
-          <span class="role">Role:</span>Co-creator
-        </p>
-        <p>
-          A powerful, easy to use Python package for analysing and visualising [predominantly] gridded datasets seen commonly in the atmospheric sciences.
-        </p>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-sm-6 thumbnail package-info">
-      <div class="center-float">
-        <div class="center-float-inner">
-          <a href="https://github.com/pelson/conda-execute">
-            <h2 style="color: black; font-weight: 700; white-space: nowrap; margin-top: 5px; text-align: center;">
-              <i class="fa fa-fw fa-bolt" style="font-size: 2em; color: black; vertical-align: middle;"></i>
-              conda-execute
-            </h2>
-          </a>
-        </div>
-      </div>
-      <div class="sep-spacer"></div>
-      <div class="package-body">
-        <p>
-          <span class="role">Role:</span>Creator
-        </p>
-        <p>
-          Write scripts that express their dependencies, and execute them in isolated temporary (conda) environments.
-        </p>
-      </div>
-    </div>
-  </div>
-  <p>
-    Other packages of note include Jupyter (notebook &amp; IPython itself), Shapely, conda-build-all and biggus. My full GitHub profile can be found at
-    <a href="https://github.com/pelson"><i class="fa fa-fw fa-github" style="font-size: 2em; vertical-align: middle;"></i>github.com/pelson</a>.
-  </p>
-</div>
-
-<hr class="featurette-divider">
 
 <div class="row media-body">
-  <p class="featurette-heading">
-    Content for this site has been organised into the following categories:
-  </p>
-  <div class="row row-eq-height">
-    <div class="col-xs-12 col-sm-6">
-      <div class="item-content thumbnail">
-        <div class="float-icon">
-          <i class="fa fa-fw fa-5x fa-file-o"></i>
-        </div>
-        <h3 class="media-heading">Articles</h3>
-        {% set these_articles = articles_by_cat.get('article', []) %}
-        <p>
-          White-papers, prose and refined field notes.
-        </p>
-
-        {% if these_articles|length > 0 %}
-        <div class="package-body">
-          <p>Most recently:</p>
-          <ul style="list-style: none; padding-left:0;">
-            {% for article in these_articles[:3] %}
-            <li>
-              <time datetime="{{ article.date.isoformat() }}" class="light-time">{{ article.date.strftime('%b \'%y') }}</time>
-              <a href="{{ article.url }}">{{ article.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-          <p>
-            <a href="{{ SITEURL }}/articles/" class="btn btn-default" style="float: right;" role="button">See all articles</a>
-          </p>
-          <div class="clearfix"></div>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-
-    <div class="col-xs-12 col-sm-6">
-      <div class="item-content thumbnail">
-        <div class="float-icon">
-          <i class="fa fa-fw fa-5x fa-bullhorn"></i>
-        </div>
-        <h3 class="media-heading">Announcements</h3>
-        {% set these_articles = articles_by_cat.get('announce', []) %}
-        <p>
-          Synopsis of new packages, releases and the occasional twitter feed.
-        </p>
-
-        {% if these_articles|length > 0 %}
-        <div class="package-body">
-          <p>Most recently:</p>
-          <ul style="list-style: none; padding-left:0;">
-            {% for article in these_articles[:3] %}
-            <li>
-              <time datetime="{{ article.date.isoformat() }}" class="light-time">{{ article.date.strftime('%b \'%y') }}</time>
-              <a href="{{ article.url }}">{{ article.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-          <a href="{{ SITEURL }}/announce/" class="btn btn-default" style="float: right;" role="button">See all announcements</a>
-          <div class="clearfix"></div>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-xs-12 col-sm-6">
-      <div class="item-content thumbnail">
-        <div class="float-icon">
-          <i class="fa fa-fw fa-5x fa-list-ul"></i>
-        </div>
-        <h3 class="media-heading">Hints &amp; Tips</h3>
-        {% set these_articles = articles_by_cat.get('hint', []) %}
-        <p>
-          Titbits of information, often as much as a reminder for myself as anybody else.
-        </p>
-
-        {% if these_articles|length > 0 %}
-        <div class="package-body">
-          <p>Most recently:</p>
-          <ul style="list-style: none; padding-left:0;">
-            {% for article in these_articles[:3] %}
-            <li>
-              <time datetime="{{ article.date.isoformat() }}" class="light-time">{{ article.date.strftime('%b \'%y') }}</time>
-              <a href="{{ article.url }}">{{ article.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-          <a href="{{ SITEURL }}/hints-n-tips/" class="btn btn-default" style="float: right;" role="button">See all hints &amp; tips</a>
-          <div class="clearfix"></div>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-
-    <div class="col-xs-12 col-sm-6">
-      <div class="item-content thumbnail">
-        <div class="float-icon">
-          <i class="fa fa-fw fa-5x fa-map-o"></i>
-        </div>
-        <h3 class="media-heading">Field notes</h3>
-        {% set these_articles = articles_by_cat.get('field-notes', []) %}
-        <p>
-          An unrefined log of technology/science investigations. With sufficient interest, occasionally notes are polished and turned into articles.
-        </p>
-
-        {% if these_articles|length > 0 %}
-        <div class="package-body">
-          <p>Most recently:</p>
-          <ul style="list-style: none; padding-left:0;">
-            {% for article in these_articles[:3] %}
-            <li>
-              <time datetime="{{ article.date.isoformat() }}" class="light-time">{{ article.date.strftime('%b \'%y') }}</time>
-              <a href="{{ article.url }}">{{ article.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-          <a href="{{ SITEURL }}/field-notes/" class="btn btn-default" style="float: right;" role="button">See all field notes</a>
-          <div class="clearfix"></div>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+  {% set posts = (articles_by_cat.get('article', []) + articles_by_cat.get('announce', []) + articles_by_cat.get('field-notes', []))|sort(attribute='date', reverse=True) %}
+  {{ render_articles(posts, article_limit=1000) }}
 
   <hr class="featurette-divider">
   <div class="container">
@@ -320,23 +79,20 @@
   </p>
   <div class="row contact">
     <div class="col-xs-4 col-md-2">
-      <a href="https://github.com/pelson"><i class="fa fa-github"></i> @pelson</a>
+      <a href="https://github.com/pelson"><i class="fa-brands fa-github"></i> @pelson</a>
     </div>
     <div class="col-xs-4 col-md-2">
-      <a href="https://twitter.com/pypelson"><i class="fa fa-twitter"></i>@pypelson</a>
+      <a href="https://bsky.app/profile/pelson.bsky.social"><i class="fa-brands fa-bluesky"></i>@pelson</a>
     </div>
     <div class="col-xs-4 col-md-2">
-      <a href="http://stackoverflow.com/users/741316/pelson"><i class="fa fa-stack-overflow"></i>@pelson</a>
+      <a href="http://stackoverflow.com/users/741316/pelson"><i class="fa-brands fa-stack-overflow"></i>@pelson</a>
     </div>
     <div class="col-xs-4 col-md-2">
-      <a href="http://linkedin.com/in/philipelson/"><i class="fa fa-linkedin-square"></i>@philipelson</a>
-    </div>
-    <div class="col-xs-4 col-md-2">
-      <a href="https://bitbucket.org/pelson"><i class="fa fa-bitbucket"></i>@pelson</a>
+      <a href="http://linkedin.com/in/philipelson/"><i class="fa-brands fa-linkedin"></i>@philipelson</a>
     </div>
     <div class="col-xs-4 col-md-2">
       <a href="mailto:pelson.pub+blog@gmail.com">
-        <i class="fa fa-envelope"></i>gmail: pelson.pub
+        <i class="fa-solid fa-envelope"></i>gmail: pelson.pub
       </a>
     </div>
   </div>

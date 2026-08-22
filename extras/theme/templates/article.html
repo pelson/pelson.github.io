@@ -23,7 +23,8 @@
       <span class="day">{{ article.date.day }}</span>
     </div>
   </div>
-  <p>Tags: 
+  {% if article.tags %}
+  <p>Tags:
     {% set articles_by_tag = dict(tags) %}
 
     {% for tag in article.tags|sort %}
@@ -32,11 +33,46 @@
     {%- if not loop.last -%}, {% endif %}
     {% endfor %}
   </p>
+  {% endif %}
 </div>
 
 <div class="entry">
   {{ article.content }}
 </div>
+
+{# Pelican's built-in article.prev_article / next_article isn't populated in
+   this setup, so compute neighbours by walking the global `articles` list
+   (sorted newest-first). #}
+{% set ns = namespace(older=None, newer=None, found=false) %}
+{% for a in articles %}
+  {% if a.url == article.url %}
+    {% set ns.found = true %}
+  {% elif not ns.found %}
+    {% set ns.newer = a %}
+  {% elif ns.older is none %}
+    {% set ns.older = a %}
+  {% endif %}
+{% endfor %}
+{% if ns.older or ns.newer %}
+<nav class="post-nav" style="display: flex; justify-content: space-between; gap: 1em; margin: 2em 0; padding-top: 1em; border-top: 1px solid #eee;">
+  <div class="post-nav-prev" style="flex: 1;">
+    {% if ns.older %}
+    <a href="{{ SITEURL }}/{{ ns.older.url }}">
+      <span style="color: #999; font-size: 0.85em; display: block;">← Older post</span>
+      <strong>{{ ns.older.title }}</strong>
+    </a>
+    {% endif %}
+  </div>
+  <div class="post-nav-next" style="flex: 1; text-align: right;">
+    {% if ns.newer %}
+    <a href="{{ SITEURL }}/{{ ns.newer.url }}">
+      <span style="color: #999; font-size: 0.85em; display: block;">Newer post →</span>
+      <strong>{{ ns.newer.title }}</strong>
+    </a>
+    {% endif %}
+  </div>
+</nav>
+{% endif %}
 
 <hr />
 

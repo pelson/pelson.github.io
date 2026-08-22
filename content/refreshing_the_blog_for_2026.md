@@ -106,9 +106,9 @@ It opens up ideas that previously were not viable, simply because of the up-fron
 they would have needed. I have always been a prototype-making sort of person, and AI supports
 that mode of working very well.
 There are some interesting social challenges around AI usage, but I think _not_ using AI is hard to
-justify in 2026. Finding finding the sweet spot between AI and
-human effort is something we are all still figuring out.
-For prototypes, I think vibe coding works out quite well, but for real code that you want to maintain,
+justify in 2026. Finding the sweet spot between AI and
+human effort is something we are all still figuring out: 
+for prototypes, I think vibe coding works out quite well, but for real code that you want to maintain,
 I don't believe that fully automated agentic use of AI produces a satisfactory outcome, neither in
 terms of quality, nor in human understanding.
 
