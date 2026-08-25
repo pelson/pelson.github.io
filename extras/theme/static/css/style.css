@@ -517,5 +517,42 @@ ul.tags li {
   }
   .brand-icons {
     padding-bottom: 50px;
-  }  
+  }
+}
+
+/* Markdown admonitions (python-markdown `admonition` extension). */
+.admonition {
+  clear: both;              /* keep inline admonitions clear of the floated date icon */
+  overflow: hidden;         /* contain any floats inside */
+  border-left: 4px solid #B2B7BD;
+  background-color: #f4f6f8;
+  padding: 0.85em 1.15em;
+  margin: 1.75em 0;
+  border-radius: 3px;
+  color: #43505e;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+.admonition-title {
+  font-weight: 600;
+  margin: 0 0 0.35em 0;
+  color: #43505e;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.admonition p {
+  margin: 0.4em 0;
+}
+.admonition > p:last-child {
+  margin-bottom: 0;
+}
+.admonition a {
+  color: #43505e;
+  text-decoration: underline;
+}
+.admonition.warning,
+.admonition.update,
+.admonition.note {
+  border-left-color: #43505e;
 }

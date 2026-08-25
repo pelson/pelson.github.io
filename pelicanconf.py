@@ -90,6 +90,17 @@ JINJA_FILTERS = {
 # Code highlights. http://stackoverflow.com/a/33843925/741316
 #MARKDOWN = ['codehilite(noclasses=True, pygments_style=native)', 'extra']  # enable MD options
 
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+        'markdown.extensions.admonition': {},
+    },
+    'output_format': 'html5',
+}
+
+
 IGNORE_FILES = ['README.md']
 
 # Include notebook CSS header

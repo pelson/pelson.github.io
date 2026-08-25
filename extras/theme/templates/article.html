@@ -14,6 +14,23 @@
 <h2 id="single">{{ article.title }}</h2>
 {% if article.summaryimg %}
 <img class="article-image" src="{{ SITEURL }}/images/{{ article.slug }}/{{ article.summaryimg }}" alt="" /> {% endif %}
+
+{# If the article source wraps a leading admonition in
+   `<!-- notice -->...<!-- /notice -->`, hoist it above the date block.
+   The comments survive Pelican's HTML re-serialization, so we can split
+   `article.content` on the closing comment directly. Anything before it
+   (including the opening comment, which is invisible) renders above the
+   date; the rest goes in `.entry` as usual. RSS consumers see the notice
+   at the top of the article because `article.content` is unchanged. #}
+{% set _notice_end = '<!-- /notice -->' %}
+{% if _notice_end in article.content %}
+  {% set _parts = article.content.split(_notice_end, 1) %}
+  {{ _parts[0] }}
+  {% set article_body = _parts[1] %}
+{% else %}
+  {% set article_body = article.content %}
+{% endif %}
+
 <div class="date entry-info">
   <div style="float: left; padding: 0.5em 1em 0.5em 0em;">
     <time datetime="{{ article.date.isoformat() }}" class="icon"></time>
@@ -37,7 +54,7 @@
 </div>
 
 <div class="entry">
-  {{ article.content }}
+  {{ article_body }}
 </div>
 
 {# Pelican's built-in article.prev_article / next_article isn't populated in

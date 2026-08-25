@@ -6,6 +6,17 @@ Slug: conda_execute
 Author: Phil Elson
 is_notebook: 0
 
+<!-- notice -->
+!!! update "Update, August 2026"
+    I no longer maintain ``conda execute``, and haven't for some time. If you're
+    looking for the same idea today, running a script in a throwaway environment
+    described by inline metadata, the well-supported options are
+    [``pixi exec``](https://pixi.sh/) (the closest conda-native successor,
+    from the prefix-dev team) and, for pure-Python scripts, [``uv run``](https://docs.astral.sh/uv/guides/scripts/)
+    or [``pipx run``](https://pipx.pypa.io/) using [PEP 723](https://peps.python.org/pep-0723/)
+    inline script metadata. The rest of the article is preserved unchanged for historical interest.
+<!-- /notice -->
+
 Conda is awesome - it is a simple package manager which allows me to create isolated software environments
 much like virtualenv. Unlike virtualenv though it can handle any package type, not just python ones.
 
