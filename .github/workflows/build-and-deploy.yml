@@ -34,7 +34,7 @@ jobs:
 
     - name: Build site
       run: |
-        uv run --with-requirements ./requirements.txt --python 3.13 python make.py publish
+        uv run python ./make.py publish
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
