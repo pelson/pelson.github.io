@@ -1,5 +1,5 @@
-Title: Adding pre- and post-build hooks to any Python build backend with multistage-build
-Date: 2026-09-21 12:00
+Title: Introducing multistage-build: a proxy build-backend with customisable pre- and post-build hooks
+Date: 2026-09-22 06:00
 Category: article
 Tags: Python, packaging, PEP-517
 Slug: multistage_build
@@ -7,20 +7,17 @@ Author: Phil Elson
 is_notebook: 0
 
 
-## Motivation
+Sometimes you want to customise your Python project's build with a pre-processing or post-processing step that isn't built-in to the PEP-517 build backend that you happen to be using. In my day-to-day work I have multiple such needs, including:
 
-Sometimes you need to customise a Python project's build with a pre-processing or post-processing step that isn't entirely standard. In my day-to-day work I have multiple such needs, including:
-
+ * The ability to run tasks before the actual build takes place, including things like code generation (I have one case where I generate a synchronous module from an equivalent async module, meaning I can maintain a consistent API for both approaches).
  * The ability to inject metadata into a wheel after build (I was investigating the `Requires-External` core metadata).
- * The ability to run tasks before the actual build takes place, including things like code generation (for example, generating a synchronous module from an asynchronous one).
 
-In the past, you would have used custom commands in setuptools/distutils. Nowadays, such hooks exist for specific build backends, but not in all cases, and not in a consistent way. Even where a hook mechanism does exist, it is tied to the particular backend, so a hook you have written for hatchling won't help you if you happen to be using setuptools or poetry-core.
-
+In the past, you would have used custom commands in `setuptools`/`distutils`. With `pyproject.toml`, build backends choose the functionality they wish to support, but in general there are no standardised hooks that you can reliably use across all backends: a hook that exists for `hatchling` won't help you if you happen to be using `setuptools` or `flit`. Building a whole new build backend just to trigger a simple pre- or post-processing step doesn't make any sense, so you are left with continuing to use `setup.py` alongside `pyproject.toml` - this has its own downsides, and is also coupled tightly to the build backend you are using. This is where `multistage-build` can help.
 
 <!-- PELICAN_END_SUMMARY -->
 
 
-## My solution
+## multistage-build: a PEP-517 build backend which proxies your real build backend
 
 Inspired by tools such as [setuptools-ext](https://github.com/wimglenn/setuptools-ext), as well as having implemented another specialised build backend in the past, I figured that this could be generalised, and that building a generic multi-stage backend was possible thanks to PEP-517 exposing the backend as ordinary Python functions.
 
@@ -42,7 +39,7 @@ name = "some-project"
 version = "0.1.0"
 ```
 
-The `my_hooks` module lives in the same directory as `pyproject.toml` (that is what `hook-path = "."` says), and it only needs to be a plain Python module:
+The `my_hooks` module lives in the same directory as `pyproject.toml`. The `hook-path` mechanism is analogous to the PEP-517 backend-path mechanism, and allows code local to our project to be run. It only needs to be a plain Python module:
 
 ```python
 # my_hooks.py
@@ -51,9 +48,9 @@ def add_requires_external(wheel_path):
     ...
 ```
 
-When pip, uv or build ask the backend to build a wheel, multistage-build delegates to `setuptools.build_meta.build_wheel` as defined in the `pyproject.toml`, and then, calls `add_requires_external` with the resulting wheel path before returning the result to the build frontend. From the frontend's point of view a normal wheel has been produced; multistage-build just handed the wheel to your hook first.
+When pip, uv or build ask the backend to build a wheel, multistage-build delegates to the configured build backend (in this example, setuptools), and then calls `add_requires_external` with the resulting wheel path before returning the result to the build frontend. From the frontend's point of view a normal wheel has been produced; multistage-build just handed the wheel to your hook first.
 
-Pre-hooks also exist, and they run before the real backend is called, receiving the arguments the backend was about to see. This is handy for thinkgs like code generation, or anything else that has to happen to the source tree before the real build backend does its thing.
+Pre-hooks also exist, and they run before the real backend is called, receiving the arguments the backend was about to see. This is handy for things like code generation, or anything else that has to happen to the source tree before the real build backend does its thing.
 
 A useful side-effect of this design is that the hook itself is not tied to any particular backend. If you choose to move from setuptools to hatchling, or to some other build backend, you simply change the `[tool.multistage-build]` build-backend line, and the hook stays in place.
 
@@ -79,13 +76,12 @@ Any project that lists that helper tool in its `[build-system].requires`, and us
 
 As a hypothetical example, a `multistage-mypyc` library could register a `pre-build-wheel` entry point that runs [mypyc](https://mypyc.readthedocs.io/) over the source tree and drops the resulting extension modules where the underlying backend will pick them up. Any project wanting mypyc compilation would then add `multistage-mypyc` as a build requirement, choose `multistage_build:backend`, and get the same behaviour with any of the mainstream backends. [hatch-mypyc](https://github.com/ofek/hatch-mypyc) already does this for hatchling. At the time of writing I am not aware of an equivalent that works across build backends.
 
+One criticism I have of this approach is that it can be a bit opaque as to the build processes that are enabled for a build. Another is that there is no control of the order of these entrypoint registered hooks. I don't yet know if I think this is a deal-breaker, or if the convenience of simply adding a build-time requirement to automatically trigger new behaviour is a price worth paying. I've been playing with this approach a bit, and plan to roll it out to a number of my projects to get a feeling for how it plays out. Feedback welcome!
 
-## Use cases
 
-I have used this in multiple places in my work projects already. Two categories in particular:
+## Next steps
 
- * Post-build metadata injection. `Requires-External` is a legal wheel metadata field that setuptools does not currently write, but that downstream tooling can consume (with the risk that standardisation in PEP ??? can reasonably add semantics which are incomatible with whatever you do). This is as simple as adding a `post-build-wheel` hook that opens the wheel and adds the field.
- * Pre-build code generation. When the authoritative source of a library is async, and the sync surface is derived from it, running that derivation as a `pre-build-wheel` hook means the generated files never live in the git tree, and an editable install can regenerate them on demand.
+The build backend is working robustly, and I am very happy with the outcome. I think this unlocks a lot of potential for hooking into the build phase of a project, and I'm using it in multiple places already. If this were to become a popular thing, it is conceivable that this could be a built-in concept in the PEP-517 mechanism, rather than requiring a dedicated proxy backend, but I think that is a long-shot.
 
-Neither of these is a particularly novel use case, but both are the sort of thing that used to live in a bespoke `setup.py` command, and that most modern build backends do not give you an obvious way to do.
+I'd be interested to know your thoughts on this - is this against the grain of the PEP-517 spec? Or is this a useful step which gives us more atomic build capabilities and moves us towards looser coupling to specific build backends?
 
