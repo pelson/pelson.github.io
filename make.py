@@ -1,19 +1,4 @@
-#!/usr/bin/env conda-execute
-
-# conda execute
-# env:
-#  - python>3.5
-#  - pelican
-#  - markdown
-#  - ipython
-#  - notebook
-#  - tidy-html5
-#  - pygments
-# channels:
-#  - defaults
-#  - conda-forge
-#  - pelson
-# run_with: python
+#!/usr/bin/env -S uv run --with-requirements requirements.txt python
 
 import os
 import glob

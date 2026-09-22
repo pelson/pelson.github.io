@@ -1,0 +1,12 @@
+[project]
+name = "pelson-github-io"
+version = "0.0.0"
+requires-python = "==3.13.*"
+dependencies = [
+    "pelican",
+    "markdown",
+    "pelican-liquid-tags",
+]
+
+[tool.uv.sources]
+pelican-liquid-tags = { path = "extras/liquid-tags" }

@@ -16,18 +16,16 @@ OR
     cd pelson.github.io
     git submodule update --init --recursive
 
-Next, create an environment:
-
-    uv venv ./venv
-    source ./venv/bin/activate
-    uv pip install -r requirements.txt ./extras/liquid-tags
+Dependencies are managed with [uv](https://docs.astral.sh/uv/); no separate environment setup is needed.
 
 To run a local server that watches all changed files:
 
-    uv run --no-project --with-requirements ./requirements.txt python make.py reload
+    ./make.py reload
 
-To update the requirements.txt:
+(`make.py` is a `uv run` script, so this resolves `requirements.txt` and Python 3.13 on demand.)
 
-   uv pip compile requirements.in | grep -v pelican-liquid-tags > requirements.txt 
+To update requirements.txt after changing pyproject.toml:
+
+    uv pip compile pyproject.toml -o requirements.txt
 
 
